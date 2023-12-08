@@ -1,14 +1,14 @@
 const express = require('express')
 const {
-  getWorkouts, 
-  getWorkout, 
-  createWorkout, 
-  deleteWorkout, 
+  getWorkouts,
+  getWorkout,
+  createWorkout,
+  deleteWorkout,
   updateWorkout
 } = require('../controllers/workoutController')
 
 const router = express.Router()
-
+//-----------------------------------------------
 // GET all workouts
 router.get('/', getWorkouts)
 
@@ -23,5 +23,4 @@ router.delete('/:id', deleteWorkout)
 
 // UPDATE a workout
 router.patch('/:id', updateWorkout)
-
-module.exports = router
+//--------------------------------------------------
