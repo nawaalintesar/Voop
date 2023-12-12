@@ -23,3 +23,5 @@ router.delete('/:id', deleteProject)
 
 // UPDATE a project
 router.patch('/:id', updateProject)
+
+module.exports = router

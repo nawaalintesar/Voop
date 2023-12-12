@@ -18,3 +18,5 @@ router.post('/:id/enroll', enrollTutorial)
 
 // POST a new tutorial play 
 router.post('/:id/play', playTutorial)
+
+module.exports = router
