@@ -12,8 +12,9 @@ const userSchema = new Schema({
         required: true
     },
     progLangsChosen: {
-        type: String,//needs constraints
-        required: true
+        type: [String],
+        required: true,
+        enum: ["python", "java", "c++"]
     },
     enrolledTutorials: {
         type: Schema.Types.ObjectId,

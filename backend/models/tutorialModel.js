@@ -8,11 +8,12 @@ const tutorialSchema = new Schema({
         required: true
     },
     OOPConcept: {
-        type: Number
+        type: String
     },
     progLang: {
-        type: Number,
-        required: true
+        type: String,
+        required: true,
+        enum: ["python", "java", "c++"]
     },
     tutCode: {
         type: Number,
@@ -28,12 +29,16 @@ const tutorialSchema = new Schema({
         type: [String],
         required: true
     },
-    tutCompletedSteps:{
-        type:Number
-    },
-    tutDescription:{
-        type:String,
+    noTutSteps:{
+        type: Number,
         required:true
+    },
+    tutCompletedSteps: {
+        type: Number
+    },
+    tutDescription: {
+        type: String,
+        required: true
     }
 }, { timestamps: true })
 
