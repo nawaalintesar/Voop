@@ -4,7 +4,7 @@ const User = require('../models/userModel');
 const mongoose = require('mongoose')
 
 // get all tutorials
-const getTutorials = async (req, res) => {
+const viewTutorials = async (req, res) => {
   const tutorials = await Tutorial.find({}).sort({ createdAt: -1 })
 
   res.status(200).json(tutorials)
@@ -91,10 +91,12 @@ const playTutorial = async (req, res) => {
     }
 
     tutorial.tutSteps.forEach((step, index) => {
+         // after the front end is connected it has to be on click do each step
       console.log(`Step ${index + 1}: ${step}`);
     });
 
-    // Return the tutorial steps to the user's web page
+    // Return the tutorial steps to the user's web page all at once
+
     res.status(200).json({ tutorialSteps: tutorial.tutSteps , message: 'Tutorial completed!'});
     console.log(`Tutorial ${tutorial.tutName} played successfully for user ${user.userName}`);
   } catch (error) {
@@ -105,7 +107,7 @@ const playTutorial = async (req, res) => {
 
 
 module.exports = {
-  getTutorials,
+  viewTutorials,
   getTutorial,
   enrollTutorial,
   playTutorial

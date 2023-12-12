@@ -1,21 +1,21 @@
 const express = require('express')
 
 const {
-    getProjects,
+    viewProjects,
     getProject,
     createProject,
     deleteProject,
     updateProject
-} = require('../controllers/userCodeController')
+} = require('../controllers/projectController')
 
 const router = express.Router()
 // GET all projects
-router.get('/', getProjects)
+router.get('/', viewProjects)
 
 // GET a single project
-router.get('/:id', getProject)
+router.get('/:id', viewProject)
 
-// POST a new workout
+// POST a new project
 router.post('/', createProject)
 
 // DELETE a project

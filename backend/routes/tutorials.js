@@ -1,14 +1,14 @@
 const express = require('express')
 
 const {
-    getTutorials,
+    viewTutorials,
     getTutorial,
     enrollTutorial,
     playTutorial,
 } = require('../controllers/tutorialController')
 const router = express.Router()
 // GET all tutorials
-router.get('/', getTutorials)
+router.get('/', viewTutorials)
 
 // GET a single tutorial
 router.get('/:id', getTutorial)

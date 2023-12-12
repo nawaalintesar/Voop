@@ -1,5 +1,11 @@
-// nlp/nlpHandler.js
+// everything here is done sequentially
 const nlpHandler = {
+    sanitizeCode: (code) => {
+        //
+    },
+    compileCode: (code) => {
+        //putting everything together and values injection 
+    },
     parseCode: (code) => {
         // Use CodeBERT or other NLP tools to parse the code
         // Return the abstract syntax tree (AST) or other relevant format
@@ -17,7 +23,7 @@ const nlpHandler = {
                 reject(new Error('Parsing failed with code ${code}'));
             }
         });
-
+        // if the code is being updated not starting from scratch the process should be more simplified here
     },
     analyzeCode: (code) => {
         // Add your NLP logic here
@@ -27,7 +33,10 @@ const nlpHandler = {
         // Return a structured representation of the analyzed code
 
     },
-    generateKeyValuePairs: (analyzedCode) => {
+    identifyOOPConcepts: (code)=>{
+        //is this a part of analyzing the code?
+    },    
+    convertToDictionary: (analyzedCode) => {
         // Use the analyzed code to generate key-value pairs (e.g., Inheritance: {lines of code})
         // Return the generated key-value pairs
     },
@@ -35,9 +44,24 @@ const nlpHandler = {
         // Use the key to identify the pre-built animation component
         // Return the information required for the animation component
     },
-    displayAnimation: (animationInfo) => {
+    compileDiagram: (analyzedCode) => {
+        //putting everything together and values injection 
+        getDiagrams() //of each component
+    },
+    animateDiagram: (analyzedCode) => {
+        //putting everything together and values injection 
+    },
+    
+
+    displayDiagram: (animationInfo) => {
         // Use the animation information to display the animation
         // You might have a separate module or component for handling animations
+    },
+    identifyConstraints: (analyzedCode) => {
+        //putting everything together and values injection 
+    },    
+    generateRecommendations: (code, constraints) =>{
+
     }
 };
 
