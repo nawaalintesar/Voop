@@ -3,8 +3,8 @@ const nlpHandler = {
     sanitizeCode: (code) => {
         //
     },
-    compileCode: (code) => {
-        //putting everything together and values injection 
+    compileCode: (code, progLang) => {
+        //depending on the language it compiles the code to make sure there are no errors 
     },
     parseCode: (code) => {
         // Use CodeBERT or other NLP tools to parse the code
