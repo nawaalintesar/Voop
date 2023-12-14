@@ -2,106 +2,99 @@ const nlpHandler = require('../nlp/nlpHandler');
 const mongoose = require('mongoose')
 
 // get all user's code projects
-const viewProjects= async (req, res) => {
-    const tutorials = await Tutorial.find({}).sort({ createdAt: -1 })
-  
-    res.status(200).json(tutorials)
+const viewProjects = async (req, res) => {
+  const projects = await Project.find({}).sort({ createdAt: -1 })
+
+  res.status(200).json(projects)
+}
+
+// get a single project for view
+const getProject = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: 'No such ' })
   }
-  
-  // get a single project for view
-  const getProject = async (req, res) => {
-    const { id } = req.params
-  
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(404).json({ error: 'No such ' })
-    }
-  
-    const tutorial = await Tutorial.findById(id)
-  
-    if (!tutorial) {
-      return res.status(404).json({ error: 'No such tutorial' })
-    }
-  
-    res.status(200).json(tutorial)
+
+  const project = await Project.findById(id)
+
+  if (!project) {
+    return res.status(404).json({ error: 'No such project' })
   }
+
+  res.status(200).json(project)
+}
 
 // create a new code project
 const createProject = async (req, res) => {
 
-    // const { title, load, reps } = req.body
+  const { prjName, progLang } = req.body
 
-    // let emptyFields = []
+  let emptyFields = []
 
-    // if (!title) {
-    //     emptyFields.push('title')
-    // }
-    // if (!load) {
-    //     emptyFields.push('load')
-    // }
-    // if (!reps) {
-    //     emptyFields.push('reps')
-    // }
-    // if (emptyFields.length > 0) {
-    //     return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
-    // }
+  if (!prjName) {
+      emptyFields.push('prjName')
+  }
+  if (!progLang) {
+      emptyFields.push('progLang')
+  }
+  if (emptyFields.length > 0) {
+      return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
+  }
 
-    // // add to the database
-    // try {
-    //     const workout = await Workout.create({ title, load, reps })
-    //     res.status(200).json(workout)
-    // } catch (error) {
-    //     res.status(400).json({ error: error.message })
-    // }
+  // add to the database
+  try {
+      const project = await Project.create({ prjName, progLang })
+      res.status(200).json(project)
+  } catch (error) {
+      res.status(400).json({ error: error.message })
+  }
 }
 
 // delete a project
 const deleteProject = async (req, res) => {
-    const { id } = req.params
+  const { id } = req.params
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: 'No such workout' })
-    }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'No such project' })
+  }
 
-    const workout = await Workout.findOneAndDelete({ _id: id })
+  const project = await Workout.findOneAndDelete({ _id: id })
 
-    if (!workout) {
-        return res.status(400).json({ error: 'No such workout' })
-    }
+  if (!project) {
+    return res.status(400).json({ error: 'No such project' })
+  }
 
-    res.status(200).json(workout)
+  res.status(200).json(workout)
 }
 
 // update a an existing project
 const updateProject = async (req, res) => {
-    updateCode() // from the second time they click run it has to look for changes to the code and update it
-    nlpHandler.generateRecommendations() // this is needed to do the next 3
-    modifyRelations()
-    addComponent()
-    removeComponent()
-    
-    // const { id } = req.params
+  updateCode() // from the first time they click run it has to look for changes to the code and update it
+  // nlpHandler.generateRecommendations() // this is needed to do the next 3
+  // modifyRelations()
+  // addComponent()
+  // removeComponent()
 
-    // if (!mongoose.Types.ObjectId.isValid(id)) {
-    //     return res.status(400).json({ error: 'No such workout' })
-    // }
+  const { id } = req.params
 
-    // const workout = await Workout.findOneAndUpdate({ _id: id }, {
-    //     ...req.body
-    // })
+  const project = await Project.findOneAndUpdate({ _id: id }, {
+      ...req.body
+  })
 
-    // if (!workout) {
-    //     return res.status(400).json({ error: 'No such workout' })
-    // }
+  if (!project) {
+      return res.status(400).json({ error: 'No such project' })
+  }
 
-    // res.status(200).json(workout)
+  res.status(200).json(project)
 }
-async function displayOOPConcepts(){
-
+async function displayOOPConcepts() {
+  // takes identifiedOOPConcepts and displays in grammarly popup
 }
 module.exports = {
-    viewProjects,
-    getProject,
-    createProject,
-    deleteProject,
-    updateProject
+  viewProjects,
+  getProject,
+  createProject,
+  deleteProject,
+  updateProject
 }

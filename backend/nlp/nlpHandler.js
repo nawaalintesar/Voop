@@ -7,7 +7,17 @@ const nlpHandler = {
         //depending on the language it compiles the code to make sure there are no errors 
     },
     parseCode: (code) => {
-        // Use CodeBERT or other NLP tools to parse the code
+        //tree sitter can parse code this doesnt involve nlp
+        // not sure if we reaaallly need this because we could just clean up the code and anlyse it. parsing is something programming tools need like github, intellij
+
+    },
+    analyzeCode: (code) => {
+        // Add your NLP logic here
+        // This function might use a library like spaCy or NLTK
+        // Perform Named Entity Recognition (NER), dependency parsing, semantic analysis, etc.
+        // Extract relevant information like class names, relationships, method names, etc.
+        // Return a structured representation of the analyzed code
+                // Use CodeBERT or other NLP tools to parse the code
         // Return the abstract syntax tree (AST) or other relevant format
         const pythonProcess = spawn('python', ['parse.py', code]);
 
@@ -24,13 +34,6 @@ const nlpHandler = {
             }
         });
         // if the code is being updated not starting from scratch the process should be more simplified here
-    },
-    analyzeCode: (code) => {
-        // Add your NLP logic here
-        // This function might use a library like spaCy or NLTK
-        // Perform Named Entity Recognition (NER), dependency parsing, semantic analysis, etc.
-        // Extract relevant information like class names, relationships, method names, etc.
-        // Return a structured representation of the analyzed code
 
     },
     identifyOOPConcepts: (code)=>{

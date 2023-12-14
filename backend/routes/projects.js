@@ -10,10 +10,10 @@ const {
 
 const router = express.Router()
 // GET all projects
-router.get('/', viewProjects)
+router.get('/', getProject)
 
 // GET a single project
-router.get('/:id', viewProject)
+router.get('/:id', getProject)
 
 // POST a new project
 router.post('/', createProject)
