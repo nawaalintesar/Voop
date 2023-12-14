@@ -1,5 +1,5 @@
 const express = require('express')
-
+// make sure they can only see tutorials if they are logged in
 const {
     viewTutorials,
     getTutorial,

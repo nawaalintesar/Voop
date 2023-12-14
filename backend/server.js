@@ -20,8 +20,15 @@ app.use('/api/tutorials', tutorialRoutes)
 app.use('/api/projects', projectRoutes)
 // home, log in sign up dashboard 
 app.get('/dashboard', (req,res)=>{
-  res.json({msg:"welcome"})
-  // need to get recent projects and recent tutorials as well as profile information
+  res.json({msg:"welcome"}) //call functions from profileController.js
+  // need to get recent projects and recent tutorials ( limitted to 4/5) and display the user's name
+})
+app.get('/profile', (req,res)=>{
+  res.json({msg:"welcome"})//call functions from profileController.js
+  // profile information
+//   delele account
+// update account information
+// forgot password feature
 })
 
 // connect to db

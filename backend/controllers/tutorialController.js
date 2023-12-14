@@ -1,4 +1,3 @@
-const tutorialModel = require('../models/tutorialModel');
 const Tutorial = require('../models/tutorialModel')
 const User = require('../models/userModel');
 const mongoose = require('mongoose')
@@ -24,7 +23,7 @@ const getTutorial = async (req, res) => {
     return res.status(404).json({ error: 'No such tutorial' })
   }
 
-  res.status(200).json(tutorial)
+  res.status(200).json(tutorial) //right now gets the whole tutorial this should take only the description to be displayed on the tutorial page
 }
 
 const enrollTutorial = async (req, res) => {

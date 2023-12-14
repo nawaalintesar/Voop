@@ -1,5 +1,7 @@
-const nlpHandler = require('../nlp/nlpHandler');
 const mongoose = require('mongoose')
+const nlpHandler = require('../nlp/nlpHandler');
+const User = require('../models/userModel');
+const Project = require('../models/projectModel')
 
 // get all user's code projects
 const viewProjects = async (req, res) => {

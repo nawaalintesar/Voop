@@ -1,5 +1,5 @@
 const express = require('express')
-
+// make sure they are limitted to one project unless they are logged in
 const {
     viewProjects,
     getProject,
@@ -10,7 +10,7 @@ const {
 
 const router = express.Router()
 // GET all projects
-router.get('/', getProject)
+router.get('/', viewProjects)
 
 // GET a single project
 router.get('/:id', getProject)

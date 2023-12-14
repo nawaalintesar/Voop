@@ -20,16 +20,63 @@ const ProjectSchema = new Schema(
                     required: true,
                 },
                 codeDictionary: {
-                    type: CodeDictionary.schema,
-                    ref: 'CodeDictionary',
-                    required: true,
+                    userCode: {
+                        // The actual code provided by the user
+                        type: String,
+                        required: true,
+                    },
+                    classes: [
+                        {
+                            name: {
+                                type: String,
+                                required: true,
+                            },
+                            attributes: [
+                                {
+                                    name: String,
+                                    type: String,
+                                },
+                            ],
+                            methods: [
+                                {
+                                    name: String,
+                                    returnType: String,
+                                    parameters: [
+                                        {
+                                            name: String,
+                                            type: String,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                    relationships: [
+                        {
+                            type: {
+                                type: String,
+                                enum: ['association', 'aggregation', 'composition'],
+                                required: true,
+                            },
+                            entities: [
+                                {
+                                    type: {
+                                        type: String,
+                                        enum: ['class', 'object', 'instance'],
+                                        required: true,
+                                    },
+                                    name: String,
+                                },
+                            ],
+                        },
+                    ]
                 },
                 diagramID: {
                     type: Schema.Types.ObjectId,
                     ref: 'Diagram',
                     required: true,
                 },
-                OOPConcept: [
+                OOPConcept: [// this part i havent really looked into so feel free to change the db structure
                     {
                         concept: {
                             type: String,
@@ -53,10 +100,10 @@ const ProjectSchema = new Schema(
                 ]
             },
         ],
-        constraints: {
+        constraints: {// this part i havent really looked into so feel free to change the db structure
             type: [String],
         },
-        codeRecs: {
+        codeRecs: {// this part i havent really looked into so feel free to change the db structure
             type: [String],
         },
     },
