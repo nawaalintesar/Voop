@@ -22,8 +22,7 @@ const ProjectSchema = new Schema(
                 codeDictionary: {
                     userCode: {
                         // The actual code provided by the user
-                        type: String,
-                        required: true,
+                        type: [String]
                     },
                     classes: [
                         {
@@ -74,7 +73,6 @@ const ProjectSchema = new Schema(
                 diagramID: {
                     type: Schema.Types.ObjectId,
                     ref: 'Diagram',
-                    required: true,
                 },
                 OOPConcept: [// this part i havent really looked into so feel free to change the db structure
                     {
