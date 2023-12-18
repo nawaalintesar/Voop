@@ -34,6 +34,7 @@ app.get('/profile', (req,res)=>{
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
+    
     console.log('connected to database')
     // listen to port
     app.listen(process.env.PORT, () => {
@@ -42,4 +43,11 @@ mongoose.connect(process.env.MONGO_URI)
   })
   .catch((err) => {
     console.log(err)
+  },{
+    socketTimeoutMS: 45000, // Example value, adjust as needed
+    connectTimeoutMS: 30000, // Example value, adjust as needed
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
   }) 

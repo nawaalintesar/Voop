@@ -1,0 +1,114 @@
+Classes, Objects and Instances
+//Tutorial Description
+In the world of Object-Oriented Programming (OOP), think of objects as the fundamental building blocks that represent real-world entities. 
+Imagine a blueprint or a template that defines the characteristics and behaviors of these objects. This template is called a class. A class usually has a name, attributes- which are the characteristics common to any member of the class, and functions- which all members of the class can do or have.
+An instance is like a specific realization of that blueprint - an actual object created based on the class. This instance is created with the help of a “constructor”. 
+For example, you can have a class called "Car" that defines what a car is (its properties like color and speed, and behaviors like honking). An instance of this class would be an actual car that has specific attributes and functions unique to it.
+Try a tutorial to understand how this works in code!
+//DescriptionEnd
+//Level 1- Java
+
+class Circle {
+    double radius;
+    String color;  // New attribute
+
+    Circle(double radius, String color) {
+        this.radius = radius;
+        this.color = color;
+    }
+
+    double calculateArea() {  // New function
+        return Math.PI * radius * radius;
+    }
+
+    public static void main(String args[]) {
+        // Creating an instance of a Circle
+        Circle c1 = new Circle(10.2, "Red");
+
+        // Accessing attributes and invoking the new function
+        System.out.println("Radius: " + c1.radius);
+        System.out.println("Color: " + c1.color);
+        System.out.println("Area: " + c1.calculateArea());
+    }
+}
+
+
+//Steps
+Step 1: Create a class blueprint called circle to create multiple circles.
+Step 2: Add attributes that define the circle- radius and color for example, and determine their data types. 
+Step 3: The constructor Circle(double radius, String color), is a function that every class needs to create an instance of a circle.  In this example, it takes parameters radius and color to be set as per the value provided. 
+Step 4: The constructor initializes the radius attribute with the value passed as an parameter to the constructor (this.radius = radius;). Whatever radius a user provides will be initialized for the instance they created with the help of the “this” keyword. “This” also helps to differentiate between the parameter radius and the attribute of the class which is also called radius. 
+Step 5: A function calculateArea to return the area of the circle. It does not need parameters since the radius of the circle is stored in any instance of the circle that is created. 
+Step 6: Create an instance of the circle and provide a radius and color as an argument and printing out the circle’s information.
+------------------------------
+//Level 1- Python
+//Code
+import math
+
+class Circle:
+    def __init__(self, radius, color):
+        self.radius = radius
+        self.color = color
+
+    def calculate_area(self):
+        return math.pi * self.radius**2
+
+# Creating an instance of a Circle
+c1 = Circle(10.2, "Red")
+
+# Accessing attributes and invoking the new function
+print("Radius:", c1.radius)
+print("Color:", c1.color)
+print("Area:", c1.calculate_area())
+
+//Steps
+Step 1: Create a class blueprint called circle to create multiple circles.
+Step 2: Add attributes that define the circle- radius and color for example, and determine their data types. 
+Step 3: The constructor Circle(double radius, String color), is a function that every class needs to create an instance of a circle.  In this example, it takes parameters radius and color to be set as per the value provided. 
+Step 4: The __init__ method is a method used for initializing objects in Python. The constructor def __init__(self, radius), initializes the radius attribute with the value passed as an parameter to the constructor (self.radius = radius). Whatever radius a user provides will be initialized for the instance they created with the help of the “self” keyword.
+Step 5: A function calculateArea to return the area of the circle. It does not need parameters since he radius of the circle is stored in any instance of circle that is created. 
+Step 6: Create an instance of the circle and providing a radius and color as an arguement and printing out the circle’s informaiton.
+------------------------------
+
+
+//Level 1- C++
+//Code
+#include <iostream>
+#include <cmath>
+
+class Circle {
+public:
+    double radius;
+    std::string color;  // New attribute
+
+    Circle(double radius, std::string color) {
+        this->radius = radius;
+        this->color = color;
+    }
+
+    double calculateArea() {  // New function
+        return M_PI * pow(radius, 2);
+    }
+};
+
+int main() {
+    // Creating an instance of a Circle
+    Circle c1(10.2, "Red");
+
+    // Accessing attributes and invoking the new function
+    std::cout << "Radius: " << c1.radius << std::endl;
+    std::cout << "Color: " << c1.color << std::endl;
+    std::cout << "Area: " << c1.calculateArea() << std::endl;
+
+    return 0;
+}
+
+//Steps
+Step 1: Create a class blueprint called circle to create multiple circles.
+Step 2: Add attributes that define the circle- radius and color for example, and determine their data types. 
+Step 3: The constructor Circle(double radius, String color), is a function that every class needs to create an instance of a circle. It may or may not take parameters. In this example, it takes parameters radius and color to be set as per the value provided. 
+Step 4: The constructor Circle(double radius) : radius(radius) {}, Initializes the private radius attribute with the value passed as a a parameter to the constructor (radius(radius)). Whatever radius a user provides will be initialized for the instance they created with the help of the “this” keyword.
+Step 5: A function calculateArea to return the area of the circle. It does not need parameters since he radius of the circle is stored in any instance of circle that is created. 
+Step 6: Create an instance of the circle and providing a radius and color as an arguement and printing out the circle’s informaiton.
+------------------------------
+
