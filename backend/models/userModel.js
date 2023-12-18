@@ -21,14 +21,14 @@ const userSchema = new Schema({
         required: true,
         enum: ["python", "java", "c++"]
     },
-    enrolledTutorials: {
+    enrolledTutorials: [{
         type: Schema.Types.ObjectId,
         ref: 'Tutorial'
-    },
-    createdProjects: {
+    }],
+    createdProjects: [{
         type: Schema.Types.ObjectId,
-        ref: 'Project'
-    },
+        ref: 'Project',
+    }],
     userProgressByLang: {
         type: [String],//needs constraints
         required: true
