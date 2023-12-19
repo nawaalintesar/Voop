@@ -1,0 +1,80 @@
+.continueLearning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+}
+.classobjectstutcardChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-6xl);
+  background-color: var(--color-darkslategray-300);
+  width: 200px;
+  height: 240px;
+}
+.classobjectstutcardItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xl) var(--br-xl) 0 0;
+  background: linear-gradient(96.5deg, #ca6caf 36.98%, #a53c9e);
+  width: 200px;
+  height: 126px;
+}
+.aClassIs {
+  position: absolute;
+  top: 161px;
+  left: 19px;
+  font-size: var(--font-size-2xs);
+  line-height: 100%;
+  font-weight: 500;
+  color: var(--color-darkgray);
+  display: inline-block;
+  width: 152px;
+  height: 59px;
+}
+.classobjectstutcardInner {
+  position: absolute;
+  top: 109px;
+  left: 8px;
+  border-radius: var(--br-21xl);
+  background: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
+    linear-gradient(#fff, #fff), #fff;
+  width: 181.4px;
+  height: 6px;
+}
+.classesAndObjects,
+.div {
+  position: absolute;
+  top: 93px;
+  left: 8px;
+  line-height: 110%;
+  font-weight: 500;
+}
+.classesAndObjects {
+  top: 141px;
+  left: 20px;
+}
+.classobjectstutcard {
+  position: absolute;
+  top: 54px;
+  left: 264px;
+  width: 200px;
+  height: 240px;
+}
+.classobjectstutcard:hover {
+  filter: drop-shadow(0 4px 4px rgba(165, 60, 158, 0.7));
+}
+.continuelearning {
+  position: absolute;
+  top: 514px;
+  left: 0;
+  width: 464px;
+  height: 294px;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}
