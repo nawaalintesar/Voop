@@ -128,7 +128,7 @@ async function populateDatabase(filePath) {
       levels.push({
         levelNumber,
         progLang,
-        code: code.join('\n'),        
+        code: code.join('\n'),
         noTutSteps: tutorialSteps.length,
         tutorialSteps: tutorialSteps.join('\n')
       });
@@ -146,22 +146,22 @@ async function populateDatabase(filePath) {
       tutName: tutName.trim(),
       tutDescription: tutDescription.trim(),
       levels
-  });
-  tutName= "Samepl";
-  tutDescription="asdfas";
-  level= [
-    {
-      "levelNumber": 1,
-      "progLang": "Java",
-      "code": ["public class HelloWorld {", "  public static void main(String[] args) {", "    System.out.println(\"Hello, World!\");", "  }", "}"],
-      "tutorialSteps": ["Step 1: Open your IDE.", "Step 2: Create a new Java class.", "Step 3: Write the 'Hello, World!' program.", "Step 4: Run the program."],
-      "diagramID": 1,
-      "codeDictionary": { 1: [1, 2, 3], 2: [4] },
-      "noTutSteps": 4,
-      "tutCompletedSteps": 0
-    }
-  ];
-  
+    });
+    tutName = "Samepl";
+    tutDescription = "asdfas";
+    level = [
+      {
+        "levelNumber": 1,
+        "progLang": "Java",
+        "code": ["public class HelloWorld {", "  public static void main(String[] args) {", "    System.out.println(\"Hello, World!\");", "  }", "}"],
+        "tutorialSteps": ["Step 1: Open your IDE.", "Step 2: Create a new Java class.", "Step 3: Write the 'Hello, World!' program.", "Step 4: Run the program."],
+        "diagramID": 1,
+        "codeDictionary": { 1: [1, 2, 3], 2: [4] },
+        "noTutSteps": 4,
+        "tutCompletedSteps": 0
+      }
+    ];
+
 
     // Save the tutorial to the database
     const project = await Tutorial.create({
@@ -169,8 +169,8 @@ async function populateDatabase(filePath) {
       tutDescription,
       level
     });
-    
-    
+
+
 
     console.log('Database populated successfully!');
   } catch (error) {
@@ -179,8 +179,8 @@ async function populateDatabase(filePath) {
 }
 
 // Example usage
-const filePath = './backend/models/Tutorials/Classes.txt';
-populateDatabase(filePath);
+// const filePath = './backend/models/Tutorials/Classes.txt';
+// populateDatabase(filePath);
 
 async function calculateProgress(tutorial) {
   const totalSteps = tutorial.levels.reduce((acc, level) => acc + level.noTutSteps, 0);
@@ -189,6 +189,8 @@ async function calculateProgress(tutorial) {
 
   return isNaN(progress) ? 0 : progress;
 };
+
+
 
 // get a single tutorial for view
 const getTutorial = async (req, res) => {
@@ -214,9 +216,9 @@ const enrollTutorial = async (req, res) => {
 
   try {
     // get user information
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findById(userId);
     // Check if the tutorial exists
-    const tutorial = await Tutorial.findOne({ _id: tutorialId });
+    const tutorial = await Tutorial.findById(tutorialId);
 
     if (!tutorial) {
       console.error('Tutorial not found');
@@ -224,7 +226,7 @@ const enrollTutorial = async (req, res) => {
     }
 
     // Check if the user is already enrolled in the tutorial
-    const tutorialFound = await User.findOne({ _id: userId, enrolledTutorials: tutorialId });
+    const tutorialFound = await User.findById({userId, enrolledTutorials: tutorialId});
 
     if (tutorialFound) {
       console.error('Tutorial already enrolled');
@@ -245,32 +247,28 @@ const enrollTutorial = async (req, res) => {
   }
 };
 
-const getEnrolledTutorials = async (req, res) => {
+async function getEnrolledTutorials() {
 
   const userId = "u001"
   //const userId = req.params.userId; // Assuming you have the user ID in the request parameters
 
   try {
     // Find the user by ID and populate the enrolledTutorials field
-    const user = await User.findById(userId).populate('enrolledTutorials');
-
-    // Calculate progress for each enrolled tutorial
-    const enrolledTutorialsInfo = user.enrolledTutorials.map((tutorial) => {
-      const progress = calculateProgress(tutorial);
-
-      return {
-        tutorialId: tutorial._id,
-        tutName: tutorial.tutName,
-        progress,
-      };
+    const user = await User.findById(userId).populate({
+      path: 'enrolledTutorials' // Sort in descending order
     });
+    const enrolledTutorials = user.enrolledTutorials || [];
+    if (enrolledTutorials.length > 0) {
+      // Sort projects by createdAt in descending order (most recent first)
+      enrolledTutorials.sort((a, b) => b.updatedAt - a.updatedAt);
+    }
 
-    res.status(200).json(enrolledTutorialsInfo);
+    console.log(enrolledTutorials);
   } catch (error) {
     console.error('Error fetching enrolled tutorials:', error.message);
-    res.status(500).json({ error: 'Internal server error' });
   }
 };
+getEnrolledTutorials();
 const playTutorial = async (req, res) => {
 
   //once authentication part is done this should be using userId for now im making it static u001
@@ -278,9 +276,9 @@ const playTutorial = async (req, res) => {
   tutorialId = req.params.id;
   try {
     // get user information
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findById(userId);
     // Check if the tutorial exists
-    const tutorial = await Tutorial.findOne({ _id: tutorialId });
+    const tutorial = await Tutorial.findById(tutorialId);
 
     if (!tutorial) {
       console.error('Tutorial not found');
@@ -288,7 +286,7 @@ const playTutorial = async (req, res) => {
     }
 
     // Check if the user is already enrolled in the tutorial
-    const tutorialFound = await User.findOne({ _id: userId, enrolledTutorials: tutorialId });
+    const tutorialFound = await User.findById({ _id: userId, enrolledTutorials: tutorialId });
 
     if (!tutorialFound) {
       console.error('Tutorial is not enrolled');
@@ -298,6 +296,7 @@ const playTutorial = async (req, res) => {
     tutorial.tutSteps.forEach((step, index) => {
       // after the front end is connected it has to be on click do each step
       console.log(`Step ${index + 1}: ${step}`);
+      const progress = calculateProgress(tutorial);
     });
 
     // Return the tutorial steps to the user's web page all at once
