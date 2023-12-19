@@ -25,7 +25,7 @@ const viewDashboard = async (req, res) => {
 }
 
 // display recent projects and tutorials limitted to 4/5
-// log in i am ashna and i am here
+// log in 
 // sign up
 // display name on dashboard
 // delele account
