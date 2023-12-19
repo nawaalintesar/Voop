@@ -60,14 +60,6 @@ const populateDatabase = async (req, res) => {
             noTutSteps: tutorialSteps.length,
             tutorialSteps: tutorialSteps
           });
-          // Log the results
-          console.log('Tutorial Name:', tutName);
-          console.log('Tutorial Description:', tutDescription.trim());
-          console.log('Level Number:', levelNumber);
-          console.log('Programming Language:', progLang);
-          console.log('No of Steps:', noTutSteps);
-          console.log('Code:', code.join('\n'));
-          console.log('Steps:', tutorialSteps.join('\n'))
 
           // Reset arrays for the new level
           code = [];
@@ -137,14 +129,6 @@ const populateDatabase = async (req, res) => {
         noTutSteps: tutorialSteps.length,
         tutorialSteps: tutorialSteps
       });
-      // Log the results
-      console.log('Tutorial Name:', tutName);
-      console.log('Tutorial Description:', tutDescription.trim());
-      console.log('Level Number:', levelNumber);
-      console.log('Programming Language:', progLang);
-      console.log('No of Steps:', noTutSteps);
-      console.log('Code:', code.join('\n'));
-      console.log('Steps:', tutorialSteps.join('\n'))
     }
 
 

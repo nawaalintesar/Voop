@@ -133,9 +133,7 @@ const updateUserCode = async (projectId, codeIndex, updatedCode) => {
     // generate the animation
     // find and display oop concepts
     // nlpHandler.generateRecommendations() // this is needed to do the next 3
-    // modifyRelations()
-    // addComponent()
-    // removeComponent()
+
 
     await project.save();
     return project;
@@ -150,7 +148,9 @@ const updateProjectWithAnalysis = async (projectId, codeIndex, analysisResults) 
     if (!project) {
       throw new Error('Project not found');
     }
-
+    // modifyRelations()
+    // addComponent()
+    // removeComponent()
     const codeState = project.codeStates.find((state) => state.codeIndex === codeIndex);
     if (!codeState) {
       throw new Error('Code state not found');

@@ -26,6 +26,10 @@ const ProjectSchema = new Schema(
                     },
                     classes: [
                         {
+                            isClass:{//for interface
+                                type:Boolean,
+                                required:true
+                            },
                             name: {
                                 type: String,
                                 required: true,
@@ -61,7 +65,7 @@ const ProjectSchema = new Schema(
                                 {
                                     type: {
                                         type: String,
-                                        enum: ['class', 'object', 'instance'],
+                                        enum: ['interface','class', 'object', 'instance'],
                                         required: true,
                                     },
                                     name: String,
