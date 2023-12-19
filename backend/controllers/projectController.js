@@ -5,7 +5,7 @@ const Project = require('../models/projectModel')
 
 // get all user's code projects
 const viewProjects = async (req, res) => {
-  const userId = "u001"; // Replace with the actual user ID
+  const userId = "65810b9b1d91631463299a28"; // Replace with the actual user ID
 
   try {
     // Find the user by ID and populate the createdProjects field
@@ -27,7 +27,7 @@ const viewProjects = async (req, res) => {
 
 // get a single project for view
 const getProject = async (req, res) => {
-  const userId = "u001"; // Replace with the actual user ID
+  const userId = "65810b9b1d91631463299a28"; // Replace with the actual user ID
 
   try {
     const { id } = req.params;
@@ -86,7 +86,7 @@ const createProject = async (req, res) => {
       progLang,
       codeStates: [initialCodeState], // Initialize with the initial code state
     });
-    const userId = "u001"; // Replace with the actual user ID
+    const userId = "65810b9b1d91631463299a28"; // Replace with the actual user ID
 
     const user = await User.findByIdAndUpdate(
       userId,
@@ -103,7 +103,7 @@ const createProject = async (req, res) => {
 // delete a project
 const deleteProject = async (req, res) => {
   const { id } = req.params
-  const userId = "u001";
+  const userId = "65810b9b1d91631463299a28";
   const user = await User.findByIdAndUpdate(
     userId,
     { $pull: { createdProjects: id } },
