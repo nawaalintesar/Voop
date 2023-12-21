@@ -149,8 +149,6 @@ const populateDatabase = async (req, res) => {
   }
 }
 
-
-
 async function calculateProgress(tutorial) {
   const totalSteps = tutorial.level.reduce((acc, level) => acc + level.noTutSteps, 0);
   const completedSteps = tutorial.level.reduce((acc, level) => acc + (level.tutCompletedSteps || 0), 0);
@@ -222,7 +220,6 @@ const enrollTutorial = async (req, res) => {
   }
 };
 
-
 const getEnrolledTutorials = async (req, res) => {
   const userId = "65810b9b1d91631463299a28"
   //const userId = req.params.userId; // Assuming you have the user ID in the request parameters
@@ -244,12 +241,12 @@ const getEnrolledTutorials = async (req, res) => {
     console.error('Error fetching enrolled tutorials:', error.message);
   }
 };
-//getEnrolledTutorials();
+
 const playTutorial = async (req, res) => {
 
   //once authentication part is done this should be using userId for now im making it static 65810b9b1d91631463299a28
-  userId = "65810b9b1d91631463299a28";
-  tutorialId = req.params.id;
+  const userId = "65810b9b1d91631463299a28";
+  const tutorialId = req.params.id;
   try {
     // get user information
     const user = await User.findById(userId);
@@ -279,12 +276,34 @@ const playTutorial = async (req, res) => {
 
     res.status(200).json({ tutorialSteps: tutorial.tutSteps, message: 'Tutorial completed!' });
     console.log(`Tutorial ${tutorial.tutName} played successfully for user ${user.userName}`);
+    console.log(progress) 
   } catch (error) {
     console.error('Error playing tutorial:', error.message);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
 
+const searchAllTutorials = async (searchTerm) => {
+  // Trim and convert to lowercase for case-insensitive search
+  const trimmedSearchTerm = searchTerm.trim().toLowerCase();
+
+  // If the trimmed search term is empty, return a message indicating no search is performed
+  if (!trimmedSearchTerm) {
+    return { message: 'No search term provided.' };
+  }
+
+  // Perform case-insensitive search logic in the Tutorial model
+  const searchResults = await Tutorial.find({
+    $text: { $search: trimmedSearchTerm },
+  });
+
+  // If no results are found, return a message indicating no results
+  if (searchResults.length === 0) {
+    return { message: 'No results found.' };
+  }
+
+  return searchResults;
+};
 
 module.exports = {
   viewTutorials,

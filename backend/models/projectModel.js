@@ -26,9 +26,9 @@ const ProjectSchema = new Schema(
                     },
                     classes: [
                         {
-                            isClass:{//for interface
-                                type:Boolean,
-                                required:true
+                            isClass: {//for interface
+                                type: Boolean,
+                                required: true
                             },
                             name: {
                                 type: String,
@@ -54,25 +54,26 @@ const ProjectSchema = new Schema(
                             ],
                         },
                     ],
-                    relationships: [
-                        {
-                            type: {
-                                type: String,
-                                enum: ['association', 'aggregation', 'composition'],
-                                required: true,
-                            },
-                            entities: [
-                                {
-                                    type: {
-                                        type: String,
-                                        enum: ['interface','class', 'object', 'instance'],
-                                        required: true,
-                                    },
-                                    name: String,
+                    relationships:
+                        [{
+                            type: String, // 'association', 'aggregation', etc.
+                            enum: ['association', 'aggregation', 'composition'],
+                            required: true,
+                            source: {
+                                type: {
+                                    String, // 'class', 'interface', 'instance'
+                                    enum: ['interface', 'class', 'instance']
                                 },
-                            ],
-                        },
-                    ]
+                                name: String, // Name of the source entity
+                            },
+                            target: {
+                                type: {
+                                    String, // 'class', 'interface', 'instance'
+                                    enum: ['interface', 'class', 'instance']
+                                },
+                                name: String, // Name of the target entity
+                            },
+                        }],
                 },
                 diagramID: {
                     type: Schema.Types.ObjectId,
@@ -97,7 +98,7 @@ const ProjectSchema = new Schema(
                             ],
                             required: true,
                         },
-                        linesOfCode: String, // String to store lines of code for the specific OOP concept
+                        linesOfCode: String, // String to store lines of code for the specific OOP concept maybe refer to the index directly instead
                     },
                 ]
             },
