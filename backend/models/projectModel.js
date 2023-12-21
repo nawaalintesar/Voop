@@ -52,12 +52,13 @@ const ProjectSchema = new Schema(
                                     ],
                                 },
                             ],
+                            linesOfCode: [String]
                         },
                     ],
                     relationships:
                         [{
                             type: String, // 'association', 'aggregation', etc.
-                            enum: ['association', 'aggregation', 'composition'],
+                            enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class'],
                             required: true,
                             source: {
                                 type: {
@@ -73,35 +74,15 @@ const ProjectSchema = new Schema(
                                 },
                                 name: String, // Name of the target entity
                             },
+                            linesOfCode: [String],
+
                         }],
                 },
                 diagramID: {
                     type: Schema.Types.ObjectId,
                     ref: 'Diagram',
-                },
-                OOPConcept: [// this part i havent really looked into so feel free to change the db structure
-                    {
-                        concept: {
-                            type: String,
-                            enum: [
-                                'class',
-                                'object',
-                                'instance',
-                                'inheritance',
-                                'abstraction',
-                                'encapsulation',
-                                'polymorphism',
-                                'interface',
-                                'method_overriding',
-                                'method_overloading',
-                                'abstract class',
-                            ],
-                            required: true,
-                        },
-                        linesOfCode: String, // String to store lines of code for the specific OOP concept maybe refer to the index directly instead
-                    },
-                ]
-            },
+                }
+            }
         ],
         constraints: {// this part i havent really looked into so feel free to change the db structure
             type: [String],
