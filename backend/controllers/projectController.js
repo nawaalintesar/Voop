@@ -131,6 +131,7 @@ const updateProject = async (projectId, updatedCode) => {
       state.codeIndex > max.codeIndex ? state : max, { codeIndex: -1 });
 
     if (latestCodeState.codeDictionary.userCode === updatedCode) {
+      // based on the recommendations and constriants
       // modifyRelations()
       // addComponent()
       // removeComponent()
@@ -143,7 +144,8 @@ const updateProject = async (projectId, updatedCode) => {
       const newCodeIndex = latestCodeState.codeIndex + 1;
 
       // Call the following functions:
-      // nlp stuff
+      // comiple, parse, analyse code to find classes, relations and info
+      nlpHandler.analyzeCode(projectId, codeIndex, code);
       // generate the animation
       // find and display oop concepts
       // nlpHandler.generateRecommendations() // this is needed to do the next 3
@@ -167,7 +169,7 @@ const updateProject = async (projectId, updatedCode) => {
 
 
 async function displayOOPConcepts() {
-  // takes identifiedOOPConcepts and displays in grammarly popup
+  // takes identified OOP Concepts and displays in grammarly popup
 }
 
 const searchCreatedProjects = async (searchTerm) => {

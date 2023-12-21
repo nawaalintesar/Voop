@@ -3,15 +3,8 @@ const nlpHandler = {
     sanitizeCode: (code) => {
         //
     },
-    compileCode: (code, progLang) => {
-        //depending on the language it compiles the code to make sure there are no errors 
-    },
     analyzeCode: (code) => {
-        // parse code this doesnt involve nlp
-        // AST gives classes inherhitance instances -// Return a structured representation of the analyzed code
-        // Return the abstract syntax tree (AST) or other relevant format
-
-        // Use the analyzed code to generate key-value pairs (e.g., Inheritance: {lines of code})
+        // Call the Python script to analyze the code
         const pythonProcess = spawn('python', ['analyseCode.py', code]);
 
         let result = '';
@@ -19,18 +12,25 @@ const nlpHandler = {
             result += data.toString();
         });
 
-        pythonProcess.on('close', (code) => {
+        pythonProcess.on('close', async (code) => {
             if (code === 0) {
-                resolve(result);
+                // Parse the result if needed
+                const analyzedCode = JSON.parse(result);
+
+                // Update MongoDB with the analyzed code
+                await updateMongoDB(projectId, codeIndex, analyzedCode);
             } else {
-                reject(new Error('Parsing failed with code ${code}'));
+                console.error(`Parsing failed with code ${code}`);
             }
+            // compile and parse code (this doesnt involve nlp)
+            // AST gives classes inherhitance instances -// Return a structured representation of the analyzed code
+
         });
         // if the code is being updated not starting from scratch the process should be more simplified here
 
     },
     generateRecommendations: (code) => {
-        
+
         // Add your NLP logic here- use a library like spaCy or NLTK
         //generate a code summary
         // Perform Named Entity Recognition (NER), dependency parsing, semantic analysis, etc. to find recommendations
