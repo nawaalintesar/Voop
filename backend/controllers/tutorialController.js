@@ -174,7 +174,7 @@ async function populateDatabase(filePath) {
 
     console.log('Database populated successfully!');
   } catch (error) {
-    console.error('Error populating database:', error.message);
+    console.error('Error populating database:', error.message); // this is not the actual error check console its the time out thing
   }
 }
 

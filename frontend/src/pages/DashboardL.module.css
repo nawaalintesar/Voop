@@ -1,0 +1,42 @@
+.dashbaordwelcChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1215px;
+  height: 144px;
+  object-fit: cover;
+}
+.dashbaordwelc,
+.welcomeToYour {
+  position: absolute;
+  top: 47px;
+  left: 51px;
+}
+.dashbaordwelc {
+  top: 0;
+  left: 0;
+  width: 1215px;
+  height: 144px;
+}
+.dashbaordwelcParent {
+  position: absolute;
+  top: 111px;
+  left: 142px;
+  width: 1221px;
+  height: 831px;
+  display: flex;
+}
+.dashboardL {
+  position: relative;
+  background: linear-gradient(180.46deg, #251849, #251849 0.01%, #18113b);
+  width: 100%;
+  height: 1075px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-21xl);
+  color: var(--color-white);
+  font-family: var(--font-righteous);
+}
+.dashboardL:hover {
+  filter: drop-shadow(0 4px 4px 5px rgba(104, 63, 234, 0.25));
+}

@@ -9,19 +9,16 @@ const viewProjects = async (req, res) => {
 
   try {
     // Find the user by ID and populate the createdProjects field
-    const user = await User.findById(userId).populate('createdProjects');
+    const user = await User.findById(userId).populate({
+      path: 'createdProjects' // Sort in descending order
+    });
+    const createdProjects = user.createdProjects || [];
+    if (createdProjects.length > 0) {
+      // Sort projects by createdAt in descending order (most recent first)
+      createdProjects.sort((a, b) => b.updatedAt - a.updatedAt);
+    } 
 
-    // Extract project details from the populated createdProjects field
-    const projectsInfo = user.createdProjects.map(project => ({
-      prjName: project.prjName,
-      progLang: project.progLang,
-      createdAt: project.createdAt,
-    }));
-
-    // Sort projects by createdAt in descending order (most recent first)
-    projectsInfo.sort((a, b) => b.createdAt - a.createdAt);
-
-    res.status(200).json(projectsInfo);
+    res.status(200).json(createdProjects);
   } catch (error) {
     console.error('Error fetching created projects:', error.message);
     res.status(500).json({ error: 'Internal server error' });
@@ -89,7 +86,13 @@ const createProject = async (req, res) => {
       progLang,
       codeStates: [initialCodeState], // Initialize with the initial code state
     });
+    const userId = "u001"; // Replace with the actual user ID
 
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $push: { createdProjects: project._id } },
+      { new: true }
+    );
     res.status(200).json(project);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -100,14 +103,19 @@ const createProject = async (req, res) => {
 // delete a project
 const deleteProject = async (req, res) => {
   const { id } = req.params
-
-  const project = await Workout.findOneAndDelete({ _id: id })
+  const userId = "u001";
+  const user = await User.findByIdAndUpdate(
+    userId,
+    { $pull: { createdProjects: id } },
+    { new: true }
+  );
+  const project = await Project.findOneAndDelete({ _id: id })
 
   if (!project) {
     return res.status(400).json({ error: 'No such project' })
   }
 
-  res.status(200).json(project)
+  res.status(200).json("deleted")
 }
 
 // update a an existing project
@@ -124,10 +132,10 @@ const updateUserCode = async (projectId, codeIndex, updatedCode) => {
     // nlp stuff
     // generate the animation
     // find and display oop concepts
-     // nlpHandler.generateRecommendations() // this is needed to do the next 3
-  // modifyRelations()
-  // addComponent()
-  // removeComponent()
+    // nlpHandler.generateRecommendations() // this is needed to do the next 3
+    // modifyRelations()
+    // addComponent()
+    // removeComponent()
 
     await project.save();
     return project;
@@ -159,19 +167,19 @@ const updateProjectWithAnalysis = async (projectId, codeIndex, analysisResults) 
   }
 };
 
- const updateProject = async (req, res) => {
-//   const { id } = req.params
+const updateProject = async (req, res) => {
+  //   const { id } = req.params
 
-//   const project = await Project.findOneAndUpdate({ _id: id }, {
-//       ...req.body
-//   })
+  //   const project = await Project.findOneAndUpdate({ _id: id }, {
+  //       ...req.body
+  //   })
 
-//   if (!project) {
-//       return res.status(400).json({ error: 'No such project' })
-//   }
+  //   if (!project) {
+  //       return res.status(400).json({ error: 'No such project' })
+  //   }
 
-//   res.status(200).json(project)
- }
+  //   res.status(200).json(project)
+}
 async function displayOOPConcepts() {
   // takes identifiedOOPConcepts and displays in grammarly popup
 }

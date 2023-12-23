@@ -1,0 +1,131 @@
+.recentProjects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  text-align: left;
+}
+.pythonRecentprojectsChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-3xs) var(--br-3xs) 0 0;
+  background: linear-gradient(180deg, #e07410, #dfb48b);
+  width: 300px;
+  height: 233.6px;
+}
+.pythonRecentprojectsItem {
+  position: absolute;
+  top: 148.7px;
+  left: 0;
+  width: 300.2px;
+  height: 85.5px;
+  object-fit: cover;
+}
+.python {
+  position: relative;
+  line-height: 8px;
+}
+.lastUpdated7,
+.pythonWrapper,
+.shapesProj {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.pythonWrapper {
+  top: 30.4px;
+  left: 21px;
+  border-radius: var(--br-8xs);
+  background-color: var(--color-white);
+  width: 71px;
+  height: 22px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: var(--padding-7xs);
+  box-sizing: border-box;
+  font-family: var(--font-pt-sans);
+}
+.lastUpdated7,
+.shapesProj {
+  left: 22px;
+  line-height: 8px;
+  justify-content: center;
+}
+.shapesProj {
+  top: 74px;
+  font-size: var(--font-size-mini);
+  font-weight: 600;
+  color: var(--color-white);
+  width: 113px;
+  height: 8px;
+}
+.lastUpdated7 {
+  top: 95px;
+  font-size: var(--font-size-3xs);
+  color: var(--color-darkslategray-200);
+  width: 107px;
+  height: 11px;
+}
+.pythonRecentprojects {
+  position: absolute;
+  top: 48px;
+  left: 340px;
+  width: 300px;
+  height: 234px;
+  overflow: hidden;
+  color: var(--color-gray-400);
+}
+.pythonRecentprojects:hover {
+  border-radius: var(--br-xl);
+}
+.icon {
+  position: absolute;
+  top: calc(50% - 44.5px);
+  left: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.newProject {
+  position: absolute;
+  top: 81px;
+  left: 0;
+  line-height: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+}
+.iconParent,
+.newproject {
+  position: absolute;
+  top: 69px;
+  left: 105px;
+  width: 110px;
+  height: 89px;
+}
+.newproject {
+  top: 46px;
+  left: 679px;
+  border-radius: var(--br-4xs) var(--br-4xs) 0 0;
+  background-color: var(--color-midnightblue-400);
+  width: 320px;
+  height: 236px;
+  font-size: var(--font-size-mini);
+}
+.recentprojects {
+  position: absolute;
+  top: 192px;
+  left: 0;
+  width: 999px;
+  height: 284px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}
