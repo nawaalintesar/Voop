@@ -57,6 +57,10 @@ function App() {
         title = "";
         metaDescription = "";
         break;
+      case "/DashboardL":
+          title = "";
+          metaDescription = "";
+          break;
       case "/mytutorialsl":
         title = "";
         metaDescription = "";
@@ -65,7 +69,7 @@ function App() {
         title = "";
         metaDescription = "";
         break;
-        case "/myprojectsafterdeletel":
+      case "/myprojectsafterdeletel":
         title = "";
         metaDescription = "";
         break;
@@ -95,7 +99,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<MyProjectsAfterDeleteL />} />
+      <Route path="/" element={<HomePageL />} />
       <Route path="/mytutorialsl" element={<MytutorialsL />} />
       <Route path="/DashboardL" element={<DashboardL />} />
       <Route path="/generictutorialpagel" element={<GenericTutorialPageL />} />

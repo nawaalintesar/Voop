@@ -6,7 +6,7 @@ const SidemenuOpenContainer = () => {
   const navigate = useNavigate();
 
   const onDashboardSMContainerClick = useCallback(() => {
-    navigate("/");
+    navigate("/dashboardl");
   }, [navigate]);
 
   const onMytutorialSMContainerClick = useCallback(() => {
@@ -15,19 +15,23 @@ const SidemenuOpenContainer = () => {
 
   const onMyProjectSMContainerClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-  }, []);
+    navigate("/myprojectsl");
+  }, [navigate]);
 
   const onUserProfileSMContainerClick = useCallback(() => {
     // Please sync "User Profile Page-L" to the project
+    navigate("/user-profile-pagel");
   }, []);
 
   const onUsericonContainerClick = useCallback(() => {
     // Please sync "User Profile Page- L" to the project
+    navigate("/user-profile-pagel");
   }, []);
 
-  const onUserIconClick = useCallback(() => {
+   const onUserIconClick = useCallback(() => {
+    navigate("/user-profile-pagel");
     // Please sync "My Projects-L" to the project
-  }, []);
+   }, [navigate]);
 
   return (
     <div className={styles.dashboardsmParent}>
