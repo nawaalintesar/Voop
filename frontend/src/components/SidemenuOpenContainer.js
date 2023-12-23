@@ -21,12 +21,12 @@ const SidemenuOpenContainer = () => {
   const onUserProfileSMContainerClick = useCallback(() => {
     // Please sync "User Profile Page-L" to the project
     navigate("/user-profile-pagel");
-  }, []);
+  }, [navigate]);
 
   const onUsericonContainerClick = useCallback(() => {
     // Please sync "User Profile Page- L" to the project
     navigate("/user-profile-pagel");
-  }, []);
+  }, [navigate]);
 
    const onUserIconClick = useCallback(() => {
     navigate("/user-profile-pagel");
