@@ -22,15 +22,17 @@ const GenericTutorialPageL = () => {
 
   const onFrameIconClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-  }, []);
+    navigate("/myprojectsl");
+  }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
-    // Please sync "User Profile Page-L" to the project
-  }, []);
+    navigate("/user-profile-pagel");
+  }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/");
+    navigate("/dashboardl");
   }, [navigate]);
+
 
   return (
     <div className={styles.generictutorialpageL}>
