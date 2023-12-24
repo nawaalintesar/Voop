@@ -5,10 +5,15 @@ const {
     getTutorial,
     enrollTutorial,
     playTutorial,
+    getEnrolledTutorials,
+    populateDatabase
 } = require('../controllers/tutorialController')
 const router = express.Router()
 // GET all tutorials
 router.get('/', viewTutorials)
+// GET all enrolled tutorials
+router.get('/enrolled', getEnrolledTutorials)
+router.get('/populate', populateDatabase)
 
 // GET a single tutorial
 router.get('/:id', getTutorial)

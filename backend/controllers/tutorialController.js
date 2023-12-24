@@ -10,8 +10,11 @@ const viewTutorials = async (req, res) => {
 
   res.status(200).json(tutorials)
 }
-
-async function populateDatabase(filePath) {
+const populateDatabase = async (req, res) => {
+  await Tutorial.deleteMany(); 
+  // Example usage
+  const path = require('path');
+  const filePath = path.join(__dirname, '../models/Tutorials/Classes.txt');
   try {
     // Read the content of the file
     const fileContent = fs.readFileSync(filePath, 'utf8');
@@ -21,14 +24,12 @@ async function populateDatabase(filePath) {
     // Initialize variables
     let tutName = lines[0];
     let tutDescription = "";
-    let levels = [];
+    let level = [];
     let progLang = "";
     let levelNumber = 0;
-    let code = ['asdf'];
+    let code = [];
     let tutorialSteps = [];
     let noTutSteps = 0;
-    let descriptionStrings = null;
-    let oopConcept = null;
     // Process each line
 
 
@@ -50,23 +51,15 @@ async function populateDatabase(filePath) {
       }
       // Check for the line that starts with //Level
       if (line.startsWith('//Level')) {
-        // If this is not the first level, push the previous level information to the levels array
+        // If this is not the first level, push the previous level information to the level array
         if (levelNumber !== 0) {
-          levels.push({
+          level.push({
             levelNumber,
             progLang,
-            code: code.join('\n'),
+            code: code,
             noTutSteps: tutorialSteps.length,
-            tutorialSteps: tutorialSteps.join('\n')
+            tutorialSteps: tutorialSteps
           });
-          // Log the results
-          console.log('Tutorial Name:', tutName);
-          console.log('Tutorial Description:', tutDescription.trim());
-          console.log('Level Number:', levelNumber);
-          console.log('Programming Language:', progLang);
-          console.log('No of Steps:', noTutSteps);
-          console.log('Code:', code.join('\n'));
-          console.log('Steps:', tutorialSteps.join('\n'))
 
           // Reset arrays for the new level
           code = [];
@@ -103,20 +96,24 @@ async function populateDatabase(filePath) {
 
             let isStepsSection = false;
 
-            for (const line of lines) {
+            for (let i = lines.indexOf(line) + 1; i < lines.length; i++) {
               // Check for the line that starts with //Steps
-              if (line.startsWith('//Steps')) {
+              if (lines[i].startsWith('//Steps')) {
+                console.log(lines[i])
                 isStepsSection = true;
-                continue; // Skip to the next iteration
+                continue;
+                
               }
 
               // Read lines until the string '--------------' and assign them to steps
               if (isStepsSection) {
-                if (line.startsWith('--------------')) {
+                if (lines[i].startsWith('--------------')) {
+                  isStepsSection=false;
                   break; // Stop when reaching '--------------'
                 }
 
-                tutorialSteps.push(line.trim());
+                tutorialSteps.push(lines[i].trim());
+                console.log(tutorialSteps);
                 noTutSteps = tutorialSteps.length;
               }
             }
@@ -125,43 +122,17 @@ async function populateDatabase(filePath) {
       }
     }
     if (levelNumber !== 0) {
-      levels.push({
+      level.push({
         levelNumber,
         progLang,
-        code: code.join('\n'),        
+        code: code,
         noTutSteps: tutorialSteps.length,
-        tutorialSteps: tutorialSteps.join('\n')
+        tutorialSteps: tutorialSteps
       });
-      // Log the results
-      console.log('Tutorial Name:', tutName);
-      console.log('Tutorial Description:', tutDescription.trim());
-      console.log('Level Number:', levelNumber);
-      console.log('Programming Language:', progLang);
-      console.log('No of Steps:', noTutSteps);
-      console.log('Code:', code.join('\n'));
-      console.log('Steps:', tutorialSteps.join('\n'))
     }
 
-    const newTutorial = new Tutorial({
-      tutName: tutName.trim(),
-      tutDescription: tutDescription.trim(),
-      levels
-  });
-  tutName= "Samepl";
-  tutDescription="asdfas";
-  level= [
-    {
-      "levelNumber": 1,
-      "progLang": "Java",
-      "code": ["public class HelloWorld {", "  public static void main(String[] args) {", "    System.out.println(\"Hello, World!\");", "  }", "}"],
-      "tutorialSteps": ["Step 1: Open your IDE.", "Step 2: Create a new Java class.", "Step 3: Write the 'Hello, World!' program.", "Step 4: Run the program."],
-      "diagramID": 1,
-      "codeDictionary": { 1: [1, 2, 3], 2: [4] },
-      "noTutSteps": 4,
-      "tutCompletedSteps": 0
-    }
-  ];
-  
+
+
 
     // Save the tutorial to the database
     const project = await Tutorial.create({
@@ -169,26 +140,24 @@ async function populateDatabase(filePath) {
       tutDescription,
       level
     });
-    
-    
+    res.status(200).json(project)
 
     console.log('Database populated successfully!');
   } catch (error) {
+    res.status(500).json("error")
     console.error('Error populating database:', error.message); // this is not the actual error check console its the time out thing
   }
 }
 
-// Example usage
-const filePath = './backend/models/Tutorials/Classes.txt';
-populateDatabase(filePath);
-
 async function calculateProgress(tutorial) {
-  const totalSteps = tutorial.levels.reduce((acc, level) => acc + level.noTutSteps, 0);
-  const completedSteps = tutorial.levels.reduce((acc, level) => acc + (level.tutCompletedSteps || 0), 0);
+  const totalSteps = tutorial.level.reduce((acc, level) => acc + level.noTutSteps, 0);
+  const completedSteps = tutorial.level.reduce((acc, level) => acc + (level.tutCompletedSteps || 0), 0);
   const progress = (completedSteps / totalSteps) * 100;
 
   return isNaN(progress) ? 0 : progress;
 };
+
+
 
 // get a single tutorial for view
 const getTutorial = async (req, res) => {
@@ -209,23 +178,29 @@ const getTutorial = async (req, res) => {
 
 const enrollTutorial = async (req, res) => {
   // Once authentication part is done, this should be using userId.
-  const userId = "u001";
+  const ObjectId = require('mongodb').ObjectId;
+  const userId = "65810b9b1d91631463299a28";
+
   const tutorialId = req.params.id;
 
   try {
     // get user information
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findById(userId);
     // Check if the tutorial exists
-    const tutorial = await Tutorial.findOne({ _id: tutorialId });
-
+    const tutorial = await Tutorial.findById(tutorialId);
     if (!tutorial) {
       console.error('Tutorial not found');
       return res.status(404).json({ error: 'Tutorial not found' });
     }
 
-    // Check if the user is already enrolled in the tutorial
-    const tutorialFound = await User.findOne({ _id: userId, enrolledTutorials: tutorialId });
+    if (!user) {
+      console.error('user not found');
+      return res.status(404).json({ error: 'user not found' });
+    }
 
+    // Check if the user is already enrolled in the tutorial
+    // const tutorialFound = await User.findById({_id:new ObjectId(userId), enrolledTutorials: tutorialId});
+    const tutorialFound = await User.findOne({ enrolledTutorials: tutorialId });
     if (tutorialFound) {
       console.error('Tutorial already enrolled');
       return res.status(400).json({ error: 'Tutorial already enrolled' });
@@ -233,7 +208,7 @@ const enrollTutorial = async (req, res) => {
 
     // Enroll the user in the tutorial
     const result = await User.updateOne(
-      { _id: userId },
+      { _id: new ObjectId(userId) },
       { $addToSet: { enrolledTutorials: tutorialId } }
     );
 
@@ -246,41 +221,37 @@ const enrollTutorial = async (req, res) => {
 };
 
 const getEnrolledTutorials = async (req, res) => {
-
-  const userId = "u001"
+  const userId = "65810b9b1d91631463299a28"
   //const userId = req.params.userId; // Assuming you have the user ID in the request parameters
 
   try {
     // Find the user by ID and populate the enrolledTutorials field
-    const user = await User.findById(userId).populate('enrolledTutorials');
-
-    // Calculate progress for each enrolled tutorial
-    const enrolledTutorialsInfo = user.enrolledTutorials.map((tutorial) => {
-      const progress = calculateProgress(tutorial);
-
-      return {
-        tutorialId: tutorial._id,
-        tutName: tutorial.tutName,
-        progress,
-      };
+    const user = await User.findById(userId).populate({
+      path: 'enrolledTutorials' // Sort in descending order
     });
+    const enrolledTutorials = user.enrolledTutorials || [];
+    if (enrolledTutorials.length > 0) {
+      // Sort projects by createdAt in descending order (most recent first)
+      enrolledTutorials.sort((a, b) => b.updatedAt - a.updatedAt);
+    }
 
-    res.status(200).json(enrolledTutorialsInfo);
+    console.log(enrolledTutorials);
+    res.status(200).json({ enrolledTutorials });
   } catch (error) {
     console.error('Error fetching enrolled tutorials:', error.message);
-    res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 const playTutorial = async (req, res) => {
 
-  //once authentication part is done this should be using userId for now im making it static u001
-  userId = "u001";
-  tutorialId = req.params.id;
+  //once authentication part is done this should be using userId for now im making it static 65810b9b1d91631463299a28
+  const userId = "65810b9b1d91631463299a28";
+  const tutorialId = req.params.id;
   try {
     // get user information
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findById(userId);
     // Check if the tutorial exists
-    const tutorial = await Tutorial.findOne({ _id: tutorialId });
+    const tutorial = await Tutorial.findById(tutorialId);
 
     if (!tutorial) {
       console.error('Tutorial not found');
@@ -288,7 +259,7 @@ const playTutorial = async (req, res) => {
     }
 
     // Check if the user is already enrolled in the tutorial
-    const tutorialFound = await User.findOne({ _id: userId, enrolledTutorials: tutorialId });
+    const tutorialFound = await User.findById({ _id: userId, enrolledTutorials: tutorialId });
 
     if (!tutorialFound) {
       console.error('Tutorial is not enrolled');
@@ -298,23 +269,47 @@ const playTutorial = async (req, res) => {
     tutorial.tutSteps.forEach((step, index) => {
       // after the front end is connected it has to be on click do each step
       console.log(`Step ${index + 1}: ${step}`);
+      const progress = calculateProgress(tutorial);
     });
 
     // Return the tutorial steps to the user's web page all at once
 
     res.status(200).json({ tutorialSteps: tutorial.tutSteps, message: 'Tutorial completed!' });
     console.log(`Tutorial ${tutorial.tutName} played successfully for user ${user.userName}`);
+    console.log(progress) 
   } catch (error) {
     console.error('Error playing tutorial:', error.message);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
 
+const searchAllTutorials = async (searchTerm) => {
+  // Trim and convert to lowercase for case-insensitive search
+  const trimmedSearchTerm = searchTerm.trim().toLowerCase();
+
+  // If the trimmed search term is empty, return a message indicating no search is performed
+  if (!trimmedSearchTerm) {
+    return { message: 'No search term provided.' };
+  }
+
+  // Perform case-insensitive search logic in the Tutorial model
+  const searchResults = await Tutorial.find({
+    $text: { $search: trimmedSearchTerm },
+  });
+
+  // If no results are found, return a message indicating no results
+  if (searchResults.length === 0) {
+    return { message: 'No results found.' };
+  }
+
+  return searchResults;
+};
 
 module.exports = {
   viewTutorials,
   getTutorial,
   enrollTutorial,
   playTutorial,
-  getEnrolledTutorials
+  getEnrolledTutorials,
+  populateDatabase
 }
