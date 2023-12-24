@@ -26,19 +26,22 @@ const MytutorialsL = () => {
 
   const onFrameContainer2Click = useCallback(() => {
     // Please sync "Mytutorials-L" to the project
-  }, []);
+    navigate("/mytutorialsl");
+  }, [navigate]);
 
   const onFrameIconClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-  }, []);
+    navigate("/myprojectsl");
+  }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
-    // Please sync "User Profile Page-L" to the project
-  }, []);
+    navigate("/user-profile-pagel");
+  }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/");
+    navigate("/dashboardl");
   }, [navigate]);
+ 
 
   const onMethodoverloadingOverriddingTContainerClick = useCallback(() => {
     navigate("/generictutorialpagel");

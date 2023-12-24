@@ -32,6 +32,10 @@ import {
 import DashboardL from "./pages/DashboardL";
 import MytutorialsL from "./pages/MytutorialsL";
 import GenericTutorialPageL from "./pages/GenericTutorialPageL";
+import HomePageL from "./pages/HomePageL";
+import MyProjectsAfterDeleteL from "./pages/MyProjectsAfterDeleteL";
+import MyProjectsL from "./pages/MyProjectsL";
+import UserProfilePageL from "./pages/UserProfilePageL";
 
 function App() {
   const action = useNavigationType();
@@ -53,11 +57,27 @@ function App() {
         title = "";
         metaDescription = "";
         break;
+      case "/DashboardL":
+          title = "";
+          metaDescription = "";
+          break;
       case "/mytutorialsl":
         title = "";
         metaDescription = "";
         break;
       case "/generictutorialpagel":
+        title = "";
+        metaDescription = "";
+        break;
+      case "/myprojectsafterdeletel":
+        title = "";
+        metaDescription = "";
+        break;
+      case "/myprojectsl":
+        title = "";
+        metaDescription = "";
+        break;
+      case "/user-profile-pagel":
         title = "";
         metaDescription = "";
         break;
@@ -79,9 +99,13 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<DashboardL />} />
+      <Route path="/" element={<HomePageL />} />
       <Route path="/mytutorialsl" element={<MytutorialsL />} />
+      <Route path="/DashboardL" element={<DashboardL />} />
       <Route path="/generictutorialpagel" element={<GenericTutorialPageL />} />
+      <Route path="/myprojectsafterdeletel" element={<MyProjectsAfterDeleteL />} />
+      <Route path="/myprojectsl" element={<MyProjectsL />} />
+      <Route path="/user-profile-pagel" element={<UserProfilePageL />} />
     </Routes>
   );
 }
