@@ -73,45 +73,11 @@ const MyProjectsAfterDeleteL = () => {
     navigate("/dashboardl");
   }, [navigate]);
 
-  /*const onFrameContainer2Click = useCallback(() => {
-    navigate("/mytutorialsl");
-  }, [navigate]);*/
-
-  /*const onUsericonClick = useCallback(() => {
-    navigate("/user-profile-pagel");
-  }, [navigate]);
-
-  const onFrameIconClick = useCallback(() => {
-    navigate("/myprojectsl");
-  }, [navigate]);
-
-  const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/DashboardL");
-  }, [navigate]);
-
- const onFrameContainer2Click = useCallback(() => {
-    // Please sync "Mytutorials-L" to the project
-    navigate("/mytutorialsl");
-  }, [navigate]);*/
-
-  /*const onDashoboardSMContainerClick = useCallback(() => {
-    // Please sync "Dashboard-L" to the project
-    navigate("/");
-  }, []);*/
-
   return (
     <>
       <div className={styles.myprojectsafterdeleteL}>
         
-        <Footer
-        footerHeight="133px"
-        footerMaxWidth="unset"
-        footerPosition="absolute"
-        footerTop="942px"
-        footerLeft="0px"
-        footerMaxHeight="100%"
-        footerJustifyContent="stretch"
-        />
+        <Footer/>
         <Property1Default
         buttonHeaderText="codeEditorButtonHeader"
         property1DefaultAlignContent="stretch"

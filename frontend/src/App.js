@@ -5,7 +5,6 @@
 import Navbar from './components/Navbar'
 
 function App() {
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -47,55 +46,6 @@ function App() {
       window.scrollTo(0, 0);
     }
   }, [action, pathname]);
-
-  useEffect(() => {
-    let title = "";
-    let metaDescription = "";
-
-    switch (pathname) {
-      case "/":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/DashboardL":
-          title = "";
-          metaDescription = "";
-          break;
-      case "/mytutorialsl":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/generictutorialpagel":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/myprojectsafterdeletel":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/myprojectsl":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/user-profile-pagel":
-        title = "";
-        metaDescription = "";
-        break;
-    }
-
-    if (title) {
-      document.title = title;
-    }
-
-    if (metaDescription) {
-      const metaDescriptionTag = document.querySelector(
-        'head > meta[name="description"]'
-      );
-      if (metaDescriptionTag) {
-        metaDescriptionTag.content = metaDescription;
-      }
-    }
-  }, [pathname]);
 
   return (
     <Routes>

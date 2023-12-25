@@ -50,15 +50,7 @@ const DashboardL = () => {
         <RecentProjectsContainer />
         <ContinueLearningContainer />
       </div>
-      <Footer
-        footerHeight="133px"
-        footerMaxWidth="unset"
-        footerPosition="absolute"
-        footerTop="942px"
-        footerLeft="0px"
-        footerMaxHeight="100%"
-        footerJustifyContent="stretch"
-      />
+      <Footer/>
       <Property1Default
         buttonHeaderText="codeEditorButtonHeader"
         property1DefaultAlignContent="stretch"

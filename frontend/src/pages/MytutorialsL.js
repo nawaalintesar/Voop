@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useEffect, dispatch, useState, useCallback } from "react";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 import LogOutPopOutL from "../components/LogOutPopOutL";
 import PortalPopup from "../components/PortalPopup";
@@ -9,18 +9,30 @@ import FilteredFormCard from "../components/FilteredFormCard";
 import AbstractContainer from "../components/AbstractContainer";
 import Property1Closed from "../components/Property1Closed";
 import styles from "./MytutorialsL.module.css";
+import InheritanceTutorialCardContain from "../components/InheritanceTutorialCardContain";
+//import { useDispatch } from "react-redux";
 
 const MytutorialsL = () => {
+  const [tutorials, setTutorials] = useState(null)
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
   const navigate = useNavigate();
+ // const dispatch = useDispatch();
 
-  const onInterfaceTutContainerClick = useCallback(() => {
-    navigate("/generictutorialpagel");
-  }, [navigate]);
+  useEffect(() => {
+    const fetchTutorials = async () => {
+      const response = await fetch('/api/tutorials')
+      const json = await response.json()
 
-  const onAbstractTutContainerClick = useCallback(() => {
+      if (response.ok) {
+        dispatch({ type: 'SET_TUTORIALS', payload: json })
+      }
+    }
+
+    fetchTutorials()
+  }, [dispatch])
+  const onTutContainerClick = useCallback(() => {
     navigate("/generictutorialpagel");
   }, [navigate]);
 
@@ -41,7 +53,7 @@ const MytutorialsL = () => {
   const onDashoboardSMContainerClick = useCallback(() => {
     navigate("/dashboardl");
   }, [navigate]);
- 
+
 
   const onMethodoverloadingOverriddingTContainerClick = useCallback(() => {
     navigate("/generictutorialpagel");
@@ -53,15 +65,7 @@ const MytutorialsL = () => {
 
   return (
     <div className={styles.mytutorialsL}>
-      <Footer
-        footerHeight="133px"
-        footerMaxWidth="unset"
-        footerPosition="absolute"
-        footerTop="942px"
-        footerLeft="0px"
-        footerMaxHeight="100%"
-        footerJustifyContent="stretch"
-      />
+      <Footer/>
       <Property1Default
         buttonHeaderText="codeEditorButtonHeader"
         property1DefaultAlignContent="stretch"
@@ -86,56 +90,19 @@ const MytutorialsL = () => {
         <b className={styles.allTutorials}>All Tutorials</b>
         <FilteredFormCard />
         <div className={styles.alltutorials}>
-          <div
-            className={styles.methodoverloadingoverriddingt}
-            onClick={onMethodoverloadingOverriddingTContainerClick}
-          >
-            <div className={styles.methodoverloadingoverriddingtChild} />
-            <div className={styles.methodoverloadingoverriddingtItem} />
-            <div className={styles.inOopOverriding}>
-              In OOP, overriding adapts inherited methods, and overloading
-              allows a class multiple methods of the same name with varied
-              parameters.
-            </div>
-            <div className={styles.methodOverloadingOverridingContainer}>
-              <p className={styles.methodOverloading}>Method Overloading/</p>
-              <p className={styles.overriding}>Overriding</p>
-            </div>
-          </div>
-          <AbstractContainer
-            definitionText="Interfaces define a contract, specifying required methods for classes. They ensure consistent behavior, fostering code flexibility."
-            conceptDescription="Interfaces"
-            propLeft="275px"
-            propBackground="linear-gradient(92.09deg, #4e64a5 36.98%, #2d1f8b)"
-            propLetterSpacing="0.01em"
-            propLineHeight="100%"
-            onInterfaceTutContainerClick={onInterfaceTutContainerClick}
-          />
-          <AbstractContainer
-            definitionText="Abstract classes define a blueprint for other classes, offering a common structure and mandatory methods for their subclasses."
-            conceptDescription="Abstract Classes"
-            propLeft="550px"
-            propBackground="linear-gradient(92.09deg, #aeb2c0 36.98%, #827e9b)"
-            propLetterSpacing="unset"
-            propLineHeight="110%"
-            onInterfaceTutContainerClick={onAbstractTutContainerClick}
-          />
-          <div
-            className={styles.comprehensiveooptut}
-            onClick={onComprehensiveOOPTutContainerClick}
-          >
-            <div className={styles.methodoverloadingoverriddingtChild} />
-            <div className={styles.comprehensiveooptutItem} />
-            <div
-              className={styles.anOverviewOf}
-            >{`An overview of All OOP concepts. `}</div>
-            <div className={styles.comprehensiveOopOverviewContainer}>
-              <p className={styles.methodOverloading}>
-                Comprehensive OOP Overview
-              </p>
-              <p className={styles.overriding}>&nbsp;</p>
-            </div>
-          </div>
+          
+          {tutorials && tutorials.map((tutorial) => (
+              <AbstractContainer
+                key={tutorial._id}
+                tutorial={tutorial}
+                conceptDescription="Interfaces" // Ensure this is the intended description
+                propLeft="275px" // Check if these properties are as expected
+                propBackground="linear-gradient(92.09deg, #4e64a5 36.98%, #2d1f8b)"
+                propLetterSpacing="0.01em"
+                propLineHeight="100%"
+                onTutContainerClick={onTutContainerClick}
+              />
+            ))}
           <TextField
             className={styles.searchBar}
             color="secondary"
