@@ -9,17 +9,15 @@ import FilteredFormCard from "../components/FilteredFormCard";
 import AbstractContainer from "../components/AbstractContainer";
 import Property1Closed from "../components/Property1Closed";
 import styles from "./MytutorialsL.module.css";
+import { useTutorialsContext } from "../hooks/useTutorialsContext.js";
 import InheritanceTutorialCardContain from "../components/InheritanceTutorialCardContain";
-//import { useDispatch } from "react-redux";
 
 const MytutorialsL = () => {
-  const [tutorials, setTutorials] = useState(null)
+  const { tutorials, dispatch } = useTutorialsContext();
+  const [tut, setTutorials] = useState(null);
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
-  const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
-    useState(false);
+  const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
- // const dispatch = useDispatch();
-
   useEffect(() => {
     const fetchTutorials = async () => {
       const response = await fetch('/api/tutorials')
@@ -29,20 +27,18 @@ const MytutorialsL = () => {
         dispatch({ type: 'SET_TUTORIALS', payload: json })
       }
     }
-
     fetchTutorials()
-  }, [dispatch])
+  }, [dispatch]);
+
   const onTutContainerClick = useCallback(() => {
     navigate("/generictutorialpagel");
   }, [navigate]);
 
   const onFrameContainer2Click = useCallback(() => {
-    // Please sync "Mytutorials-L" to the project
     navigate("/mytutorialsl");
   }, [navigate]);
 
   const onFrameIconClick = useCallback(() => {
-    // Please sync "MyProjects-L" to the project
     navigate("/myprojectsl");
   }, [navigate]);
 
@@ -65,44 +61,27 @@ const MytutorialsL = () => {
 
   return (
     <div className={styles.mytutorialsL}>
-      <Footer/>
-      <Property1Default
-        buttonHeaderText="codeEditorButtonHeader"
-        property1DefaultAlignContent="stretch"
-        property1DefaultJustifyContent="unset"
-        property1DefaultPosition="absolute"
-        property1DefaultTop="1px"
-        property1DefaultLeft="62px"
-        property1DefaultOverflow="hidden"
-        property1DefaultHeight="75px"
-        frameDivHeight="45.73%"
-        frameDivTop="27.2%"
-        frameDivBottom="27.07%"
-        textCursor="pointer"
-      />
+      <Footer />
+      <Property1Default />
       <div className={styles.items}>
-        <img
-          className={styles.backgroundimageIcon}
-          alt=""
-          src="/backgroundimage@2x.png"
-        />
+
         <b className={styles.continueTheJourney}>Continue The Journey</b>
         <b className={styles.allTutorials}>All Tutorials</b>
         <FilteredFormCard />
+
         <div className={styles.alltutorials}>
-          
-          {tutorials && tutorials.map((tutorial) => (
-              <AbstractContainer
-                key={tutorial._id}
-                tutorial={tutorial}
-                conceptDescription="Interfaces" // Ensure this is the intended description
-                propLeft="275px" // Check if these properties are as expected
-                propBackground="linear-gradient(92.09deg, #4e64a5 36.98%, #2d1f8b)"
-                propLetterSpacing="0.01em"
-                propLineHeight="100%"
-                onTutContainerClick={onTutContainerClick}
-              />
-            ))}
+          {tutorials && tutorials.map((tutorial, index) => (
+            <AbstractContainer
+              key={tutorial._id}
+              tutorial={tutorial}
+              conceptDescription={tutorial.tutName}
+              onTutContainerClick={onTutContainerClick}
+              propLeft={`${100 + 300 * index}px`}
+            />
+          ))}
+
+          {/* <InheritanceTutorialCardContain propTop="54px" propLeft="0px" /> */}
+
           <TextField
             className={styles.searchBar}
             color="secondary"
@@ -113,14 +92,10 @@ const MytutorialsL = () => {
             variant="filled"
             type="search"
           />
+
         </div>
       </div>
       <Property1Closed
-        dimensionCode="/layoutgrid4@2x.png"
-        property1ClosedHeight="942px"
-        property1ClosedPosition="absolute"
-        property1ClosedTop="0px"
-        property1ClosedLeft="0px"
         onFrameContainerClick={onFrameContainer2Click}
         onFrameIconClick={onFrameIconClick}
         onUsericonContainerClick={onUsericonClick}

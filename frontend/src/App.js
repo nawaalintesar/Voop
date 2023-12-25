@@ -35,6 +35,7 @@ import HomePageL from "./pages/HomePageL";
 import MyProjectsAfterDeleteL from "./pages/MyProjectsAfterDeleteL";
 import MyProjectsL from "./pages/MyProjectsL";
 import UserProfilePageL from "./pages/UserProfilePageL";
+import { TutorialsContextProvider } from './context/TutorialsContext';
 
 function App() {
   const action = useNavigationType();
@@ -48,9 +49,13 @@ function App() {
   }, [action, pathname]);
 
   return (
+    
     <Routes>
       <Route path="/" element={<HomePageL />} />
-      <Route path="/mytutorialsl" element={<MytutorialsL />} />
+      <Route path="/mytutorialsl" element={
+      <TutorialsContextProvider>
+      <MytutorialsL />
+    </TutorialsContextProvider>} />
       <Route path="/DashboardL" element={<DashboardL />} />
       <Route path="/generictutorialpagel" element={<GenericTutorialPageL />} />
       <Route path="/myprojectsafterdeletel" element={<MyProjectsAfterDeleteL />} />

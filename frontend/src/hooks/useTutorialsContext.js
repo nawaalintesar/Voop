@@ -9,4 +9,4 @@ export const useTutorialsContext = () => {
   }
 
   return context;
-}
+};

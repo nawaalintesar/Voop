@@ -87,14 +87,14 @@ const AbstractContainer = ({
     return {
       background: propBackground,
     };
-  }, [propBackground]);
+  }, [propBackground="linear-gradient(92.09deg, #4e64a5 36.98%, #2d1f8b)"]);
 
   const interfacesDefineAStyle = useMemo(() => {
     return {
       letterSpacing: propLetterSpacing,
       lineHeight: propLineHeight,
     };
-  }, [propLetterSpacing, propLineHeight]);
+  }, [propLetterSpacing="0.01em", propLineHeight="100%"]);
 
   return (
     <div

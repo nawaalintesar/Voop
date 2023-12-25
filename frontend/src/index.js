@@ -51,6 +51,7 @@ const root = createRoot(container);
 root.render(
   <BrowserRouter>
     <StyledEngineProvider injectFirst>
+      
       <ThemeProvider theme={muiTheme}>
         <CssBaseline />
         <App />
