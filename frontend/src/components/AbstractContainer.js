@@ -105,14 +105,9 @@ const AbstractContainer = ({
       <div className={styles.interfacetutChild} />
       <div className={styles.interfacetutItem} style={rectangleDivStyle} />
       <div className={styles.interfacesDefineA} style={interfacesDefineAStyle}>
-        {tutorial.tutDescription}
+        {tutorial.tutDescription.split('.')[0]}
       </div>
-      <p>{tutorial.tutDescription}</p> {/* This seems repetitive */}
       <div className={styles.interfaces}>{conceptDescription}</div>
-      <h4>{tutorial.tutName}</h4>
-      <p>
-        {tutorial.tutDescription} {/* Check if this is the intended data */}
-      </p>
     </div>
   );
 };
