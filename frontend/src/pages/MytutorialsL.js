@@ -76,24 +76,25 @@ const MytutorialsL = () => {
               tutorial={tutorial}
               conceptDescription={tutorial.tutName}
               onTutContainerClick={onTutContainerClick}
-              propLeft={`${100 + 300 * index}px`}
+              propLeft={`${5 + 300 * index}px`}
             />
           ))}
 
-          {/* <InheritanceTutorialCardContain propTop="54px" propLeft="0px" /> */}
-
-          <TextField
-            className={styles.searchBar}
-            color="secondary"
-            name="Search"
-            label="Search"
-            placeholder="Search"
-            sx={{ width: 1089 }}
-            variant="filled"
-            type="search"
-          />
+          <div >
+            <TextField
+              className={styles.searchBar}
+              color="secondary"
+              name="Search"
+              label="Search"
+              placeholder="Search"
+              sx={{ width: 1089 }}
+              variant="filled"
+              type="search"
+            />
+          </div>
 
         </div>
+
       </div>
       <Property1Closed
         onFrameContainerClick={onFrameContainer2Click}
@@ -102,6 +103,7 @@ const MytutorialsL = () => {
         onDashoboardSMContainerClick={onDashoboardSMContainerClick}
       />
     </div>
+
   );
 };
 
