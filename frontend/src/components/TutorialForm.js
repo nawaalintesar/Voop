@@ -3,9 +3,9 @@ import ConfirmEnrollment from "./ConfirmEnrollment";
 import PortalPopup from "./PortalPopup";
 import EnrollPopUp from "./EnrollPopUp";
 import { useNavigate } from "react-router-dom";
-import styles from "./TutorialFormClassesAndObjects.module.css";
+import styles from "./TutorialForm.module.css";
 
-const TutorialFormClassesAndObjects = () => {
+const TutorialForm = () => {
   const [isConfirmEnrollmentPopupOpen, setConfirmEnrollmentPopupOpen] =
     useState(false);
   const [isEnrollPopUpOpen, setEnrollPopUpOpen] = useState(false);
@@ -93,4 +93,4 @@ const TutorialFormClassesAndObjects = () => {
   );
 };
 
-export default TutorialFormClassesAndObjects;
+export default TutorialForm;

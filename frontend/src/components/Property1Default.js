@@ -30,13 +30,19 @@ const Property1Default = ({
       height: property1DefaultHeight,
     };
   }, [
-    property1DefaultAlignContent,
-    property1DefaultJustifyContent,
-    property1DefaultPosition,
-    property1DefaultTop,
-    property1DefaultLeft,
-    property1DefaultOverflow,
-    property1DefaultHeight,
+    buttonHeaderText="codeEditorButtonHeader",
+        property1DefaultAlignContent="stretch",
+        property1DefaultJustifyContent="unset",
+        property1DefaultPosition="absolute",
+        property1DefaultTop="1px",
+        property1DefaultLeft="62px",
+        property1DefaultOverflow="hidden",
+        property1DefaultHeight="81px",
+        frameDivHeight="45.68%",
+        frameDivTop="27.16%",
+        frameDivBottom="27.16%",
+        textCursor="pointer",
+        onFrameButtonClick={onFrameButtonClick}
   ]);
 
   const frameDivStyle = useMemo(() => {

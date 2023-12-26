@@ -23,10 +23,12 @@ const Property1Closed = ({
       left: property1ClosedLeft,
     };
   }, [
-    property1ClosedHeight,
-    property1ClosedPosition,
-    property1ClosedTop,
-    property1ClosedLeft,
+    dimensionCode="/layoutgrid4@2x.png",
+        property1ClosedHeight="942px",
+        property1ClosedPosition="absolute",
+        property1ClosedTop="1px",
+        property1ClosedLeft="0px",
+        
   ]);
 
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);

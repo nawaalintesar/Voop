@@ -5,7 +5,6 @@
 import Navbar from './components/Navbar'
 
 function App() {
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -36,6 +35,7 @@ import HomePageL from "./pages/HomePageL";
 import MyProjectsAfterDeleteL from "./pages/MyProjectsAfterDeleteL";
 import MyProjectsL from "./pages/MyProjectsL";
 import UserProfilePageL from "./pages/UserProfilePageL";
+import { TutorialsContextProvider } from './context/TutorialsContext';
 
 function App() {
   const action = useNavigationType();
@@ -48,59 +48,14 @@ function App() {
     }
   }, [action, pathname]);
 
-  useEffect(() => {
-    let title = "";
-    let metaDescription = "";
-
-    switch (pathname) {
-      case "/":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/DashboardL":
-          title = "";
-          metaDescription = "";
-          break;
-      case "/mytutorialsl":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/generictutorialpagel":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/myprojectsafterdeletel":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/myprojectsl":
-        title = "";
-        metaDescription = "";
-        break;
-      case "/user-profile-pagel":
-        title = "";
-        metaDescription = "";
-        break;
-    }
-
-    if (title) {
-      document.title = title;
-    }
-
-    if (metaDescription) {
-      const metaDescriptionTag = document.querySelector(
-        'head > meta[name="description"]'
-      );
-      if (metaDescriptionTag) {
-        metaDescriptionTag.content = metaDescription;
-      }
-    }
-  }, [pathname]);
-
   return (
+    
     <Routes>
       <Route path="/" element={<HomePageL />} />
-      <Route path="/mytutorialsl" element={<MytutorialsL />} />
+      <Route path="/mytutorialsl" element={
+      <TutorialsContextProvider>
+      <MytutorialsL />
+    </TutorialsContextProvider>} />
       <Route path="/DashboardL" element={<DashboardL />} />
       <Route path="/generictutorialpagel" element={<GenericTutorialPageL />} />
       <Route path="/myprojectsafterdeletel" element={<MyProjectsAfterDeleteL />} />

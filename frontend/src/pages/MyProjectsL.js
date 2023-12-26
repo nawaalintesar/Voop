@@ -78,36 +78,9 @@ const MyProjectsL = () => {
     <>
       <div className={styles.myprojectsL}>
         
-      <Footer
-        footerHeight="133px"
-        footerMaxWidth="unset"
-        footerPosition="absolute"
-        footerTop="942px"
-        footerLeft="0px"
-        footerMaxHeight="100%"
-        footerJustifyContent="stretch"
-      />
-      <Property1Default
-        buttonHeaderText="codeEditorButtonHeader"
-        property1DefaultAlignContent="stretch"
-        property1DefaultJustifyContent="unset"
-        property1DefaultPosition="absolute"
-        property1DefaultTop="1px"
-        property1DefaultLeft="62px"
-        property1DefaultOverflow="hidden"
-        property1DefaultHeight="81px"
-        frameDivHeight="45.68%"
-        frameDivTop="27.16%"
-        frameDivBottom="27.16%"
-        textCursor="pointer"
-        onFrameButtonClick={onFrameButtonClick}
-      />
+      <Footer/>
+      <Property1Default/>
       <Property1Closed
-        dimensionCode="/layoutgrid4@2x.png"
-        property1ClosedHeight="942px"
-        property1ClosedPosition="absolute"
-        property1ClosedTop="1px"
-        property1ClosedLeft="0px"
         onFrameContainerClick={onFrameContainer3Click}
         onFrameIconClick={onFrameIconClick}
         onUsericonContainerClick={onUsericonClick}
