@@ -1,31 +1,57 @@
-// everything here is done sequentially
+const { spawn } = require('child_process');
 const nlpHandler = {
     sanitizeCode: (code) => {
         //
     },
-    analyzeCode: (code) => {
+    analyzeCode: (code, progLang) => {
         // Call the Python script to analyze the code
-        const pythonProcess = spawn('python', ['analyseCode.py', code]);
+        let process;
 
-        let result = '';
-        pythonProcess.stdout.on('data', (data) => {
-            result += data.toString();
+        if (progLang === 'python') {
+            // Call the Python script
+            process = spawn('python', ['./nlp/analyseCodePython.py', code]);
+        } else if (progLang === 'java') {
+            // Call the Java script (replace 'javaScriptFile.js' with your Java script file)
+            process = spawn('java', ['yourJavaFile', code]);
+        } else if (progLang === 'c++') {
+            // Call the C++ executable (replace 'yourC++Executable' with your C++ executable)
+            process = spawn('./yourC++Executable', [code]);
+        } else {
+            return Promise.reject(new Error(`Unsupported programming language: ${progLang}`));
+        }
+
+        return new Promise((resolve, reject) => {
+            let result = '';
+            let errorOutput = '';
+
+            process.stdout.on('data', (data) => {
+                result += data.toString();
+            });
+
+            process.stderr.on('data', (data) => {
+                errorOutput += data.toString();
+            });
+
+            process.on('close', (code) => {
+                if (code === 0) {
+                    // Parse the result if needed
+                    try {
+                        const analyzedCode = JSON.parse(result);
+                        console.log(analyzedCode); // Log the parsed result
+                        resolve(analyzedCode);
+                    } catch (parseError) {
+                        console.error(parseError);
+                        reject(new Error(`Failed to parse the result: ${parseError.message}`));
+                    }
+                } else {
+                    console.error(`Parsing failed with code ${code}`);
+                    console.error(`Error output from Python script:\n${errorOutput}`);
+                    reject(new Error(`Parsing failed with code ${code}`));
+                }
+            });
+
         });
 
-        pythonProcess.on('close', async (code) => {
-            if (code === 0) {
-                // Parse the result if needed
-                const analyzedCode = JSON.parse(result);
-
-                // Update MongoDB with the analyzed code
-                await updateMongoDB(projectId, codeIndex, analyzedCode);
-            } else {
-                console.error(`Parsing failed with code ${code}`);
-            }
-            // compile and parse code (this doesnt involve nlp)
-            // AST gives classes inherhitance instances -// Return a structured representation of the analyzed code
-
-        });
         // if the code is being updated not starting from scratch the process should be more simplified here
 
     },
@@ -88,8 +114,3 @@ const nlpHandler = {
 
 module.exports = nlpHandler;
 
-//-------------------------
-//   // controllers/tutorialController.js
-//const nlpHandler = require('../nlp/nlpHandler');
-// Your existing code for the tutorial controller
-// You can now use nlpHandler in this file to perform NLP tasks

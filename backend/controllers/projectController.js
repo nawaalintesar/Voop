@@ -32,9 +32,14 @@ const getProject = async (req, res) => {
   try {
     const { id } = req.params;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: 'No such ' })
+    }
     // Find the project by ID
     const project = await Project.findById(id);
-
+    if (!project) {
+      return res.status(404).json({ error: 'No such project' })
+    }
     // Return userCode from the last codeState (assuming there is at least one)
     const lastCodeState = project.codeStates.length > 0 ? project.codeStates.slice(-1)[0] : null;
     const userCode = lastCodeState ? lastCodeState.userCode : '';
@@ -119,13 +124,17 @@ const deleteProject = async (req, res) => {
 }
 
 // update an existing project
-const updateProject = async (projectId, updatedCode) => {
+const updateProject = async (req,res) => {
+  const userId = "65810b9b1d91631463299a28"
+  const { id } = req.params;
+  const updatedCode = req.body.updatedCode;
+  // const updatedCodeString= 
   try {
-    const project = await Project.findById(projectId);
+    // only allow if its in the users created projects
+    const project = await Project.findById(id);
     if (!project) {
       throw new Error('Project not found');
     }
-
     // Find the latest code state and check if the code has changed
     const latestCodeState = project.codeStates.reduce((max, state) =>
       state.codeIndex > max.codeIndex ? state : max, { codeIndex: -1 });
@@ -145,7 +154,8 @@ const updateProject = async (projectId, updatedCode) => {
 
       // Call the following functions:
       // comiple, parse, analyse code to find classes, relations and info
-      nlpHandler.analyzeCode(projectId, codeIndex, code);
+      const { classes, relationships } = await nlpHandler.analyzeCode(updatedCode, project.progLang);
+
       // generate the animation
       // find and display oop concepts
       // nlpHandler.generateRecommendations() // this is needed to do the next 3
@@ -154,16 +164,19 @@ const updateProject = async (projectId, updatedCode) => {
         codeIndex: newCodeIndex,
         codeDictionary: {
           userCode: updatedCode,
+          classes: classes,
+          relationships:relationships,
         },
       };
       // Add the new code state to the project
       project.codeStates.push(newCodeState);
-
     }
     await project.save();
-    return project;
+    res.status(200).json(project);
   } catch (error) {
+    res.status(400).json("Error");
     throw new Error(`Error updating: ${error.message}`);
+
   }
 };
 
