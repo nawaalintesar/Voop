@@ -38,6 +38,11 @@ const MytutorialsL = () => {
     navigate("/mytutorialsl");
   }, [navigate]);
 
+  const onFrameButtonClick = useCallback(() => {
+    // Please sync "Code Editor- after login" to the project
+    navigate("/CodeEditorAfterLogin");
+  }, [navigate]);
+  
   const onFrameIconClick = useCallback(() => {
     navigate("/myprojectsl");
   }, [navigate]);
@@ -62,7 +67,9 @@ const MytutorialsL = () => {
   return (
     <div className={styles.mytutorialsL}>
       <Footer />
-      <Property1Default />
+      <Property1Default 
+       onFrameButtonClick={onFrameButtonClick}
+       />
       <div className={styles.items}>
 
         <b className={styles.continueTheJourney}>Continue The Journey</b>

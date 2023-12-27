@@ -115,6 +115,11 @@ const GenericTutorialPageL = () => {
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
 
+  const onFrameButtonClick = useCallback(() => {
+    // Please sync "Code Editor- after login" to the project
+    navigate("/CodeEditorAfterLogin");
+  }, [navigate]);
+
   const onFrameContainer2Click = useCallback(() => {
     // Please sync "Mytutorials-L" to the project
     navigate("/mytutorialsl");
@@ -133,35 +138,12 @@ const GenericTutorialPageL = () => {
     navigate("/dashboardl");
   }, [navigate]);
 
-  /*useEffect(() => {
-    const fetchTutorialsData = async () => {
-      try {
-        const response = await fetch('../tutorials');
-        if (!response.ok) {
-          throw new Error(`Failed to fetch tutorials: ${response.status}`);
-        }
-        const tutorialsData = await response.json();
-        dispatch({ type: 'SET_TUTORIALS', payload: tutorialsData });
-      } catch (error) {
-        console.error('Error fetching tutorials:', error.message);
-      }
-    }
-    fetchTutorialsData();
-  }, [dispatch]);*/
-  
-
   return (
     <div className={styles.generictutorialpageL}>
-      {/* <div className="GenricTut">
-        <div className="GenericTutForm">
-          {tutorials && tutorials.map(tutorial => (
-            <TutorialForm tutorial={tutorial} key={tutorial._id} />
-          ))}
-        </div>
-        <TutorialForm />
-      </div> */}
       <Footer/>
-      <Property1Default/>
+      <Property1Default
+       onFrameButtonClick={onFrameButtonClick}
+      />
       <Property1Closed
         onFrameContainerClick={onFrameContainer2Click}
         onFrameIconClick={onFrameIconClick}

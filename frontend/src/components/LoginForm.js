@@ -3,7 +3,7 @@ import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 import ForgotPassPop from "./ForgotPassPop";
 import PortalPopup from "./PortalPopup";
 import { useNavigate } from "react-router-dom";
-import Property1Default from "./Property1Default";
+import ButtonRegister from "./ButtonRegister";
 import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
@@ -16,14 +16,15 @@ const LoginForm = () => {
 
   const onLogInButtonClick = useCallback(() => {
     // Please sync "Dashboard-L" to the project
-  }, []);
+    navigate("/DashboardL");
+  }, [navigate]);
 
   const onNewToVoopContainerClick = useCallback(() => {
-    navigate("/");
+    navigate("/SigninL");
   }, [navigate]);
 
   const onNewToVoopClick = useCallback(() => {
-    navigate("/");
+    navigate("/SigninL");
   }, [navigate]);
 
   const openForgotPassPopPopup = useCallback(() => {
@@ -131,7 +132,7 @@ const LoginForm = () => {
             />
           </div>
         </div>
-        <Property1Default
+        <ButtonRegister
           property1DefaultPosition="absolute"
           property1DefaultTop="518px"
           property1DefaultLeft="98px"

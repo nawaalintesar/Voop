@@ -53,7 +53,8 @@ const UserProfilePageL = () => {
 
   const onFrameButtonClick = useCallback(() => {
     // Please sync "Code Editor- after login" to the project
-  }, []);
+    navigate("/CodeEditorAfterLogin");
+  }, [navigate]);
 
   const onFrameContainer3Click = useCallback(() => {
     navigate("/mytutorialsl");
@@ -71,23 +72,6 @@ const UserProfilePageL = () => {
   const onDashoboardSMContainerClick = useCallback(() => {
     navigate("/dashboardl");
   }, [navigate]);
-
-
-  // const onFrameContainer2Click = useCallback(() => {
-  //   // Please sync "Mytutorials-L" to the project
-  // }, []);
-
-  // const onFrameIconClick = useCallback(() => {
-  //   navigate("/myprojectsl");
-  // }, [navigate]);
-
-  // const onUsericonClick = useCallback(() => {
-  //   // Please sync "User Profile Page- L" to the project
-  // }, []);
-
-  // const onDashoboardSMContainerClick = useCallback(() => {
-  //   // Please sync "Dashboard-L" to the project
-  // }, []);
 
   const openProfileUpdateConfirmationLPopup = useCallback(() => {
     setProfileUpdateConfirmationLPopupOpen(true);
@@ -110,7 +94,8 @@ const UserProfilePageL = () => {
       <div className={styles.userProfilePageL}>
       <Footer/>
 
-       <Property1Default/>
+       <Property1Default
+        onFrameButtonClick={onFrameButtonClick}/>
 
       <Property1Closed
         onFrameContainerClick={onFrameContainer3Click}

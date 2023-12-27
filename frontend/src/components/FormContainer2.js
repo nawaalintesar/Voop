@@ -32,48 +32,7 @@ const FormContainer2 = () => {
           projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
           editMinusObjectFit="cover"
         />
-        <ProjectFrame
-          edited5MinAgo="Edited 1 hour ago"
-          project1="Project 3"
-          editMinus="/edit--minus@2x.png"
-          j="P"
-          showEditMinus
-          projectFrameWidth="1099px"
-          projectFramePosition="absolute"
-          projectFrameTop="85px"
-          projectFrameLeft="0px"
-          projectBoxBackground="linear-gradient(139.01deg, #db6ab0, #b63ba1 93.23%)"
-          projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-          editMinusObjectFit="cover"
-        />
-        <ProjectFrame
-          edited5MinAgo="Edited 3 days ago"
-          project1="Project 4"
-          editMinus="/edit--minus@2x.png"
-          j="C"
-          showEditMinus
-          projectFrameWidth="1099px"
-          projectFramePosition="absolute"
-          projectFrameTop="170px"
-          projectFrameLeft="0px"
-          projectBoxBackground="linear-gradient(139.06deg, #7c94ea, #4e53e7 93.23%)"
-          projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-          editMinusObjectFit="cover"
-        />
-        <ProjectFrame
-          edited5MinAgo="Edited 4 months ago"
-          project1="Project 5"
-          editMinus="/edit--minus@2x.png"
-          j="P"
-          showEditMinus
-          projectFrameWidth="1099px"
-          projectFramePosition="absolute"
-          projectFrameTop="255px"
-          projectFrameLeft="0px"
-          projectBoxBackground="linear-gradient(139.01deg, #26b25e, #107126 93.23%)"
-          projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-          editMinusObjectFit="cover"
-        />
+
         <img
           className={styles.editMinus}
           alt=""
