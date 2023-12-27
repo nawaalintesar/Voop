@@ -10,7 +10,8 @@ const LogInL = () => {
 
   const onLogInButtonClick = useCallback(() => {
     // Please sync "Dashboard-L" to the project
-  }, []);
+    navigate("/dashboardl");
+  }, [navigate]);
 
   const onButtonClick = useCallback(() => {
     navigate("/");

@@ -29,6 +29,9 @@ import {
   useLocation,
 } from "react-router-dom";
 import DashboardL from "./pages/DashboardL";
+// import SignInL from "./pages/SignInL";
+// import SignInD from "./pages/SignInD";
+//import LogInL from "./pages/LogInL";
 import MytutorialsL from "./pages/MytutorialsL";
 import GenericTutorialPageL from "./pages/GenericTutorialPageL";
 import HomePageL from "./pages/HomePageL";
@@ -49,13 +52,16 @@ function App() {
   }, [action, pathname]);
 
   return (
-    
+
     <Routes>
       <Route path="/" element={<HomePageL />} />
       <Route path="/mytutorialsl" element={
-      <TutorialsContextProvider>
-      <MytutorialsL />
-    </TutorialsContextProvider>} />
+        <TutorialsContextProvider>
+          <MytutorialsL />
+        </TutorialsContextProvider>} />
+      {/* <Route path="/SignInL" element={<SignInL />} />
+      <Route path="/SignInD" element={<SignInD />} /> 
+      <Route path="/LogInL" element={<LogInL />} />*/}
       <Route path="/DashboardL" element={<DashboardL />} />
       <Route path="/generictutorialpagel" element={<GenericTutorialPageL />} />
       <Route path="/myprojectsafterdeletel" element={<MyProjectsAfterDeleteL />} />
