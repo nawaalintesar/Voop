@@ -36,45 +36,59 @@ const ProjectSchema = new Schema(
                             },
                             attributes: [
                                 {
-                                    name: String,
-                                    type: String,
+                                    name: {
+                                        type: String,
+                                    },
+                                    type: {
+                                        type: String,
+                                    },
                                 },
                             ],
                             methods: [
                                 {
-                                    name: String,
-                                    returnType: String,
+                                    name: {
+                                        type: String,
+                                    },
+                                    returnType: {
+                                        type: String,
+                                    },
                                     parameters: [
                                         {
-                                            name: String,
-                                            type: String,
+                                            name: {
+                                                type: String,
+                                            },
+                                            type: {
+                                                type: String,
+                                            },
                                         },
                                     ],
                                 },
                             ],
-                            linesOfCode: [String]
+                            linesOfCode: String
                         },
                     ],
                     relationships:
                         [{
-                            type: String, // 'association', 'aggregation', etc.
-                            enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class'],
-                            required: true,
+                            type: {
+                                type: String,
+                                enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class'],
+                                required: true,
+                            },
                             source: {
                                 type: {
-                                    String, // 'class', 'interface', 'instance'
-                                    enum: ['interface', 'class', 'instance']
+                                    type: String,
+                                    enum: ['interface', 'class', 'instance', 'function'],
                                 },
-                                name: String, // Name of the source entity
+                                name: String,
                             },
                             target: {
                                 type: {
-                                    String, // 'class', 'interface', 'instance'
-                                    enum: ['interface', 'class', 'instance']
+                                    type: String,
+                                    enum: ['interface', 'class', 'instance', 'function'],
                                 },
-                                name: String, // Name of the target entity
+                                name: String,
                             },
-                            linesOfCode: [String],
+                            linesOfCode: String,
 
                         }],
                 },
