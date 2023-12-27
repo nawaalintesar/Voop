@@ -36,72 +36,67 @@ const ProjectSchema = new Schema(
                             },
                             attributes: [
                                 {
-                                    name: String,
-                                    type: String,
+                                    name: {
+                                        type: String,
+                                    },
+                                    type: {
+                                        type: String,
+                                    },
                                 },
                             ],
                             methods: [
                                 {
-                                    name: String,
-                                    returnType: String,
+                                    name: {
+                                        type: String,
+                                    },
+                                    returnType: {
+                                        type: String,
+                                    },
                                     parameters: [
                                         {
-                                            name: String,
-                                            type: String,
+                                            name: {
+                                                type: String,
+                                            },
+                                            type: {
+                                                type: String,
+                                            },
                                         },
                                     ],
                                 },
                             ],
+                            linesOfCode: String
                         },
                     ],
                     relationships:
                         [{
-                            type: String, // 'association', 'aggregation', etc.
-                            enum: ['association', 'aggregation', 'composition'],
-                            required: true,
+                            type: {
+                                type: String,
+                                enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class'],
+                                required: true,
+                            },
                             source: {
                                 type: {
-                                    String, // 'class', 'interface', 'instance'
-                                    enum: ['interface', 'class', 'instance']
+                                    type: String,
+                                    enum: ['interface', 'class', 'instance', 'function'],
                                 },
-                                name: String, // Name of the source entity
+                                name: String,
                             },
                             target: {
                                 type: {
-                                    String, // 'class', 'interface', 'instance'
-                                    enum: ['interface', 'class', 'instance']
+                                    type: String,
+                                    enum: ['interface', 'class', 'instance', 'function'],
                                 },
-                                name: String, // Name of the target entity
+                                name: String,
                             },
+                            linesOfCode: String,
+
                         }],
                 },
                 diagramID: {
                     type: Schema.Types.ObjectId,
                     ref: 'Diagram',
-                },
-                OOPConcept: [// this part i havent really looked into so feel free to change the db structure
-                    {
-                        concept: {
-                            type: String,
-                            enum: [
-                                'class',
-                                'object',
-                                'instance',
-                                'inheritance',
-                                'abstraction',
-                                'encapsulation',
-                                'polymorphism',
-                                'interface',
-                                'method_overriding',
-                                'method_overloading',
-                                'abstract class',
-                            ],
-                            required: true,
-                        },
-                        linesOfCode: String, // String to store lines of code for the specific OOP concept maybe refer to the index directly instead
-                    },
-                ]
-            },
+                }
+            }
         ],
         constraints: {// this part i havent really looked into so feel free to change the db structure
             type: [String],

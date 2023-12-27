@@ -1,0 +1,120 @@
+.animation1 {
+  position: relative;
+  font-weight: 500;
+}
+.file,
+.files {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 121px;
+}
+.file {
+  background-color: var(--white-transparent-10);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-base);
+  box-sizing: border-box;
+  gap: var(--gap-9xs);
+}
+.files {
+  border-radius: 0 var(--br-5xs) 0 0;
+  background-color: var(--color-gray-100);
+  height: 32px;
+}
+.icInfoOutline48pxIcon,
+.icLoop48pxIcon,
+.icReplay48pxIcon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.icInfoOutline48pxIcon,
+.icReplay48pxIcon {
+  width: 18.1px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.icInfoOutline48pxIcon {
+  width: 20px;
+}
+.groupChild,
+.objectify {
+  position: absolute;
+  top: 3px;
+  left: 16px;
+}
+.groupChild {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-7xs);
+  background-color: var(--color-gainsboro);
+  border: 1px solid var(--white-default);
+  box-sizing: border-box;
+  width: 85px;
+  height: 24px;
+}
+.icPlayArrow48pxIcon {
+  position: absolute;
+  top: 5px;
+  left: 66px;
+  width: 13px;
+  height: 13px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.objectifyParent {
+  position: relative;
+  width: 85px;
+  height: 24px;
+}
+.icLoop48pxParent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-darkslategray-200);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+  padding: var(--padding-9xs) var(--padding-sm);
+  gap: var(--gap-2xl);
+  align-content: stretch;
+  font-size: var(--font-size-xs);
+  color: var(--white-default);
+  font-family: var(--font-pt-sans);
+}
+.animationChild,
+.animationItem {
+  position: absolute;
+  top: 238.6px;
+  left: 172px;
+  width: 105.1px;
+  height: 278.3px;
+  object-fit: contain;
+}
+.animationItem {
+  top: 239px;
+  left: 382px;
+  width: 59px;
+  height: 270px;
+  object-fit: cover;
+}
+.animation {
+  position: absolute;
+  width: calc(100% - 759px);
+  top: calc(50% - 428.5px);
+  right: 0;
+  left: 759px;
+  background: linear-gradient(180deg, #2e2360, #18113e);
+  height: 865px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--white-transparent-80);
+  font-family: var(--font-poppins);
+}
