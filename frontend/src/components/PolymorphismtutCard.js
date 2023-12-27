@@ -19,10 +19,10 @@ const PolymorphismtutCard = ({
       cursor: polymorphismtutCardCursor,
     };
   }, [
-    polymorphismtutCardPosition,
-    polymorphismtutCardTop,
-    polymorphismtutCardLeft,
-    polymorphismtutCardCursor,
+    polymorphismtutCardPosition="absolute",
+    polymorphismtutCardTop="0px",
+    polymorphismtutCardLeft="554px",
+    polymorphismtutCardCursor="pointer",
   ]);
 
   const openLessonContinuationPopup = useCallback(() => {
