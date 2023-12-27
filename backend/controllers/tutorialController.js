@@ -11,141 +11,155 @@ const viewTutorials = async (req, res) => {
   res.status(200).json(tutorials)
 }
 const populateDatabase = async (req, res) => {
-  await Tutorial.deleteMany(); 
+  await Tutorial.deleteMany();
   // Example usage
   const path = require('path');
-  const filePath = path.join(__dirname, '../models/Tutorials/Classes.txt');
+  const paths = [
+    path.join(__dirname, '../models/Tutorials/Classes.txt'),
+    path.join(__dirname, '../models/Tutorials/Encapsulation.txt'),
+    path.join(__dirname, '../models/Tutorials/Abstract.txt'),
+    path.join(__dirname, '../models/Tutorials/Over.txt'),
+    path.join(__dirname, '../models/Tutorials/Inheritance.txt'),
+    path.join(__dirname, '../models/Tutorials/Interfaces.txt'),
+    path.join(__dirname, '../models/Tutorials/Polymorphism.txt'),
+    path.join(__dirname, '../models/Tutorials/Combined.txt'),
+  ];
   try {
-    // Read the content of the file
-    const fileContent = fs.readFileSync(filePath, 'utf8');
+    for (const filePath of paths) {
+      // Read the content of the file
+      const fileContent = fs.readFileSync(filePath, 'utf8');
 
-    // Split the file content by lines
-    const lines = fileContent.split('\n');
-    // Initialize variables
-    let tutName = lines[0];
-    let tutDescription = "";
-    let level = [];
-    let progLang = "";
-    let levelNumber = 0;
-    let code = [];
-    let tutorialSteps = [];
-    let noTutSteps = 0;
-    // Process each line
+      // Split the file content by lines
+      const lines = fileContent.split('\n');
+      // Initialize variables
+      let tutName = lines[0];
+      let tutDescription = "";
+      let level = [];
+      let progLang = "";
+      let levelNumber = 0;
+      let code = [];
+      let tutorialSteps = [];
+      let noTutSteps = 0;
+      // Process each line
 
 
-    for (const line of lines) {
-      // Check for the first line and assign it to tutName
-      if (!tutName && !line.startsWith('//')) {
-        tutName = line.trim();
-        continue; // Skip to the next iteration
-      }
-      // Check for the line that starts with //Tutorial Description
-      if (line.startsWith('//Tutorial Description')) {
-        // Read lines assign them to tutDescription
-        let currentIndex = lines.indexOf(line) + 1; // Move to the next line
-        while (currentIndex < lines.length && !lines[currentIndex].startsWith('//DescriptionEnd')) {
-          tutDescription += lines[currentIndex] + '\n';
-          currentIndex++;
+      for (const line of lines) {
+        // Check for the first line and assign it to tutName
+        if (!tutName && !line.startsWith('//')) {
+          tutName = line.trim();
+          continue; // Skip to the next iteration
         }
-        continue; // Skip to the next iteration
-      }
-      // Check for the line that starts with //Level
-      if (line.startsWith('//Level')) {
-        // If this is not the first level, push the previous level information to the level array
-        if (levelNumber !== 0) {
-          level.push({
-            levelNumber,
-            progLang,
-            code: code,
-            noTutSteps: tutorialSteps.length,
-            tutorialSteps: tutorialSteps
-          });
-
-          // Reset arrays for the new level
-          code = [];
-          tutorialSteps = [];
-          noTutSteps = 0;
+        // Check for the line that starts with //Tutorial Description
+        if (line.startsWith('//Tutorial Description')) {
+          // Read lines assign them to tutDescription
+          let currentIndex = lines.indexOf(line) + 1; // Move to the next line
+          while (currentIndex < lines.length && !lines[currentIndex].startsWith('//DescriptionEnd')) {
+            tutDescription += lines[currentIndex] + '\n';
+            currentIndex++;
+          }
+          continue; // Skip to the next iteration
         }
-
         // Check for the line that starts with //Level
         if (line.startsWith('//Level')) {
-          // Split from the character 1- and get level number and language
-          const regex = /\/\/Level (\d+)- (\S+)/;
-          const match = line.match(regex);
+          // If this is not the first level, push the previous level information to the level array
+          if (levelNumber !== 0) {
+            level.push({
+              levelNumber,
+              progLang,
+              code: code,
+              noTutSteps: tutorialSteps.length,
+              tutorialSteps: tutorialSteps
+            });
 
-          if (match) {
-            levelNumber = parseInt(match[1], 10);
-            progLang = match[2].trim();
+            // Reset arrays for the new level
+            code = [];
+            tutorialSteps = [];
+            noTutSteps = 0;
+          }
 
-            // Check for the code section
-            let isCodeSection = false;
+          // Check for the line that starts with //Level
+          if (line.startsWith('//Level')) {
+            // Split from the character 1- and get level number and language
+            const regex = /\/\/Level (\d+)- (\S+)/;
+            const match = line.match(regex);
 
-            // Iterate through the lines to read code until //Steps
-            for (let i = lines.indexOf(line) + 1; i < lines.length; i++) {
-              if (lines[i].startsWith('//Code')) {
-                isCodeSection = true;
-                continue;
-              } else if (lines[i].startsWith('//Steps')) {
-                break; // Stop when reaching "//Steps"
-              }
+            if (match) {
+              levelNumber = parseInt(match[1], 10);
+              progLang = match[2].trim();
 
-              if (isCodeSection) {
-                code.push(lines[i].trim());
-              }
-            }
+              // Check for the code section
+              let isCodeSection = false;
 
-            let isStepsSection = false;
-
-            for (let i = lines.indexOf(line) + 1; i < lines.length; i++) {
-              // Check for the line that starts with //Steps
-              if (lines[i].startsWith('//Steps')) {
-                console.log(lines[i])
-                isStepsSection = true;
-                continue;
-                
-              }
-
-              // Read lines until the string '--------------' and assign them to steps
-              if (isStepsSection) {
-                if (lines[i].startsWith('--------------')) {
-                  isStepsSection=false;
-                  break; // Stop when reaching '--------------'
+              // Iterate through the lines to read code until //Steps
+              for (let i = lines.indexOf(line) + 1; i < lines.length; i++) {
+                if (lines[i].startsWith('//Code')) {
+                  isCodeSection = true;
+                  continue;
+                } else if (lines[i].startsWith('//Steps')) {
+                  break; // Stop when reaching "//Steps"
                 }
 
-                tutorialSteps.push(lines[i].trim());
-                console.log(tutorialSteps);
-                noTutSteps = tutorialSteps.length;
+                if (isCodeSection) {
+                  code.push(lines[i].trim());
+                }
+              }
+
+              let isStepsSection = false;
+
+              for (let i = lines.indexOf(line) + 1; i < lines.length; i++) {
+                // Check for the line that starts with //Steps
+                if (lines[i].startsWith('//Steps')) {
+                  console.log(lines[i])
+                  isStepsSection = true;
+                  continue;
+
+                }
+
+                // Read lines until the string '--------------' and assign them to steps
+                if (isStepsSection) {
+                  if (lines[i].startsWith('--------------')) {
+                    isStepsSection = false;
+                    break; // Stop when reaching '--------------'
+                  }
+
+                  tutorialSteps.push(lines[i].trim());
+                  console.log(tutorialSteps);
+                  noTutSteps = tutorialSteps.length;
+                }
               }
             }
           }
         }
       }
-    }
-    if (levelNumber !== 0) {
-      level.push({
-        levelNumber,
-        progLang,
-        code: code,
-        noTutSteps: tutorialSteps.length,
-        tutorialSteps: tutorialSteps
+      if (levelNumber !== 0) {
+        level.push({
+          levelNumber,
+          progLang,
+          code: code,
+          noTutSteps: tutorialSteps.length,
+          tutorialSteps: tutorialSteps
+        });
+      }
+
+
+
+
+      // Save the tutorial to the database
+      const project = await Tutorial.create({
+        tutName,
+        tutDescription,
+        level
       });
+
+      console.log('Database populated successfully!');
     }
-
-
-
-
-    // Save the tutorial to the database
-    const project = await Tutorial.create({
-      tutName,
-      tutDescription,
-      level
-    });
-    res.status(200).json(project)
-
-    console.log('Database populated successfully!');
   } catch (error) {
     res.status(500).json("error")
     console.error('Error populating database:', error.message); // this is not the actual error check console its the time out thing
+
+  } finally {
+    // Send a response outside the try-catch block
+    res.status(200).json("All files processed successfully!");
   }
 }
 
@@ -276,7 +290,7 @@ const playTutorial = async (req, res) => {
 
     res.status(200).json({ tutorialSteps: tutorial.tutSteps, message: 'Tutorial completed!' });
     console.log(`Tutorial ${tutorial.tutName} played successfully for user ${user.userName}`);
-    console.log(progress) 
+    console.log(progress)
   } catch (error) {
     console.error('Error playing tutorial:', error.message);
     res.status(500).json({ error: 'Internal server error' });
