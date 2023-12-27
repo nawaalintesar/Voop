@@ -4,14 +4,7 @@ import sys
 
 def parseCode(code):
     classes = []
-    relationships = {
-        'inheritance': [],
-        'encapsulation': [],
-        'polymorphism': [],
-        'method overriding': [],
-        'method overloading': [],
-        'abstract class': [],
-    }
+    relationships = []
 
     def get_class_lines(class_node):
         start_line, end_line = class_node.lineno, class_node.end_lineno
@@ -20,10 +13,11 @@ def parseCode(code):
     for node in ast.walk(ast.parse(code)):
         if isinstance(node, ast.Call):
             if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
-                relationships['polymorphism'].append({
-                    'object_type': node.func.value.id,
-                    'method': node.func.attr,
-                    'arguments': [arg.id for arg in node.args] if node.args else [],
+                relationships.append({
+                    'type': 'polymorphism',
+                    'source': {'type': 'class', 'name': node.func.value.id},
+                    'target': {'type': 'class', 'name': None},
+                    'linesOfCode': f"[{node.lineno} - {node.end_lineno}]",
                 })
 
         if isinstance(node, ast.ClassDef):
@@ -58,19 +52,28 @@ def parseCode(code):
                         if class_info['name'] != base_class_info['name']:
                             for base_method in base_class_info['methods']:
                                 if method_info['name'] == base_method['name'] and method_info['parameters'] == base_method['parameters']:
-                                    if {'present': True, 'class': class_info['name'], 'method': method_info['name']} not in relationships['method overriding']:
-                                        relationships['method overriding'].append({'present': True, 'class': class_info['name'], 'method': method_info['name']})
-                                        # relationships['method overriding'].append({'present': True, 'class': class_info['name'], 'method': method_info['name']})
+                                    relationships.append({
+                                        'type': 'method overriding',
+                                        'source': {'type': 'function', 'name': method_info['name']},
+                                        'target': {'type': 'function', 'name': base_method['name']},
+                                        'linesOfCode': get_class_lines(class_node),
+                                    })
 
                     if method_info['name'] in [m['name'] for m in class_info['methods']]:
-                        relationships['method overloading'].append({'present': True, 'class': class_info['name'], 'method': method_info['name']})
+                        relationships.append({
+                            'type': 'method overloading',
+                            'source': {'type': 'function', 'name': method_info['name']},
+                            'target': {'type': 'function', 'name': None},
+                            'linesOfCode': get_class_lines(class_node),
+    })
+
                     class_info['methods'].append(method_info)
-                    class_info['methods'].append(method_info)
+
 
             classes.append(class_info)
 
             for base_class in node.bases:
-                relationships['inheritance'].append({
+                relationships.append({
                     'type': 'inheritance',
                     'source': {'type': 'class', 'name': node.name},
                     'target': {'type': 'class', 'name': base_class.id if base_class.id else None},
@@ -80,7 +83,7 @@ def parseCode(code):
             for class_node in node.body:
                 if isinstance(class_node, ast.FunctionDef):
                     if class_node.name == '__init__':
-                        relationships['encapsulation'].append({
+                        relationships.append({
                             'type': 'encapsulation',
                             'source': {'type': 'class', 'name': node.name},
                             'target': {'type': 'class', 'name': None},
@@ -88,7 +91,7 @@ def parseCode(code):
                         })
 
                     elif class_node.name.startswith('_'):
-                        relationships['encapsulation'].append({
+                        relationships.append({
                             'type': 'encapsulation',
                             'source': {'type': 'class', 'name': node.name},
                             'target': {'type': 'class', 'name': None},
@@ -98,16 +101,12 @@ def parseCode(code):
                     if class_node.decorator_list:
                         for decorator in class_node.decorator_list:
                             if isinstance(decorator, ast.Name) and decorator.id == 'abstractmethod':
-                                relationships['abstract class'].append({
+                                relationships.append({
                                     'type': 'abstract class',
                                     'source': {'type': 'class', 'name': node.name},
                                     'target': {'type': 'class', 'name': None},
                                     'linesOfCode': get_class_lines(class_node),
                                 })
-    json_object = {
-        'classes': classes,
-        'relationships': relationships,
-    }
     return classes, relationships
 
 # Read the code from the command line arguments

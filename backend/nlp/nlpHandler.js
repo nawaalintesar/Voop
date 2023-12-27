@@ -37,8 +37,7 @@ const nlpHandler = {
                     // Parse the result if needed
                     try {
                         const analyzedCode = JSON.parse(result);
-                        console.log(analyzedCode); // Log the parsed result
-                        resolve(analyzedCode);
+                       resolve(analyzedCode);
                     } catch (parseError) {
                         console.error(parseError);
                         reject(new Error(`Failed to parse the result: ${parseError.message}`));
