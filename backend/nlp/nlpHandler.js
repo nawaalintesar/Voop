@@ -1,25 +1,83 @@
-// everything here is done sequentially
+const { spawn } = require('child_process');
 const nlpHandler = {
     sanitizeCode: (code) => {
         //
     },
-    compileCode: (code, progLang) => {
-        //depending on the language it compiles the code to make sure there are no errors 
-    },
-    parseCode: (code) => {
-        //tree sitter can parse code this doesnt involve nlp
-        // not sure if we reaaallly need this because we could just clean up the code and anlyse it. parsing is something programming tools need like github, intellij
+    analyzeCode: (code, progLang) => {
+        // Call the Python script to analyze the code
+        let process;
+
+        if (progLang === 'python') {
+            // Call the Python script
+            process = spawn('python', ['./nlp/analyseCodePython.py', code]);
+        } else if (progLang === 'java') {
+            // Call the Java script (replace 'javaScriptFile.js' with your Java script file)
+            process = spawn('java', ['yourJavaFile', code]);
+        } else if (progLang === 'c++') {
+            // Call the C++ executable (replace 'yourC++Executable' with your C++ executable)
+            process = spawn('./yourC++Executable', [code]);
+        } else {
+            return Promise.reject(new Error(`Unsupported programming language: ${progLang}`));
+        }
+
+        return new Promise((resolve, reject) => {
+            let result = '';
+            let errorOutput = '';
+
+            process.stdout.on('data', (data) => {
+                result += data.toString();
+            });
+
+            process.stderr.on('data', (data) => {
+                errorOutput += data.toString();
+            });
+
+            process.on('close', (code) => {
+                if (code === 0) {
+                    // Parse the result if needed
+                    try {
+                        const analyzedCode = JSON.parse(result);
+                       resolve(analyzedCode);
+                    } catch (parseError) {
+                        console.error(parseError);
+                        reject(new Error(`Failed to parse the result: ${parseError.message}`));
+                    }
+                } else {
+                    console.error(`Parsing failed with code ${code}`);
+                    console.error(`Error output from Python script:\n${errorOutput}`);
+                    reject(new Error(`Parsing failed with code ${code}`));
+                }
+            });
+
+        });
+
+        // if the code is being updated not starting from scratch the process should be more simplified here
 
     },
-    analyzeCode: (code) => {
-        // Add your NLP logic here
-        // This function might use a library like spaCy or NLTK
-        // Perform Named Entity Recognition (NER), dependency parsing, semantic analysis, etc.
-        // Extract relevant information like class names, relationships, method names, etc.
-        // Return a structured representation of the analyzed code
-                // Use CodeBERT or other NLP tools to parse the code
-        // Return the abstract syntax tree (AST) or other relevant format
-        const pythonProcess = spawn('python', ['parse.py', code]);
+    generateRecommendations: (code) => {
+
+        // Add your NLP logic here- use a library like spaCy or NLTK
+        //generate a code summary
+        // Perform Named Entity Recognition (NER), dependency parsing, semantic analysis, etc. to find recommendations
+
+        const constraints = {
+            maxNewClasses: 2,
+            maxNewAttributesPerClass: 2,
+            maxNewMethodsPerClass: 2,
+            allowInheritanceChanges: true,
+            // ... other constraints
+        };
+        const recommendations = {
+            addClasses: [],
+            addAttributes: [],
+            addMethods: [],
+            removeClasses: [],
+            removeAttributes: [],
+            removeMethods: [],
+            changeInheritance: [],
+            // ... other recommendations
+        };
+        const pythonProcess = spawn('python', ['generateRecommendations.py', code]);
 
         let result = '';
         pythonProcess.stdout.on('data', (data) => {
@@ -33,18 +91,11 @@ const nlpHandler = {
                 reject(new Error('Parsing failed with code ${code}'));
             }
         });
-        // if the code is being updated not starting from scratch the process should be more simplified here
+        // AI logic to generate specific recommendations based on the code
+    },
 
-    },
-    identifyOOPConcepts: (code)=>{
-        //is this a part of analyzing the code?
-    },    
-    convertToDictionary: (analyzedCode) => {
-        // Use the analyzed code to generate key-value pairs (e.g., Inheritance: {lines of code})
-        // Return the generated key-value pairs
-    },
     identifyAnimationComponent: (key) => {
-        // Use the key to identify the pre-built animation component
+        // Use the key of the oop concept to identify the pre-built animation component
         // Return the information required for the animation component
     },
     compileDiagram: (analyzedCode) => {
@@ -54,24 +105,11 @@ const nlpHandler = {
     animateDiagram: (analyzedCode) => {
         //putting everything together and values injection 
     },
-    
-
     displayDiagram: (animationInfo) => {
         // Use the animation information to display the animation
         // You might have a separate module or component for handling animations
-    },
-    identifyConstraints: (analyzedCode) => {
-        //putting everything together and values injection 
-    },    
-    generateRecommendations: (code, constraints) =>{
-
     }
 };
 
 module.exports = nlpHandler;
 
-//-------------------------
-//   // controllers/tutorialController.js
-//const nlpHandler = require('../nlp/nlpHandler');
-// Your existing code for the tutorial controller
-// You can now use nlpHandler in this file to perform NLP tasks

@@ -26,9 +26,9 @@ const ProjectSchema = new Schema(
                     },
                     classes: [
                         {
-                            isClass:{//for interface
-                                type:Boolean,
-                                required:true
+                            isClass: {//for interface
+                                type: Boolean,
+                                required: true
                             },
                             name: {
                                 type: String,
@@ -36,71 +36,67 @@ const ProjectSchema = new Schema(
                             },
                             attributes: [
                                 {
-                                    name: String,
-                                    type: String,
+                                    name: {
+                                        type: String,
+                                    },
+                                    type: {
+                                        type: String,
+                                    },
                                 },
                             ],
                             methods: [
                                 {
-                                    name: String,
-                                    returnType: String,
+                                    name: {
+                                        type: String,
+                                    },
+                                    returnType: {
+                                        type: String,
+                                    },
                                     parameters: [
                                         {
-                                            name: String,
-                                            type: String,
+                                            name: {
+                                                type: String,
+                                            },
+                                            type: {
+                                                type: String,
+                                            },
                                         },
                                     ],
                                 },
                             ],
+                            linesOfCode: String
                         },
                     ],
-                    relationships: [
-                        {
+                    relationships:
+                        [{
                             type: {
                                 type: String,
-                                enum: ['association', 'aggregation', 'composition'],
+                                enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class'],
                                 required: true,
                             },
-                            entities: [
-                                {
-                                    type: {
-                                        type: String,
-                                        enum: ['interface','class', 'object', 'instance'],
-                                        required: true,
-                                    },
-                                    name: String,
+                            source: {
+                                type: {
+                                    type: String,
+                                    enum: ['interface', 'class', 'instance', 'function'],
                                 },
-                            ],
-                        },
-                    ]
+                                name: String,
+                            },
+                            target: {
+                                type: {
+                                    type: String,
+                                    enum: ['interface', 'class', 'instance', 'function'],
+                                },
+                                name: String,
+                            },
+                            linesOfCode: String,
+
+                        }],
                 },
                 diagramID: {
                     type: Schema.Types.ObjectId,
                     ref: 'Diagram',
-                },
-                OOPConcept: [// this part i havent really looked into so feel free to change the db structure
-                    {
-                        concept: {
-                            type: String,
-                            enum: [
-                                'class',
-                                'object',
-                                'instance',
-                                'inheritance',
-                                'abstraction',
-                                'encapsulation',
-                                'polymorphism',
-                                'interface',
-                                'method_overriding',
-                                'method_overloading',
-                                'abstract class',
-                            ],
-                            required: true,
-                        },
-                        linesOfCode: String, // String to store lines of code for the specific OOP concept
-                    },
-                ]
-            },
+                }
+            }
         ],
         constraints: {// this part i havent really looked into so feel free to change the db structure
             type: [String],
