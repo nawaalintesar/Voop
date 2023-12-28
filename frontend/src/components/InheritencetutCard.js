@@ -4,6 +4,7 @@ import PortalPopup from "./PortalPopup";
 import styles from "./InheritencetutCard.module.css";
 
 const InheritencetutCard = ({
+  tutorial,
   inheritencetutCardPosition,
   inheritencetutCardTop,
   inheritencetutCardLeft,
@@ -40,10 +41,9 @@ const InheritencetutCard = ({
         <div className={styles.inheritencetutcardChild} />
         <div className={styles.inheritencetutcardItem} />
         <div className={styles.enablesANew}>
-          Enables a new class to inherit properties and behaviors from an
-          existing class, fostering code reuse
+          {tutorial.tutDescription.split('.')[0]}
         </div>
-        <div className={styles.inheritance}>Inheritance</div>
+        <div className={styles.inheritance}>{tutorial.tutName}</div>
         <div className={styles.inheritencetutcardInner} />
         <div className={styles.rectangleDiv} />
         <div className={styles.div}>15 %</div>

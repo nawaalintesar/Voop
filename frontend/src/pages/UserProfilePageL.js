@@ -1,13 +1,29 @@
+// import { useState, useCallback } from "react";
+// import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
+// import LogOutPopOutL from "../components/LogOutPopOutL";
+// import PortalPopup from "../components/PortalPopup";
+// import ProfileUpdateConfirmationL from "../components/ProfileUpdateConfirmationL";
+// import ProfileDeleteL from "../components/ProfileDeleteL";
+// import SideMenu from "../components/SideMenu";
+// import PortalDrawer from "../components/PortalDrawer";
+// import { useNavigate } from "react-router-dom";
+// import styles from "./UserProfilePageL.module.css";
+
+// import Footer from "../components/Footer";
+// import Property1Default from "../components/Property1Default";
+// import Property1Closed from "../components/Property1Closed";
+
 import { useState, useCallback } from "react";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
-import LogOutPopOutL from "../components/LogOutPopOutL";
+// import LogOutPopOutL from "../components/LogOutPopOutL";
 import PortalPopup from "../components/PortalPopup";
 import ProfileUpdateConfirmationL from "../components/ProfileUpdateConfirmationL";
 import ProfileDeleteL from "../components/ProfileDeleteL";
-import SideMenu from "../components/SideMenu";
-import PortalDrawer from "../components/PortalDrawer";
+// import SideMenu from "../components/SideMenu";
+// import PortalDrawer from "../components/PortalDrawer";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserProfilePageL.module.css";
+import UserUpdate from "../components/UserUpdate";
 
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
@@ -103,80 +119,14 @@ const UserProfilePageL = () => {
         onUsericonContainerClick={onUsericonClick}
         onDashoboardSMContainerClick={onDashoboardSMContainerClick}
       /> 
-
-        <div className={styles.firstNameGroupParent}>
-          <div className={styles.firstNameGroup}>
-            <TextField
-              className={styles.frame}
-              color="secondary"
-              name="First Name"
-              label="First Name"
-              placeholder="First Name"
-              sx={{ width: 640 }}
-              variant="filled"
-              type="text"
-            />
-            <div className={styles.firstName}>{`First Name `}</div>
-          </div>
-          <div className={styles.lastNameGroup}>
-            <div className={styles.lastName}>Last Name</div>
-            <TextField
-              className={styles.frame1}
-              color="secondary"
-              name="Last Name"
-              label="Last Name"
-              placeholder="Last Name"
-              sx={{ width: 640 }}
-              variant="filled"
-              type="text"
-            />
-          </div>
-          <div className={styles.groupemailAddressGroup}>
-            <div className={styles.emailAddress}>{`Email address `}</div>
-            <TextField
-              className={styles.frame2}
-              color="secondary"
-              name="Email"
-              label="Email"
-              placeholder="Email"
-              sx={{ width: 640 }}
-              variant="filled"
-              type="text"
-            />
-          </div>
-          <div className={styles.phoneNumberGroup}>
-            <div className={styles.phoneNumber}>Phone Number</div>
-            <TextField
-              className={styles.frame1}
-              color="secondary"
-              name="Phone Number"
-              label="Phone Number"
-              placeholder="Phone Number"
-              sx={{ width: 640 }}
-              variant="filled"
-              type="tel"
-            />
-          </div>
-          <div className={styles.updateButtonGroup}>
-            <div
-              className={styles.button2}
-              onClick={openProfileUpdateConfirmationLPopup}
-            >
-              <div className={styles.update}>Update</div>
-            </div>
-          </div>
-          <div className={styles.deleteAccountGroup}>
-            <div className={styles.doYouWish}>
-              Do you wish to delete your account?
-            </div>
-            <button
-              className={styles.clickHere}
-              onClick={openProfileDeleteLPopup}
-            >
-              Click Here
-            </button>
-          </div>
+        
+           <UserUpdate />
+        <div className={styles.personalInfoHeading}>
+          <div className={styles.personalinfoRectangle} />
+          <img className={styles.cloudsIcon} alt="" src="/clouds@2x.png" />
+          <div className={styles.personalInformation}>Personal Information</div>
         </div>
+
         <div className={styles.personalInfoHeading}>
           <div className={styles.personalinfoRectangle} />
           <img className={styles.cloudsIcon} alt="" src="/clouds@2x.png" />

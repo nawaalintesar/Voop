@@ -137,7 +137,17 @@ const GenericTutorialPageL = () => {
   const onDashoboardSMContainerClick = useCallback(() => {
     navigate("/dashboardl");
   }, [navigate]);
+  // useEffect(() => {
+  //   const fetchTutorials = async () => {
+  //     const response = await fetch('/api/tutorials')
+  //     const json = await response.json()
 
+  //     if (response.ok) {
+  //       dispatch({ type: 'SET_TUTORIALS', payload: json })
+  //     }
+  //   }
+  //   fetchTutorials()
+  // }, [dispatch]);
   return (
     <div className={styles.generictutorialpageL}>
       <Footer/>

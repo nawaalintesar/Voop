@@ -30,8 +30,13 @@ const MytutorialsL = () => {
     fetchTutorials()
   }, [dispatch]);
 
-  const onTutContainerClick = useCallback(() => {
-    navigate("/generictutorialpagel");
+
+  // const onTutContainerClick = useCallback(() => {
+  //   navigate("/generictutorialpagel");
+  // }, [navigate]);
+
+  const onTutContainerClick = useCallback((enrolledTutorialId) => {
+    navigate("/generictutorialpagel", { state: {enrolledTutorialId} });
   }, [navigate]);
 
   const onFrameContainer2Click = useCallback(() => {
@@ -82,8 +87,8 @@ const MytutorialsL = () => {
               key={tutorial._id}
               tutorial={tutorial}
               conceptDescription={tutorial.tutName}
-              onTutContainerClick={onTutContainerClick}
-              propLeft={`${5 + 300 * index}px`}
+              onTutContainerClick={() => onTutContainerClick(tutorial._id)}
+              propLeft={`${5 + 250 * index}px`}
             />
           ))}
 

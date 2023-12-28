@@ -50,7 +50,7 @@ obj.display()
 //Steps
 ------------------------------
 
-//Level 1-c++
+//Level 1- C++
 //Code
 #include <iostream>
 using namespace std;

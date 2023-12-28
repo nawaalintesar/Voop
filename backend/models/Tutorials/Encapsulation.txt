@@ -57,7 +57,7 @@ Step 3: Define how you want to secure your class. Common practice is that the cl
 Step 4: Create a constructor and a displayInfo function to create instances and print out the details of an object created with this template.
 Step 5 : Create an instance of a class and use display info to display the encapsulated data instead of calling the private make and model directly.
 ------------------------------
-//Level 1-C++
+//Level 1- C++
 //Code
 #include <iostream>
 
@@ -193,7 +193,7 @@ Step 6: The setters and getters ensure that encapsulated data can still be acces
 Step 7: In the main class create an instance of an account and test out the setters and getters.
 ------------------------------
 
-//Level 2-C++
+//Level 2- C++
 //Code
 #include <iostream>
 
@@ -328,7 +328,7 @@ Step 3: In the main function that is executed publically, a new message system i
 Step 4: The received message is only accessible via the management system's receive message function. It works as a getter. In this example, the message variable is encapsulated within the MessageSystem class. The internal state is accessed and modified only through the sendMessage and receiveMessage methods.
 ------------------------------
 
-//Level 3-C++
+//Level 3- C++
 //Code
 #include <iostream>
 #include <string>
