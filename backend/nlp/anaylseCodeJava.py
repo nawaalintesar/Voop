@@ -74,16 +74,16 @@ def parseCode(java_code):
         for method in entity_info['methods']:
             method_name = method['name']
             method_parameters = tuple(method['parameters'])
-            method_signature = (method_name, method_parameters)
+            method_signature = (method_name, method_parameters, class_name)
 
             for sig in polymorphic_methods:
-                if method_name==sig[0]:
+                if method_name==sig[0] and parent_class==sig[2]:
                     method['is_polymorphic'] = True
                     method['is_overridden'] = True
                     relationships.append({
                         'type': 'polymorphism',
-                        'source': {'type': 'function', 'name': sig[0]},
-                        'target': {'type': 'function', 'name': method_name},
+                        'source': {'type': 'function', 'name': sig[2]+'.'+sig[0]},
+                        'target': {'type': 'function', 'name': class_name+'.'+method_name},
                         'linesOfCode': f"[{node.position[0]} - {node.position[1]}]",
                     })
 
