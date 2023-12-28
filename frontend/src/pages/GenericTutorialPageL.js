@@ -37,8 +37,8 @@
 //   return (
 
 //     <div className={styles.generictutorialpageL}>
-      
-      
+
+
 //       <Footer
 //         footerHeight="133px"
 //         footerMaxWidth="unset"
@@ -97,7 +97,8 @@
 // };
 
 // export default GenericTutorialPageL;
-import { useState, useCallback, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useState, useCallback, useEffect, dispatch } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTutorialsContext } from "../hooks/useTutorialsContext";
 import TutorialForm from "../components/TutorialForm";
@@ -110,7 +111,8 @@ import Property1Closed from "../components/Property1Closed";
 import styles from "./GenericTutorialPageL.module.css";
 
 const GenericTutorialPageL = () => {
-  //const [ tutorials, dispatch ] = useTutorialsContext();
+  const { tutorial, dispatch } = useTutorialsContext();
+
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
@@ -137,49 +139,61 @@ const GenericTutorialPageL = () => {
   const onDashoboardSMContainerClick = useCallback(() => {
     navigate("/dashboardl");
   }, [navigate]);
-  // useEffect(() => {
-  //   const fetchTutorials = async () => {
-  //     const response = await fetch('/api/tutorials')
-  //     const json = await response.json()
 
-  //     if (response.ok) {
-  //       dispatch({ type: 'SET_TUTORIALS', payload: json })
-  //     }
-  //   }
-  //   fetchTutorials()
-  // }, [dispatch]);
+  useEffect(() => {
+    const fetchTutorials = async () => {
+      // const tutID= tutorial[0]._id
+
+      const response = await fetch('/api/tutorials/658cde676d2f767bcdab2f12');
+      const json = await response.json()
+
+      if (response.ok) {
+        dispatch({ type: 'GET_TUTORIAL', payload: json })
+      }
+    }
+    fetchTutorials()
+  }, [dispatch]);
+
   return (
     <div className={styles.generictutorialpageL}>
-      <Footer/>
+      
+      <div className={styles.textParent}>
+        <div className={styles.text}>
+          <div className={styles.aboutThisTutorial}>About this tutorial</div>
+
+          {tutorial && (
+            <>
+              <div className={styles.classesDefineThe1}>
+                {tutorial.tutDescription}
+              </div>
+            </>
+          )}
+
+
+        </div>
+        <TutorialExamplesContainer1 />
+        {tutorial && (
+          <TutorialForm
+            key={tutorial._id}
+            tutorial={tutorial}
+          />
+        )}
+
+      </div>
+      {/* Add other components like LogOutPopOutL, PortalPopup, etc. */}
       <Property1Default
-       onFrameButtonClick={onFrameButtonClick}
+        onFrameButtonClick={onFrameButtonClick}
       />
+     
       <Property1Closed
         onFrameContainerClick={onFrameContainer2Click}
         onFrameIconClick={onFrameIconClick}
         onUsericonContainerClick={onUsericonClick}
         onDashoboardSMContainerClick={onDashoboardSMContainerClick}
       />
-      <div className={styles.textParent}>
-        <div className={styles.text}>
-          <div className={styles.aboutThisTutorial}>About this tutorial</div>
-          <div className={styles.classesDefineThe}>
-             Classes define the blueprint for objects, which are instances of
-            classes containing attributes and methods. Learn the basics of OOP
-            using our examples that teach you how to create classes and work
-            with them. 
-          </div>
-          <div className={styles.classesDefineThe1}>
-            Classes define the blueprint for objects, which are instances of
-            classes containing attributes and methods. Learn the basics of OOP
-            using our examples that teach you how to create classes and work
-            with them.
-          </div>
-        </div>
-        <TutorialExamplesContainer1 />
-        <TutorialForm />
-      </div>
-      {/* Add other components like LogOutPopOutL, PortalPopup, etc. */}
+
+      <Footer />
+
     </div>
   );
 };

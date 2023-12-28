@@ -103,7 +103,10 @@
 .property1default {
   width: 100%;
   display: flex;
+  position: sticky;
   justify-content: stretch;
+  align-content: space-between;
+  max-height: 100%;
 }
 .frameParent {
   position: absolute;
@@ -117,7 +120,7 @@
 }
 .property1default {
   background-color: var(--color-midnightblue-500);
-  height: 81px;
+  height: 100%;
   align-content: space-evenly;
   max-height: 100%;
   text-align: center;

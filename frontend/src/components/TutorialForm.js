@@ -8,6 +8,7 @@ import styles from "./TutorialForm.module.css";
 const TutorialForm = () => {
   const [isConfirmEnrollmentPopupOpen, setConfirmEnrollmentPopupOpen] =
     useState(false);
+    
   const [isEnrollPopUpOpen, setEnrollPopUpOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -41,25 +42,20 @@ const TutorialForm = () => {
         <div className={styles.tutorialcardmainChild} />
         <div className={styles.classesAndObjects}>Classes and Objects</div>
         <div className={styles.tutorialPage}>Tutorial Page</div>
-        <div className={styles.rectangleParent}>
-          <div className={styles.frameChild} />
-          <div className={styles.c}>C++</div>
-        </div>
+
         <div className={styles.rectangleGroup}>
           <div className={styles.frameChild} />
           <div className={styles.c}>Java</div>
         </div>
-        <div className={styles.rectangleContainer}>
-          <div className={styles.frameChild} />
-          <div className={styles.c}>Python</div>
-        </div>
+    
         <img className={styles.cloudIcon} alt="" src="/cloud@2x.png" />
-        <div className={styles.button} onClick={openEnrollPopUp}>
-          <div
+        <div className={styles.button} >
+          <button
             className={styles.buttonChild}
-            onClick={openConfirmEnrollmentPopup}
-          />
-          <div className={styles.enroll}>Enroll</div>
+            onClick={openEnrollPopUp}>
+            Enroll
+          </button>
+          
         </div>
         <div className={styles.backarrow} onClick={onBackarrowContainerClick}>
           <img

@@ -55,16 +55,7 @@ const CodeEditorBeforeLogin = () => {
   
   return (
     <div className={styles.codeEditorBeforeLogin}>
-      <Footer/>
-       <Property1Closed 
-        onFrameContainerClick={onFrameContainer3Click}
-        onFrameIconClick={onFrameIconClick}
-        onUsericonContainerClick={onUsericonClick}
-        onDashoboardSMContainerClick={onDashoboardSMContainerClick} /> 
-
-<Property1Default
-      onFrameButtonClick={onFrameButtonClick}
-      />
+      
       
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />
@@ -95,6 +86,16 @@ const CodeEditorBeforeLogin = () => {
         </Select>
         <AnimationContainer />
       </div>
+      <Footer/>
+       <Property1Closed 
+        onFrameContainerClick={onFrameContainer3Click}
+        onFrameIconClick={onFrameIconClick}
+        onUsericonContainerClick={onUsericonClick}
+        onDashoboardSMContainerClick={onDashoboardSMContainerClick} /> 
+
+<Property1Default
+      onFrameButtonClick={onFrameButtonClick}
+      />
     </div>
   );
 };

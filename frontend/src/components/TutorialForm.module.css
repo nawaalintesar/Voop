@@ -7,6 +7,8 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.35);
   width: 1122px;
   height: 277px;
+  overflow: hidden;
+
 }
 .classesAndObjects {
   position: absolute;
@@ -20,11 +22,13 @@
   left: 49px;
   font-size: var(--font-size-lg);
   color: var(--color-black);
+  overflow: hidden;
 }
 .c,
 .frameChild,
 .tutorialPage {
   position: absolute;
+  overflow: hidden;
 }
 .frameChild {
   height: 100%;
@@ -72,13 +76,12 @@
 .buttonChild {
   height: 100%;
   width: 100%;
-  top: 4.44%;
-  right: 0;
-  bottom: -4.44%;
-  left: 0;
+  padding-right: 20px;
   border-radius: var(--br-5xs);
   background-color: var(--color-midnightblue-200);
   cursor: pointer;
+  /* text-align: middle; */
+  justify-content: center;
 }
 .buttonChild:active,
 .buttonChild:hover {
@@ -88,6 +91,7 @@
 .buttonChild,
 .enroll {
   position: absolute;
+
 }
 .enroll {
   top: 9px;
@@ -100,13 +104,13 @@
   width: 132px;
   height: 45px;
   cursor: pointer;
-  text-align: justify;
+  text-align: center;
   font-size: var(--font-size-xl);
 }
 .button:active,
 .button:hover {
-  background-color: var(--color-gray-600);
-}
+  background-color: var(--color-gray-600); 
+} 
 .vectorIcon {
   height: 50%;
   width: 30.8%;
@@ -151,6 +155,7 @@
   width: 100%;
   height: 277.2px;
   display: flex;
+  overflow: hidden;
   justify-content: stretch;
   max-width: 100%;
   align-content: space-between;

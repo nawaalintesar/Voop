@@ -47,7 +47,15 @@ function App() {
       <Route path="/CodeEditorBeforeLogin" element={<CodeEditorBeforeLogin />} />
       <Route path="/CodeEditorAfterLogin" element={<CodeEditorAfterLogin />} />
       <Route path="/DashboardL" element={<DashboardL />} />
-      <Route path="/generictutorialpagel" element={<GenericTutorialPageL />} />
+      <Route path="/generictutorialpagel" element={
+    
+    <TutorialsContextProvider>
+      <GenericTutorialPageL/>
+        </TutorialsContextProvider>
+      
+    
+    
+    } />
       <Route path="/myprojectsl" element={<MyProjectsL />} />
       <Route path="/user-profile-pagel" element={<UserProfilePageL />} />
     </Routes>

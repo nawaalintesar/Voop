@@ -78,17 +78,9 @@ const MyProjectsL = () => {
   return (
     <>
       <div className={styles.myprojectsL}>
-        
-      <Footer/>
-      <Property1Default
-       onFrameButtonClick={onFrameButtonClick} />
-      <Property1Closed
-        onFrameContainerClick={onFrameContainer3Click}
-        onFrameIconClick={onFrameIconClick}
-        onUsericonContainerClick={onUsericonClick}
-        onDashoboardSMContainerClick={onDashoboardSMContainerClick}
-      />
-        
+
+
+
         <div className={styles.innerthings}>
           <img
             className={styles.innerthingsChild}
@@ -186,8 +178,19 @@ const MyProjectsL = () => {
             type="search"
           />
         </div>
+
+        <Footer />
+        <Property1Default
+          onFrameButtonClick={onFrameButtonClick} />
+        <Property1Closed
+          onFrameContainerClick={onFrameContainer3Click}
+          onFrameIconClick={onFrameIconClick}
+          onUsericonContainerClick={onUsericonClick}
+          onDashoboardSMContainerClick={onDashoboardSMContainerClick}
+        />
+
       </div>
-      
+
       {isDeleteProjectOpen && (
         <PortalPopup
           overlayColor="rgba(113, 113, 113, 0.3)"
@@ -197,6 +200,7 @@ const MyProjectsL = () => {
           <DeleteProject onClose={closeDeleteProject} />
         </PortalPopup>
       )}
+
     </>
   );
 };

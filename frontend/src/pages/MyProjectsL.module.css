@@ -289,10 +289,13 @@
 .searchBar {
   position: absolute;
   font-family: var(--font-poppins);
+  overflow: hidden;
 }
 .searchBar {
+  position: absolute;
   border: 0;
   background-color: transparent;
+  overflow: hidden;
   top: 298px;
   left: 123px;
   font-size: var(--font-size-sm);
@@ -311,6 +314,8 @@
   justify-content: stretch;
   text-align: left;
   font-size: var(--font-size-3xl);
+  overflow: hidden;
+  position: absolute;
 }
 .myprojectsL {
   position: relative;

@@ -35,8 +35,8 @@ const MytutorialsL = () => {
   //   navigate("/generictutorialpagel");
   // }, [navigate]);
 
-  const onTutContainerClick = useCallback((enrolledTutorialId) => {
-    navigate("/generictutorialpagel", { state: {enrolledTutorialId} });
+  const onTutContainerClick = useCallback((TutorialId) => {
+    navigate("/generictutorialpagel", { state: {TutorialId} });
   }, [navigate]);
 
   const onFrameContainer2Click = useCallback(() => {
@@ -71,10 +71,8 @@ const MytutorialsL = () => {
 
   return (
     <div className={styles.mytutorialsL}>
-      <Footer />
-      <Property1Default 
-       onFrameButtonClick={onFrameButtonClick}
-       />
+     
+      
       <div className={styles.items}>
 
         <b className={styles.continueTheJourney}>Continue The Journey</b>
@@ -108,6 +106,10 @@ const MytutorialsL = () => {
         </div>
 
       </div>
+      <Property1Default 
+       onFrameButtonClick={onFrameButtonClick}
+       />
+      <Footer />
       <Property1Closed
         onFrameContainerClick={onFrameContainer2Click}
         onFrameIconClick={onFrameIconClick}

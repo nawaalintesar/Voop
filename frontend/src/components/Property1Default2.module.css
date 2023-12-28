@@ -118,6 +118,7 @@
 }
 .property1default {
   height: 81px;
+  position: absolute;
   align-content: space-evenly;
   max-height: 100%;
   text-align: center;

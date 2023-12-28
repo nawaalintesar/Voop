@@ -2,8 +2,6 @@
 import LessonContinuation from "./LessonContinuation";
 import PortalPopup from "./PortalPopup";
 import InheritencetutCard from "./InheritencetutCard";
-import PolymorphismtutCard from "./PolymorphismtutCard";
-import EncapsulationTutCard from "./EncapsulationTutCard";
 import styles from "./FilteredFormCard.module.css";
 import { useEffect, dispatch, useState, useCallback } from "react";
 import { useTutorialsContext } from "../hooks/useTutorialsContext.js";

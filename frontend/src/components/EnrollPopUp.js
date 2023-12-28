@@ -2,7 +2,23 @@ import "antd/dist/antd.min.css";
 import { Select } from "antd";
 import styles from "./EnrollPopUp.module.css";
 
+import PortalPopup from "./PortalPopup";
+import { useState, useCallback } from "react";
+import ConfirmEnrollment from "./ConfirmEnrollment";
+
 const EnrollPopUp = ({ onClose }) => {
+
+  const [isConfirmEnrollmentPopupOpen, setConfirmEnrollmentPopupOpen] =
+    useState(false);
+
+  const openConfirmEnrollmentPopup = useCallback(() => {
+    setConfirmEnrollmentPopupOpen(true);
+  }, []);
+
+  const closeConfirmEnrollmentPopup = useCallback(() => {
+    setConfirmEnrollmentPopupOpen(false);
+  }, []);
+
   return (
     <div className={styles.enrollPopUp}>
       <div className={styles.frameforforgetpass}>
@@ -33,11 +49,23 @@ const EnrollPopUp = ({ onClose }) => {
         />
       </div>
       <div className={styles.buttondone}>
-        <div className={styles.button} onClick={onClose}>
-          <div className={styles.save}>Enroll</div>
+        <div className={styles.button} onClick={openConfirmEnrollmentPopup}>
+          <button className={styles.button} > <div className={styles.save}>Enroll</div> </button> 
         </div>
       </div>
+
+      {isConfirmEnrollmentPopupOpen && (
+      <PortalPopup
+        overlayColor="rgba(113, 113, 113, 0.3)"
+        placement="Centered"
+        onOutsideClick={closeConfirmEnrollmentPopup}
+      >
+        <ConfirmEnrollment onClose={closeConfirmEnrollmentPopup} />
+      </PortalPopup>
+    )}
     </div>
+
+     
   );
 };
 
