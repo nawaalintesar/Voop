@@ -2,6 +2,7 @@ import "antd/dist/antd.min.css";
 import { Select } from "antd";
 import styles from "./EnrollPopUp.module.css";
 
+
 import PortalPopup from "./PortalPopup";
 import { useState, useCallback } from "react";
 import ConfirmEnrollment from "./ConfirmEnrollment";
@@ -19,11 +20,13 @@ const EnrollPopUp = ({ onClose }) => {
     setConfirmEnrollmentPopupOpen(false);
   }, []);
 
+  
+
   return (
     <div className={styles.enrollPopUp}>
       <div className={styles.frameforforgetpass}>
         <div className={styles.chooseYourLanguageParent}>
-          <div className={styles.chooseYourLanguage}>Choose your language</div>
+          <div id="langChoice" className={styles.chooseYourLanguage}>Choose your language</div>
           <Select
             className={styles.javaParent}
             placeholder="Choose language"

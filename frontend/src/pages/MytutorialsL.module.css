@@ -147,12 +147,16 @@
   
 }
 .alltutorials {
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 96px; */
   position: absolute;
   top: 476px;
   left: 87px;
   width: 85%;
   height: 370px;
   display: flex;
+  /* flex-wrap: wrap; */
   align-content: space-evenly;
   max-width: 100%;
   justify-content: space-between;
@@ -160,11 +164,11 @@
   font-size: var(--font-size-smi);
   color: var(--color-darkgray);
   font-family: var(--font-pt-sans);
-
   /*Max-height and overflow r the css for the scroll bar*/
-  max-height: 500px;
-  overflow-y: hidden;
+  /* max-height: 500px;
+  overflow-y: hidden; */
 }
+
 
 .alltutorials2 {
   position: absolute;
@@ -180,14 +184,11 @@
   font-size: var(--font-size-smi);
   color: var(--color-darkgray);
   font-family: var(--font-pt-sans);
-
- 
 }
 
 .items,
 .mytutorialsL {
   width: 100%;
-  
   position: absolute;
   overflow: hidden;
 }

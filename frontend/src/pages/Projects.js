@@ -8,12 +8,12 @@ import PortalDrawer from "../components/PortalDrawer";
 import { useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import ProjectFrame from "../components/ProjectFrame";
-import styles from "./MyProjectsL.module.css";
+import styles from "./Projects.module.css";
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
 
-const MyProjectsL = () => {
+const Projects = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
@@ -64,7 +64,7 @@ const MyProjectsL = () => {
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/dashboardl");
+    navigate("/dashboard");
   }, [navigate]);
 
   const openDeleteProject = useCallback(() => {
@@ -205,4 +205,4 @@ const MyProjectsL = () => {
   );
 };
 
-export default MyProjectsL;
+export default Projects;

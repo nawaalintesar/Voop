@@ -1,3 +1,22 @@
+.tutorialExamples {
+  position: absolute;
+  top: 0;
+  right: 158px;
+  display: inline-block;
+  width: 279px;
+}
+.tutorialexamples {
+  position: absolute;
+  top: 331px;
+  left: 685px;
+  width: 437px;
+  height: 332px;
+  text-align: justify;
+  font-size: var(--font-size-6xl);
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}
+
 .tutorialcardmainChild {
   position: absolute;
   top: 0;
@@ -31,6 +50,7 @@
   overflow: hidden;
 }
 .frameChild {
+  
   height: 100%;
   width: 100%;
   top: 0;
@@ -56,7 +76,7 @@
   height: 36px;
   font-family: var(--font-pt-sans);
 }
-.rectangleContainer,
+/* .rectangleContainer,
 .rectangleGroup {
   left: 52px;
   width: 57px;
@@ -64,7 +84,7 @@
 .rectangleContainer {
   left: 122px;
   width: 75px;
-}
+} */
 .cloudIcon {
   position: absolute;
   top: 141px;
@@ -76,7 +96,7 @@
 .buttonChild {
   height: 100%;
   width: 100%;
-  padding-right: 20px;
+  right: 30px;
   border-radius: var(--br-5xs);
   background-color: var(--color-midnightblue-200);
   cursor: pointer;

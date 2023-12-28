@@ -86,7 +86,7 @@ const UserProfilePageL = () => {
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/dashboardl");
+    navigate("/dashboard");
   }, [navigate]);
 
   const openProfileUpdateConfirmationLPopup = useCallback(() => {

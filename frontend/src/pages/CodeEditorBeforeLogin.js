@@ -30,7 +30,7 @@ const CodeEditorBeforeLogin = () => {
 
   const onFrameButtonClickSignIn = useCallback(() => {
     //code dditor button
-    navigate("/signinl");
+    navigate("/signIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
   

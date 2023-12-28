@@ -8,6 +8,7 @@ const ConfirmEnrollment = ({ onClose }) => {
       </div>
       <button className={styles.explorebutton} onClick={onClose}>
         <div className={styles.confirm}>Confirm</div>
+        
       </button>
       <div className={styles.pleaseConfirmBefore}>
         Please confirm before you start your journey

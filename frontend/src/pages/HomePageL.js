@@ -20,12 +20,12 @@ const HomePageL = () => {
 
   const onSignUpContainerClick = useCallback(() => {
     // Please sync "Sign in-L" to the project
-    navigate("/signinl");
+    navigate("/signIn");
   }, [navigate]);
 
   const onButtonClick = useCallback(() => {
     // Please sync "Sign in-L" to the project
-    navigate("/signinl");
+    navigate("/signIn");
   }, [navigate]);
 
   return (

@@ -1,25 +1,26 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import SignUpCardForm from "../components/SignUpCardForm";
+import LoginForm from "../components/LoginForm";
 import HeaderLight from "../components/HeaderLight";
 import Footer from "../components/Footer";
-import styles from "./SignInL.module.css";
+import styles from "./LogIn.module.css";
 
 import Property1Default2 from "../components/Property1Default2";
-const SignInL = () => {
+
+const LogIn = () => {
   const navigate = useNavigate();
- 
-  //Signin
+
+  const onLogInButtonClick = useCallback(() => {
+    // Please sync "Dashboard-L" to the project
+    navigate("/Dashboard");
+  }, [navigate]);
+
+  //sign in button
   const onButtonClick = useCallback(() => {
-    navigate("/SigninL");
+    navigate("/SignIn");
   }, [navigate]);
 
-  //Register
-  const onButtonContainerClick = useCallback(() => {
-    navigate("/loginl");
-  }, [navigate]);
-
-   const onFrameButtonClick = useCallback(() => {
+  const onFrameButtonClick = useCallback(() => {
     //code dditor button
     navigate("/CodeEditorBeforeLogin");
     // Please sync "Code Editor- after login" to the project
@@ -27,36 +28,23 @@ const SignInL = () => {
 
   const onFrameButtonClickSignIn = useCallback(() => {
     //code dditor button
-    navigate("/signinl");
+    navigate("/signIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
 
   return (
-    <div className={styles.signInL}>
-      <div className={styles.logIn}>
-        <div className={styles.logInChild} />
-        <b className={styles.welcomeToVoopContainer}>
-          <span className={styles.welcomeToVoopContainer1}>
-            <p className={styles.welcomeToVoop}>Welcome to Voop!</p>
-            <p className={styles.welcomeToVoop}>&nbsp;</p>
-            <p className={styles.whereOopMeets}>&nbsp;</p>
+    <div className={styles.logInL}>
+      <div className={styles.items}>
+        <b className={styles.welcomeBack}>
+          <span className={styles.welcomeBackTxtContainer}>
+            <p className={styles.blankLine}>Welcome back!</p>
+            <p className={styles.blankLine}>&nbsp;</p>
+            <p className={styles.blankLine}>&nbsp;</p>
+            <p className={styles.blankLine2}>&nbsp;</p>
           </span>
         </b>
-        <div className={styles.empowerYourCodingContainer}>
-          <p className={styles.empowerYourCoding}>
-            Empower your coding journey with Voop -
-          </p>
-          <p className={styles.empowerYourCoding}>&nbsp;</p>
-          <p className={styles.empowerYourCoding}>&nbsp;</p>
-          <p className={styles.whereOopMeets}>
-            where OOP meets interactive visualization.
-          </p>
-        </div>
-        <img className={styles.subtractIcon} alt="" src="/subtract@2x.png" />
-        <div className={styles.button} onClick={onButtonContainerClick}>
-          <div className={styles.text}>Register</div>
-        </div>
-        <SignUpCardForm />
+        <div className={styles.niceToSee}>{`Nice to see you again  `}</div>
+        <LoginForm />
         <Property1Default2
         buttonText="codeEditorButtonHeader"
         actionButtonText="Sign In"
@@ -74,30 +62,29 @@ const SignInL = () => {
         onFrameButtonClick={onFrameButtonClick}
         onFrameButtonClickSignIn={ onFrameButtonClickSignIn}
       />
-
         {/* <HeaderLight
           headerLightHeight="66px"
-          headerLightMaxHeight="unset"
+          headerLightMaxHeight="100%"
           headerLightPosition="absolute"
           headerLightTop="0px"
-          headerLightLeft="0%"
-          headerLightMaxWidth="100%"
+          headerLightLeft="0px"
+          headerLightMaxWidth="unset"
           headerLightJustifyContent="unset"
-          frameDivAlignContent="normal"
+          frameDivAlignContent="unset"
           frameDivMaxWidth="unset"
           buttonCursor="unset"
-          headerLightRight="0%"
-          frameDivWidth="unset"
+          headerLightRight="unset"
+          frameDivWidth="100%"
           frameDivLeft="calc(50% - 703px)"
           frameDivAlignItems="center"
           onButtonClick={onButtonClick}
         /> */}
         <Footer
           footerBackground="linear-gradient(180deg, rgba(9, 4, 36, 0.3) 92.71%, #281389)"
-          footerHeight="106px"
-          footerAlignContent="space-between"
+          footerHeight="115px"
+          footerAlignContent="stretch"
           footerPosition="absolute"
-          footerTop="919px"
+          footerTop="920px"
           footerLeft="0px"
           voopSeeMoreContainerLeft="660.5px"
         />
@@ -106,4 +93,4 @@ const SignInL = () => {
   );
 };
 
-export default SignInL;
+export default LogIn;

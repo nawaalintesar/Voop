@@ -7,7 +7,7 @@ const LogOutPopOutL = ({ onClose }) => {
   const navigate = useNavigate();
   const onExploreButtonContainerClick = useCallback(() => {
     // Please sync " Log In-L" to the project
-    navigate("/LoginL");
+    navigate("/LogIn");
   }, [navigate]);
 
   return (

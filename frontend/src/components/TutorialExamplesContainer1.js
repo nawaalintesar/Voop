@@ -1,22 +1,35 @@
 import TutorialExampleLevel3 from "./TutorialExampleLevel3";
 import styles from "./TutorialExamplesContainer1.module.css";
+import { useTutorialsContext } from "../hooks/useTutorialsContext.js";
 
-const TutorialExamplesContainer1 = () => {
+const TutorialExamplesContainer1 = ({ tutorial }) => {
+  const { tutorials, dispatch } = useTutorialsContext();
+
+  // Assuming you get the selected programming language from somewhere (e.g., a state)
+  const selectedLanguage = "Java"; // Replace with the actual selected language
+
+  const filteredLevels = tutorial.level.filter((level) => level.progLang === selectedLanguage);
+
   return (
     <div className={styles.tutorialexamples}>
       <div className={styles.tutorialExamples}>Tutorial Examples</div>
-      <TutorialExampleLevel3
-        lessonTitle="Level 1"
-        lessonDescription="Learn how to make objects using animal examples "
-        property1DefaultWidth="100%"
-        property1DefaultHeight="23.19%"
-        property1DefaultPosition="absolute"
-        property1DefaultTop="21.99%"
-        property1DefaultRight="0%"
-        property1DefaultBottom="54.82%"
-        property1DefaultLeft="0%"
-      />
 
+      {filteredLevels.map((level, index) => (
+        <TutorialExampleLevel3
+          key={index}
+          lessonTitle={`Level ${level.levelNumber}`}
+          lessonDescription={level.code[0]}
+          property1DefaultWidth="100%"
+          property1DefaultHeight="23.19%"
+          property1DefaultPosition="absolute"
+          property1DefaultTop={`${(index % 4) * 100}px`}
+          property1DefaultRight="0%"
+          property1DefaultBottom="54.82%"
+          property1DefaultLeft="0%"
+          // Add other properties as needed based on your data structure
+          // ...
+        />
+      ))}
     </div>
   );
 };
