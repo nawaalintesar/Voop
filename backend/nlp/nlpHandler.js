@@ -12,7 +12,7 @@ const nlpHandler = {
             process = spawn('python', ['./nlp/analyseCodePython.py', code]);
         } else if (progLang === 'java') {
             // Call the Java script (replace 'javaScriptFile.js' with your Java script file)
-            process = spawn('java', ['yourJavaFile', code]);
+            process = spawn('python', ['./nlp/anaylseCodeJava.py', code]);
         } else if (progLang === 'c++') {
             // Call the C++ executable (replace 'yourC++Executable' with your C++ executable)
             process = spawn('./yourC++Executable', [code]);
@@ -27,7 +27,6 @@ const nlpHandler = {
             process.stdout.on('data', (data) => {
                 result += data.toString();
             });
-
             process.stderr.on('data', (data) => {
                 errorOutput += data.toString();
             });
@@ -36,8 +35,9 @@ const nlpHandler = {
                 if (code === 0) {
                     // Parse the result if needed
                     try {
+
                         const analyzedCode = JSON.parse(result);
-                       resolve(analyzedCode);
+                        resolve(analyzedCode);
                     } catch (parseError) {
                         console.error(parseError);
                         reject(new Error(`Failed to parse the result: ${parseError.message}`));

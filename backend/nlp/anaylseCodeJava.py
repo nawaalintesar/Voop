@@ -1,26 +1,19 @@
 import javalang
 import json
-def parseJavaCode(java_code):
-    classes = []
-    relationships = {
-        'inheritance': [],
-        'encapsulation': [],
-        'polymorphism': [],
-        'method overriding': [],
-        'method overloading': [],
-        'abstract class': [],
-        'interface':[]
-    }
+import sys
 
-    def get_class_lines(class_node):
-        start_line, end_line = class_node.position[0], class_node.position[1]
-        return f"[{start_line} - {end_line}]"
+
+def parseCode(java_code):
+    relationships = []
+    
+    entity_info_list = []
 
     polymorphic_methods = set()
 
     for path, node in javalang.parse.parse(java_code):
         if isinstance(node, javalang.tree.ClassDeclaration):
             entity_type = 'class'
+
         elif isinstance(node, javalang.tree.InterfaceDeclaration):
             entity_type = 'interface'
         else:
@@ -34,10 +27,19 @@ def parseJavaCode(java_code):
         else:
             parent_class = None
 
-        if getattr(node, 'implements', []):
-            implements_interfaces = [interface.name for interface in getattr(node, 'implements', [])]
-        else:
-            implements_interfaces = []
+        if(getattr(node, 'implements', [])!=None):
+            # implements_interfaces = [interface.name for interface in getattr(node, 'implements', [])]
+            for base_interface in getattr(node, 'implements', []):
+                relationships.append({
+                    'type': 'implements',
+                    'source': {'type': 'class', 'name': class_name},
+                    'target': {'type': 'interface', 'name': base_interface.name},
+                    'linesOfCode': f"[{node.position[0]} - {node.position[1]}]",
+                })
+
+        
+        else: 
+            implements_interfaces=[]
 
         fields = []
         methods = []
@@ -51,7 +53,7 @@ def parseJavaCode(java_code):
             elif isinstance(member, javalang.tree.MethodDeclaration):
                 access_modifier = ' '.join(modifier for modifier in member.modifiers)
                 method_name = member.name
-                parameters = [param.type.name for param in member.parameters]
+                parameters = [(param.name, param.type.name) for param in member.parameters]
                 methods.append({
                     'name': method_name,
                     'access_modifier': access_modifier,
@@ -61,59 +63,65 @@ def parseJavaCode(java_code):
                     'is_overloaded': False
                 })
 
-        class_info = {
-            'isClass': True,
+        entity_info = {
+            'isClass': entity_type == 'class',
             'name': class_name,
             'attributes': fields,
             'methods': methods,
-            'linesOfCode': get_class_lines(node),
+            'linesOfCode': f"[{node.position[0]} - {node.position[1]}]",
         }
 
-        for method in class_info['methods']:
+        for method in entity_info['methods']:
             method_name = method['name']
             method_parameters = tuple(method['parameters'])
             method_signature = (method_name, method_parameters)
 
-            if method_name in [sig[0] for sig in polymorphic_methods]:
-                method['is_polymorphic'] = True
-                method['is_overridden'] = True
+            for sig in polymorphic_methods:
+                if method_name==sig[0]:
+                    method['is_polymorphic'] = True
+                    method['is_overridden'] = True
+                    relationships.append({
+                        'type': 'polymorphism',
+                        'source': {'type': 'function', 'name': sig[0]},
+                        'target': {'type': 'function', 'name': method_name},
+                        'linesOfCode': f"[{node.position[0]} - {node.position[1]}]",
+                    })
+
             else:
                 polymorphic_methods.add(method_signature)
                 if any(existing_sig[1] != method_parameters for existing_sig in polymorphic_methods):
                     method['is_overloaded'] = True
 
-        classes.append(class_info)
+        entity_info_list.append(entity_info)
 
-        # for base_interface in getattr(node, 'implements', []):
-        #     relationships['inheritance'].append({
-        #         'type': 'inheritance',
-        #         'source': {'type': 'class', 'name': class_name},
-        #         'target': {'type': 'interface', 'name': base_interface.name},
-        #         'linesOfCode': get_class_lines(node),
-        #     })
+
+        for base_class in [parent_class]:
+            if base_class:
+                relationships.append({
+                    'type': 'inheritance',
+                    'source': {'type': 'class', 'name': class_name},
+                    'target': {'type': 'class', 'name': base_class},
+                    'linesOfCode': f"[{node.position[0]} - {node.position[1]}]",
+                })
 
         for field in fields:
             if field['access_modifier'] == "private" or field['access_modifier'] == "protected":
-                relationships['encapsulation'].append({
+                relationships.append({
                     'type': 'encapsulation',
                     'source': {'type': 'class', 'name': class_name},
                     'target': {'type': 'class', 'name': None},
-                    'linesOfCode': get_class_lines(node),
+                    'linesOfCode': f"[{node.position[0]} - {node.position[1]}]",
                 })
 
         if is_abstract:
-            relationships['abstract class'].append({
+            relationships.append({
                 'type': 'abstract class',
                 'source': {'type': 'class', 'name': class_name},
                 'target': {'type': 'class', 'name': None},
-                'linesOfCode': get_class_lines(node),
+                'linesOfCode': f"[{node.position[0]} - {node.position[1]}]",
             })
 
-    json_object = {
-        'classes': classes,
-        'relationships': relationships,
-    }
-    return classes, relationships
+    return entity_info_list, relationships
 
 # Example Java code
 java_code = """
@@ -149,11 +157,19 @@ public class Bird extends Animal {
     void makeSound(int s) {
         System.out.println("Chirp!");
     }
-}
-"""
+}"""
 
-# Call the parseJavaCode function with the provided code
-results = parseJavaCode(java_code)
+
+
+# Read the code from the command line arguments
+if len(sys.argv) != 2:
+    print("Usage: python analyseCodePython.py <code>")
+    sys.exit(1)
+
+code_to_analyze = sys.argv[1]
+
+# Call the parseCode function with the provided code
+results = parseCode(code_to_analyze)
 
 # Construct JSON object
 json_object = {
@@ -164,3 +180,4 @@ json_object = {
 # Convert the JSON object to a string and print it
 json_string = json.dumps(json_object, indent=2)
 print(json_string)
+
