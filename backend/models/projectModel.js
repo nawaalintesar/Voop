@@ -39,7 +39,7 @@ const ProjectSchema = new Schema(
                                     name: {
                                         type: String,
                                     },
-                                    type: {
+                                    access_modifier: {
                                         type: String,
                                     },
                                 },
@@ -49,7 +49,7 @@ const ProjectSchema = new Schema(
                                     name: {
                                         type: String,
                                     },
-                                    returnType: {
+                                    access_modifier: {
                                         type: String,
                                     },
                                     parameters: [
@@ -71,7 +71,7 @@ const ProjectSchema = new Schema(
                         [{
                             type: {
                                 type: String,
-                                enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class'],
+                                enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class', 'implements'],
                                 required: true,
                             },
                             source: {
