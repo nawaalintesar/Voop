@@ -65,23 +65,6 @@ const CodeEditorBeforeLogin = () => {
 <Property1Default
       onFrameButtonClick={onFrameButtonClick}
       />
-      {/* <Property1Default2
-        buttonText="codeEditorButtonHeader"
-        actionButtonText="Sign In"
-        property1DefaultAlignContent="stretch"
-        property1DefaultJustifyContent="unset"
-        property1DefaultPosition="absolute"
-        property1DefaultTop="0px"
-        property1DefaultLeft="0px"
-        buttonPadding="var(--padding-smi) 0px"
-        buttonOverflow="unset"
-        textDisplay="inline-block"
-        textWidth="unset"
-        textFlexShrink="unset"
-        textCursor="pointer"
-        onFrameButtonClick={onFrameButtonClick}
-        onFrameButtonClickSignIn={ onFrameButtonClickSignIn}
-      /> */}
       
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />

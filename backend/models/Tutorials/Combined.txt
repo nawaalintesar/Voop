@@ -82,7 +82,7 @@ Step 8: The ‘Main’ class which contains the ‘main’ method creates instan
 Step 9: Finally the ‘operate()’ method is called and it prints the string representation for each object if it is an instance of ‘AbstractDevice’. 
 ------------------------------
  
-//Level 2- Python
+//Level 1- Python
 //Code
 from abc import ABC, abstractmethod
 class Device(ABC):
@@ -351,7 +351,7 @@ if __name__ == "__main__":
 //Steps
 ------------------------------
 
-//Level 2-C++
+//Level 2- C++
 //Code
 #include <iostream>
 #include <vector>
@@ -389,7 +389,6 @@ public:
     }
 };
 
-// Testing code for C++
 int main() {
     // Create a warehouse
     Warehouse warehouse;
@@ -420,7 +419,6 @@ int main() {
         std::cout << "Product: " << product.getName() << ", Price: $" << product.getPrice() << std::endl;
     }
 
-    // Test a non-existing category
     std::cout << "\nProducts in Non-existing category:" << std::endl;
     for (const auto& product : warehouse.getProductsInCategory("Non-existing")) {
         std::cout << "Product: " << product.getName() << ", Price: $" << product.getPrice() << std::endl;
@@ -637,7 +635,7 @@ for vehicle in vehicles:
 //Steps
 ------------------------------
 
-//Level 3-C++
+//Level 3- C++
 //Code
 #include <iostream>
 #include <vector>

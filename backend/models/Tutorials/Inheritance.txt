@@ -75,7 +75,7 @@ Step 1: Initially we define a base class called Vehice representing a general ve
 Step 2: Then we define a subclass called Car which inherits from Vehicle class. super().__init__() calls the constructor of the parent class (Vehicle) to initialize the inherited attributes. Adds an attribute wheels specific to cars, setting it to 4. By inheriting from Vehicle, Car inherits the attribute brand and extends its functionality by including the attribute wheels.
 ------------------------------
 
-//Level 1-C++
+//Level 1- C++
 //Code
 # Define the Vehicle class
 class Vehicle:
@@ -207,7 +207,7 @@ The class contains a draw() method to display a generic message indicating the d
 Step 2: Then we have a class circle inheriting from shape. It inherits the color attribute and draw() method from the Shape class. def __init__(self, color, radius) helps in initializing both the color from the parent and a specific radius for the circle. Overrides the draw() method inherited from Shape to provide a specialized implementation for drawing a circle, displaying its radius.
 ------------------------------
 
-//Level 2-C++
+//Level 2- C++
 //Code
 #include <iostream>
 #include <string>
@@ -559,7 +559,7 @@ Step 3: The main function create instance of manager and employee and prints the
 ------------------------------
 
 
-//Level 3-C++
+//Level 3- C++
 //Code
 #include <iostream>
 #include <fstream>

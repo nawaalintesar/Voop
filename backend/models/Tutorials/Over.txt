@@ -75,7 +75,7 @@ Step 3: Next to understand method overriding, consider the Vehicle class that co
 Step 4: A class called Car inherits from Vehicle, and provides its own definition for the function move(). Note that the signature of the function has not been changed, it has simply ”overridden” or taken over the operation or functionality of the super class. Overriding is most commonly found in methods where there is inheritance.
 Step 5: Therefore the major differentiating factor between overriding and overloading is that Overriding occurs when a subclass provides a specific implementation for a method already defined in its superclass, while overloading involves defining multiple methods in the same class with different parameter lists.
 ------------------------------
-//Level 1-C++
+//Level 1- C++
 //Code
 Method Overriding
 #include <iostream>
@@ -125,7 +125,7 @@ Step 3: Next to understand method overriding, consider the Vehicle class that co
 Step 4: A class called Car inherits from Vehicle, and provides its own definition for the function move(). Note that the signature of the function has not been changed, it has simply ”overridden” or taken over the operation or functionality of the super class. Overriding is most commonly found in methods where there is inheritance.
 Step 5: Therefore the major differentiating factor between overriding and overloading is that Overriding occurs when a subclass provides a specific implementation for a method already defined in its superclass, while overloading involves defining multiple methods in the same class with different parameter lists.
 ------------------------------
-//Level 2-Java
+//Level 2- Java
 //Code
 class Calculator {
     // Method Overloading
@@ -230,7 +230,7 @@ print("Sum of three doubles:", sum_triple)
 
 //Steps
 ------------------------------
-//Level 2-C++
+//Level 2- C++
 //Code
 #include <iostream>
 
@@ -387,7 +387,7 @@ if __name__ == "__main__":
 
 //Steps
 ------------------------------
-//Level 3-C++
+//Level 3- C++
 //Code
 #include <iostream>
 #include <vector>

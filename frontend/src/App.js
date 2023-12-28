@@ -16,6 +16,7 @@ import CodeEditorAfterLogin from "./pages/CodeEditorAfterLogin";
 import GenericTutorialPageL from "./pages/GenericTutorialPageL";
 import HomePageL from "./pages/HomePageL";
 import MyProjectsL from "./pages/MyProjectsL";
+import FilteredFormCard from "./components/FilteredFormCard";
 import UserProfilePageL from "./pages/UserProfilePageL";
 import { TutorialsContextProvider } from './context/TutorialsContext';
 
@@ -37,7 +38,9 @@ function App() {
       <Route path="/mytutorialsl" element={
         <TutorialsContextProvider>
           <MytutorialsL />
-        </TutorialsContextProvider>} />
+        </TutorialsContextProvider>
+      
+      } />
      <Route path="/SignInL" element={<SignInL />} />
       <Route path="/SignInDL" element={<SignInDL />} /> 
       <Route path="/LogInL" element={<LogInL />} />
