@@ -61,6 +61,7 @@ const TutorialForm = ({tutorial}) => {
           <button
             className={styles.buttonChild}
             onClick={openEnrollPopUp}>
+              
             Enroll
           </button>
           
