@@ -19,7 +19,7 @@ const diagramSchema = new Schema({
     OOPConcept: {
         type: [String],
         required: true,
-        enum: ["class", "object", "instance", "inheritance", "abstraction", "encapsulation", "polymorphism", "interface","method overriding", "method overloading", "abstract class"]
+        enum: ["class", "instance", "inheritance", "abstraction", "encapsulation", "polymorphism", "interface","method overriding", "method overloading", "abstract class"]
 
     },
     compSize: { 

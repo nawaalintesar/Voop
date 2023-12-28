@@ -1,6 +1,6 @@
 Classes, Objects and Instances
 //Tutorial Description
-In the world of Object-Oriented Programming (OOP), think of objects as the fundamental building blocks that represent real-world entities. 
+In the world of Object-Oriented Programming-OOP, think of objects as the fundamental building blocks that represent real-world entities. 
 Imagine a blueprint or a template that defines the characteristics and behaviors of these objects. This template is called a class. A class usually has a name, attributes- which are the characteristics common to any member of the class, and functions- which all members of the class can do or have.
 An instance is like a specific realization of that blueprint - an actual object created based on the class. This instance is created with the help of a “constructor”. 
 For example, you can have a class called "Car" that defines what a car is (its properties like color and speed, and behaviors like honking). An instance of this class would be an actual car that has specific attributes and functions unique to it.

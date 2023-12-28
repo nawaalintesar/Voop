@@ -1,14 +1,19 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./ProfileDeleteL.module.css";
 
 const ProfileDeleteL = ({ onClose }) => {
+  const navigate = useNavigate();
+
   const onFrameContainerClick = useCallback(() => {
     // Please sync "Sign in-DL" to the project
-  }, []);
+    navigate("/SignInDL");
+  }, [navigate]);
 
   const onExploreButtonClick = useCallback(() => {
     // Please sync "Sign in-DL" to the project
-  }, []);
+    navigate("/SignInDL");
+  }, [navigate]);
 
   return (
     <div className={styles.profiledeleteL}>

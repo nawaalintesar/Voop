@@ -11,10 +11,6 @@ const tutorialSchema = new Schema({
         type: String,
         required: true,
     },
-    // descriptionStrings: {
-    //     type: [String],
-    //     required: true,
-    // },
     level: [
         {
             levelNumber: {
@@ -37,10 +33,6 @@ const tutorialSchema = new Schema({
             },
             diagramID: {
                 type: Number,
-            },
-            codeDictionary: {
-                type: Map,
-                of: [Number],
             },
             noTutSteps: {
                 type: Number,

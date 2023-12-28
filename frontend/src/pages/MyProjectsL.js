@@ -47,7 +47,8 @@ const MyProjectsL = () => {
 
   const onFrameButtonClick = useCallback(() => {
     // Please sync "Code Editor- after login" to the project
-  }, []);
+    navigate("/CodeEditorAfterLogin");
+  }, [navigate]);
 
   const onFrameContainer3Click = useCallback(() => {
     navigate("/mytutorialsl");
@@ -79,7 +80,8 @@ const MyProjectsL = () => {
       <div className={styles.myprojectsL}>
         
       <Footer/>
-      <Property1Default/>
+      <Property1Default
+       onFrameButtonClick={onFrameButtonClick} />
       <Property1Closed
         onFrameContainerClick={onFrameContainer3Click}
         onFrameIconClick={onFrameIconClick}

@@ -1,12 +1,15 @@
-import { useState, useCallback } from "react";
+//import { useState, useCallback } from "react";
 import LessonContinuation from "./LessonContinuation";
 import PortalPopup from "./PortalPopup";
 import InheritencetutCard from "./InheritencetutCard";
 import PolymorphismtutCard from "./PolymorphismtutCard";
 import EncapsulationTutCard from "./EncapsulationTutCard";
 import styles from "./FilteredFormCard.module.css";
+import { useEffect, dispatch, useState, useCallback } from "react";
+import { useTutorialsContext } from "../hooks/useTutorialsContext.js";
 
 const FilteredFormCard = () => {
+  const { enrolledTutorials, dispatch } = useTutorialsContext();
   const [isLessonContinuationPopupOpen, setLessonContinuationPopupOpen] =
     useState(false);
   const [isLessonContinuationPopup1Open, setLessonContinuationPopup1Open] =
@@ -24,44 +27,46 @@ const FilteredFormCard = () => {
     setLessonContinuationPopupOpen(false);
   }, []);
 
+  useEffect(() => {
+    const fetchEnrolledTutorials = async () => {
+      try {
+        const response = await fetch('/api/tutorials/enrolled');
+        const json = await response.json();
+        console.log(json);
+
+        if (response.ok) {
+          dispatch({ type: 'GET_ENROLLED_TUTORIALS', payload: json.enrolledTutorials });
+        }
+      } catch (error) {
+        console.error('Error fetching enrolled tutorials:', error.message);
+      }
+    };
+
+    fetchEnrolledTutorials();
+  }, [dispatch]);
+
+
   return (
     <>
       <div className={styles.continuejourneycards}>
-        <div
-          className={styles.classobjectstutcard}
-          onClick={openLessonContinuationPopup}
-        >
-          <div className={styles.classobjectstutcardChild} />
-          <div className={styles.classobjectstutcardItem} />
-          <div className={styles.aClassIs}>
-            A class is a blueprint for creating objects, and objects are
-            instances of a class, encapsulating data and behavior.
-          </div>
-          <div className={styles.classobjectstutcardInner} />
-          <div className={styles.classobjectstutcardInner} />
-          <div className={styles.div}>0 %</div>
-          <div className={styles.classesAndObjects}>Classes and Objects</div>
-          <div className={styles.javaWrapper}>
-            <div className={styles.java}>Java</div>
-          </div>
-        </div>
-        <InheritencetutCard
-          inheritencetutCardPosition="absolute"
-          inheritencetutCardTop="0px"
-          inheritencetutCardLeft="277px"
-        />
-        <PolymorphismtutCard
-          polymorphismtutCardPosition="absolute"
-          polymorphismtutCardTop="0px"
-          polymorphismtutCardLeft="554px"
-          polymorphismtutCardCursor="pointer"
-        />
-        <EncapsulationTutCard
+
+        {enrolledTutorials && enrolledTutorials.map((enrolledTutorial, index) => (
+          <InheritencetutCard
+            key={enrolledTutorial._id}
+            tutorial={enrolledTutorial}
+            inheritencetutCardPosition="absolute"
+            inheritencetutCardTop="0px"
+            inheritencetutCardLeft={`${5 + 250 * index}px`}
+            encapsulationTutCardCursor="pointer"
+          />
+        ))}
+        {/* <PolymorphismtutCard/> */}
+        {/* <EncapsulationTutCard
           encapsulationTutCardPosition="absolute"
           encapsulationTutCardTop="0px"
           encapsulationTutCardLeft="831px"
           encapsulationTutCardCursor="pointer"
-        />
+        /> */}
       </div>
       {isLessonContinuationPopupOpen && (
         <PortalPopup

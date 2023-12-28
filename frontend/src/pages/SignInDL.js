@@ -17,7 +17,7 @@ const SignInDL = () => {
   }, [navigate]);
 
   const onButtonContainer1Click = useCallback(() => {
-    navigate("/-log-inl");
+    navigate("/loginl");
   }, [navigate]);
 
   return (

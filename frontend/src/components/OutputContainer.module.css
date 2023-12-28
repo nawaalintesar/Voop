@@ -1,0 +1,104 @@
+.mainjs {
+  position: relative;
+  font-weight: 500;
+}
+.file {
+  left: 0;
+  background-color: var(--white-transparent-10);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-base);
+  gap: var(--gap-9xs);
+}
+.code,
+.file,
+.file1,
+.files {
+  position: absolute;
+  top: 0;
+}
+.file1 {
+  left: 109px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-7xs) var(--padding-base);
+  gap: var(--gap-9xs);
+}
+.code,
+.files {
+  left: 0;
+  background-color: var(--color-gray-400);
+  width: 548px;
+  height: 33px;
+}
+.code {
+  top: 33px;
+  background-color: var(--color-gray-300);
+  height: 610px;
+}
+.outputWrapper {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.iconLineclose {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.frameGroup {
+  width: 492px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.frameChild {
+  align-self: stretch;
+  height: 99px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frameParent,
+.main {
+  position: relative;
+  left: 0;
+  background-color: var(--color-gray-500);
+}
+.frameParent {
+  top: 643px;
+  border-top: 2px solid var(--color-darkslategray-300);
+  box-sizing: border-box;
+  width: 548px;
+  height: 170px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-xl) var(--padding-9xl);
+  gap: var(--gap-3xs);
+  font-size: var(--font-size-base);
+  color: var(--color-lightslategray);
+}
+/* Adjust your existing .main component styles */
+.main {
+  position: relative; 
+  width: 100%;
+  top: 0;
+  right: 0;
+  height: 865px;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--white-transparent-80);
+  font-family: var(--font-poppins);
+}
+
+

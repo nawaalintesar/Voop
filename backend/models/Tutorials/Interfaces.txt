@@ -56,7 +56,7 @@ class Main {
 ------------------------------
 
 
-//Level 1-C++
+//Level 1- C++
 //Code
 #include <iostream>
 using namespace std;
@@ -106,7 +106,7 @@ int main() {
 //Steps
 	Level 2 functional interface
 ------------------------------
-//Level 2-Java
+//Level 2- Java
 //Code 
 @FunctionalInterface
 interface MyFunction {
@@ -126,7 +126,7 @@ public class Main {
 //Steps
 ------------------------------
 
-//Level 2-C++
+//Level 2- C++
 //Code
 #include <iostream>
 #include <functional>
@@ -215,7 +215,7 @@ public class Main {
 //Steps
 ------------------------------
 
-//Level 3-C++
+//Level 3- C++
 //Code
 #include <iostream>
 #include <string>

@@ -1,7 +1,9 @@
 import { useCallback } from "react";
 import styles from "./HomePageL.module.css";
+import { useNavigate } from "react-router-dom";
 
 const HomePageL = () => {
+  const navigate = useNavigate();
   const onExploreButtonClick = useCallback(() => {
     const anchor = document.querySelector("[data-scroll-to='image9']");
     if (anchor) {
@@ -11,11 +13,13 @@ const HomePageL = () => {
 
   const onSignUpContainerClick = useCallback(() => {
     // Please sync "Sign in-L" to the project
-  }, []);
+    navigate("/signinl");
+  }, [navigate]);
 
   const onButtonClick = useCallback(() => {
     // Please sync "Sign in-L" to the project
-  }, []);
+    navigate("/signinl");
+  }, [navigate]);
 
   return (
     <div className={styles.homePageL}>

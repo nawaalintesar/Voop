@@ -6,7 +6,7 @@ const DeleteProject = ({ onClose }) => {
   const navigate = useNavigate();
 
   const onExploreButtonContainerClick = useCallback(() => {
-    navigate("/myprojectsafterdeletel");
+    navigate("/myProjectsL");
   }, [navigate]);
 
   return (
@@ -16,8 +16,12 @@ const DeleteProject = ({ onClose }) => {
           Are you sure you want to Delete project?
         </div>
         <div
+       
           className={styles.explorebutton}
-          onClick={onExploreButtonContainerClick}
+          onClick={() => {
+            onClose();
+            onExploreButtonContainerClick();
+          }}
         >
           <div className={styles.yes}>Yes</div>
         </div>

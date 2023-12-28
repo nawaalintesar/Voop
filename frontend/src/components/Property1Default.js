@@ -42,7 +42,7 @@ const Property1Default = ({
         frameDivTop="27.16%",
         frameDivBottom="27.16%",
         textCursor="pointer",
-        onFrameButtonClick={onFrameButtonClick}
+        //onFrameButtonClick={onFrameButtonClick},
   ]);
 
   const frameDivStyle = useMemo(() => {
