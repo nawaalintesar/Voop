@@ -75,7 +75,7 @@ Step 2: The @abstractmethod is a decorator in Python used to declare an abstract
 Step 3: Both class square and circle are inheriting from class shape , both of these classes will have to provide their own implementation of the draw method in the shape class as it is an abstract method.
 Step 4: So when we create an object of type circle and we call the draw method we will see output of the draw method within the circle class which is drawing a circle
 
-//Level 1-C++
+//Level 1- C++
 //Code
 #include <iostream>
 
@@ -119,7 +119,7 @@ Step 3: The draw function acts as a placeholder method; it must be implemented b
 Step 4: Both class circle and square inherit from class shape. Both these classes implement their own version of the draw method. So when we create an object of the class circle and we call the draw method, we will get the output of drawing by circle.
 ------------------------------
 
-//Level 2-Java
+//Level 2- Java
 //Code
 interface Drawable {
     void draw();
@@ -194,7 +194,7 @@ Step 3: Then we define a class named Circle that inherits from Drawable. This me
 Step 4: Within the main when we create an object of the circle class and call the method draw , we the output is the same as the print statement within the draw method in classs circle.
 ------------------------------
 
-//Level 2-C++
+//Level 2- C++
 //Code
 #include <iostream>
 
@@ -522,7 +522,7 @@ if __name__ == "__main__":
 ------------------------------
 
 
-//Level 3-C++
+//Level 3- C++
 //Code
 #include <iostream>
 #include <fstream>
