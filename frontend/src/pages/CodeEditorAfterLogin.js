@@ -22,15 +22,15 @@ const CodeEditorBeforeLogin = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
-    const navigate = useNavigate();
-    
-   const onFrameButtonClick = useCallback(() => {
-     //code dditor button
-     navigate("/CodeEditorAfterLogin");
-     // Please sync "Code Editor- after login" to the project
-   }, [navigate]);
+  const navigate = useNavigate();
 
-   const onFrameContainer3Click = useCallback(() => {
+  const onFrameButtonClick = useCallback(() => {
+    //code dditor button
+    navigate("/CodeEditorAfterLogin");
+    // Please sync "Code Editor- after login" to the project
+  }, [navigate]);
+
+  const onFrameContainer3Click = useCallback(() => {
     navigate("/mytutorialsl");
   }, [navigate]);
 
@@ -44,28 +44,19 @@ const CodeEditorBeforeLogin = () => {
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/dashboardl");
+    navigate("/dashboard");
   }, [navigate]);
 
   const onFrameButtonClickSignIn = useCallback(() => {
     //code dditor button
-    navigate("/signinl");
+    navigate("/signIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
-  
+
   return (
     <div className={styles.codeEditorBeforeLogin}>
-      <Footer/>
-       <Property1Closed 
-        onFrameContainerClick={onFrameContainer3Click}
-        onFrameIconClick={onFrameIconClick}
-        onUsericonContainerClick={onUsericonClick}
-        onDashoboardSMContainerClick={onDashoboardSMContainerClick} /> 
 
-<Property1Default
-      onFrameButtonClick={onFrameButtonClick}
-      />
-      
+
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />
         <img
@@ -95,6 +86,16 @@ const CodeEditorBeforeLogin = () => {
         </Select>
         <AnimationContainer />
       </div>
+      <Footer />
+      <Property1Closed
+        onFrameContainerClick={onFrameContainer3Click}
+        onFrameIconClick={onFrameIconClick}
+        onUsericonContainerClick={onUsericonClick}
+        onDashoboardSMContainerClick={onDashoboardSMContainerClick} />
+
+      <Property1Default
+        onFrameButtonClick={onFrameButtonClick}
+      />
     </div>
   );
 };

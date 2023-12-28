@@ -23,7 +23,7 @@
   left: 139px;
   font-weight: 600;
 }
-.oop,
+
 .visualize,
 .voop {
   position: absolute;
@@ -34,11 +34,6 @@
   left: 84px;
   font-size: 90px;
   font-family: var(--font-righteous);
-}
-.oop {
-  top: 95px;
-  left: 220px;
-  font-weight: 600;
 }
 .exploreButtonChild {
   position: absolute;
@@ -591,13 +586,14 @@
 }
 .button {
   position: absolute;
+  cursor: pointer;
   top: 0;
   left: 0;
   border-radius: var(--br-smi);
   background: linear-gradient(180deg, #fb902c 11.46%, #fda905 58.85%);
   box-shadow: 0 0 1px 4px rgba(255, 255, 255, 0.1),
-    0-4px 2px rgba(0, 0, 0, 0.25) inset;
-  width: 122px;
+    0-4px 1px rgba(197, 117, 31, 0.25) inset;
+  width: 142px;
   height: 37px;
   overflow: hidden;
   display: flex;

@@ -18,6 +18,7 @@ const MytutorialsL = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
+  
   useEffect(() => {
     const fetchTutorials = async () => {
       const response = await fetch('/api/tutorials')
@@ -31,12 +32,8 @@ const MytutorialsL = () => {
   }, [dispatch]);
 
 
-  // const onTutContainerClick = useCallback(() => {
-  //   navigate("/generictutorialpagel");
-  // }, [navigate]);
-
-  const onTutContainerClick = useCallback((enrolledTutorialId) => {
-    navigate("/generictutorialpagel", { state: {enrolledTutorialId} });
+  const onTutContainerClick = useCallback((TutorialId) => {
+    navigate("/generictutorialpagel", { state: { TutorialId } });
   }, [navigate]);
 
   const onFrameContainer2Click = useCallback(() => {
@@ -47,7 +44,7 @@ const MytutorialsL = () => {
     // Please sync "Code Editor- after login" to the project
     navigate("/CodeEditorAfterLogin");
   }, [navigate]);
-  
+
   const onFrameIconClick = useCallback(() => {
     navigate("/myprojectsl");
   }, [navigate]);
@@ -57,7 +54,7 @@ const MytutorialsL = () => {
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/dashboardl");
+    navigate("/dashboard");
   }, [navigate]);
 
 
@@ -71,10 +68,8 @@ const MytutorialsL = () => {
 
   return (
     <div className={styles.mytutorialsL}>
-      <Footer />
-      <Property1Default 
-       onFrameButtonClick={onFrameButtonClick}
-       />
+
+
       <div className={styles.items}>
 
         <b className={styles.continueTheJourney}>Continue The Journey</b>
@@ -83,13 +78,15 @@ const MytutorialsL = () => {
 
         <div className={styles.alltutorials}>
           {tutorials && tutorials.map((tutorial, index) => (
-            <AbstractContainer
-              key={tutorial._id}
-              tutorial={tutorial}
-              conceptDescription={tutorial.tutName}
-              onTutContainerClick={() => onTutContainerClick(tutorial._id)}
-              propLeft={`${5 + 250 * index}px`}
-            />
+              <AbstractContainer
+                key={tutorial.id}
+                tutorial={tutorial}
+                conceptDescription={tutorial.tutName}
+                onTutContainerClick={() => onTutContainerClick(tutorial._id)}
+                // propLeft={`${5 + 250 * index}px`}
+                propLeft={`${(index % 4) * 250}px`}  /* Adjust the 4 based on the desired items per row */
+             
+              />
           ))}
 
           <div >
@@ -108,6 +105,10 @@ const MytutorialsL = () => {
         </div>
 
       </div>
+      <Property1Default
+        onFrameButtonClick={onFrameButtonClick}
+      />
+      <Footer />
       <Property1Closed
         onFrameContainerClick={onFrameContainer2Click}
         onFrameIconClick={onFrameIconClick}

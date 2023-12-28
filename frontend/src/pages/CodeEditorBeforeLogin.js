@@ -30,42 +30,15 @@ const CodeEditorBeforeLogin = () => {
 
   const onFrameButtonClickSignIn = useCallback(() => {
     //code dditor button
-    navigate("/signinl");
+    navigate("/signIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
   
   return (
     <div className={styles.codeEditorBeforeLogin}>
-      <Footer
-        footerBackground="linear-gradient(180deg, rgba(11, 4, 44, 0.95), #080614)"
-        footerHeight="133px"
-        footerAlignContent="stretch"
-        footerPosition="absolute"
-        footerTop="942px"
-        footerLeft="0px"
-        voopSeeMoreContainerLeft="670.5px"
-        footerMaxWidth="unset"
-        footerMaxHeight="100%"
-        footerJustifyContent="stretch"
-      />
+      
 
-      <Property1Default2
-        buttonText="codeEditorButtonHeader"
-        actionButtonText="Sign In"
-        property1DefaultAlignContent="stretch"
-        property1DefaultJustifyContent="unset"
-        property1DefaultPosition="absolute"
-        property1DefaultTop="0px"
-        property1DefaultLeft="0px"
-        buttonPadding="var(--padding-smi) 0px"
-        buttonOverflow="unset"
-        textDisplay="inline-block"
-        textWidth="unset"
-        textFlexShrink="unset"
-        textCursor="pointer"
-        onFrameButtonClick={onFrameButtonClick}
-        onFrameButtonClickSignIn={ onFrameButtonClickSignIn}
-      />
+     
 
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />
@@ -96,6 +69,24 @@ const CodeEditorBeforeLogin = () => {
         </Select>
         <AnimationContainer />
       </div>
+      <Property1Default2
+        buttonText="codeEditorButtonHeader"
+        actionButtonText="Sign In"
+        property1DefaultAlignContent="stretch"
+        property1DefaultJustifyContent="unset"
+        property1DefaultPosition="absolute"
+        property1DefaultTop="0px"
+        property1DefaultLeft="0px"
+        buttonPadding="var(--padding-smi) 0px"
+        buttonOverflow="unset"
+        textDisplay="inline-block"
+        textWidth="unset"
+        textFlexShrink="unset"
+        textCursor="pointer"
+        onFrameButtonClick={onFrameButtonClick}
+        onFrameButtonClickSignIn={ onFrameButtonClickSignIn}
+      />
+      <Footer/>
     </div>
   );
 };

@@ -8,12 +8,12 @@ import PortalDrawer from "../components/PortalDrawer";
 import { useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import ProjectFrame from "../components/ProjectFrame";
-import styles from "./MyProjectsL.module.css";
+import styles from "./Projects.module.css";
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
 
-const MyProjectsL = () => {
+const Projects = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
@@ -64,7 +64,7 @@ const MyProjectsL = () => {
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/dashboardl");
+    navigate("/dashboard");
   }, [navigate]);
 
   const openDeleteProject = useCallback(() => {
@@ -78,17 +78,9 @@ const MyProjectsL = () => {
   return (
     <>
       <div className={styles.myprojectsL}>
-        
-      <Footer/>
-      <Property1Default
-       onFrameButtonClick={onFrameButtonClick} />
-      <Property1Closed
-        onFrameContainerClick={onFrameContainer3Click}
-        onFrameIconClick={onFrameIconClick}
-        onUsericonContainerClick={onUsericonClick}
-        onDashoboardSMContainerClick={onDashoboardSMContainerClick}
-      />
-        
+
+
+
         <div className={styles.innerthings}>
           <img
             className={styles.innerthingsChild}
@@ -186,8 +178,19 @@ const MyProjectsL = () => {
             type="search"
           />
         </div>
+
+        <Footer />
+        <Property1Default
+          onFrameButtonClick={onFrameButtonClick} />
+        <Property1Closed
+          onFrameContainerClick={onFrameContainer3Click}
+          onFrameIconClick={onFrameIconClick}
+          onUsericonContainerClick={onUsericonClick}
+          onDashoboardSMContainerClick={onDashoboardSMContainerClick}
+        />
+
       </div>
-      
+
       {isDeleteProjectOpen && (
         <PortalPopup
           overlayColor="rgba(113, 113, 113, 0.3)"
@@ -197,8 +200,9 @@ const MyProjectsL = () => {
           <DeleteProject onClose={closeDeleteProject} />
         </PortalPopup>
       )}
+
     </>
   );
 };
 
-export default MyProjectsL;
+export default Projects;

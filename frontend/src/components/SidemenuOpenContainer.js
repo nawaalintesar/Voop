@@ -6,7 +6,7 @@ const SidemenuOpenContainer = () => {
   const navigate = useNavigate();
 
   const onDashboardSMContainerClick = useCallback(() => {
-    navigate("/dashboardl");
+    navigate("/dashboard");
   }, [navigate]);
 
   const onMytutorialSMContainerClick = useCallback(() => {

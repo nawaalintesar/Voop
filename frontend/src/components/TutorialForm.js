@@ -2,12 +2,14 @@ import { useState, useCallback } from "react";
 import ConfirmEnrollment from "./ConfirmEnrollment";
 import PortalPopup from "./PortalPopup";
 import EnrollPopUp from "./EnrollPopUp";
+import AvailableLanguages from "./AvailableLanguages";
 import { useNavigate } from "react-router-dom";
 import styles from "./TutorialForm.module.css";
 
-const TutorialForm = () => {
+const TutorialForm = ({tutorial}) => {
   const [isConfirmEnrollmentPopupOpen, setConfirmEnrollmentPopupOpen] =
     useState(false);
+    
   const [isEnrollPopUpOpen, setEnrollPopUpOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -34,32 +36,35 @@ const TutorialForm = () => {
   const onVectorIconClick = useCallback(() => {
     navigate("/mytutorialsl");
   }, [navigate]);
+  
+  const uniqueLanguages = new Set();
+  if (tutorial && tutorial.level && tutorial.level.length > 0) {
+    tutorial.level.forEach((level) => {
+      if (level.progLang) {
+        uniqueLanguages.add(level.progLang);
+      }
+    });
+  }
 
   return (
     <>
       <div className={styles.tutorialcardmain}>
         <div className={styles.tutorialcardmainChild} />
-        <div className={styles.classesAndObjects}>Classes and Objects</div>
+        <div className={styles.classesAndObjects}>{tutorial.tutName}</div>
         <div className={styles.tutorialPage}>Tutorial Page</div>
-        <div className={styles.rectangleParent}>
-          <div className={styles.frameChild} />
-          <div className={styles.c}>C++</div>
-        </div>
-        <div className={styles.rectangleGroup}>
-          <div className={styles.frameChild} />
-          <div className={styles.c}>Java</div>
-        </div>
-        <div className={styles.rectangleContainer}>
-          <div className={styles.frameChild} />
-          <div className={styles.c}>Python</div>
-        </div>
+
+       {Array.from(uniqueLanguages).map((language, index) => (
+          <AvailableLanguages key={language} language={language} propLeft={`${(index % 4) * 65}px`} />
+        ))}
         <img className={styles.cloudIcon} alt="" src="/cloud@2x.png" />
-        <div className={styles.button} onClick={openEnrollPopUp}>
-          <div
+        <div className={styles.button} >
+          <button
             className={styles.buttonChild}
-            onClick={openConfirmEnrollmentPopup}
-          />
-          <div className={styles.enroll}>Enroll</div>
+            onClick={openEnrollPopUp}>
+              
+            Enroll
+          </button>
+          
         </div>
         <div className={styles.backarrow} onClick={onBackarrowContainerClick}>
           <img
@@ -78,15 +83,6 @@ const TutorialForm = () => {
           onOutsideClick={closeEnrollPopUp}
         >
           <EnrollPopUp onClose={closeEnrollPopUp} />
-        </PortalPopup>
-      )}
-      {isConfirmEnrollmentPopupOpen && (
-        <PortalPopup
-          overlayColor="rgba(113, 113, 113, 0.3)"
-          placement="Centered"
-          onOutsideClick={closeConfirmEnrollmentPopup}
-        >
-          <ConfirmEnrollment onClose={closeConfirmEnrollmentPopup} />
         </PortalPopup>
       )}
     </>

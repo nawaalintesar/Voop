@@ -13,10 +13,12 @@
   top: 55px;
   left: 0;
   display: inline-block;
-  width: 471px;
+  width: 600px;
+  height: 900px;
 }
 .classesDefineThe1 {
-  top: 167px;
+  top: 50px;
+  height: 900px;
 }
 .text,
 .textParent {
@@ -24,7 +26,7 @@
   top: 339px;
   left: 15px;
   width: 471px;
-  height: 263px;
+  height: 400px;
 }
 .textParent {
   top: 180px;

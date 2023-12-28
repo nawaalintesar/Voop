@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const HomePageL = () => {
   const navigate = useNavigate();
+
   const onExploreButtonClick = useCallback(() => {
     const anchor = document.querySelector("[data-scroll-to='image9']");
     if (anchor) {
@@ -11,14 +12,20 @@ const HomePageL = () => {
     }
   }, []);
 
+  
+  const onGetCodingButtonClick = useCallback(() => {
+    navigate("/CodeEditorBeforeLogin");
+  }, [navigate]);
+
+
   const onSignUpContainerClick = useCallback(() => {
     // Please sync "Sign in-L" to the project
-    navigate("/signinl");
+    navigate("/signIn");
   }, [navigate]);
 
   const onButtonClick = useCallback(() => {
     // Please sync "Sign in-L" to the project
-    navigate("/signinl");
+    navigate("/signIn");
   }, [navigate]);
 
   return (
@@ -31,9 +38,8 @@ const HomePageL = () => {
           src="/rectangle-15@2x.png"
         />
         <div className={styles.middleinfo}>
-          <div className={styles.visualize}>Visualize</div>
+          <div className={styles.visualize}>Visualize OOP</div>
           <div className={styles.voop}>VOOP</div>
-          <div className={styles.oop}>{` OOP `}</div>
           <button
             className={styles.exploreButton}
             onClick={onExploreButtonClick}
@@ -42,10 +48,12 @@ const HomePageL = () => {
             <div className={styles.exploreButtonItem} />
             <div className={styles.explore}>Explore</div>
           </button>
-          <button className={styles.getCodingButton}>
+          <button className={styles.getCodingButton}
+          onClick={onGetCodingButtonClick}>
             <div className={styles.getCodingButtonChild} />
             <div className={styles.getCodingButtonItem} />
             <div className={styles.getCoding}>Get Coding</div>
+
           </button>
         </div>
         <img className={styles.firstpageItem} alt="" src="/vector-16@2x.png" />
@@ -141,9 +149,10 @@ const HomePageL = () => {
       </div>
       <div className={styles.headerLight}>
         <div className={styles.buttonParent}>
-          <div className={styles.button}>
+          <button className={styles.button}
+          onClick={onGetCodingButtonClick}>
             <div className={styles.codeEditor}>Code Editor</div>
-          </div>
+          </button>
           <div className={styles.voOp}>
             <span className={styles.voOpTxtContainer}>
               <p className={styles.vo}>VO</p>

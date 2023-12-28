@@ -6,16 +6,15 @@ import {
   useNavigationType,
   useLocation,
 } from "react-router-dom";
-import DashboardL from "./pages/DashboardL";
-import SignInL from "./pages/SignInL";
-import SignInDL from "./pages/SignInDL";
-import LogInL from "./pages/LogInL";
+import Dashboard from "./pages/Dashboard";
+import SignIn from "./pages/SignIn";
+import LogIn from "./pages/LogIn";
 import MytutorialsL from "./pages/MytutorialsL";
 import CodeEditorBeforeLogin from "./pages/CodeEditorBeforeLogin";
 import CodeEditorAfterLogin from "./pages/CodeEditorAfterLogin";
 import GenericTutorialPageL from "./pages/GenericTutorialPageL";
 import HomePageL from "./pages/HomePageL";
-import MyProjectsL from "./pages/MyProjectsL";
+import Projects from "./pages/Projects";
 import FilteredFormCard from "./components/FilteredFormCard";
 import UserProfilePageL from "./pages/UserProfilePageL";
 import { TutorialsContextProvider } from './context/TutorialsContext';
@@ -41,14 +40,21 @@ function App() {
         </TutorialsContextProvider>
       
       } />
-     <Route path="/SignInL" element={<SignInL />} />
-      <Route path="/SignInDL" element={<SignInDL />} /> 
-      <Route path="/LogInL" element={<LogInL />} />
+     <Route path="/SignIn" element={<SignIn />} />
+      <Route path="/LogIn" element={<LogIn />} />
       <Route path="/CodeEditorBeforeLogin" element={<CodeEditorBeforeLogin />} />
       <Route path="/CodeEditorAfterLogin" element={<CodeEditorAfterLogin />} />
-      <Route path="/DashboardL" element={<DashboardL />} />
-      <Route path="/generictutorialpagel" element={<GenericTutorialPageL />} />
-      <Route path="/myprojectsl" element={<MyProjectsL />} />
+      <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/generictutorialpagel" element={
+    
+    <TutorialsContextProvider>
+      <GenericTutorialPageL/>
+        </TutorialsContextProvider>
+      
+    
+    
+    } />
+      <Route path="/myprojectsl" element={<Projects />} />
       <Route path="/user-profile-pagel" element={<UserProfilePageL />} />
     </Routes>
   );

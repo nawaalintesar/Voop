@@ -6,7 +6,7 @@ const DeleteProject = ({ onClose }) => {
   const navigate = useNavigate();
 
   const onExploreButtonContainerClick = useCallback(() => {
-    navigate("/myProjectsL");
+    navigate("/Projects");
   }, [navigate]);
 
   return (

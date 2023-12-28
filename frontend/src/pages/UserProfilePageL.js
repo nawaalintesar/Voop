@@ -86,7 +86,7 @@ const UserProfilePageL = () => {
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/dashboardl");
+    navigate("/dashboard");
   }, [navigate]);
 
   const openProfileUpdateConfirmationLPopup = useCallback(() => {
@@ -108,19 +108,9 @@ const UserProfilePageL = () => {
   return (
     <>
       <div className={styles.userProfilePageL}>
-      <Footer/>
-
-       <Property1Default
-        onFrameButtonClick={onFrameButtonClick}/>
-
-      <Property1Closed
-        onFrameContainerClick={onFrameContainer3Click}
-        onFrameIconClick={onFrameIconClick}
-        onUsericonContainerClick={onUsericonClick}
-        onDashoboardSMContainerClick={onDashoboardSMContainerClick}
-      /> 
         
-           <UserUpdate />
+
+        <UserUpdate />
         <div className={styles.personalInfoHeading}>
           <div className={styles.personalinfoRectangle} />
           <img className={styles.cloudsIcon} alt="" src="/clouds@2x.png" />
@@ -132,8 +122,20 @@ const UserProfilePageL = () => {
           <img className={styles.cloudsIcon} alt="" src="/clouds@2x.png" />
           <div className={styles.personalInformation}>Personal Information</div>
         </div>
+        <Footer />
+
+        <Property1Default
+          onFrameButtonClick={onFrameButtonClick} />
+
+        <Property1Closed
+          onFrameContainerClick={onFrameContainer3Click}
+          onFrameIconClick={onFrameIconClick}
+          onUsericonContainerClick={onUsericonClick}
+          onDashoboardSMContainerClick={onDashoboardSMContainerClick}
+        />
+
       </div>
-      
+
       {isProfileUpdateConfirmationLPopupOpen && (
         <PortalPopup
           overlayColor="rgba(113, 113, 113, 0.3)"

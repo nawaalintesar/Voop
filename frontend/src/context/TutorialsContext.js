@@ -13,6 +13,11 @@ export const tutorialsReducer = (state, action) => {
         ...state,
         enrolledTutorials: action.payload
       };
+      case 'GET_TUTORIAL':
+        return {
+          ...state,
+          tutorial: action.payload
+        };
     // Add other cases as needed
     default:
       return state;
@@ -23,7 +28,8 @@ export const tutorialsReducer = (state, action) => {
 export const TutorialsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(tutorialsReducer, {
     tutorials: null,
-    enrolledTutorials: null
+    enrolledTutorials: null,
+    tutorial:null
   });
   return (
     <TutorialsContext.Provider value={{ ...state, dispatch }}>

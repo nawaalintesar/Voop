@@ -16,15 +16,15 @@ const LoginForm = () => {
 
   const onLogInButtonClick = useCallback(() => {
     // Please sync "Dashboard-L" to the project
-    navigate("/DashboardL");
+    navigate("/Dashboard");
   }, [navigate]);
 
   const onNewToVoopContainerClick = useCallback(() => {
-    navigate("/SigninL");
+    navigate("/signIn");
   }, [navigate]);
 
   const onNewToVoopClick = useCallback(() => {
-    navigate("/SigninL");
+    navigate("/signIn");
   }, [navigate]);
 
   const openForgotPassPopPopup = useCallback(() => {

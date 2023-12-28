@@ -7,9 +7,9 @@ import ContinueLearningContainer from "../components/ContinueLearningContainer";
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
-import styles from "./DashboardL.module.css";
+import styles from "./Dashboard.module.css";
 
-const DashboardL = () => {
+const Dashboard = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
@@ -34,11 +34,11 @@ const DashboardL = () => {
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
-    navigate("/dashboardl");
+    navigate("/dashboard");
   }, [navigate]);
 
   return (
-    <div className={styles.dashboardL}>
+    <div className={styles.dashboard}>
       <div className={styles.dashbaordwelcParent}>
         <div className={styles.dashbaordwelc}>
           <img
@@ -64,4 +64,4 @@ const DashboardL = () => {
   );
 };
 
-export default DashboardL;
+export default Dashboard;

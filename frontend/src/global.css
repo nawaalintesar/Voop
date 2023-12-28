@@ -31,10 +31,11 @@ body {
   --font-size-7xl: 26px;
 
   --font-size-6xs: 7px;
-  --font-size-11xl: 30px;
+   --font-size-11xl: 17px;
+   /*
   --font-size-lgi: 19px;
   --font-size-13xl: 32px;
-  --font-size-3xl: 22px;
+  --font-size-3xl: 22px; */
 
   /* Colors */
   --color-gray-100: #2e2b43;

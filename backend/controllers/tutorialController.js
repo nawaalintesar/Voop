@@ -190,7 +190,7 @@ const getTutorial = async (req, res) => {
   }
 
   const tutorial = await Tutorial.findById(id)
-
+console.log(tutorial)
   if (!tutorial) {
     return res.status(404).json({ error: 'No such tutorial' })
   }
