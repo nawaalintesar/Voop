@@ -11,7 +11,7 @@ const viewTutorials = async (req, res) => {
   res.status(200).json(tutorials)
 }
 const populateDatabase = async (req, res) => {
-  await Tutorial.deleteMany();
+
   // Example usage
   const path = require('path');
   const paths = [
@@ -142,15 +142,23 @@ const populateDatabase = async (req, res) => {
       }
 
 
+      const existingTutorial = await Tutorial.findOne({ tutName });
 
+      if (existingTutorial) {
+        existingTutorial.tutDescription = tutDescription;
+        existingTutorial.level = level;
+        await existingTutorial.save();
 
-      // Save the tutorial to the database
-      const project = await Tutorial.create({
-        tutName,
-        tutDescription,
-        level
-      });
+      }
+      else {
 
+        // Save the tutorial to the database
+        const project = await Tutorial.create({
+          tutName,
+          tutDescription,
+          level
+        });
+      }
       console.log('Database populated successfully!');
     }
   } catch (error) {
