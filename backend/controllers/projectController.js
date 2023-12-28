@@ -124,11 +124,12 @@ const deleteProject = async (req, res) => {
 }
 
 // update an existing project
-const updateProject = async (req,res) => {
+const updateProject = async (req, res) => {
   const userId = "65810b9b1d91631463299a28"
   const { id } = req.params;
   const updatedCode = req.body.updatedCode;
 
+  // const updatedCodeString= 
   try {
     // only allow if its in the users created projects
     const project = await Project.findById(id);
@@ -138,15 +139,14 @@ const updateProject = async (req,res) => {
     // Find the latest code state and check if the code has changed
     const latestCodeState = project.codeStates.reduce((max, state) =>
       state.codeIndex > max.codeIndex ? state : max, { codeIndex: -1 });
-
-    if (latestCodeState.codeDictionary.userCode === updatedCode) {
+    if (JSON.stringify(latestCodeState.codeDictionary.userCode) === JSON.stringify([updatedCode])) {
       // based on the recommendations and constriants
       // modifyRelations()
       // addComponent()
       // removeComponent()
       // Update the project with the analysis results
       // For example, update OOP concepts, constraints, etc.
-
+      res.status(200).json("no code change");
     }
     else {
       // If the code has changed, proceed to create a new code state
@@ -154,8 +154,13 @@ const updateProject = async (req,res) => {
 
       // Call the following functions:
       // comiple, parse, analyse code to find classes, relations and info
-      const { classes, relationships } = await nlpHandler.analyzeCode(updatedCode, project.progLang);
-
+      const result = await nlpHandler.analyzeCode(updatedCode, project.progLang);
+      const classes = result.classes;
+      const relationships = result.relationships;
+      console.log("everything", result)
+      console.log("asdfasdfadsfasdfsadfdsa")
+      console.log(classes);
+      console.log("asd", relationships);
       // generate the animation
       // find and display oop concepts
       // nlpHandler.generateRecommendations() // this is needed to do the next 3
@@ -163,16 +168,17 @@ const updateProject = async (req,res) => {
       const newCodeState = {
         codeIndex: newCodeIndex,
         codeDictionary: {
-          userCode: updatedCode,
-          classes: classes,
-          relationships:relationships,
-        },
-      };
+            userCode: [updatedCode],
+            classes: classes,
+            relationships: relationships        },
+    };
+    
       // Add the new code state to the project
       project.codeStates.push(newCodeState);
+      await project.save();
+      res.status(200).json(project);
     }
-    await project.save();
-    res.status(200).json(project);
+
   } catch (error) {
     res.status(400).json("Error");
     throw new Error(`Error updating: ${error.message}`);
