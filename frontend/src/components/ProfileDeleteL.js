@@ -7,12 +7,12 @@ const ProfileDeleteL = ({ onClose }) => {
 
   const onFrameContainerClick = useCallback(() => {
     // Please sync "Sign in-DL" to the project
-    navigate("/SignInDL");
+    navigate("/LogIn");
   }, [navigate]);
 
   const onExploreButtonClick = useCallback(() => {
     // Please sync "Sign in-DL" to the project
-    navigate("/SignInDL");
+    navigate("/LogIn");
   }, [navigate]);
 
   return (

@@ -30,11 +30,11 @@ const TutorialForm = ({tutorial}) => {
   }, []);
 
   const onBackarrowContainerClick = useCallback(() => {
-    navigate("/mytutorialsl");
+    navigate("/Tutorials");
   }, [navigate]);
 
   const onVectorIconClick = useCallback(() => {
-    navigate("/mytutorialsl");
+    navigate("/Tutorials");
   }, [navigate]);
   
   const uniqueLanguages = new Set();

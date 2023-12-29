@@ -7,7 +7,7 @@
 // import SideMenu from "../components/SideMenu";
 // import PortalDrawer from "../components/PortalDrawer";
 // import { useNavigate } from "react-router-dom";
-// import styles from "./UserProfilePageL.module.css";
+// import styles from "./Profile.module.css";
 
 // import Footer from "../components/Footer";
 // import Property1Default from "../components/Property1Default";
@@ -22,14 +22,14 @@ import ProfileDeleteL from "../components/ProfileDeleteL";
 // import SideMenu from "../components/SideMenu";
 // import PortalDrawer from "../components/PortalDrawer";
 import { useNavigate } from "react-router-dom";
-import styles from "./UserProfilePageL.module.css";
+import styles from "./Profile.module.css";
 import UserUpdate from "../components/UserUpdate";
 
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
 
-const UserProfilePageL = () => {
+const Profile = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
@@ -73,12 +73,12 @@ const UserProfilePageL = () => {
   }, [navigate]);
 
   const onFrameContainer3Click = useCallback(() => {
-    navigate("/mytutorialsl");
+    navigate("/Tutorials");
   }, [navigate]);
 
   const onFrameIconClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-    navigate("/myprojectsl");
+    navigate("/Projects");
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
@@ -107,7 +107,7 @@ const UserProfilePageL = () => {
 
   return (
     <>
-      <div className={styles.userProfilePageL}>
+      <div className={styles.Profile}>
         
 
         <UserUpdate />
@@ -160,4 +160,4 @@ const UserProfilePageL = () => {
   );
 };
 
-export default UserProfilePageL;
+export default Profile;

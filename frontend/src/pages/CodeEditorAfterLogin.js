@@ -31,12 +31,12 @@ const CodeEditorBeforeLogin = () => {
   }, [navigate]);
 
   const onFrameContainer3Click = useCallback(() => {
-    navigate("/mytutorialsl");
+    navigate("/Tutorials");
   }, [navigate]);
 
   const onFrameIconClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-    navigate("/myprojectsl");
+    navigate("/Projects");
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {

@@ -10,12 +10,12 @@ const SidemenuOpenContainer = () => {
   }, [navigate]);
 
   const onMytutorialSMContainerClick = useCallback(() => {
-    navigate("/mytutorialsl");
+    navigate("/Tutorials");
   }, [navigate]);
 
   const onMyProjectSMContainerClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-    navigate("/myprojectsl");
+    navigate("/Projects");
   }, [navigate]);
 
   const onUserProfileSMContainerClick = useCallback(() => {
