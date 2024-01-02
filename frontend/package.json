@@ -6,11 +6,12 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.2",
     "@mui/styled-engine": "^5.15.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.12.4",
+    "antd": "^5.12.5",
     "brace": "^0.11.1",
     "date-fns": "^2.28.0",
     "react": "^18.1.0",

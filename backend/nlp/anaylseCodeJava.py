@@ -80,12 +80,22 @@ def parseCode(java_code):
                 if method_name==sig[0] and parent_class==sig[2]:
                     method['is_polymorphic'] = True
                     method['is_overridden'] = True
+                    source_function = {'type': 'function', 'name': f"{sig[2]}.{sig[0]}"}
+                    target_function = {'type': 'function', 'name': f"{class_name}.{method_name}"}
+                    lines_of_code = f"[{node.position[0]} - {node.position[1]}]"
                     relationships.append({
                         'type': 'polymorphism',
-                        'source': {'type': 'function', 'name': sig[2]+'.'+sig[0]},
-                        'target': {'type': 'function', 'name': class_name+'.'+method_name},
-                        'linesOfCode': f"[{node.position[0]} - {node.position[1]}]",
+                        'source': source_function,
+                        'target': target_function,
+                        'linesOfCode': lines_of_code,
                     })
+                    relationships.append({
+                        'type': 'method overriding',
+                        'source': source_function,
+                        'target': target_function,
+                        'linesOfCode': lines_of_code,
+                    })
+
 
             else:
                 polymorphic_methods.add(method_signature)
