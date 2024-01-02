@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "/antd/dist/antd.min.css";
+import "antd/dist/antd.min.css";
 import { Select } from "antd";
 import styles from "./CodeEditorPopUp.module.css";
 
