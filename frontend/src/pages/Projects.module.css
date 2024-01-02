@@ -132,7 +132,7 @@
   border-radius: var(--br-xl);
 }
 .frameParent,
-.myprojectsLInner {
+.ProjectsInner {
   position: absolute;
   width: 100%;
   display: flex;
@@ -147,7 +147,7 @@
   justify-content: stretch;
   max-width: 100%;
 }
-.myprojectsLInner {
+.ProjectsInner {
   top: 1px;
   left: 54px;
   background-color: var(--color-midnightblue);
@@ -317,7 +317,7 @@
   overflow: hidden;
   position: absolute;
 }
-.myprojectsL {
+.Projects {
   position: relative;
   background: linear-gradient(180.46deg, #251849, #251849 0.01%, #18113b);
   width: 100%;
@@ -328,6 +328,110 @@
   color: var(--color-white);
   font-family: var(--font-press-start-2p);
 }
-.myprojectsL:hover {
+.Projects:hover {
   filter: drop-shadow(0 4px 4px 5px rgba(104, 63, 234, 0.25));
 }
+
+.recentProjectProject1Parent {
+  position: absolute;
+  top: 74px;
+  left: 123px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 100px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: var(--font-size-41xl);
+  color: var(--color-thistle-200);
+  font-family: var(--font-poppins);
+}
+.p1,.p2,.p3{
+  font-size: 50px;
+  top: 65px;
+  left: 71px;
+}
+.recentProjectProject1Child {
+  position: relative;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-3xs);
+  background: linear-gradient(139.01deg, #8775df, #7a59b5 93.23%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 0 4px 4px rgba(0, 0, 0, 0.25) inset;
+  width: 200px;
+  height: 200px;
+}
+
+.p1 {
+  position: absolute;
+  /* top: 55px; 
+   left: 75px;  */
+  font-weight: 600;
+}
+.recentProjectProject1 {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+.addingbox:hover,
+.recentProjectProject1:hover {
+  filter: drop-shadow(0 4px 4px rgba(177, 175, 175, 0.3));
+}
+
+.p2 {
+  position: absolute;
+  /* top: 55px; */
+  /* left: 70px; */
+  font-weight: 600;
+}
+
+
+.p3 {
+  position: absolute;
+  /* top: 55px; */
+  /* left: 63px; */
+  font-weight: 600;
+}
+
+.addingboxChild {
+  position: relative;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-3xs);
+  background: linear-gradient(131.42deg, #2e2360, #2d2360 0.01%, #18113e);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 0 4px 4px rgba(0, 0, 0, 0.25) inset;
+  width: 200px;
+  height: 200px;
+}
+.coolicon {
+  position: absolute;
+  height: 58.33%;
+  width: 58.33%;
+  top: 20.83%;
+  right: 20.83%;
+  bottom: 20.83%;
+  left: 20.83%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.editPlus {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 70px;
+  left: 70px;
+  width: 60px;
+  height: 60px;
+}
+.addingbox {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+

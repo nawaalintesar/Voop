@@ -8,11 +8,11 @@ import Property1Default from "../components/Property1Default";
 import FilteredFormCard from "../components/FilteredFormCard";
 import AbstractContainer from "../components/AbstractContainer";
 import Property1Closed from "../components/Property1Closed";
-import styles from "./MytutorialsL.module.css";
+import styles from "./Tutorials.module.css";
 import { useTutorialsContext } from "../hooks/useTutorialsContext.js";
 import InheritanceTutorialCardContain from "../components/InheritanceTutorialCardContain";
 
-const MytutorialsL = () => {
+const Tutorials = () => {
   const { tutorials, dispatch } = useTutorialsContext();
   const [tut, setTutorials] = useState(null);
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
@@ -33,11 +33,11 @@ const MytutorialsL = () => {
 
 
   const onTutContainerClick = useCallback((TutorialId) => {
-    navigate("/generictutorialpagel", { state: { TutorialId } });
+    navigate("/GenericTutorial", { state: { TutorialId } });
   }, [navigate]);
 
   const onFrameContainer2Click = useCallback(() => {
-    navigate("/mytutorialsl");
+    navigate("/Tutorials");
   }, [navigate]);
 
   const onFrameButtonClick = useCallback(() => {
@@ -46,7 +46,7 @@ const MytutorialsL = () => {
   }, [navigate]);
 
   const onFrameIconClick = useCallback(() => {
-    navigate("/myprojectsl");
+    navigate("/Projects");
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
@@ -59,15 +59,15 @@ const MytutorialsL = () => {
 
 
   const onMethodoverloadingOverriddingTContainerClick = useCallback(() => {
-    navigate("/generictutorialpagel");
+    navigate("/GenericTutorial");
   }, [navigate]);
 
   const onComprehensiveOOPTutContainerClick = useCallback(() => {
-    navigate("/generictutorialpagel");
+    navigate("/GenericTutorial");
   }, [navigate]);
 
   return (
-    <div className={styles.mytutorialsL}>
+    <div className={styles.Tutorials}>
 
 
       <div className={styles.items}>
@@ -83,7 +83,6 @@ const MytutorialsL = () => {
                 tutorial={tutorial}
                 conceptDescription={tutorial.tutName}
                 onTutContainerClick={() => onTutContainerClick(tutorial._id)}
-                // propLeft={`${5 + 250 * index}px`}
                 propLeft={`${(index % 4) * 250}px`}  /* Adjust the 4 based on the desired items per row */
              
               />
@@ -120,4 +119,4 @@ const MytutorialsL = () => {
   );
 };
 
-export default MytutorialsL;
+export default Tutorials;

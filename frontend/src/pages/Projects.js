@@ -1,7 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, dispatch, useEffect } from "react";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 import LogOutPopOutL from "../components/LogOutPopOutL";
-import PortalPopup from "../components/PortalPopup";
 import DeleteProject from "../components/DeleteProject";
 import SideMenu from "../components/SideMenu";
 import PortalDrawer from "../components/PortalDrawer";
@@ -12,8 +11,12 @@ import styles from "./Projects.module.css";
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
-
+import { useProjectsContext } from "../hooks/useProjectsContext.js";
+import ProjectPopUPp from "../components/ProjectPopUPp";
+import PortalPopup from "../components/PortalPopup";
 const Projects = () => {
+  const [isProjectPopUPpOpen, setProjectPopUPpOpen] = useState(false);
+
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
@@ -51,12 +54,12 @@ const Projects = () => {
   }, [navigate]);
 
   const onFrameContainer3Click = useCallback(() => {
-    navigate("/mytutorialsl");
+    navigate("/Tutorials");
   }, [navigate]);
 
   const onFrameIconClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-    navigate("/myprojectsl");
+    navigate("/Projects");
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
@@ -74,10 +77,29 @@ const Projects = () => {
   const closeDeleteProject = useCallback(() => {
     setDeleteProjectOpen(false);
   }, []);
+  const openProjectPopUPp = useCallback(() => {
+    setProjectPopUPpOpen(true);
+  }, []);
+
+  const closeProjectPopUPp = useCallback(() => {
+    setProjectPopUPpOpen(false);
+  }, []);
+  const { projects, dispatch } = useProjectsContext();
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const response = await fetch('/api/projects')
+      const json = await response.json()
+
+      if (response.ok) {
+        dispatch({ type: 'GET_PROJECTS', payload: json })
+      }
+    }
+    fetchProjects()
+  }, [dispatch]);
 
   return (
     <>
-      <div className={styles.myprojectsL}>
+      <div className={styles.Projects}>
 
 
 
@@ -87,84 +109,54 @@ const Projects = () => {
             alt=""
             src="/rectangle-27@2x.png"
           />
-          <Container />
+           <div className={styles.recentProjectProject1Parent}>
+          {projects && projects.slice(0, 3).map((project, index) => (
+            <Container key={project.id} project={project} />
+          ))}
+
+          <div className={styles.addingbox} onClick={openProjectPopUPp}>
+            <div className={styles.addingboxChild} />
+            <button className={styles.editPlus} id="PlusButton">
+              <img className={styles.coolicon} alt="" src="/coolicon@2x.png" />
+            </button>
+          </div>
+          </div>
+          {isProjectPopUPpOpen && (
+            <PortalPopup
+              overlayColor="rgba(113, 113, 113, 0.3)"
+              placement="Centered"
+              onOutsideClick={closeProjectPopUPp}
+            >
+              <ProjectPopUPp onClose={closeProjectPopUPp} />
+            </PortalPopup>
+          )}
           <div className={styles.projects}>
-            <ProjectFrame
-              edited5MinAgo="Edited 5 min ago"
-              project1="Project 1"
-              editMinus="/edit--minus1.svg"
-              j="J"
-              showEditMinus={false}
-              projectFrameWidth="1099px"
-              projectFramePosition="absolute"
-              projectFrameTop="0px"
-              projectFrameLeft="0px"
-              projectBoxBackground="linear-gradient(139.01deg, #8775df, #7a59b5 93.23%)"
-              projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-              editMinusObjectFit="unset"
-            />
+            {projects && projects.map((project, index) => (
+
+              <ProjectFrame
+                key={project.id}
+                project={project}
+                edited5MinAgo={project.updatedAt}
+                project1={project.prjName}
+                editMinus="/edit--minus1.svg"
+                j={project.progLang.slice(0, 1).toUpperCase()}
+                showEditMinus={false}
+                projectFrameWidth="1099px"
+                projectFrameTop="0px"
+                projectFrameLeft="0px"
+                projectBoxBackground="linear-gradient(139.01deg, #8775df, #7a59b5 93.23%)"
+                projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
+                editMinusObjectFit="unset"
+
+              />
+            ))}
             <img
               className={styles.editMinus}
               alt=""
               src="/edit--minus@2x.png"
               onClick={openDeleteProject}
             />
-            <ProjectFrame
-              edited5MinAgo="Edited 10 min ago"
-              project1="Project 2"
-              editMinus="/edit--minus@2x.png"
-              j="J"
-              showEditMinus
-              projectFrameWidth="1099px"
-              projectFramePosition="absolute"
-              projectFrameTop="85px"
-              projectFrameLeft="0px"
-              projectBoxBackground="linear-gradient(139.01deg, #e37540, #d24d3c 93.23%)"
-              projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-              editMinusObjectFit="cover"
-            />
-            <ProjectFrame
-              edited5MinAgo="Edited 1 hour ago"
-              project1="Project 3"
-              editMinus="/edit--minus@2x.png"
-              j="P"
-              showEditMinus
-              projectFrameWidth="1099px"
-              projectFramePosition="absolute"
-              projectFrameTop="170px"
-              projectFrameLeft="0px"
-              projectBoxBackground="linear-gradient(139.01deg, #db6ab0, #b63ba1 93.23%)"
-              projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-              editMinusObjectFit="cover"
-            />
-            <ProjectFrame
-              edited5MinAgo="Edited 3 days ago"
-              project1="Project 4"
-              editMinus="/edit--minus@2x.png"
-              j="C"
-              showEditMinus
-              projectFrameWidth="1099px"
-              projectFramePosition="absolute"
-              projectFrameTop="255px"
-              projectFrameLeft="0px"
-              projectBoxBackground="linear-gradient(139.06deg, #7c94ea, #4e53e7 93.23%)"
-              projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-              editMinusObjectFit="cover"
-            />
-            <ProjectFrame
-              edited5MinAgo="Edited 4 months ago"
-              project1="Project 5"
-              editMinus="/edit--minus@2x.png"
-              j="P"
-              showEditMinus
-              projectFrameWidth="1099px"
-              projectFramePosition="absolute"
-              projectFrameTop="340px"
-              projectFrameLeft="0px"
-              projectBoxBackground="linear-gradient(139.01deg, #26b25e, #107126 93.23%)"
-              projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-              editMinusObjectFit="cover"
-            />
+
           </div>
           <div className={styles.recentlyViewed}>Recently viewed</div>
           <TextField

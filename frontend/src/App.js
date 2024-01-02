@@ -9,15 +9,16 @@ import {
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 import LogIn from "./pages/LogIn";
-import MytutorialsL from "./pages/MytutorialsL";
+import Tutorials from "./pages/Tutorials";
 import CodeEditorBeforeLogin from "./pages/CodeEditorBeforeLogin";
 import CodeEditorAfterLogin from "./pages/CodeEditorAfterLogin";
-import GenericTutorialPageL from "./pages/GenericTutorialPageL";
-import HomePageL from "./pages/HomePageL";
+import GenericTutorial from "./pages/GenericTutorial";
+import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import FilteredFormCard from "./components/FilteredFormCard";
-import UserProfilePageL from "./pages/UserProfilePageL";
+import Profile from "./pages/Profile";
 import { TutorialsContextProvider } from './context/TutorialsContext';
+import { ProjectsContextProvider } from "./context/ProjectsContext";
 
 function App() {
   const action = useNavigationType();
@@ -33,29 +34,33 @@ function App() {
   return (
 
     <Routes>
-      <Route path="/" element={<HomePageL />} />
-      <Route path="/mytutorialsl" element={
+      <Route path="/" element={<Home />} />
+      <Route path="/Tutorials" element={
         <TutorialsContextProvider>
-          <MytutorialsL />
+          <Tutorials />
         </TutorialsContextProvider>
-      
       } />
-     <Route path="/SignIn" element={<SignIn />} />
+      <Route path="/SignIn" element={<SignIn />} />
       <Route path="/LogIn" element={<LogIn />} />
       <Route path="/CodeEditorBeforeLogin" element={<CodeEditorBeforeLogin />} />
       <Route path="/CodeEditorAfterLogin" element={<CodeEditorAfterLogin />} />
-      <Route path="/Dashboard" element={<Dashboard />} />
-      <Route path="/generictutorialpagel" element={
-    
-    <TutorialsContextProvider>
-      <GenericTutorialPageL/>
+      <Route path="/Dashboard" element={
+       <TutorialsContextProvider>
+       <ProjectsContextProvider>
+         <Dashboard />
+       </ProjectsContextProvider>
+     </TutorialsContextProvider>
+      } />
+      <Route path="/GenericTutorial" element={
+        <TutorialsContextProvider>
+          <GenericTutorial />
         </TutorialsContextProvider>
-      
-    
-    
-    } />
-      <Route path="/myprojectsl" element={<Projects />} />
-      <Route path="/user-profile-pagel" element={<UserProfilePageL />} />
+      } />
+      <Route path="/Projects" element={
+        <ProjectsContextProvider>
+          <Projects />
+        </ProjectsContextProvider>} />
+      <Route path="/user-profile-pagel" element={<Profile />} />
     </Routes>
   );
 }

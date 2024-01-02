@@ -10,11 +10,9 @@ import PortalPopup from "../components/PortalPopup";
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
-import styles from "./GenericTutorialPageL.module.css";
-
-const GenericTutorialPageL = () => {
+import styles from "./GenericTutorial.module.css";
+const GenericTutorial = () => {
   const { tutorial, dispatch } = useTutorialsContext();
-
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
@@ -26,12 +24,12 @@ const GenericTutorialPageL = () => {
 
   const onFrameContainer2Click = useCallback(() => {
     // Please sync "Mytutorials-L" to the project
-    navigate("/mytutorialsl");
+    navigate("/Tutorials");
   }, [navigate]);
 
   const onFrameIconClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-    navigate("/myprojectsl");
+    navigate("/Projects");
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
@@ -47,47 +45,51 @@ const GenericTutorialPageL = () => {
 
   useEffect(() => {
     const fetchTutorials = async () => {
-      const response = await fetch(`/api/tutorials/${tutorialId}`);
+      try {
+        const response = await fetch(`/api/tutorials/${tutorialId}`);
+        const json = await response.json();
 
-      const json = await response.json()
-
-      if (response.ok) {
-        dispatch({ type: 'GET_TUTORIAL', payload: json })
+        if (response.ok) {
+          dispatch({ type: 'GET_TUTORIAL', payload: json });
+        }
+      } catch (error) {
+        console.error('Error fetching tutorial:', error);
       }
-    }
-    fetchTutorials()
-  }, [dispatch]);
+    };
+
+    fetchTutorials();
+  }, [dispatch, tutorialId]);
 
   return (
-    <div className={styles.generictutorialpageL}>
+    <div className={styles.GenericTutorial}>
+      {tutorial && (
+        <div className={styles.textParent}>
+          <div className={styles.text}>
+            <div className={styles.aboutThisTutorial}>About this tutorial</div>
 
-      <div className={styles.textParent}>
-        <div className={styles.text}>
-          <div className={styles.aboutThisTutorial}>About this tutorial</div>
+            {tutorial && (
+              <>
+                <div className={styles.classesDefineThe1}>
+                  {tutorial.tutDescription}
+                </div>
+              </>
+            )}
+          </div>
 
           {tutorial && (
-            <>
-              <div className={styles.classesDefineThe1}>
-                {tutorial.tutDescription}
-              </div>
-            </>
+            <TutorialForm
+              key={tutorial._id}
+              tutorial={tutorial}
+            />
           )}
 
-
-        </div>
-        {tutorial && (
-          <TutorialForm
+          <TutorialExamplesContainer1
             key={tutorial._id}
             tutorial={tutorial}
           />
-        )}
-        <TutorialExamplesContainer1
-          key={tutorial._id}
-          tutorial={tutorial} />
-          
+        </div>
+      )}
 
-      </div>
-      
       <Property1Default
         onFrameButtonClick={onFrameButtonClick}
       />
@@ -100,9 +102,8 @@ const GenericTutorialPageL = () => {
       />
 
       <Footer />
-
     </div>
   );
 };
 
-export default GenericTutorialPageL;
+export default GenericTutorial;

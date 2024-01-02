@@ -48,23 +48,16 @@ const FilteredFormCard = () => {
     <>
       <div className={styles.continuejourneycards}>
 
-        {enrolledTutorials && enrolledTutorials.map((enrolledTutorial, index) => (
+        {enrolledTutorials && enrolledTutorials.slice(0,4).map((enrolledTutorial, index) => (
           <InheritencetutCard
             key={enrolledTutorial._id}
             tutorial={enrolledTutorial}
             inheritencetutCardPosition="absolute"
             inheritencetutCardTop="0px"
-            inheritencetutCardLeft={`${5 + 250 * index}px`}
+            inheritencetutCardLeft={`${0 + 250 * index}px`}
             encapsulationTutCardCursor="pointer"
           />
         ))}
-        {/* <PolymorphismtutCard/> */}
-        {/* <EncapsulationTutCard
-          encapsulationTutCardPosition="absolute"
-          encapsulationTutCardTop="0px"
-          encapsulationTutCardLeft="831px"
-          encapsulationTutCardCursor="pointer"
-        /> */}
       </div>
       {isLessonContinuationPopupOpen && (
         <PortalPopup
