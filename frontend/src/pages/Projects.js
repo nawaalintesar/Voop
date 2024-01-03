@@ -114,7 +114,7 @@ const Projects = () => {
            <div className={styles.recentProjectProject1Parent}>
           
           {projects && projects.slice(0, 3).map((project, index) => (
-            <button style={{ background: 'transparent', border: 'none'}} onClick={openProjectPopUPp} > <Container key={project.id} project={project} /></button>
+            <button style={{ background: 'transparent', border: 'none'}} > <Container onclick={onFrameButtonClick} key={project.id} project={project} /></button>
           ))}
           
 
