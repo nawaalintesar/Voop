@@ -5,7 +5,7 @@ const ContinueLearningContainer = () => {
   return (
     <div className={styles.continuelearning}>
       <div className={styles.continueLearning}>Continue learning</div>
-      <InheritanceTutorialCardContain propTop="54px" propLeft="0px" />
+      <InheritanceTutorialCardContain propTop="54px" propLeft="50px" />
       <div className={styles.classobjectstutcard}>
         <div className={styles.classobjectstutcardChild} />
         <div className={styles.classobjectstutcardItem} />
@@ -15,7 +15,7 @@ const ContinueLearningContainer = () => {
         </div>
         <div className={styles.classobjectstutcardInner} />
         <div className={styles.classobjectstutcardInner} />
-        <div className={styles.div}>0 %</div>
+        <div className={styles.div}>50%</div>
         <div className={styles.classesAndObjects}>Classes and Objects</div>
       </div>
     </div>

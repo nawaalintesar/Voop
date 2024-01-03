@@ -108,7 +108,7 @@
   position: absolute;
   width: calc(100% - 759px);
   top: calc(50% - 428.5px);
-  right: 0;
+  right: 759px;
   left: 759px;
   background: linear-gradient(180deg, #2e2360, #18113e);
   height: 865px;

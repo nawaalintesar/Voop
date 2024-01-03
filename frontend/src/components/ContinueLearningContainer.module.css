@@ -8,10 +8,10 @@
 .classobjectstutcardChild {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 200;
   border-radius: var(--br-6xl);
   background-color: var(--color-darkslategray-300);
-  width: 200px;
+  width: 700px;
   height: 240px;
 }
 .classobjectstutcardItem {
@@ -20,7 +20,7 @@
   left: 0;
   border-radius: var(--br-xl) var(--br-xl) 0 0;
   background: linear-gradient(96.5deg, #ca6caf 36.98%, #a53c9e);
-  width: 200px;
+  width: 700px;
   height: 126px;
 }
 .aClassIs {
@@ -32,7 +32,7 @@
   font-weight: 500;
   color: var(--color-darkgray);
   display: inline-block;
-  width: 152px;
+  width: 700px;
   height: 59px;
 }
 .classobjectstutcardInner {
@@ -42,7 +42,7 @@
   border-radius: var(--br-21xl);
   background: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff),
     linear-gradient(#fff, #fff), #fff;
-  width: 181.4px;
+  width: 700px;
   height: 6px;
 }
 .classesAndObjects,
@@ -61,7 +61,7 @@
   position: absolute;
   top: 54px;
   left: 264px;
-  width: 200px;
+  width: 700px;
   height: 240px;
 }
 .classobjectstutcard:hover {
@@ -71,7 +71,7 @@
   position: absolute;
   top: 514px;
   left: 0;
-  width: 464px;
+  width: 700px;
   height: 294px;
   text-align: left;
   font-size: var(--font-size-xs);

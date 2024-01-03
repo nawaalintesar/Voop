@@ -23,7 +23,7 @@ const OutputContainer = () => {
             vectorIconWidth="66.5%"
             vectorIconTop="8.5%"
             vectorIconRight="17%"
-            vectorIconBottom="8%"
+            vectorIconBottom="0%"
             vectorIconLeft="16.5%"
             mDColor="rgba(0, 0, 0, 0.8)"
             mDTop="49%"
@@ -49,11 +49,13 @@ const OutputContainer = () => {
           />
           <div className={styles.mainjs}>README.md</div>
         </div>
+        
       </div>
       <div className={styles.code}>
       <AceEditor
             padding=""
-            right="700px"
+            right="400px"
+            left="500px"
             height="610px"
             width="548px"
             mode="javascript"

@@ -1,5 +1,6 @@
 import styles from "./DashbordCardJavaRP.module.css";
 import { useMemo } from "react";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 const DashbordCardJavaRP = ({project, index}) => {
   
   return (
@@ -16,7 +17,7 @@ const DashbordCardJavaRP = ({project, index}) => {
         </div>
       </div>
       <div className={styles.animalsLab5}>{project.prjName}</div>
-      <div className={styles.lastUpdated7}>Last Updated {project.updatedAt}</div>
+      <div className={styles.lastUpdated7}>Updated {formatDistanceToNow(new Date(project.createdAt), {addSuffix: true})}</div>
     </div>
   );
 };

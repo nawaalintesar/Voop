@@ -4,9 +4,9 @@ import { Select } from "antd";
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow';
-
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
+
 import { useNavigate } from "react-router-dom";
 // other imports...
 import LogOutPopOutL from "../components/LogOutPopOutL";
@@ -16,17 +16,17 @@ import Property1Default2 from "../components/Property1Default2";
 import FileNavigationContainer from "../components/FileNavigationContainer";
 import OutputContainer from "../components/OutputContainer";
 import AnimationContainer from "../components/AnimationContainer";
-import styles from "./CodeEditorBeforeLogin.module.css";
+import styles from "./CodeEditorAfterLogin.module.css";
 
 const CodeEditorBeforeLogin = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
-  const navigate = useNavigate();
-
+    const navigate = useNavigate();
+    
   const onFrameButtonClick = useCallback(() => {
     //code dditor button
-    navigate("/CodeEditorAfterLogin");
+    navigate("/CodeEditorBeforeLogin");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
 
@@ -47,15 +47,19 @@ const CodeEditorBeforeLogin = () => {
     navigate("/dashboard");
   }, [navigate]);
 
+
+
   const onFrameButtonClickSignIn = useCallback(() => {
     //code dditor button
     navigate("/signIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
-
+  
   return (
     <div className={styles.codeEditorBeforeLogin}>
+      
 
+     
 
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />
