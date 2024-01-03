@@ -20,16 +20,16 @@ const SidemenuOpenContainer = () => {
 
   const onUserProfileSMContainerClick = useCallback(() => {
     // Please sync "User Profile Page-L" to the project
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
   }, [navigate]);
 
   const onUsericonContainerClick = useCallback(() => {
     // Please sync "User Profile Page- L" to the project
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
   }, [navigate]);
 
    const onUserIconClick = useCallback(() => {
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
     // Please sync "My Projects-L" to the project
    }, [navigate]);
 

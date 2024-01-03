@@ -19,7 +19,7 @@ import FilteredFormCard from "./components/FilteredFormCard";
 import Profile from "./pages/Profile";
 import { TutorialsContextProvider } from './context/TutorialsContext';
 import { ProjectsContextProvider } from "./context/ProjectsContext";
-
+import { ProfilesContextProvider } from "./context/ProfilesContext";
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -45,11 +45,11 @@ function App() {
       <Route path="/CodeEditorBeforeLogin" element={<CodeEditorBeforeLogin />} />
       <Route path="/CodeEditorAfterLogin" element={<CodeEditorAfterLogin />} />
       <Route path="/Dashboard" element={
-       <TutorialsContextProvider>
-       <ProjectsContextProvider>
-         <Dashboard />
-       </ProjectsContextProvider>
-     </TutorialsContextProvider>
+        <TutorialsContextProvider>
+          <ProjectsContextProvider>
+            <Dashboard />
+          </ProjectsContextProvider>
+        </TutorialsContextProvider>
       } />
       <Route path="/GenericTutorial" element={
         <TutorialsContextProvider>
@@ -60,7 +60,12 @@ function App() {
         <ProjectsContextProvider>
           <Projects />
         </ProjectsContextProvider>} />
-      <Route path="/user-profile-pagel" element={<Profile />} />
+
+      <Route path="/Profile" element={
+        <ProfilesContextProvider>
+          <Profile />
+        </ProfilesContextProvider>
+      } />
     </Routes>
   );
 }

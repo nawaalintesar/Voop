@@ -6,7 +6,7 @@
   left: 190px;
 }
 .firstName {
-  position: absolute;
+  position: relative;
   top: 21px;
   left: 0;
   line-height: 6px;
@@ -36,6 +36,8 @@
   border: 0;
   background-color: transparent;
   position: absolute;
+  -webkit-box-shadow:0 0 0 100px #fb902c inset; 
+  box-shadow: #fb902c;
   top: 0;
   left: 192px;
 }
@@ -119,7 +121,7 @@
   border-radius: var(--br-3xs);
 }
 .updateButtonGroup {
-  top: 549px;
+  top: 450px;
   left: 841px;
   font-size: var(--font-size-base);
   font-family: var(--font-poppins);
@@ -149,7 +151,7 @@
   display: inline-block;
 }
 .deleteAccountGroup {
-  top: 555px;
+  top: 455px;
   left: 353px;
   width: 385px;
   height: 24px;
