@@ -65,7 +65,8 @@ const Tutorials = () => {
   const onComprehensiveOOPTutContainerClick = useCallback(() => {
     navigate("/GenericTutorial");
   }, [navigate]);
-
+  var items =1;
+  var margin = 0;
   return (
     <div className={styles.Tutorials}>
 
@@ -75,18 +76,25 @@ const Tutorials = () => {
         <b className={styles.continueTheJourney}>Continue The Journey</b>
         <b className={styles.allTutorials}>All Tutorials</b>
         <FilteredFormCard />
-
+        
+    
         <div className={styles.alltutorials}>
-          {tutorials && tutorials.map((tutorial, index) => (
-              <AbstractContainer
-                key={tutorial.id}
-                tutorial={tutorial}
-                conceptDescription={tutorial.tutName}
-                onTutContainerClick={() => onTutContainerClick(tutorial._id)}
-                propLeft={`${(index % 4) * 250}px`}  /* Adjust the 4 based on the desired items per row */
-             
-              />
-          ))}
+  {tutorials && tutorials.map((tutorial, index) => (
+      <AbstractContainer
+        tutorial={tutorial}
+        conceptDescription={tutorial.tutName}
+        onTutContainerClick={() => onTutContainerClick(tutorial._id)}
+        propLeft={`${index * 250}px`}
+        propLineHeight={`${index * 250}px`}
+
+      />
+
+  ))}
+
+
+
+
+
 
           <div >
             <TextField

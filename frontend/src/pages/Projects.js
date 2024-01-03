@@ -14,6 +14,7 @@ import Property1Closed from "../components/Property1Closed";
 import { useProjectsContext } from "../hooks/useProjectsContext.js";
 import ProjectPopUPp from "../components/ProjectPopUPp";
 import PortalPopup from "../components/PortalPopup";
+import React from "react";
 const Projects = () => {
   const [isProjectPopUPpOpen, setProjectPopUPpOpen] = useState(false);
 
@@ -109,10 +110,13 @@ const Projects = () => {
             alt=""
             src="/rectangle-27@2x.png"
           />
+        
            <div className={styles.recentProjectProject1Parent}>
+          
           {projects && projects.slice(0, 3).map((project, index) => (
-            <Container key={project.id} project={project} />
+            <button style={{ background: 'transparent', border: 'none'}} onClick={openProjectPopUPp} > <Container key={project.id} project={project} /></button>
           ))}
+          
 
           <div className={styles.addingbox} onClick={openProjectPopUPp}>
             <div className={styles.addingboxChild} />
@@ -131,14 +135,15 @@ const Projects = () => {
             </PortalPopup>
           )}
           <div className={styles.projects}>
-            {projects && projects.map((project, index) => (
-
-              <ProjectFrame
+            
+            {projects && projects.map((project,img, index) => (
+              <ProjectFrame 
+                onclick={onFrameButtonClick}
                 key={project.id}
                 project={project}
                 edited5MinAgo={project.updatedAt}
                 project1={project.prjName}
-                editMinus="/edit--minus1.svg"
+                editMinus="/edit--minus@2x.png"
                 j={project.progLang.slice(0, 1).toUpperCase()}
                 showEditMinus={false}
                 projectFrameWidth="1099px"
@@ -146,16 +151,16 @@ const Projects = () => {
                 projectFrameLeft="0px"
                 projectBoxBackground="linear-gradient(139.01deg, #8775df, #7a59b5 93.23%)"
                 projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-                editMinusObjectFit="unset"
+                //  editMinusObjectFit={<img
+                //   className={styles.editMinus}
+                //   alt=""
+                //   src="/edit--minus@2x.png"
+                //   onClick={openDeleteProject}
+                // />}
 
               />
+           
             ))}
-            <img
-              className={styles.editMinus}
-              alt=""
-              src="/edit--minus@2x.png"
-              onClick={openDeleteProject}
-            />
 
           </div>
           <div className={styles.recentlyViewed}>Recently viewed</div>
