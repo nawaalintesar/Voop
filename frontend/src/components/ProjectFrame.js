@@ -7,12 +7,14 @@ import { useState, useCallback, dispatch, useEffect } from "react";
 // Use the imported function in your code
 // ...
 
+import { useProjectsContext } from "../hooks/useProjectsContext.js";
 import DeleteProject from "../components/DeleteProject";
 
 import PortalPopup from "../components/PortalPopup";
 import React from "react";
 
 const ProjectFrame = ({
+  project,
   edited5MinAgo,
   project1,
   editMinus,
@@ -61,23 +63,31 @@ const closeDeleteProject = useCallback(() => {
     return {
       objectFit: editMinusObjectFit,
     };
-  }, [editMinusObjectFit]);
+  }, [editMinusObjectFit="/edit--minus@2x.png",]);
 
+  console.log("IDD",project._id);
+  
   return (
     <>
-    <div className={styles.projectframe} style={projectFrameStyle} onClick={onclick}>
+    <div className={styles.projectframe} style={projectFrameStyle} >
+      <div onClick={onclick}>
       <div className={styles.edited5Min}>{edited5MinAgo}</div>
-      <div className={styles.project1}>{project1}</div>
-      <div className={styles.projectbox} style={projectBoxStyle} />
+      <div className={styles.project1}  onClick={onclick}>{project1}</div>
+    
+      <div className={styles.projectbox} style={projectBoxStyle} onClick={onclick}></div>
+      </div>
+      
 {!showEditMinus && (
          <img
           className={styles.editMinus}
           alt=""
-          src={editMinus}
+          src={"/edit--minus@2x.png"}
           style={editMinusStyle}
-            onClick={openDeleteProject}
+          onClick={() => openDeleteProject(project._id)}
         />
       )}
+
+
 
       <div className={styles.j}>{j}</div>
     </div>
@@ -87,7 +97,7 @@ const closeDeleteProject = useCallback(() => {
             placement="Centered"
             onOutsideClick={closeDeleteProject}
           >
-            <DeleteProject onClose={closeDeleteProject} />
+            <DeleteProject projectID={project._id} onClose={closeDeleteProject} />
           </PortalPopup>
         )}
     </>

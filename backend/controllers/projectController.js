@@ -46,9 +46,7 @@ const getProject = async (req, res) => {
 
     // Return project details (name, language, code, etc.)
     res.status(200).json({
-      prjName: project.prjName,
-      progLang: project.progLang,
-      prjCode: userCode,
+      project
       // Add other relevant project details as needed
     });
   } catch (error) {
@@ -139,7 +137,7 @@ const updateProject = async (req, res) => {
     // Find the latest code state and check if the code has changed
     const latestCodeState = project.codeStates.reduce((max, state) =>
       state.codeIndex > max.codeIndex ? state : max, { codeIndex: -1 });
-    if (JSON.stringify(latestCodeState.codeDictionary.userCode) === JSON.stringify([updatedCode])) {
+    if (JSON.stringify(latestCodeState.userCode) === JSON.stringify([updatedCode])) {
       // based on the recommendations and constriants
       // modifyRelations()
       // addComponent()
@@ -167,12 +165,11 @@ const updateProject = async (req, res) => {
       // Create a new code state with the updated code
       const newCodeState = {
         codeIndex: newCodeIndex,
-        codeDictionary: {
-            userCode: [updatedCode],
-            classes: classes,
-            relationships: relationships        },
-    };
-    
+        userCode: [updatedCode],
+        classes: classes,
+        relationships: relationships
+      };
+
       // Add the new code state to the project
       project.codeStates.push(newCodeState);
       await project.save();

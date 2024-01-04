@@ -65,8 +65,10 @@ const Tutorials = () => {
   const onComprehensiveOOPTutContainerClick = useCallback(() => {
     navigate("/GenericTutorial");
   }, [navigate]);
+
   var items =1;
   var margin = 0;
+
   return (
     <div className={styles.Tutorials}>
 
@@ -79,6 +81,7 @@ const Tutorials = () => {
         
     
         <div className={styles.alltutorials}>
+          
   {tutorials && tutorials.map((tutorial, index) => (
       <AbstractContainer
         tutorial={tutorial}
@@ -90,12 +93,6 @@ const Tutorials = () => {
       />
 
   ))}
-
-
-
-
-
-
           <div >
             <TextField
               className={styles.searchBar}

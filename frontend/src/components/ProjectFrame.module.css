@@ -3,11 +3,14 @@
   position: absolute;
   top: 35px;
   left: 81px;
+  width: 900px;
+  cursor:pointer;
 }
 .project1 {
   top: 14px;
   font-size: var(--font-size-sm);
   color: var(--color-white);
+  width: 900px;
 }   
 .projectbox {
   top: 8px;

@@ -20,9 +20,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { projects, dispatch } = useProjectsContext();
 
-  const onFrameButtonClick = useCallback(() => {
+  const onFrameButtonClick = useCallback((ProjectId) => {
     // Please sync "Code Editor- after login" to the project
-    navigate("/CodeEditorAfterLogin");
+    navigate("/CodeEditorAfterLogin", { state: { ProjectId } });
   }, [navigate]);
 
   const onFrameContainer3Click = useCallback(() => {

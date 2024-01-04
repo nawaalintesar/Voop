@@ -13,6 +13,16 @@ export const projectssReducer = (state, action) => {
           ...state,
           project: action.payload
         };
+        case 'DELETE_PROJECT':
+        return {
+          ...state,
+          project: action.payload
+        };
+        case 'CREATE_PROJECT':
+        return {
+          ...state,
+          project: action.payload
+        };
     // Add other cases as needed
     default:
       return state;

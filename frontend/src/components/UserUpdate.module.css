@@ -14,6 +14,9 @@
   align-items: center;
   width: 152px;
   height: 13px;
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #2f225b inset !important;
+  }
 }
 .firstNameGroup,
 .lastName {
@@ -32,6 +35,11 @@
   width: 152px;
   height: 13px;
 }
+.firstNameGroup{
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #2f225b inset !important;
+  }
+}
 .frame1 {
   border: 0;
   background-color: transparent;
@@ -48,6 +56,9 @@
   left: 161px;
   width: 832px;
   height: 52px;
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #2f225b inset !important;
+  }
 }
 .emailAddress {
   top: 7px;
@@ -58,6 +69,7 @@
   width: 194px;
   height: 41px;
   mix-blend-mode: normal;
+  
 }
 .frame2 {
   border: 0;
@@ -73,6 +85,11 @@
   left: 160px;
   width: 833px;
   height: 52px;
+}
+.groupemailAddressGroup{
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #2f225b inset !important;
+  }
 }
 .phoneNumber {
   top: 13px;

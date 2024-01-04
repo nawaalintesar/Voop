@@ -49,10 +49,11 @@ const Projects = () => {
     setSideMenuOpen(false);
   }, []);
 
-  const onFrameButtonClick = useCallback(() => {
+  const onFrameButtonClick = useCallback((ProjectId) => {
     // Please sync "Code Editor- after login" to the project
-    navigate("/CodeEditorAfterLogin");
+    navigate("/CodeEditorAfterLogin", { state: { ProjectId } });
   }, [navigate]);
+
 
   const onFrameContainer3Click = useCallback(() => {
     navigate("/Tutorials");
@@ -85,6 +86,7 @@ const Projects = () => {
   const closeProjectPopUPp = useCallback(() => {
     setProjectPopUPpOpen(false);
   }, []);
+  
   const { projects, dispatch } = useProjectsContext();
   useEffect(() => {
     const fetchProjects = async () => {
@@ -114,17 +116,18 @@ const Projects = () => {
            <div className={styles.recentProjectProject1Parent}>
           
           {projects && projects.slice(0, 3).map((project, index) => (
-            <button style={{ background: 'transparent', border: 'none'}} > <Container onclick={onFrameButtonClick} key={project.id} project={project} /></button>
+            <button style={{ background: 'transparent', border: 'none'}} > <Container onclick={() => onFrameButtonClick(project._id)} key={project._id} project={project} /></button>
           ))}
           
 
-          <div className={styles.addingbox} onClick={openProjectPopUPp}>
+          <div className={styles.addingbox} onClick={openProjectPopUPp }>
             <div className={styles.addingboxChild} />
             <button className={styles.editPlus} id="PlusButton">
               <img className={styles.coolicon} alt="" src="/coolicon@2x.png" />
             </button>
           </div>
           </div>
+          
           {isProjectPopUPpOpen && (
             <PortalPopup
               overlayColor="rgba(113, 113, 113, 0.3)"
@@ -138,12 +141,11 @@ const Projects = () => {
             
             {projects && projects.map((project,img, index) => (
               <ProjectFrame 
-                onclick={onFrameButtonClick}
+                onclick={() => onFrameButtonClick(project._id)}
                 key={project.id}
                 project={project}
                 edited5MinAgo={project.updatedAt}
                 project1={project.prjName}
-                editMinus="/edit--minus@2x.png"
                 j={project.progLang.slice(0, 1).toUpperCase()}
                 showEditMinus={false}
                 projectFrameWidth="1099px"
@@ -151,12 +153,6 @@ const Projects = () => {
                 projectFrameLeft="0px"
                 projectBoxBackground="linear-gradient(139.01deg, #8775df, #7a59b5 93.23%)"
                 projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-                //  editMinusObjectFit={<img
-                //   className={styles.editMinus}
-                //   alt=""
-                //   src="/edit--minus@2x.png"
-                //   onClick={openDeleteProject}
-                // />}
 
               />
            

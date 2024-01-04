@@ -9,11 +9,9 @@ const DashbordCardJavaRP = ({project, index}) => {
 
   const navigate = useNavigate();
   const onFrameButtonClick = useCallback(() => {
-    // Please sync "Code Editor- after login" to the project
-    navigate("/CodeEditorAfterLogin");
-  }, [navigate]);
-
-
+    navigate("/CodeEditorAfterLogin", { state: { ProjectId: project._id } });
+  }, [navigate, project._id]);
+  
   return (
     <div className={styles.javaRecentprojects} style={{ left: `${(index % 3) * 350}px` }}>
       <div className={styles.javaRecentprojectsChild} onClick={onFrameButtonClick} />

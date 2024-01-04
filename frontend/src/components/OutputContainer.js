@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import IconfileMd from "./IconfileMd";
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/terminal';
 import styles from "./OutputContainer.module.css";
 
-const OutputContainer = () => {
- 
+const OutputContainer = ({project}) => {
+
+  console.log("Projects",project?.codeStates);
+  const userCode = project?.project?.codeStates?.[43]?.userCode[0] || "No user code available";
+
+console.log('User Code:', userCode);
 
   return (
     <div className={styles.main}>
@@ -52,6 +56,8 @@ const OutputContainer = () => {
         
       </div>
       <div className={styles.code}>
+        
+        
       <AceEditor
             padding=""
             right="400px"
@@ -63,7 +69,11 @@ const OutputContainer = () => {
             name="editor"
             fontSize={14}
             editorProps={{ $blockScrolling: true }}
-            value={`function onLoad(editor) {console.log("I've loaded!");}`}
+            value={
+              project?.project?.codeStates?.[project.project.codeStates.length - 1]?.userCode[0]
+            }
+            
+            
           />
       </div>
       <div className={styles.frameParent}>

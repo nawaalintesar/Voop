@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "antd/dist/antd.min.css";
 import { Select } from "antd";
 import AceEditor from 'react-ace';
@@ -6,9 +6,9 @@ import 'brace/mode/javascript';
 import 'brace/theme/tomorrow';
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
-
+import { useLocation } from "react-router-dom";
+import { useProjectsContext } from "../hooks/useProjectsContext";
 import { useNavigate } from "react-router-dom";
-// other imports...
 import LogOutPopOutL from "../components/LogOutPopOutL";
 import PortalPopup from "../components/PortalPopup";
 import Footer from "../components/Footer";
@@ -55,6 +55,28 @@ const CodeEditorBeforeLogin = () => {
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
   
+  const { project, dispatch } = useProjectsContext();
+  const { state } = useLocation();
+  const projectId = state ? state.ProjectId : null;
+
+  useEffect(() => {
+    const fetchProjects= async () => {
+      try {
+        const response = await fetch(`/api/projects/${projectId}`);
+        const json = await response.json();
+
+        if (response.ok) {
+          dispatch({ type: 'GET_PROJECT', payload: json });
+        }
+      } catch (error) {
+        console.error('Error fetching tutorial:', error);
+      }
+    };
+
+     fetchProjects();
+  }, [dispatch, projectId]);
+
+ 
   return (
     <div className={styles.codeEditorBeforeLogin}>
       
@@ -68,10 +90,15 @@ const CodeEditorBeforeLogin = () => {
           alt=""
           src="/line-7@2x.png"
         />
+      
 
         <div className={styles.mainWrapper}>
-
-          <OutputContainer />
+        {project && (
+          <OutputContainer
+          key={projectId}
+          project={project} />
+          )}
+  
         </div>
         <Select
           className={styles.javaParent}

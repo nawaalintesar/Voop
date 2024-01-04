@@ -1,5 +1,3 @@
-import { useState, useCallback } from "react";
-
 import styles from "../pages/Projects.module.css";
 
 const Container = ({ project,

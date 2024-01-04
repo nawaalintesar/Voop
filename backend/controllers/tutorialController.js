@@ -109,7 +109,7 @@ const populateDatabase = async (req, res) => {
               for (let i = lines.indexOf(line) + 1; i < lines.length; i++) {
                 // Check for the line that starts with //Steps
                 if (lines[i].startsWith('//Steps')) {
-                  console.log(lines[i])
+                  // console.log(lines[i])
                   isStepsSection = true;
                   continue;
 
@@ -123,7 +123,7 @@ const populateDatabase = async (req, res) => {
                   }
 
                   tutorialSteps.push(lines[i].trim());
-                  console.log(tutorialSteps);
+                  // console.log(tutorialSteps);
                   noTutSteps = tutorialSteps.length;
                 }
               }
@@ -190,7 +190,7 @@ const getTutorial = async (req, res) => {
   }
 
   const tutorial = await Tutorial.findById(id)
-console.log(tutorial)
+// console.log(tutorial)
   if (!tutorial) {
     return res.status(404).json({ error: 'No such tutorial' })
   }
@@ -257,7 +257,7 @@ const getEnrolledTutorials = async (req, res) => {
       enrolledTutorials.sort((a, b) => b.updatedAt - a.updatedAt);
     }
 
-    console.log(enrolledTutorials);
+    // console.log(enrolledTutorials);
     res.status(200).json({ enrolledTutorials });
   } catch (error) {
     console.error('Error fetching enrolled tutorials:', error.message);
@@ -290,7 +290,7 @@ const playTutorial = async (req, res) => {
 
     tutorial.tutSteps.forEach((step, index) => {
       // after the front end is connected it has to be on click do each step
-      console.log(`Step ${index + 1}: ${step}`);
+      // console.log(`Step ${index + 1}: ${step}`);
       const progress = calculateProgress(tutorial);
     });
 
