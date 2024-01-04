@@ -22,13 +22,21 @@
 .projectbox {
   position: absolute;
 }
-.editMinus {
+/* .editMinus {
   top: 25px;
   left: 1074px;
   width: 24px;
   height: 24px;
   overflow: hidden;
   object-fit: cover;
+} */
+.editMinus {
+  top: 26px;
+  left: 1074px;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  cursor: pointer;
 }
 .j {
   top: 17px;
