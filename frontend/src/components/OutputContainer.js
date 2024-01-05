@@ -1,16 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import IconfileMd from "./IconfileMd";
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/terminal';
 import styles from "./OutputContainer.module.css";
 
-const OutputContainer = ({project}) => {
+const OutputContainer = ({ project, tutorial, levelClicked}) => {
+  var userCode;
+  console.log("LEVEL in OP", levelClicked)
+  console.log("tutorial in OP", tutorial._id)
+  console.log("TUTORIAL", tutorial);
+  if (project) {
+    console.log("Projects", project?.project?.codeStates);
+    userCode =
+      project?.project?.codeStates?.[project.project.codeStates.length - 1]?.userCode[0] || "No user code available";
+    console.log('User Code:', userCode);
 
-  console.log("Projects",project?.codeStates);
-  const userCode = project?.project?.codeStates?.[43]?.userCode[0] || "No user code available";
-
-console.log('User Code:', userCode);
+    // Rest of your code for the project case...
+  } else if (tutorial) {
+    console.log("Tutorial IN OP", tutorial._id);
+    const levelClickedNumber = parseInt(levelClicked, 10);
+    // Filter levels based on the clicked level number
+    const filteredLevels = tutorial.level.filter(level => level.levelNumber === levelClickedNumber);
+    
+    // Take the first level from the filtered array change this to get different languages. rn its hard coded to java always
+    const clickedLevel = filteredLevels.length > 0 ? filteredLevels[0] : null;
+    
+    // If a matching level is found, get and display the code
+    userCode = clickedLevel
+      ? clickedLevel.code.join('\n')
+      : "No user code available";
+    
+    console.log('User Code (Tutorial):', userCode);
+    
+  }
 
   return (
     <div className={styles.main}>
@@ -53,28 +76,26 @@ console.log('User Code:', userCode);
           />
           <div className={styles.mainjs}>README.md</div>
         </div>
-        
+
       </div>
       <div className={styles.code}>
-        
-        
-      <AceEditor
-            padding=""
-            right="400px"
-            left="500px"
-            height="610px"
-            width="548px"
-            mode="javascript"
-            theme="terminal"
-            name="editor"
-            fontSize={14}
-            editorProps={{ $blockScrolling: true }}
-            value={
-              project?.project?.codeStates?.[project.project.codeStates.length - 1]?.userCode[0]
-            }
-            
-            
-          />
+
+
+        <AceEditor
+          padding=""
+          right="400px"
+          left="500px"
+          height="610px"
+          width="548px"
+          mode="javascript"
+          theme="terminal"
+          name="editor"
+          fontSize={14}
+          editorProps={{ $blockScrolling: true }}
+          value={userCode}
+
+
+        />
       </div>
       <div className={styles.frameParent}>
         <div className={styles.frameG65pxroup}>

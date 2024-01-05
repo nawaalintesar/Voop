@@ -18,7 +18,7 @@ const Tutorials = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const fetchTutorials = async () => {
       const response = await fetch('/api/tutorials')
@@ -66,7 +66,7 @@ const Tutorials = () => {
     navigate("/GenericTutorial");
   }, [navigate]);
 
-  var items =1;
+  var items = 1;
   var margin = 0;
 
   return (
@@ -76,23 +76,20 @@ const Tutorials = () => {
       <div className={styles.items}>
 
         <b className={styles.continueTheJourney}>Continue The Journey</b>
-        <b className={styles.allTutorials}>All Tutorials</b>
         <FilteredFormCard />
-        
-    
+
+        <b className={styles.allTutorials}>All Tutorials</b>
         <div className={styles.alltutorials}>
-          
-  {tutorials && tutorials.map((tutorial, index) => (
-      <AbstractContainer
-        tutorial={tutorial}
-        conceptDescription={tutorial.tutName}
-        onTutContainerClick={() => onTutContainerClick(tutorial._id)}
-        propLeft={`${index * 250}px`}
-        propLineHeight={`${index * 250}px`}
+          {tutorials && tutorials.map((tutorial, index) => (
+            <AbstractContainer
+              tutorial={tutorial}
+              conceptDescription={tutorial.tutName}
+              onTutContainerClick={() => onTutContainerClick(tutorial._id)}
+              propLeft={`${index * 250}px`}
+              propLineHeight={`${index * 250}px`}
+            />
 
-      />
-
-  ))}
+          ))}
           <div >
             <TextField
               className={styles.searchBar}
@@ -105,7 +102,6 @@ const Tutorials = () => {
               type="search"
             />
           </div>
-
         </div>
 
       </div>

@@ -3,13 +3,17 @@ import styles from "./LessonContinuation.module.css";
 import { useState, useCallback, useEffect, dispatch } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LessonContinuation = ({ onClose }) => {
-  
+const LessonContinuation = ({ tutorial, tutorialId, onClose }) => {
+
   const navigate = useNavigate();
-  const onFrameButtonClick = useCallback(() => {
-    // Please sync "Code Editor- after login" to the project
-    navigate("/CodeEditorAfterLogin");
-  }, [navigate]);
+
+
+  const onFrameButtonClick = useCallback((levelClicked) => {
+    navigate("/CodeEditorAfterLogin", { state: { tutorialId, levelClicked } });
+  }, [navigate, tutorialId]);
+  
+
+  console.log("ID IN POPUP", tutorialId);
 
   return (
     <div className={styles.lessonContinuation}>
@@ -22,16 +26,16 @@ const LessonContinuation = ({ onClose }) => {
           </p>
         </div>
         <div className={styles.frameForLevels}>
-          <button className={styles.rectangleParent} onClick={onFrameButtonClick}>
+          <button className={styles.rectangleParent} onClick={() => onFrameButtonClick('1')}>
             <button className={styles.frameChild} />
-            <div className={styles.level1}>{`Level 1 `}</div>
+            <div className={styles.level1}>Level 1</div>
           </button>
-          <div className={styles.rectangleGroup} onClick={onFrameButtonClick}>
-            <button className={styles.frameItem} />
+          <div className={styles.rectangleGroup} onClick={() => onFrameButtonClick('2')}>
+            <button className={styles.frameChild} />
             <div className={styles.level2}>Level 2</div>
           </div>
-          <div className={styles.rectangleContainer} onClick={onFrameButtonClick}>
-            <button className={styles.frameInner} />
+          <div className={styles.rectangleContainer} onClick={() => onFrameButtonClick('3')}>
+            <button className={styles.frameChild} />
             <div className={styles.level3}>Level 3</div>
           </div>
         </div>

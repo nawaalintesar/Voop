@@ -8,6 +8,8 @@ import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
 import { useLocation } from "react-router-dom";
 import { useProjectsContext } from "../hooks/useProjectsContext";
+
+import { useTutorialsContext } from "../hooks/useTutorialsContext";
 import { useNavigate } from "react-router-dom";
 import LogOutPopOutL from "../components/LogOutPopOutL";
 import PortalPopup from "../components/PortalPopup";
@@ -22,8 +24,8 @@ const CodeEditorBeforeLogin = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
-    const navigate = useNavigate();
-    
+  const navigate = useNavigate();
+
   const onFrameButtonClick = useCallback(() => {
     //code dditor button
     navigate("/CodeEditorBeforeLogin");
@@ -47,42 +49,82 @@ const CodeEditorBeforeLogin = () => {
     navigate("/dashboard");
   }, [navigate]);
 
-
-
   const onFrameButtonClickSignIn = useCallback(() => {
     //code dditor button
     navigate("/signIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
-  
-  const { project, dispatch } = useProjectsContext();
-  const { state } = useLocation();
+
+  const { project, dispatch: projectDispatch } = useProjectsContext();
+  const { tutorial, dispatch: tutorialDispatch } = useTutorialsContext();
+
+  const { state } = useLocation()
+
   const projectId = state ? state.ProjectId : null;
+  const tutorialId = state ? state.tutorialId : null;
+  const levelClicked = state ? state.levelClicked : null;
+
+  console.log("Project ID:", projectId);
+  console.log("Tutorial ID:", tutorialId);
+  console.log("Level Clicked:", levelClicked);
 
   useEffect(() => {
-    const fetchProjects= async () => {
+    const fetchNew = async () => {
       try {
         const response = await fetch(`/api/projects/${projectId}`);
         const json = await response.json();
 
         if (response.ok) {
-          dispatch({ type: 'GET_PROJECT', payload: json });
+          projectDispatch({ type: 'GET_PROJECT', payload: json });
         }
       } catch (error) {
-        console.error('Error fetching tutorial:', error);
+        console.error('Error fetching project:', error);
+      }
+    };
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch(`/api/projects/${projectId}`);
+        const json = await response.json();
+
+        if (response.ok) {
+          projectDispatch({ type: 'GET_PROJECT', payload: json });
+        }
+      } catch (error) {
+        console.error('Error fetching project:', error);
       }
     };
 
-     fetchProjects();
-  }, [dispatch, projectId]);
+    const fetchTutorials = async () => {
+      if (tutorialId) {
+        try {
+          const response = await fetch(`/api/tutorials/${tutorialId}`);
+          const json = await response.json();
 
- 
+          if (response.ok) {
+            tutorialDispatch({ type: 'GET_TUTORIAL', payload: json });
+          }
+        } catch (error) {
+          console.error('Error fetching tutorial:', error);
+        }
+      }
+    };
+
+    // Fetch projects only if projectId is present
+    if (projectId) {
+      fetchProjects();
+    }
+
+    // Fetch tutorials only if tutorialId is present
+    else if (tutorialId) {
+      fetchTutorials();
+    }
+    else {
+      fetchNew();
+    }
+  }, [projectDispatch, tutorialDispatch, projectId, tutorialId]);
+
   return (
     <div className={styles.codeEditorBeforeLogin}>
-      
-
-     
-
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />
         <img
@@ -90,15 +132,11 @@ const CodeEditorBeforeLogin = () => {
           alt=""
           src="/line-7@2x.png"
         />
-      
 
         <div className={styles.mainWrapper}>
-        {project && (
-          <OutputContainer
-          key={projectId}
-          project={project} />
-          )}
-  
+          {project && <OutputContainer key={projectId} project={project} />}
+          {tutorial && <OutputContainer key={tutorialId} tutorial={tutorial} levelClicked={levelClicked} />}
+
         </div>
         <Select
           className={styles.javaParent}

@@ -82,7 +82,7 @@ const TutorialForm = ({tutorial}) => {
           placement="Centered"
           onOutsideClick={closeEnrollPopUp}
         >
-          <EnrollPopUp onClose={closeEnrollPopUp} />
+          <EnrollPopUp onClose={closeEnrollPopUp} tutorialId={tutorial._id} />
         </PortalPopup>
       )}
     </>

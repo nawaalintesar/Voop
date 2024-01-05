@@ -17,34 +17,6 @@ const ProjectPopUPp = ({ onClose }) => {
     navigate("/CodeEditorAfterLogin");
   }, [navigate]);
 
-  const onSaveButtonClick = () => {
-    if (!rectangleInputValue) {
-      setInputError(true);
-    } else {
-      setInputError(false);
-    }
-
-    if (!selectedLanguage) {
-      setSelectError(true);
-    } else {
-      setSelectError(false);
-    }
-  
-    if (!rectangleInputValue || !selectedLanguage) {
-      alert("Both fields are required!");
-      return;
-    }
-
-    const projectDetails = {
-      name: rectangleInputValue,
-      language: selectedLanguage,
-      // Add more fields as needed
-    };
-    console.log("NAme:",rectangleInputValue);
-    console.log("Saving Project Details:", projectDetails);
-    navigate("/CodeEditorAfterLogin");
-  };
-
   const handleCreate = async () => {
     if (!rectangleInputValue) {
       setInputError(true);
