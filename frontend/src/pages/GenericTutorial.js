@@ -12,7 +12,7 @@ import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
 import styles from "./GenericTutorial.module.css";
 const GenericTutorial = () => {
-  const { tutorial, dispatch } = useTutorialsContext();
+  
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
@@ -33,13 +33,14 @@ const GenericTutorial = () => {
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
     navigate("/dashboard");
   }, [navigate]);
-
+  
+  const { tutorial, dispatch } = useTutorialsContext();
   const { state } = useLocation();
   const tutorialId = state ? state.TutorialId : null;
 

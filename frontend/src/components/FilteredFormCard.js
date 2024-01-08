@@ -65,7 +65,7 @@ const FilteredFormCard = () => {
           placement="Centered"
           onOutsideClick={closeLessonContinuationPopup}
         >
-          <LessonContinuation onClose={closeLessonContinuationPopup} />
+          <LessonContinuation  onClose={closeLessonContinuationPopup} />
         </PortalPopup>
       )}
     </>

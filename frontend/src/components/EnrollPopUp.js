@@ -3,11 +3,12 @@ import { Select } from "antd";
 import styles from "./EnrollPopUp.module.css";
 
 
+import { useState, useCallback, useEffect, dispatch } from "react";
 import PortalPopup from "./PortalPopup";
-import { useState, useCallback } from "react";
 import ConfirmEnrollment from "./ConfirmEnrollment";
+import { enrollTutorialAction } from '../context/TutorialsContext'
 
-const EnrollPopUp = ({ onClose }) => {
+const EnrollPopUp = ({ onClose, tutorialId}) => {
 
   const [isConfirmEnrollmentPopupOpen, setConfirmEnrollmentPopupOpen] =
     useState(false);
@@ -20,7 +21,11 @@ const EnrollPopUp = ({ onClose }) => {
     setConfirmEnrollmentPopupOpen(false);
   }, []);
 
-  
+  const onEnrollButtonClick = useCallback(async () => {
+    await enrollTutorialAction(dispatch, tutorialId);
+    // You can add additional logic or close the popup after enrollment
+    onClose();
+  }, [dispatch, onClose, tutorialId]);
 
   return (
     <div className={styles.enrollPopUp}>
@@ -52,7 +57,7 @@ const EnrollPopUp = ({ onClose }) => {
         />
       </div>
       <div className={styles.buttondone}>
-        <div className={styles.button} onClick={openConfirmEnrollmentPopup}>
+        <div className={styles.button} onClick={() => {closeConfirmEnrollmentPopup(); onClose();}}>
           <button className={styles.button} > <div className={styles.save}>Enroll</div> </button> 
         </div>
       </div>

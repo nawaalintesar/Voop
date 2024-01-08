@@ -18,7 +18,7 @@ const Tutorials = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const fetchTutorials = async () => {
       const response = await fetch('/api/tutorials')
@@ -50,7 +50,7 @@ const Tutorials = () => {
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
@@ -66,6 +66,9 @@ const Tutorials = () => {
     navigate("/GenericTutorial");
   }, [navigate]);
 
+  var items = 1;
+  var margin = 0;
+
   return (
     <div className={styles.Tutorials}>
 
@@ -73,20 +76,20 @@ const Tutorials = () => {
       <div className={styles.items}>
 
         <b className={styles.continueTheJourney}>Continue The Journey</b>
-        <b className={styles.allTutorials}>All Tutorials</b>
         <FilteredFormCard />
 
+        <b className={styles.allTutorials}>All Tutorials</b>
         <div className={styles.alltutorials}>
           {tutorials && tutorials.map((tutorial, index) => (
-              <AbstractContainer
-                key={tutorial.id}
-                tutorial={tutorial}
-                conceptDescription={tutorial.tutName}
-                onTutContainerClick={() => onTutContainerClick(tutorial._id)}
-                propLeft={`${(index % 4) * 250}px`}  /* Adjust the 4 based on the desired items per row */
-              />
-          ))}
+            <AbstractContainer
+              tutorial={tutorial}
+              conceptDescription={tutorial.tutName}
+              onTutContainerClick={() => onTutContainerClick(tutorial._id)}
+              propLeft={`${index * 250}px`}
+              propLineHeight={`${index * 250}px`}
+            />
 
+          ))}
           <div >
             <TextField
               className={styles.searchBar}
@@ -99,7 +102,6 @@ const Tutorials = () => {
               type="search"
             />
           </div>
-
         </div>
 
       </div>

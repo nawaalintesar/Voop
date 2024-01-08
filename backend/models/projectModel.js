@@ -19,79 +19,78 @@ const ProjectSchema = new Schema(
                     type: Number,
                     required: true,
                 },
-                codeDictionary: {
-                    userCode: {
-                        // The actual code provided by the user
-                        type: [String]
-                    },
-                    classes: [
-                        {
-                            isClass: {//for interface
-                                type: Boolean,
-                                required: true
-                            },
-                            name: {
-                                type: String,
-                                required: true,
-                            },
-                            attributes: [
-                                {
-                                    name: {
-                                        type: String,
-                                    },
-                                    access_modifier: {
-                                        type: String,
-                                    },
-                                },
-                            ],
-                            methods: [
-                                {
-                                    name: {
-                                        type: String,
-                                    },
-                                    access_modifier: {
-                                        type: String,
-                                    },
-                                    parameters: [
-                                        {
-                                            name: {
-                                                type: String,
-                                            },
-                                            type: {
-                                                type: String,
-                                            },
-                                        },
-                                    ],
-                                },
-                            ],
-                            linesOfCode: String
+                userCode: {
+                    // The actual code provided by the user
+                    type: [String]
+                },
+                classes: [
+                    {
+                        isClass: {//for interface
+                            type: Boolean,
+                            required: true
                         },
-                    ],
-                    relationships:
-                        [{
+                        name: {
+                            type: String,
+                            required: true,
+                        },
+                        attributes: [
+                            {
+                                name: {
+                                    type: String,
+                                },
+                                access_modifier: {
+                                    type: String,
+                                },
+                            },
+                        ],
+                        methods: [
+                            {
+                                name: {
+                                    type: String,
+                                },
+                                access_modifier: {
+                                    type: String,
+                                },
+                                parameters: [
+                                    {
+                                        name: {
+                                            type: String,
+                                        },
+                                        type: {
+                                            type: String,
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                        linesOfCode: String
+                    },
+                ],
+                relationships:
+                    [{
+                        type: {
+                            type: String,
+                            enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class', 'implements'],
+                            required: true,
+                        },
+                        source: {
                             type: {
                                 type: String,
-                                enum: ['inheritance', 'abstraction', 'encapsulation', 'polymorphism', 'method overriding', 'method overloading', 'abstract class', 'implements'],
-                                required: true,
+                                enum: ['interface', 'class', 'instance', 'function'],
                             },
-                            source: {
-                                type: {
-                                    type: String,
-                                    enum: ['interface', 'class', 'instance', 'function'],
-                                },
-                                name: String,
+                            name: String,
+                        },
+                        target: {
+                            type: {
+                                type: String,
+                                enum: ['interface', 'class', 'instance', 'function'],
                             },
-                            target: {
-                                type: {
-                                    type: String,
-                                    enum: ['interface', 'class', 'instance', 'function'],
-                                },
-                                name: String,
-                            },
-                            linesOfCode: String,
+                            name: String,
+                        },
+                        linesOfCode: String,
 
-                        }],
-                },
+                    }],
+
                 diagramID: {
                     type: Schema.Types.ObjectId,
                     ref: 'Diagram',

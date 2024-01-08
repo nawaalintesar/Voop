@@ -1,14 +1,16 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "antd/dist/antd.min.css";
 import { Select } from "antd";
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow';
-
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
+import { useLocation } from "react-router-dom";
+import { useProjectsContext } from "../hooks/useProjectsContext";
+
+import { useTutorialsContext } from "../hooks/useTutorialsContext";
 import { useNavigate } from "react-router-dom";
-// other imports...
 import LogOutPopOutL from "../components/LogOutPopOutL";
 import PortalPopup from "../components/PortalPopup";
 import Footer from "../components/Footer";
@@ -16,7 +18,7 @@ import Property1Default2 from "../components/Property1Default2";
 import FileNavigationContainer from "../components/FileNavigationContainer";
 import OutputContainer from "../components/OutputContainer";
 import AnimationContainer from "../components/AnimationContainer";
-import styles from "./CodeEditorBeforeLogin.module.css";
+import styles from "./CodeEditorAfterLogin.module.css";
 
 const CodeEditorBeforeLogin = () => {
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
@@ -26,7 +28,7 @@ const CodeEditorBeforeLogin = () => {
 
   const onFrameButtonClick = useCallback(() => {
     //code dditor button
-    navigate("/CodeEditorAfterLogin");
+    navigate("/CodeEditorBeforeLogin");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
 
@@ -40,7 +42,7 @@ const CodeEditorBeforeLogin = () => {
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
@@ -53,10 +55,76 @@ const CodeEditorBeforeLogin = () => {
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
 
+  const { project, dispatch: projectDispatch } = useProjectsContext();
+  const { tutorial, dispatch: tutorialDispatch } = useTutorialsContext();
+
+  const { state } = useLocation()
+
+  const projectId = state ? state.ProjectId : null;
+  const tutorialId = state ? state.tutorialId : null;
+  const levelClicked = state ? state.levelClicked : null;
+
+  console.log("Project ID:", projectId);
+  console.log("Tutorial ID:", tutorialId);
+  console.log("Level Clicked:", levelClicked);
+
+  useEffect(() => {
+    const fetchNew = async () => {
+      try {
+        const response = await fetch(`/api/projects/${projectId}`);
+        const json = await response.json();
+
+        if (response.ok) {
+          projectDispatch({ type: 'GET_PROJECT', payload: json });
+        }
+      } catch (error) {
+        console.error('Error fetching project:', error);
+      }
+    };
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch(`/api/projects/${projectId}`);
+        const json = await response.json();
+
+        if (response.ok) {
+          projectDispatch({ type: 'GET_PROJECT', payload: json });
+        }
+      } catch (error) {
+        console.error('Error fetching project:', error);
+      }
+    };
+
+    const fetchTutorials = async () => {
+      if (tutorialId) {
+        try {
+          const response = await fetch(`/api/tutorials/${tutorialId}`);
+          const json = await response.json();
+
+          if (response.ok) {
+            tutorialDispatch({ type: 'GET_TUTORIAL', payload: json });
+          }
+        } catch (error) {
+          console.error('Error fetching tutorial:', error);
+        }
+      }
+    };
+
+    // Fetch projects only if projectId is present
+    if (projectId) {
+      fetchProjects();
+    }
+
+    // Fetch tutorials only if tutorialId is present
+    else if (tutorialId) {
+      fetchTutorials();
+    }
+    else {
+      fetchNew();
+    }
+  }, [projectDispatch, tutorialDispatch, projectId, tutorialId]);
+
   return (
     <div className={styles.codeEditorBeforeLogin}>
-
-
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />
         <img
@@ -66,8 +134,9 @@ const CodeEditorBeforeLogin = () => {
         />
 
         <div className={styles.mainWrapper}>
+          {project && <OutputContainer key={projectId} project={project} />}
+          {tutorial && <OutputContainer key={tutorialId} tutorial={tutorial} levelClicked={levelClicked} />}
 
-          <OutputContainer />
         </div>
         <Select
           className={styles.javaParent}

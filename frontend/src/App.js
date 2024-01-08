@@ -21,7 +21,7 @@ import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import { TutorialsContextProvider } from './context/TutorialsContext';
 import { ProjectsContextProvider } from "./context/ProjectsContext";
-
+import { ProfilesContextProvider } from "./context/ProfilesContext";
 function App() {
   const action = useNavigationType();
   const location = useLocation();

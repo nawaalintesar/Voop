@@ -1,19 +1,5 @@
+
 // import { useState, useCallback } from "react";
-// import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
-// import LogOutPopOutL from "../components/LogOutPopOutL";
-// import PortalPopup from "../components/PortalPopup";
-// import ProfileUpdateConfirmationL from "../components/ProfileUpdateConfirmationL";
-// import ProfileDeleteL from "../components/ProfileDeleteL";
-// import SideMenu from "../components/SideMenu";
-// import PortalDrawer from "../components/PortalDrawer";
-// import { useNavigate } from "react-router-dom";
-// import styles from "./Profile.module.css";
-
-// import Footer from "../components/Footer";
-// import Property1Default from "../components/Property1Default";
-// import Property1Closed from "../components/Property1Closed";
-
-import { useState, useCallback } from "react";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 // import LogOutPopOutL from "../components/LogOutPopOutL";
 import PortalPopup from "../components/PortalPopup";
@@ -24,6 +10,11 @@ import ProfileDeleteL from "../components/ProfileDeleteL";
 import { useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
 import UserUpdate from "../components/UserUpdate";
+
+
+import { useEffect, dispatch, useState, useCallback } from "react";
+//import { useProfilesContext } from "../hooks/useProfilesContext.js";
+import { useProfilesContext } from "../hooks/useProfilesContext.js"
 
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
@@ -82,7 +73,7 @@ const Profile = () => {
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
@@ -105,23 +96,40 @@ const Profile = () => {
     setProfileDeleteLPopupOpen(false);
   }, []);
 
+  const { user, dispatch } = useProfilesContext();
+
+    useEffect(() => {
+      const fetchProfile = async () => {
+        const response = await fetch('/api/profile/')
+        const json = await response.json()
+
+        if (response.ok) {
+          dispatch({ type: 'GET_PROFILE', payload: json })
+        }
+      }
+      fetchProfile()
+    }, [dispatch]);
+
   return (
     <>
       <div className={styles.Profile}>
+
+        {user && (
+          <UserUpdate
+            key={user._id}
+            profile={user}
+          />
+        )}
+
+
+        <div className={styles.personalInfoHeading}>
+          <div className={styles.personalinfoRectangle} />
+          <img className={styles.cloudsIcon} alt="" src="/clouds@2x.png" />
+          <div className={styles.personalInformation}>Personal Information</div>
+        </div>
+
         
 
-        <UserUpdate />
-        <div className={styles.personalInfoHeading}>
-          <div className={styles.personalinfoRectangle} />
-          <img className={styles.cloudsIcon} alt="" src="/clouds@2x.png" />
-          <div className={styles.personalInformation}>Personal Information</div>
-        </div>
-
-        <div className={styles.personalInfoHeading}>
-          <div className={styles.personalinfoRectangle} />
-          <img className={styles.cloudsIcon} alt="" src="/clouds@2x.png" />
-          <div className={styles.personalInformation}>Personal Information</div>
-        </div>
         <Footer />
 
         <Property1Default

@@ -1,7 +1,7 @@
 const express = require('express')
-// make sure they are limitted to one project unless they are logged in
 const {
-    //fill functions here
+    updateAccountInfo,
+    getAccountInfo
 } = require('../controllers/profileController')
 
 const requireAuth = require('../middleware/requireAuth')
@@ -11,20 +11,17 @@ const router = express.Router()
 // require auth for all workout routes
 router.use(requireAuth)
 
-// GET all projects
-router.get('/dashboard', viewProjects)
+// UPDATE profile
+router.patch('/update', updateAccountInfo)
 
 // GET a single project
-router.get('/userprofile', getProject)
+router.get('/', getAccountInfo)
 
-// POST a new project
-router.post('/userprofile', createProject)
+// // POST a new project
+// router.post('/userprofile', createProject)
 
-// DELETE a project
-router.delete('/userprofile', deleteProject)
-
-// UPDATE a project
-router.patch('/userprofile', updateProject)
+// // DELETE a project
+// router.delete('/userprofile', deleteProject)
 
 module.exports = router
 

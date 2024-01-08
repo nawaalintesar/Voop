@@ -1,10 +1,20 @@
 import styles from "./DashbordCardJavaRP.module.css";
 import { useMemo } from "react";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+
+import { useState, useCallback, useEffect, dispatch } from "react";
+import { useNavigate } from "react-router-dom";
+
 const DashbordCardJavaRP = ({project, index}) => {
+
+  const navigate = useNavigate();
+  const onFrameButtonClick = useCallback(() => {
+    navigate("/CodeEditorAfterLogin", { state: { ProjectId: project._id } });
+  }, [navigate, project._id]);
   
   return (
     <div className={styles.javaRecentprojects} style={{ left: `${(index % 3) * 350}px` }}>
-      <div className={styles.javaRecentprojectsChild} />
+      <div className={styles.javaRecentprojectsChild} onClick={onFrameButtonClick} />
       <img
         className={styles.javaRecentprojectsItem}
         alt=""
@@ -16,7 +26,7 @@ const DashbordCardJavaRP = ({project, index}) => {
         </div>
       </div>
       <div className={styles.animalsLab5}>{project.prjName}</div>
-      <div className={styles.lastUpdated7}>Last Updated {project.updatedAt}</div>
+      <div className={styles.lastUpdated7}>Updated {formatDistanceToNow(new Date(project.createdAt), {addSuffix: true})}</div>
     </div>
   );
 };

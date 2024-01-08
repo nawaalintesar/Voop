@@ -15,6 +15,7 @@ import { useProjectsContext } from "../hooks/useProjectsContext.js";
 import ProjectPopUPp from "../components/ProjectPopUPp";
 import PortalPopup from "../components/PortalPopup";
 import { useAuthContext } from "../hooks/useAuthContext";
+import React from "react";
 const Projects = () => {
   const [isProjectPopUPpOpen, setProjectPopUPpOpen] = useState(false);
 
@@ -49,10 +50,11 @@ const Projects = () => {
     setSideMenuOpen(false);
   }, []);
 
-  const onFrameButtonClick = useCallback(() => {
+  const onFrameButtonClick = useCallback((ProjectId) => {
     // Please sync "Code Editor- after login" to the project
-    navigate("/CodeEditorAfterLogin");
+    navigate("/CodeEditorAfterLogin", { state: { ProjectId } });
   }, [navigate]);
+
 
   const onFrameContainer3Click = useCallback(() => {
     navigate("/Tutorials");
@@ -64,7 +66,7 @@ const Projects = () => {
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {
@@ -88,11 +90,7 @@ const Projects = () => {
 
   const user =useAuthContext();
 
-  //const { user } = useContext(AuthContext);
 
-  // if (!user) {
-  //   return <navigate to="/signin" />;
-  // }
 
   const { projects, dispatch } = useProjectsContext();
   useEffect(() => {
@@ -148,18 +146,22 @@ const Projects = () => {
             alt=""
             src="/rectangle-27@2x.png"
           />
+        
            <div className={styles.recentProjectProject1Parent}>
+          
           {projects && projects.slice(0, 3).map((project, index) => (
-            <Container key={project.id} project={project} />
+            <button style={{ background: 'transparent', border: 'none'}} > <Container onclick={() => onFrameButtonClick(project._id)} key={project._id} project={project} /></button>
           ))}
+          
 
-          <div className={styles.addingbox} onClick={openProjectPopUPp}>
+          <div className={styles.addingbox} onClick={openProjectPopUPp }>
             <div className={styles.addingboxChild} />
             <button className={styles.editPlus} id="PlusButton">
               <img className={styles.coolicon} alt="" src="/coolicon@2x.png" />
             </button>
           </div>
           </div>
+          
           {isProjectPopUPpOpen && (
             <PortalPopup
               overlayColor="rgba(113, 113, 113, 0.3)"
@@ -170,14 +172,14 @@ const Projects = () => {
             </PortalPopup>
           )}
           <div className={styles.projects}>
-            {projects && projects.map((project, index) => (
-
-              <ProjectFrame
+            
+            {projects && projects.map((project,img, index) => (
+              <ProjectFrame 
+                onclick={() => onFrameButtonClick(project._id)}
                 key={project.id}
                 project={project}
                 edited5MinAgo={project.updatedAt}
                 project1={project.prjName}
-                editMinus="/edit--minus1.svg"
                 j={project.progLang.slice(0, 1).toUpperCase()}
                 showEditMinus={false}
                 projectFrameWidth="1099px"
@@ -185,16 +187,10 @@ const Projects = () => {
                 projectFrameLeft="0px"
                 projectBoxBackground="linear-gradient(139.01deg, #8775df, #7a59b5 93.23%)"
                 projectBoxBoxShadow="0px 4px 4px rgba(0, 0, 0, 0.35)"
-                editMinusObjectFit="unset"
 
               />
+           
             ))}
-            <img
-              className={styles.editMinus}
-              alt=""
-              src="/edit--minus@2x.png"
-              onClick={openDeleteProject}
-            />
 
           </div>
           <div className={styles.recentlyViewed}>Recently viewed</div>

@@ -32,7 +32,7 @@ const AbstractContainer = ({
   return (
     <div
       className={styles.interfacetut}
-      onClick={onTutContainerClick} // Ensure onClick is correctly implemented
+      onClick={onTutContainerClick} 
       style={interfaceTutStyle}
     >
       <div className={styles.interfacetutChild} />

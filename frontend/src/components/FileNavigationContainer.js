@@ -24,7 +24,7 @@ const FileNavigationContainer = () => {
             <div className={styles.button} />
             <div className={styles.myoopproject}>MyOOPProject</div>
           </div>
-          <div className={styles.folder}>
+          {/* <div className={styles.folder}>
             <img className={styles.icon1} alt="" src="/icon1@2x.png" />
             <img className={styles.icon1} alt="" src="/icon2@2x.png" />
             <div className={styles.nodeModules}>node_modules</div>
@@ -33,7 +33,7 @@ const FileNavigationContainer = () => {
             <img className={styles.icon1} alt="" src="/icon3@2x.png" />
             <img className={styles.icon1} alt="" src="/icon4@2x.png" />
             <div className={styles.nodeModules}>src</div>
-          </div>
+          </div> */}
           <div className={styles.file}>
             <img className={styles.icon1} alt="" src="/icon5@2x.png" />
             <IconfileMd
@@ -58,8 +58,8 @@ const FileNavigationContainer = () => {
             <img className={styles.icon1} alt="" src="/icon6@2x.png" />
             <IconfileMd
               imageCode="/vector@2x.png"
-              dimensionCode="/vector2@2x.png"
-              technologyCode="MD"
+              dimensionCode="/vector1@2x.png"
+              technologyCode="JS"
               iconfileMdPosition="relative"
               iconfileMdWidth="24px"
               iconfileMdHeight="24px"
@@ -74,6 +74,7 @@ const FileNavigationContainer = () => {
             />
             <div className={styles.nodeModules}>README.md</div>
           </div>
+          
         </div>
         <div className={styles.folder2}>
           <img className={styles.icon1} alt="" src="/icon7@2x.png" />

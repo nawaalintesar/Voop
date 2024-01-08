@@ -20,12 +20,11 @@ const Dashboard = () => {
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
   const { projects, dispatch } = useProjectsContext();
-
   const user=useAuthContext();
 
-  const onFrameButtonClick = useCallback(() => {
+  const onFrameButtonClick = useCallback((ProjectId) => {
     // Please sync "Code Editor- after login" to the project
-    navigate("/CodeEditorAfterLogin");
+    navigate("/CodeEditorAfterLogin", { state: { ProjectId } });
   }, [navigate]);
 
   const onFrameContainer3Click = useCallback(() => {
@@ -40,7 +39,7 @@ const Dashboard = () => {
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
-    navigate("/user-profile-pagel");
+    navigate("/Profile");
   }, [navigate]);
 
   const onDashoboardSMContainerClick = useCallback(() => {

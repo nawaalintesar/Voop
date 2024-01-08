@@ -27,6 +27,7 @@
 .allTutorials {
   top: 405px;
   left: 90px;
+
 }
 .methodoverloadingoverriddingtChild {
   position: absolute;
@@ -152,11 +153,12 @@
   gap: 96px; */
   position: absolute;
   top: 476px;
-  left: 87px;
-  width: 85%;
+  /* left: 87px; */
   height: 370px;
-  display: flex;
-  flex-direction: column;
+  flex: wrap;
+
+  display:flex;
+  justify-content: center;
   /* flex-wrap: wrap; */
   align-content: space-evenly;
   max-width: 100%;
@@ -168,6 +170,10 @@
   /*Max-height and overflow r the css for the scroll bar*/
   /* max-height: 500px;
   overflow-y: hidden; */
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack cards vertically on smaller screens */
+    align-items: center; /* Center cards on smaller screens */
+  }
 }
 
 

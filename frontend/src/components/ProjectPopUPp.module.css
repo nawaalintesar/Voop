@@ -21,6 +21,13 @@
   font-size: var(--font-size-xl);
   font-weight: 600;
 }
+.inputError {
+  border: 1px solid red; /* For example, a red border for the input */
+}
+
+.selectError {
+  border: 1px solid red; /* For example, a red border for the select */
+}
 .name {
   position: relative;
   font-weight: 500;
