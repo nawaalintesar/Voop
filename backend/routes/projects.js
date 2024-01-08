@@ -8,7 +8,18 @@ const {
     updateProject
 } = require('../controllers/projectController')
 
+const requireAuth = require('../middleware/requireAuth')
+
+// app.use((req) => {
+//     console.log('Request URL:', req.url);
+//   });
+
 const router = express.Router()
+
+// require auth for all workout routes
+router.use(requireAuth)
+
+
 // GET all projects
 router.get('/', viewProjects)
 
@@ -23,5 +34,7 @@ router.delete('/:id', deleteProject)
 
 // UPDATE a project
 router.patch('/:id', updateProject)
+
+
 
 module.exports = router

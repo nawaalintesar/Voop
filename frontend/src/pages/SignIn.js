@@ -1,14 +1,16 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react"
+import { useSignup } from "../hooks/useSignup"
 import SignUpCardForm from "../components/SignUpCardForm";
 import HeaderLight from "../components/HeaderLight";
 import Footer from "../components/Footer";
 import styles from "./SignIn.module.css";
-
 import Property1Default2 from "../components/Property1Default2";
+
 const SignIn = () => {
   const navigate = useNavigate();
- 
+
   //Signin
   const onButtonClick = useCallback(() => {
     navigate("/signIn");
@@ -31,6 +33,8 @@ const SignIn = () => {
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
 
+  
+  
   return (
     <div className={styles.signIn}>
       <div className={styles.logIn}>
@@ -53,9 +57,9 @@ const SignIn = () => {
           </p>
         </div>
         <img className={styles.subtractIcon} alt="" src="/subtract@2x.png" />
-        <div className={styles.button} onClick={onButtonContainerClick}>
+        {/* <div className={styles.button} onClick={onButtonContainerClick}>
           <div className={styles.text}>Register</div>
-        </div>
+        </div> */}
         <SignUpCardForm />
         <Property1Default2
         buttonText="codeEditorButtonHeader"
@@ -75,23 +79,6 @@ const SignIn = () => {
         onFrameButtonClickSignIn={ onFrameButtonClickSignIn}
       />
 
-        {/* <HeaderLight
-          headerLightHeight="66px"
-          headerLightMaxHeight="unset"
-          headerLightPosition="absolute"
-          headerLightTop="0px"
-          headerLightLeft="0%"
-          headerLightMaxWidth="100%"
-          headerLightJustifyContent="unset"
-          frameDivAlignContent="normal"
-          frameDivMaxWidth="unset"
-          buttonCursor="unset"
-          headerLightRight="0%"
-          frameDivWidth="unset"
-          frameDivLeft="calc(50% - 703px)"
-          frameDivAlignItems="center"
-          onButtonClick={onButtonClick}
-        /> */}
         <Footer
           footerBackground="linear-gradient(180deg, rgba(9, 4, 36, 0.3) 92.71%, #281389)"
           footerHeight="106px"

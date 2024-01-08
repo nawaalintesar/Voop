@@ -11,6 +11,7 @@ import styles from "./Dashboard.module.css";
 import DashbordCardJavaRP from "../components/DashbordCardJavaRP";
 
 import FilteredFormCard from "../components/FilteredFormCard";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 import { useProjectsContext } from "../hooks/useProjectsContext.js";
 const Dashboard = () => {
@@ -19,6 +20,8 @@ const Dashboard = () => {
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
   const { projects, dispatch } = useProjectsContext();
+
+  const user=useAuthContext();
 
   const onFrameButtonClick = useCallback(() => {
     // Please sync "Code Editor- after login" to the project
@@ -31,7 +34,9 @@ const Dashboard = () => {
 
   const onFrameIconClick = useCallback(() => {
     // Please sync "MyProjects-L" to the project
-    navigate("/Projects");
+    if(user.user) {
+    navigate("/Projects");}
+    else{ console.log("Not working");}
   }, [navigate]);
 
   const onUsericonClick = useCallback(() => {
@@ -55,15 +60,25 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await fetch('/api/projects')
+      // const response = await fetch('/api/projects')
+      const response = await fetch('/api/projects', {
+        headers: { 'Authorization': `Bearer ${user.user.token}` }
+      });
       const json = await response.json()
 
       if (response.ok) {
         dispatch({ type: 'GET_PROJECTS', payload: json })
       }
     }
-    fetchProjects()
-  }, [dispatch]);
+
+
+    if (user.user.userEmail) {
+      console.log("HEllo user from inside DASHBOARD")
+      console.log(user.user)
+      fetchProjects();
+    }
+  }, [user,dispatch]);
+  
   return (
     <div className={styles.dashboard}>
       <div className={styles.dashbaordwelcParent}>
@@ -73,7 +88,7 @@ const Dashboard = () => {
             alt=""
             src="/group-33561@2x.png"
           />
-          <div className={styles.welcomeToYour}>Welcome To Your Dashboard</div>
+          <div className={styles.welcomeToYour}>Welcome To Your Dashboard, {user.user.firstName}</div>
         </div>
         <>
           <div className={styles.recentprojects}>

@@ -156,10 +156,11 @@
   width: 85%;
   height: 370px;
   display: flex;
+  flex-direction: column;
   /* flex-wrap: wrap; */
   align-content: space-evenly;
   max-width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   text-align: center;
   font-size: var(--font-size-smi);
   color: var(--color-darkgray);
@@ -170,7 +171,7 @@
 }
 
 
-.alltutorials2 {
+/* .alltutorials2 {
   position: absolute;
   top: 476px;
   left: 87px;
@@ -184,7 +185,7 @@
   font-size: var(--font-size-smi);
   color: var(--color-darkgray);
   font-family: var(--font-pt-sans);
-}
+} */
 
 .items,
 .Tutorials {

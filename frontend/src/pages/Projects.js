@@ -14,6 +14,7 @@ import Property1Closed from "../components/Property1Closed";
 import { useProjectsContext } from "../hooks/useProjectsContext.js";
 import ProjectPopUPp from "../components/ProjectPopUPp";
 import PortalPopup from "../components/PortalPopup";
+import { useAuthContext } from "../hooks/useAuthContext";
 const Projects = () => {
   const [isProjectPopUPpOpen, setProjectPopUPpOpen] = useState(false);
 
@@ -84,18 +85,56 @@ const Projects = () => {
   const closeProjectPopUPp = useCallback(() => {
     setProjectPopUPpOpen(false);
   }, []);
+
+  const user =useAuthContext();
+
+  //const { user } = useContext(AuthContext);
+
+  // if (!user) {
+  //   return <navigate to="/signin" />;
+  // }
+
   const { projects, dispatch } = useProjectsContext();
   useEffect(() => {
-    const fetchProjects = async () => {
-      const response = await fetch('/api/projects')
-      const json = await response.json()
+    // const fetchProjects = async () => {
+    //   const response = await fetch('/api/projects', {
+    //     headers: {'Authorization': `Bearer ${user.token}`},
+    //   })
+    //   const json = await response.json()
 
-      if (response.ok) {
-        dispatch({ type: 'GET_PROJECTS', payload: json })
-      }
+    //   if (response.ok) {
+    //     dispatch({ type: 'GET_PROJECTS', payload: json })
+    //   }
+    // }
+    
+    // if (user.user){
+    //   console.log("HEllo user from inside projects")
+    //   console.log(user.user)
+    //   fetchProjects()
+
+    // }
+    const fetchProjects = async () => {
+      
+        const response = await fetch('/api/projects', {
+          headers: { 'Authorization': `Bearer ${user.user.token}` }
+        });
+        const json = await response.json()
+
+       if (response.ok) {
+         dispatch({ type: 'GET_PROJECTS', payload: json })
+       }
+     }
+    
+
+    if (user.user.userEmail) {
+      console.log("HEllo user from inside projects")
+      console.log(user.user)
+      fetchProjects();
     }
-    fetchProjects()
-  }, [dispatch]);
+  },
+  //  [dispatch, user]
+  [user, dispatch]
+  );
 
   return (
     <>

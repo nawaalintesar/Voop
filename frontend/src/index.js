@@ -10,6 +10,7 @@ import {
   createTheme,
   StyledEngineProvider,
 } from "@mui/material";
+import { AuthContextProvider } from './context/AuthContext';
 
 import "./global.css";
 
@@ -35,6 +36,7 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
+  <AuthContextProvider>
   <BrowserRouter>
     <StyledEngineProvider injectFirst>
       
@@ -44,6 +46,7 @@ root.render(
       </ThemeProvider>
     </StyledEngineProvider>
   </BrowserRouter>
+  </AuthContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

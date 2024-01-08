@@ -1,4 +1,4 @@
-.loginChild {
+/* .loginChild {
   position: absolute;
   top: 0;
   left: 0;
@@ -12,27 +12,29 @@
   width: 465px;
   height: 608px;
 }
-.logIn,
-.login1 {
+  */
+.logIn {
   position: absolute;
   height: 68px;
-}
-.logIn {
   top: 0;
-  left: 134px;
+  left: 160px;
   line-height: 6px;
   display: flex;
   align-items: center;
   width: 94px;
+  
 }
 .login1 {
+  position: absolute;
+  height: 68px;
   top: 46px;
   left: 38px;
   width: 228px;
   overflow: hidden;
   font-size: var(--font-size-11xl);
 }
-.joinNow {
+
+/* .joinNow {
   text-decoration: underline;
 }
 .newToVoopContainer1 {
@@ -41,14 +43,13 @@
 .newToVoopContainer,
 .newtovoop {
   position: absolute;
-  cursor: pointer;
 }
 .newToVoopContainer {
   border: 0;
   padding: 0;
   background-color: transparent;
   top: 0;
-  left: 0;
+  left: 0; 
   font-size: var(--font-size-mini);
   line-height: 6px;
   font-family: var(--font-poppins);
@@ -60,10 +61,21 @@
   height: 5.9px;
 }
 .newtovoop {
-  top: 479px;
-  left: 123px;
+  top:auto;
+  left:auto;
   width: 243px;
   height: 16px;
+} */
+
+.joinVoop{
+  position: absolute;
+  font-size: var(--font-size-mini);
+  line-height: 6px;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: center;
+  top:465px;
+  left:135px;
 }
 .password,
 .username {
@@ -218,7 +230,7 @@
 }
 .frame2,
 .loginwithfacebook {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 357px;
@@ -241,4 +253,33 @@
   font-size: var(--font-size-base);
   color: var(--color-white);
   font-family: var(--font-poppins);
+  border-radius: var(--br-xl);
+  background: linear-gradient(
+    29.46deg,
+    #462084 41.27%,
+    #2b165a 85.58%,
+    #23144e
+  );
+  width: 465px;
+  height: 608px;
+}
+
+.button {
+  position: absolute; /* Make the button absolute */
+  top: 490px; /* Adjust top value to position under the Facebook section */
+  left: 80px; /* Adjust left value if necessary */
+  border-radius: 29.45px;
+  background: radial-gradient(50% 50%at 50% 50%, #a27cf3, #683fea);
+  box-shadow: 0 0 180px #9917ff, 0 0 1px 4px rgba(255, 255, 255, 0.1),
+    0-4px 2px rgba(0, 0, 0, 0.25) inset,
+    0 2px 1px rgba(255, 255, 255, 0.25) inset;
+  width: 285px;
+   display: flex; 
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-smi) var(--padding-45xl);
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: var(--font-size-lgi);
+  font-weight: 600;
 }

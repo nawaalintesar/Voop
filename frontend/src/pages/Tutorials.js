@@ -84,7 +84,6 @@ const Tutorials = () => {
                 conceptDescription={tutorial.tutName}
                 onTutContainerClick={() => onTutContainerClick(tutorial._id)}
                 propLeft={`${(index % 4) * 250}px`}  /* Adjust the 4 based on the desired items per row */
-             
               />
           ))}
 
@@ -107,7 +106,7 @@ const Tutorials = () => {
       <Property1Default
         onFrameButtonClick={onFrameButtonClick}
       />
-      <Footer />
+      {/* <Footer /> */}
       <Property1Closed
         onFrameContainerClick={onFrameContainer2Click}
         onFrameIconClick={onFrameIconClick}

@@ -32,6 +32,8 @@ const LogIn = () => {
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
 
+  
+
   return (
     <div className={styles.logInL}>
       <div className={styles.items}>
