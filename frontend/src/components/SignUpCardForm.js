@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {jwtDecode} from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 import styles from "./SignUpCardForm.module.css";
 import { useSignup } from "../hooks/useSignup"
@@ -8,6 +10,22 @@ import { useSignup } from "../hooks/useSignup"
 
 const SignUpCardForm = () => {
 
+  useEffect(() => {
+  
+    /* global google */
+    google.accounts.id.initialize({
+      client_id:"334238565950-sjl4l8psvm5aed9nvd1ael1guhpfnkjl.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+  
+    })
+  
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme: "outline", size: "large", width: "355px"}
+    );
+  }, []);
+  
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,13 +33,31 @@ const SignUpCardForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const { signup, error, isLoading } = useSignup();
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Call the signup function with all form fields
     console.log("Submitted!: ", firstName, lastName, email, password, confirmPassword)
     await signup(firstName, lastName, email, password, confirmPassword);
+    navigate("/Dashboard");
+
   }
+
+  async function handleCallbackResponse(response){
+    console.log("Encoded jwt id:"  + response.credential);
+    var userObject= jwtDecode(response.credential);
+    console.log(userObject);
+    if(userObject.email_verified){
+    
+      await signup(userObject.given_name, userObject.family_name, userObject.email, true, true);
+      navigate("/Dashboard");
+    
+    } 
+    
+    }
+    
 
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPasswordClick = () => {
@@ -118,6 +154,9 @@ const SignUpCardForm = () => {
 
       />
         {error && <div className="error">{error}</div>}
+
+        <div id="signInDiv" ></div>
+
 
         <button type="submit" className={styles.button}>Register</button>
       </form>

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 import { useLogin } from "../hooks/useLogin";
 
-const { default: jwt_decode } = require("jwt-decode");
 
 
 const LoginForm = () => {
@@ -72,7 +71,6 @@ useEffect(() => {
       navigate("/Dashboard");
     
     }
-    // console.log(userObject.given_name);
     
     
     
