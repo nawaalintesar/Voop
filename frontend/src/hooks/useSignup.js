@@ -9,7 +9,6 @@ export const useSignup = () => {
     const signup = async (firstName, lastName, userEmail, userPassword, userConfirmation) => {
         setIsLoading(true)
         setError(null)
-        console.log("From hook:", userConfirmation)
 
         const response = await fetch('/api/user/signup', {
             method: 'POST',

@@ -41,7 +41,7 @@ const SignUpCardForm = () => {
     // Call the signup function with all form fields
     console.log("Submitted!: ", firstName, lastName, email, password, confirmPassword)
     await signup(firstName, lastName, email, password, confirmPassword);
-    navigate("/Dashboard");
+    navigate("/Login");
 
   }
 
