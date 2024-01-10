@@ -51,7 +51,9 @@ const GenericTutorial = () => {
       try {
         const response = await fetch(`/api/tutorials/${tutorialId}`, {
           headers: { 'Authorization': `Bearer ${user.user.token}` }
+          
         });
+        
         const json = await response.json();
 
         if (response.ok) {
@@ -75,7 +77,6 @@ const GenericTutorial = () => {
         <div className={styles.textParent}>
           <div className={styles.text}>
             <div className={styles.aboutThisTutorial}>About this tutorial</div>
-
             {tutorial && (
               <>
                 <div className={styles.classesDefineThe1}>

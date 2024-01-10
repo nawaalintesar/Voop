@@ -1,7 +1,11 @@
 import { useMemo } from "react";
 import styles from "./TutorialExampleLevel3.module.css";
 
+import { useState, useCallback, useEffect, dispatch } from "react";
+import { useNavigate } from "react-router-dom";
 const TutorialExampleLevel3 = ({
+  tutorial,
+  tutorialId,
   lessonTitle,
   lessonDescription,
   property1DefaultWidth,
@@ -12,6 +16,7 @@ const TutorialExampleLevel3 = ({
   property1DefaultBottom,
   property1DefaultLeft,
   onProperty1DefaultClick,
+  levelClicked
 }) => {
   const property1DefaultStyle = useMemo(() => {
     return {
@@ -31,13 +36,29 @@ const TutorialExampleLevel3 = ({
     property1DefaultRight,
     property1DefaultBottom,
     property1DefaultLeft,
+    
   ]);
+  const navigate = useNavigate();
+  
 
+  //const tutorialId=tutorial._id;
+
+  const onFrameButtonClick = useCallback(() => {
+    navigate("/CodeEditorAfterLogin", { state: { tutorialId, levelClicked } });
+  }, [navigate, tutorialId, levelClicked]);
+  
+  // const onFrameButtonClick = useCallback(() => {
+  //     navigate("/CodeEditorAfterLogin", { state: { tutorialId } });
+  //    }, [navigate, tutorialId]);
+
+  console.log("ID IN tutExample",tutorial._id);
+  console.log("Lesson tut",lessonTitle);
+  console.log("Lesson tut var",levelClicked);
   return (
     <button
       className={styles.property1default}
       id="Ex1Tut"
-      onClick={onProperty1DefaultClick}
+      onClick={onFrameButtonClick}
       style={property1DefaultStyle}
     >
       <div className={styles.creatingAnimalObjects}>{lessonTitle}</div>

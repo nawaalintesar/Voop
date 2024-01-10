@@ -51,10 +51,9 @@
   
 }
 .recentProjects {
-  
-    position: absolute;
-  top: 74px;
-  left: 123px;
+  position: absolute;
+  top: 4px;
+  left: 1px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 100px;
@@ -62,9 +61,10 @@
   align-items: flex-start;
   justify-content: flex-start;
   text-align: left;
-  font-size: var(--font-size-41xl);
   color: var(--color-thistle-200);
   font-family: var(--font-poppins);
+  font-size: var(--font-size-xl);
+  font-weight: 400;
 }
 .pythonRecentprojectsChild {
   position: absolute;

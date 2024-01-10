@@ -45,7 +45,7 @@ export const TutorialsContextProvider = ({ children }) => {
     </TutorialsContext.Provider>
   );
 };
-export const enrollTutorialAction = async (dispatch, tutorialId) => {
+export const enrollTutorialAction = async (dispatch, language, tutorialId) => {
   try {
     const response = await fetch(`/api/tutorials/${tutorialId}/enroll`, {
       method: 'POST',
@@ -58,7 +58,7 @@ export const enrollTutorialAction = async (dispatch, tutorialId) => {
     const json = await response.json();
 
     if (response.ok) {
-      dispatch({ type: 'ENROLL_TUTORIAL_SUCCESS', payload: { tutorialId } });
+      dispatch({ type: 'ENROLL_TUTORIAL_SUCCESS', payload: { language, tutorialId } });
     } else {
       dispatch({ type: 'ENROLL_TUTORIAL_FAILURE' });
     }

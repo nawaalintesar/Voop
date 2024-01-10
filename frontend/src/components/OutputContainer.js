@@ -7,9 +7,10 @@ import styles from "./OutputContainer.module.css";
 
 const OutputContainer = ({ project, tutorial, levelClicked}) => {
   var userCode;
-  console.log("LEVEL in OP", levelClicked)
-  console.log("tutorial in OP", tutorial._id)
-  console.log("TUTORIAL", tutorial);
+  //   console.log("LEVEL in OP", levelClicked)
+  // console.log("tutorial in OP", tutorial._id)
+  // console.log("TUTORIAL", tutorial);
+  // console.log("projects", project);
   if (project) {
     console.log("Projects", project?.project?.codeStates);
     userCode =

@@ -32,16 +32,18 @@ const InheritencetutCard = ({
   }, []);
 
   console.log("ID IN tut",tutorial._id);
+  console.log(tutorial);
 
   return (
     <>
-      <div
+       <div
         className={styles.inheritencetutcard}
         onClick={ () => openLessonContinuationPopup(tutorial._id) } 
         style={inheritencetutCardStyle}
       >
         <div className={styles.inheritencetutcardChild} />
         <div className={styles.inheritencetutcardItem} />
+        
         <div className={styles.enablesANew}>
           {tutorial.tutDescription.split('.')[0]}
         </div>
@@ -49,7 +51,30 @@ const InheritencetutCard = ({
         <div className={styles.inheritencetutcardInner} />
         <div className={styles.rectangleDiv} />
         <div className={styles.div}>15 %</div>
-      </div>
+      </div>  
+      
+      {/*
+      {tutorial.level.map((level) => (
+        <div
+          key={level.progLang} // Assuming language has a unique identifier
+          className={styles.inheritencetutcard}
+          onClick={() => openLessonContinuationPopup(level.progLang)} // Pass the language ID or unique identifier here
+          style={inheritencetutCardStyle}
+        >
+        <div className={styles.inheritencetutcardChild} />
+        <div className={styles.inheritencetutcardItem} />
+        
+        <div className={styles.enablesANew}>
+          {tutorial.tutDescription.split('.')[0]}
+        </div>
+        <div className={styles.inheritance}>{tutorial.tutName }</div>
+        <div className={styles.inheritencetutcardInner} />
+        <div className={styles.rectangleDiv} />
+        <div className={styles.div}>15 %</div>
+        </div>
+      ))}*/}
+
+
       {isLessonContinuationPopupOpen && (
         <PortalPopup
           overlayColor="rgba(113, 113, 113, 0.3)"

@@ -7,7 +7,6 @@ const fs = require('node:fs');
 // get all tutorials
 const viewTutorials = async (req, res) => {
   const tutorials = await Tutorial.find({}).sort({ createdAt: -1 })
-
   res.status(200).json(tutorials)
 }
 const populateDatabase = async (req, res) => {

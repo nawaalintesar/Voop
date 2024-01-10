@@ -93,26 +93,38 @@ const Profile = () => {
   const closeProfileDeleteLPopup = useCallback(() => {
     setProfileDeleteLPopupOpen(false);
   }, []);
+
   const { users, dispatch } = useProfilesContext();
-    useEffect(() => {
-      const fetchProfile = async () => {
-        const response = await fetch('/api/profile/',{
+  useEffect(() => {
+    console.log("Entering useEffect");
+  
+    const fetchProfile = async () => {
+      console.log("Fetching profile...");
+      try {
+        const response = await fetch('/api/profile/', {
           headers: { 'Authorization': `Bearer ${user.user.token}` }
-        })
-        const json = await response.json()
-        console.log("USET")
+        });
+        const json = await response.json();
+        console.log("USET");
         if (response.ok) {
-          dispatch({ type: 'GET_PROFILE', payload: json })
+          dispatch({ type: 'GET_PROFILE', payload: json });
         }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
       }
-      
-    if (user.user.userEmail) {
-      console.log("HEllo user from inside PROFILE")
-      console.log(user.user)
+    };
+  
+    console.log("Checking user.user.userEmail:", user.user.userEmail);
+    if (user.user.userEmail && !users) { 
+      console.log("HEllo user from inside PROFILE");
+      console.log(user.user);
+  
       fetchProfile();
     }
-    }, [user, users, dispatch]);
-
+  
+    console.log("Exiting useEffect");
+  }, [user.user.userEmail, users, dispatch]);
+  
   return (
     <>
       <div className={styles.Profile}>

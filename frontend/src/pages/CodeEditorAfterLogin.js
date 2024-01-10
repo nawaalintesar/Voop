@@ -86,6 +86,7 @@ const CodeEditorBeforeLogin = () => {
         console.error('Error fetching project:', error);
       }
     };
+    
     const fetchProjects = async () => {
       try {
         const response = await fetch(`/api/projects/${projectId}`,{
@@ -102,6 +103,7 @@ const CodeEditorBeforeLogin = () => {
     };
 
     const fetchTutorials = async () => {
+      console.log("IN FUCN .",tutorialId)
       if (tutorialId) {
         try {
           const response = await fetch(`/api/tutorials/${tutorialId}`,{
@@ -119,16 +121,21 @@ const CodeEditorBeforeLogin = () => {
     };
 
     // Fetch projects only if projectId is present
-    if (projectId, user.user.userEmail) {
+    console.log(projectId)
+    console.log(tutorialId)
+
+    if (projectId && user.user.userEmail) {
       console.log("HEllo user from inside code editor for projects")
       console.log(user.user)
       fetchProjects();
     }
-    else if (tutorialId, user.user.userEmail) {
+
+    else if (tutorialId && user.user.userEmail) {
       console.log("HEllo user from inside code editor for tuts")
       console.log(user.user)
       fetchTutorials();
     }
+
     else {
       fetchNew();
     }

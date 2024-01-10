@@ -80,7 +80,7 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Call the signup function with all form fields
-    //console.log("Submitted in login!: ", email, password)
+    console.log("Submitted in login!: ", email, password)
     await login(email, password);
     navigate("/Dashboard");
   }

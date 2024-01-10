@@ -17,7 +17,9 @@ const TutorialExamplesContainer1 = ({ tutorial }) => {
       {filteredLevels.map((level, index) => (
         <TutorialExampleLevel3
           key={index}
-          lessonTitle={`Level ${level.levelNumber}`}
+          tutorial={tutorial}
+          tutorialId={tutorial._id}
+          lessonTitle={`${level.levelNumber}`}
           lessonDescription={level.code[0]}
           property1DefaultWidth="100%"
           property1DefaultHeight="23.19%"
@@ -26,6 +28,7 @@ const TutorialExamplesContainer1 = ({ tutorial }) => {
           property1DefaultRight="0%"
           property1DefaultBottom="54.82%"
           property1DefaultLeft="0%"
+          levelClicked={level.levelNumber}
           // Add other properties as needed based on your data structure
           // ...
         />

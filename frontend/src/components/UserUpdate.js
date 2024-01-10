@@ -5,11 +5,14 @@ import PortalPopup from "./PortalPopup";
 import ProfileDeleteL from "./ProfileDeleteL";
 import styles from "./UserUpdate.module.css";
 
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useProfilesContext } from "../hooks/useProfilesContext.js"
 import { useEffect, dispatch, useState, useCallback } from "react";
+
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const UserUpdate = ({ profile }) => {
 
+  const user =useAuthContext();
   const [
     isProfileUpdateConfirmationLPopupOpen,
     setProfileUpdateConfirmationLPopupOpen,
@@ -36,8 +39,7 @@ const UserUpdate = ({ profile }) => {
   const [firstName, setFirstName] = useState(profile.firstName);
   const [lastName, setLastName] = useState(profile.lastName);
   const [userEmail, setUserEmail] = useState(profile.userEmail);
-  const user =useAuthContext();
-
+  const { dispatch } = useProfilesContext();
   const handleUpdate = async () => {
     // Fetch updated data from input fields
     const updatedData = {
@@ -53,17 +55,20 @@ const UserUpdate = ({ profile }) => {
     try {
       // Send a PATCH request to the server to update the database
       const response = await fetch('/api/profile/update', {
-        headers: { 'Authorization': `Bearer ${user.user.token}` },
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(updatedData),
+          headers: { 'Authorization': `Bearer ${user.user.token}` 
+        }
       });
 
       if (response.ok) {
         // Fetch the updated profile after the update
-        const fetchResponse = await fetch('/api/profile/');
+        const fetchResponse = await fetch('/api/profile/',{
+          headers: { 'Authorization': `Bearer ${user.user.token}` }
+        });
         const json = await fetchResponse.json();
 
         if (fetchResponse.ok) {
@@ -77,7 +82,6 @@ const UserUpdate = ({ profile }) => {
     } catch (error) {
       console.error('Error updating data:', error);
     }
-    
   };
   return (
     <>
