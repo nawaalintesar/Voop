@@ -1,4 +1,3 @@
-
 // import { useState, useCallback } from "react";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 // import LogOutPopOutL from "../components/LogOutPopOutL";
@@ -10,17 +9,16 @@ import ProfileDeleteL from "../components/ProfileDeleteL";
 import { useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
 import UserUpdate from "../components/UserUpdate";
-
-
+import { useProfilesContext } from "../hooks/useProfilesContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect, dispatch, useState, useCallback } from "react";
-//import { useProfilesContext } from "../hooks/useProfilesContext.js";
-import { useProfilesContext } from "../hooks/useProfilesContext.js"
-
 import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
 
 const Profile = () => {
+  
+  const user =useAuthContext();
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
@@ -95,29 +93,34 @@ const Profile = () => {
   const closeProfileDeleteLPopup = useCallback(() => {
     setProfileDeleteLPopupOpen(false);
   }, []);
-
-  const { user, dispatch } = useProfilesContext();
-
+  const { users, dispatch } = useProfilesContext();
     useEffect(() => {
       const fetchProfile = async () => {
-        const response = await fetch('/api/profile/')
+        const response = await fetch('/api/profile/',{
+          headers: { 'Authorization': `Bearer ${user.user.token}` }
+        })
         const json = await response.json()
-
+        console.log("USET")
         if (response.ok) {
           dispatch({ type: 'GET_PROFILE', payload: json })
         }
       }
-      fetchProfile()
-    }, [dispatch]);
+      
+    if (user.user.userEmail) {
+      console.log("HEllo user from inside PROFILE")
+      console.log(user.user)
+      fetchProfile();
+    }
+    }, [user, users, dispatch]);
 
   return (
     <>
       <div className={styles.Profile}>
 
-        {user && (
+        {users && (
           <UserUpdate
-            key={user._id}
-            profile={user}
+            key={users._id}
+            profile={users}
           />
         )}
 

@@ -12,7 +12,10 @@ import styles from "./Tutorials.module.css";
 import { useTutorialsContext } from "../hooks/useTutorialsContext.js";
 import InheritanceTutorialCardContain from "../components/InheritanceTutorialCardContain";
 
+import { useAuthContext } from "../hooks/useAuthContext";
 const Tutorials = () => {
+  
+  const user =useAuthContext();
   const { tutorials, dispatch } = useTutorialsContext();
   const [tut, setTutorials] = useState(null);
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
@@ -21,15 +24,23 @@ const Tutorials = () => {
 
   useEffect(() => {
     const fetchTutorials = async () => {
-      const response = await fetch('/api/tutorials')
+      const response = await fetch('/api/tutorials',{
+        headers: { 'Authorization': `Bearer ${user.user.token}` }
+        
+      })
       const json = await response.json()
 
       if (response.ok) {
         dispatch({ type: 'SET_TUTORIALS', payload: json })
       }
     }
-    fetchTutorials()
-  }, [dispatch]);
+    if (user.user.userEmail) {
+      console.log("HEllo user from inside tutorials")
+      console.log(user.user)
+      fetchTutorials();
+    }
+
+  }, [user, dispatch]);
 
 
   const onTutContainerClick = useCallback((TutorialId) => {
@@ -68,7 +79,7 @@ const Tutorials = () => {
 
   var items = 1;
   var margin = 0;
-
+  
   return (
     <div className={styles.Tutorials}>
 

@@ -20,7 +20,10 @@ import OutputContainer from "../components/OutputContainer";
 import AnimationContainer from "../components/AnimationContainer";
 import styles from "./CodeEditorAfterLogin.module.css";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const CodeEditorBeforeLogin = () => {
+  const user = useAuthContext();
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
     useState(false);
@@ -71,7 +74,9 @@ const CodeEditorBeforeLogin = () => {
   useEffect(() => {
     const fetchNew = async () => {
       try {
-        const response = await fetch(`/api/projects/${projectId}`);
+        const response = await fetch(`/api/projects/${projectId}`, {
+          headers: { 'Authorization': `Bearer ${user.user.token}` }
+        });
         const json = await response.json();
 
         if (response.ok) {
@@ -83,7 +88,9 @@ const CodeEditorBeforeLogin = () => {
     };
     const fetchProjects = async () => {
       try {
-        const response = await fetch(`/api/projects/${projectId}`);
+        const response = await fetch(`/api/projects/${projectId}`,{
+          headers: { 'Authorization': `Bearer ${user.user.token}` }
+        });
         const json = await response.json();
 
         if (response.ok) {
@@ -97,7 +104,9 @@ const CodeEditorBeforeLogin = () => {
     const fetchTutorials = async () => {
       if (tutorialId) {
         try {
-          const response = await fetch(`/api/tutorials/${tutorialId}`);
+          const response = await fetch(`/api/tutorials/${tutorialId}`,{
+            headers: { 'Authorization': `Bearer ${user.user.token}` }
+          });
           const json = await response.json();
 
           if (response.ok) {
@@ -110,18 +119,20 @@ const CodeEditorBeforeLogin = () => {
     };
 
     // Fetch projects only if projectId is present
-    if (projectId) {
+    if (projectId, user.user.userEmail) {
+      console.log("HEllo user from inside code editor for projects")
+      console.log(user.user)
       fetchProjects();
     }
-
-    // Fetch tutorials only if tutorialId is present
-    else if (tutorialId) {
+    else if (tutorialId, user.user.userEmail) {
+      console.log("HEllo user from inside code editor for tuts")
+      console.log(user.user)
       fetchTutorials();
     }
     else {
       fetchNew();
     }
-  }, [projectDispatch, tutorialDispatch, projectId, tutorialId]);
+  }, [user, projectDispatch, tutorialDispatch, projectId, tutorialId]);
 
   return (
     <div className={styles.codeEditorBeforeLogin}>

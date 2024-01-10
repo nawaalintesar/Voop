@@ -4,7 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const tutorialRoutes= require('./routes/tutorials')
 const projectRoutes= require('./routes/projects')
-const userRoutes=require('./routes/user')
+const profileRoutes= require('./routes/profile')
 // express app
 const app = express()
 
@@ -19,19 +19,8 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/tutorials', tutorialRoutes)
 app.use('/api/projects', projectRoutes)
-app.use('/api/user', userRoutes)
-// home, log in sign up dashboard 
-app.get('/dashboard', (req,res)=>{
-  res.json({msg:"welcome"}) //call functions from profileController.js
-  // need to get recent projects and recent tutorials ( limitted to 4/5) and display the user's name
-})
-app.get('/profile', (req,res)=>{
-  res.json({msg:"welcome"})//call functions from profileController.js
-  // profile information
-//   delele account
-// update account information
-// forgot password feature
-})
+app.use('/api/profile', profileRoutes)
+
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

@@ -20,8 +20,9 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import { TutorialsContextProvider } from './context/TutorialsContext';
-import { ProjectsContextProvider } from "./context/ProjectsContext";
 import { ProfilesContextProvider } from "./context/ProfilesContext";
+import { ProjectsContextProvider } from "./context/ProjectsContext";
+
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -32,7 +33,7 @@ function App() {
     if (action !== "POP") {
       window.scrollTo(0, 0);
     }
- 
+
   }, [action, pathname]);
 
   console.log("User is:", user.user);
@@ -54,16 +55,22 @@ function App() {
       <Route path="/LogIn" element={<LogIn />} />
       <Route path="/CodeEditorBeforeLogin" element={<CodeEditorBeforeLogin />} />
 
-      <Route path="/CodeEditorAfterLogin" element={user.user ? <CodeEditorAfterLogin /> : <Navigate to="/LogIn" />} />
+      <Route path="/CodeEditorAfterLogin" element={user.user ?
 
+        <TutorialsContextProvider>
+          <ProjectsContextProvider>
+            <CodeEditorAfterLogin />
+          </ProjectsContextProvider>
+        </TutorialsContextProvider>
+        : <Navigate to="/LogIn"/>
+      } />
       <Route path="/Dashboard" element={user.user ?
         <TutorialsContextProvider>
           <ProjectsContextProvider>
             <Dashboard />
           </ProjectsContextProvider>
         </TutorialsContextProvider>
-        :
-        <Navigate to="/LogIn" />
+        : <Navigate to="/LogIn" />
 
       } />
       <Route path="/GenericTutorial" element={user.user ?
@@ -72,32 +79,25 @@ function App() {
         </TutorialsContextProvider>
         : <Navigate to="/LogIn" />
       } />
-      <Route path="/Projects" 
-      element={
-        user.user ? (
-          <>
-          {console.log(user.user==null)}
-            {console.log("THE STUPID USER IS", user.user)}
-            <ProjectsContextProvider>
-              <Projects />
-            </ProjectsContextProvider>
-          </>
-        ) : (
+      <Route path="/Projects"
+        element={user.user ?
+
+          <ProjectsContextProvider>
+            <Projects />
+          </ProjectsContextProvider>
+
+          :
           <Navigate to="/LogIn" />
-        )
-      }
-      // element={user.user ?
-      //  {console.log("THE STOPID USER IS",user.user);}
-      //   <ProjectsContextProvider>
-      //     <Projects />
-      //   </ProjectsContextProvider>
-      //   : <Navigate to="/LogIn" />
 
-      // }
-
+        }
       />
 
-      <Route path="/user-profile-pagel" element={user.user ? <Profile /> : <Navigate to="/LogIn" />} />
+      <Route path="/Profile" element={
+        user.user ?
+          <ProfilesContextProvider>
+            <Profile />
+          </ProfilesContextProvider> : <Navigate to="/LogIn" />
+      } />
 
     </Routes>
   );

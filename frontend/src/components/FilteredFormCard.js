@@ -5,8 +5,10 @@ import InheritencetutCard from "./InheritencetutCard";
 import styles from "./FilteredFormCard.module.css";
 import { useEffect, dispatch, useState, useCallback } from "react";
 import { useTutorialsContext } from "../hooks/useTutorialsContext.js";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const FilteredFormCard = () => {
+  const user =useAuthContext();
   const { enrolledTutorials, dispatch } = useTutorialsContext();
   const [isLessonContinuationPopupOpen, setLessonContinuationPopupOpen] =
     useState(false);
@@ -28,7 +30,9 @@ const FilteredFormCard = () => {
   useEffect(() => {
     const fetchEnrolledTutorials = async () => {
       try {
-        const response = await fetch('/api/tutorials/enrolled');
+        const response = await fetch('/api/tutorials/enrolled',{
+          headers: { 'Authorization': `Bearer ${user.user.token}` }
+        });
         const json = await response.json();
         console.log(json);
 
@@ -39,9 +43,14 @@ const FilteredFormCard = () => {
         console.error('Error fetching enrolled tutorials:', error.message);
       }
     };
-
-    fetchEnrolledTutorials();
-  }, [dispatch]);
+    
+    if (user.user.userEmail) {
+      console.log("HEllo user from inside FF")
+      console.log(user.user)
+      fetchEnrolledTutorials();
+    }
+   
+  }, [user,dispatch]);
 
 
   return (

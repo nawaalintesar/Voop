@@ -11,8 +11,10 @@ import Footer from "../components/Footer";
 import Property1Default from "../components/Property1Default";
 import Property1Closed from "../components/Property1Closed";
 import styles from "./GenericTutorial.module.css";
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const GenericTutorial = () => {
-  
+  const user =useAuthContext();
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +49,9 @@ const GenericTutorial = () => {
   useEffect(() => {
     const fetchTutorials = async () => {
       try {
-        const response = await fetch(`/api/tutorials/${tutorialId}`);
+        const response = await fetch(`/api/tutorials/${tutorialId}`, {
+          headers: { 'Authorization': `Bearer ${user.user.token}` }
+        });
         const json = await response.json();
 
         if (response.ok) {
@@ -57,9 +61,13 @@ const GenericTutorial = () => {
         console.error('Error fetching tutorial:', error);
       }
     };
-
-    fetchTutorials();
-  }, [dispatch, tutorialId]);
+    if (user.user.userEmail) {
+      console.log("HEllo user from inside GTT")
+      console.log(user.user)
+      fetchTutorials();
+    }
+    
+  }, [user,dispatch, tutorialId]);
 
   return (
     <div className={styles.GenericTutorial}>

@@ -5,10 +5,8 @@ import PortalPopup from "./PortalPopup";
 import ProfileDeleteL from "./ProfileDeleteL";
 import styles from "./UserUpdate.module.css";
 
-import { useProfilesContext } from "../hooks/useProfilesContext.js"
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect, dispatch, useState, useCallback } from "react";
-//import { useProfilesContext } from "../hooks/useProfilesContext.js";
-
 
 const UserUpdate = ({ profile }) => {
 
@@ -38,7 +36,8 @@ const UserUpdate = ({ profile }) => {
   const [firstName, setFirstName] = useState(profile.firstName);
   const [lastName, setLastName] = useState(profile.lastName);
   const [userEmail, setUserEmail] = useState(profile.userEmail);
-  const { dispatch } = useProfilesContext();
+  const user =useAuthContext();
+
   const handleUpdate = async () => {
     // Fetch updated data from input fields
     const updatedData = {
@@ -54,6 +53,7 @@ const UserUpdate = ({ profile }) => {
     try {
       // Send a PATCH request to the server to update the database
       const response = await fetch('/api/profile/update', {
+        headers: { 'Authorization': `Bearer ${user.user.token}` },
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -77,6 +77,7 @@ const UserUpdate = ({ profile }) => {
     } catch (error) {
       console.error('Error updating data:', error);
     }
+    
   };
   return (
     <>

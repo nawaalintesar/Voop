@@ -1,5 +1,3 @@
-// ProfilesContext.js
-
 import { createContext, useReducer } from 'react';
 
 export const ProfilesContext = createContext();
@@ -8,12 +6,12 @@ export const profilesReducer = (state, action) => {
     case 'GET_PROFILE':
       return {
         ...state,
-        user: action.payload,
+        users: action.payload,
       };
     case 'UPDATE_ACCOUNT_INFO':
       return {
         ...state,
-        user: { ...state.user, ...action.payload },
+        users: { ...state.users, ...action.payload },
       };
     default:
       return state;
@@ -22,7 +20,7 @@ export const profilesReducer = (state, action) => {
 
 export const ProfilesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(profilesReducer, {
-    user: null,
+    users: null,
   });
 
   const updateProfile = (updatedData) => {
