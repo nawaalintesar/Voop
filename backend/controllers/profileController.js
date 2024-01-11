@@ -14,7 +14,7 @@ const mongoose = require('mongoose')
 const getAccountInfo = async (req, res) => {
 
 
-    const userId = "65810b9b1d91631463299a28"
+    const userId = "659fee25c72f7a7e4440929a"
 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({error: 'No aasdf such workout'})
@@ -30,7 +30,7 @@ const getAccountInfo = async (req, res) => {
 const updateAccountInfo = async (req, res) => {
 
 
-    const userId = "65810b9b1d91631463299a28"
+    const userId = "659fee25c72f7a7e4440929a"
 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({error: 'No aasdf such workout'})

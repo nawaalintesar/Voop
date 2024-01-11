@@ -116,6 +116,10 @@ const Tutorials = () => {
         </div>
 
       </div>
+
+      
+      <Footer />
+      
       <Property1Default
         onFrameButtonClick={onFrameButtonClick}
       />

@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const fs = require('node:fs');
 
 
+
 // get all tutorials
 const viewTutorials = async (req, res) => {
   const tutorials = await Tutorial.find({}).sort({ createdAt: -1 })
@@ -189,7 +190,7 @@ const getTutorial = async (req, res) => {
   }
 
   const tutorial = await Tutorial.findById(id)
-// console.log(tutorial)
+  // console.log(tutorial)
   if (!tutorial) {
     return res.status(404).json({ error: 'No such tutorial' })
   }
@@ -197,52 +198,72 @@ const getTutorial = async (req, res) => {
   res.status(200).json(tutorial) //right now gets the whole tutorial this should take only the description to be displayed on the tutorial page
 }
 
+
+const ObjectId = mongoose.Types.ObjectId;
+
 const enrollTutorial = async (req, res) => {
   // Once authentication part is done, this should be using userId.
-  const ObjectId = require('mongodb').ObjectId;
-  const userId = "65810b9b1d91631463299a28";
+ // const userId = "659fee25c72f7a7e4440929a";
+ const userID = req.body.userID;
 
-  const tutorialId = req.params.id;
+  const tutorialId = req.params.id.toString();
 
   try {
     // get user information
-    const user = await User.findById(userId);
+    const user = await User.findById(userID);
+
     // Check if the tutorial exists
     const tutorial = await Tutorial.findById(tutorialId);
+
+    console.log("ID IS ACTUALLY", tutorial ? tutorial._id : 'Not Found');
+
     if (!tutorial) {
-      console.error('Tutorial not found');
-      return res.status(404).json({ error: 'Tutorial not found' });
+      console.error('Tutorial not found 215');
+      return res.status(404).json({ error: 'Tutorial not found 215' });
     }
 
     if (!user) {
-      console.error('user not found');
-      return res.status(404).json({ error: 'user not found' });
+      console.error('User not found');
+      return res.status(404).json({ error: 'User not found' });
     }
 
     // Check if the user is already enrolled in the tutorial
-    // const tutorialFound = await User.findById({_id:new ObjectId(userId), enrolledTutorials: tutorialId});
-    const tutorialFound = await User.findOne({ enrolledTutorials: tutorialId });
+    const tutorialFound = await User.findOne({ enrolledTutorials: new ObjectId(tutorialId) });
+
     if (tutorialFound) {
       console.error('Tutorial already enrolled');
       return res.status(400).json({ error: 'Tutorial already enrolled' });
     }
+    else {
+      // Enroll the user in the tutorial
+      const result = await User.updateOne(
+        { _id: new ObjectId(userID) }, // Convert userId to ObjectId
+        {
+          $addToSet: {
+            enrolledTutorials: {
+              tutId: new ObjectId(tutorial._id), // Convert tutorialId to ObjectId
+              progLang: "Java", // Replace with the actual programming language
+              // Add other fields as needed
+            },
+          },
+        }
+      );
 
-    // Enroll the user in the tutorial
-    const result = await User.updateOne(
-      { _id: new ObjectId(userId) },
-      { $addToSet: { enrolledTutorials: tutorialId } }
-    );
-
-    console.log(`Tutorial with ID ${tutorialId} enrolled successfully for user with ID ${userId}`);
-    res.status(200).json({ message: 'Tutorial enrolled successfully' });
+      console.log(`Tutorial with ID ${tutorial._id} enrolled successfully for user with ID ${userID}`);
+      res.status(200).json({ message: 'Tutorial enrolled successfully' });
+    }
   } catch (error) {
     console.error('Error enrolling tutorial:', error.message);
-    res.status(500).json({ error: 'Invalid Tutorial ID' });
+    res.status(500).json({ error: error.message });
   }
 };
 
+
 const getEnrolledTutorials = async (req, res) => {
-  const userId = "65810b9b1d91631463299a28"
+  //const userId = req.user._id
+  console.log("Hello i m somewhere inside tutcontroller");
+  const userId = '659fee25c72f7a7e4440929a';
+
   //const userId = req.params.userId; // Assuming you have the user ID in the request parameters
 
   try {
@@ -250,6 +271,7 @@ const getEnrolledTutorials = async (req, res) => {
     const user = await User.findById(userId).populate({
       path: 'enrolledTutorials' // Sort in descending order
     });
+    console.log("ET", enrolledTutorials);
     const enrolledTutorials = user.enrolledTutorials || [];
     if (enrolledTutorials.length > 0) {
       // Sort projects by createdAt in descending order (most recent first)
@@ -260,30 +282,32 @@ const getEnrolledTutorials = async (req, res) => {
     res.status(200).json({ enrolledTutorials });
   } catch (error) {
     console.error('Error fetching enrolled tutorials:', error.message);
+    res.status(500).json({ error: error.message });
   }
 };
 
 const playTutorial = async (req, res) => {
 
-  //once authentication part is done this should be using userId for now im making it static 65810b9b1d91631463299a28
-  const userId = "65810b9b1d91631463299a28";
+  //once authentication part is done this should be using userId for now im making it static 659fee25c72f7a7e4440929a
+  const userId = '659fee25c72f7a7e4440929a';
   const tutorialId = req.params.id;
   try {
     // get user information
     const user = await User.findById(userId);
     // Check if the tutorial exists
-    const tutorial = await Tutorial.findById(tutorialId);
+    //const tutorial = await Tutorial.findById(tutorial._id);
+    const tutorial = await Tutorial.findById(mongoose.Types.ObjectId(tutorialId));
 
     if (!tutorial) {
-      console.error('Tutorial not found');
-      return res.status(404).json({ error: 'Tutorial not found' });
+      console.error('Tutorial not found292');
+      return res.status(404).json({ error: 'Tutorial not found292' });
     }
 
     // Check if the user is already enrolled in the tutorial
     const tutorialFound = await User.findById({ _id: userId, enrolledTutorials: tutorialId });
 
     if (!tutorialFound) {
-      console.error('Tutorial is not enrolled');
+      console.error('Tutorial is not enrolled30');
       return res.status(400).json({ error: 'Tutorial is not enrolled' });
     }
 
@@ -300,7 +324,7 @@ const playTutorial = async (req, res) => {
     console.log(progress)
   } catch (error) {
     console.error('Error playing tutorial:', error.message);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error HOW' });
   }
 }
 

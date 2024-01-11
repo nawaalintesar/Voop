@@ -44,5 +44,10 @@ const tutorialSchema = new Schema({
         },
     ],
 }, { timestamps: true });
+
+tutorialSchema.pre('save', function (next) {
+    this.level.sort((a, b) => a.progLang.localeCompare(b.progLang));
+    next();
+});
 tutorialSchema.index({ 'level.levelNumber': 1 });
 module.exports = mongoose.model('Tutorial', tutorialSchema);

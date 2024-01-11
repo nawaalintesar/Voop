@@ -5,8 +5,8 @@ const Project = require('../models/projectModel')
 
 // get all user's code projects
 const viewProjects = async (req, res) => {
-  const userId = "65810b9b1d91631463299a28"; // Replace with the actual user ID
-
+  const userId = "659fee25c72f7a7e4440929a"; // Replace with the actual user ID
+  console.log("hello im in view projects");
   try {
     // Find the user by ID and populate the createdProjects field
     const user = await User.findById(userId).populate({
@@ -27,7 +27,7 @@ const viewProjects = async (req, res) => {
 
 // get a single project for view
 const getProject = async (req, res) => {
-  const userId = "65810b9b1d91631463299a28"; // Replace with the actual user ID
+  const userId = "659fee25c72f7a7e4440929a"; // Replace with the actual user ID
 
   try {
     const { id } = req.params;
@@ -89,7 +89,7 @@ const createProject = async (req, res) => {
       progLang,
       codeStates: [initialCodeState], // Initialize with the initial code state
     });
-    const userId = "65810b9b1d91631463299a28"; // Replace with the actual user ID
+    const userId = "659fee25c72f7a7e4440929a"; // Replace with the actual user ID
 
     const user = await User.findByIdAndUpdate(
       userId,
@@ -106,7 +106,7 @@ const createProject = async (req, res) => {
 // delete a project
 const deleteProject = async (req, res) => {
   const { id } = req.params
-  const userId = "65810b9b1d91631463299a28";
+  const userId = "659fee25c72f7a7e4440929a";
   const user = await User.findByIdAndUpdate(
     userId,
     { $pull: { createdProjects: id } },
@@ -123,7 +123,7 @@ const deleteProject = async (req, res) => {
 
 // update an existing project
 const updateProject = async (req, res) => {
-  const userId = "65810b9b1d91631463299a28"
+  const userId = "659fee25c72f7a7e4440929a"
   const { id } = req.params;
   const updatedCode = req.body.updatedCode;
 
@@ -189,7 +189,7 @@ async function displayOOPConcepts() {
 }
 
 const searchCreatedProjects = async (searchTerm) => {
-  const userId = "65810b9b1d91631463299a28";
+  const userId = "659fee25c72f7a7e4440929a";
   // Trim and convert to lowercase for case-insensitive search
   const trimmedSearchTerm = searchTerm.trim().toLowerCase();
 

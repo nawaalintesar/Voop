@@ -13,6 +13,12 @@ export const profilesReducer = (state, action) => {
         ...state,
         users: { ...state.users, ...action.payload },
       };
+
+    case 'UPDATE_ENROLMENT':
+      return{
+
+      }
+
     default:
       return state;
   }
@@ -33,3 +39,5 @@ export const ProfilesContextProvider = ({ children }) => {
     </ProfilesContext.Provider>
   );
 };
+
+

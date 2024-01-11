@@ -153,7 +153,7 @@ const CodeEditorBeforeLogin = () => {
 
         <div className={styles.mainWrapper}>
           {project && <OutputContainer key={projectId} project={project} />}
-          {tutorial && <OutputContainer key={tutorialId} tutorial={tutorial} levelClicked={levelClicked} />}
+          {tutorial && <OutputContainer key={tutorialId} tutorial={tutorial} levelClicked={ levelClicked} />}
 
         </div>
         <Select

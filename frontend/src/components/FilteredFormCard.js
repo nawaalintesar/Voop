@@ -8,7 +8,7 @@ import { useTutorialsContext } from "../hooks/useTutorialsContext.js";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const FilteredFormCard = () => {
-  const user =useAuthContext();
+  const user = useAuthContext();
   const { enrolledTutorials, dispatch } = useTutorialsContext();
   const [isLessonContinuationPopupOpen, setLessonContinuationPopupOpen] =
     useState(false);
@@ -30,11 +30,11 @@ const FilteredFormCard = () => {
   useEffect(() => {
     const fetchEnrolledTutorials = async () => {
       try {
-        const response = await fetch('/api/tutorials/enrolled',{
+        const response = await fetch('/api/tutorials/enrolled', {
           headers: { 'Authorization': `Bearer ${user.user.token}` }
         });
         const json = await response.json();
-        console.log(json);
+        console.log(json.enrolledTutorials);
 
         if (response.ok) {
           dispatch({ type: 'GET_ENROLLED_TUTORIALS', payload: json.enrolledTutorials });
@@ -43,30 +43,32 @@ const FilteredFormCard = () => {
         console.error('Error fetching enrolled tutorials:', error.message);
       }
     };
-    
+
     if (user.user.userEmail) {
-      console.log("HEllo user from inside FF")
-      console.log(user.user)
+      // console.log("HEllo user from inside FF")
+      // console.log(user.user)
       fetchEnrolledTutorials();
     }
-   
-  }, [user,dispatch]);
+
+  }, [user, dispatch]);
 
 
   return (
     <>
       <div className={styles.continuejourneycards}>
+        
+        {enrolledTutorials && enrolledTutorials.slice(0, 4).map((enrolledTutorial, index) => {
+          
+            <InheritencetutCard
+              key={enrolledTutorial._id}
+              tutorial={enrolledTutorial}
+              inheritencetutCardPosition="absolute"
+              inheritencetutCardTop="0px"
+              inheritencetutCardLeft={`${0 + 250 * index}px`}
+              encapsulationTutCardCursor="pointer"
+            />
+        })}
 
-        {enrolledTutorials && enrolledTutorials.slice(0,4).map((enrolledTutorial, index) => (
-          <InheritencetutCard
-            key={enrolledTutorial._id}
-            tutorial={enrolledTutorial}
-            inheritencetutCardPosition="absolute"
-            inheritencetutCardTop="0px"
-            inheritencetutCardLeft={`${0 + 250 * index}px`}
-            encapsulationTutCardCursor="pointer"
-          />
-        ))}
       </div>
       {isLessonContinuationPopupOpen && (
         <PortalPopup
@@ -74,7 +76,7 @@ const FilteredFormCard = () => {
           placement="Centered"
           onOutsideClick={closeLessonContinuationPopup}
         >
-          <LessonContinuation  onClose={closeLessonContinuationPopup} />
+          <LessonContinuation onClose={closeLessonContinuationPopup} />
         </PortalPopup>
       )}
     </>

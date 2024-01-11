@@ -4,12 +4,15 @@ import { Select } from "antd";
 import styles from "./ProjectPopUPp.module.css";
 import { useState, useCallback, useEffect, dispatch } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ProjectPopUPp = ({ onClose }) => {
   const [rectangleInputValue, setRectangleInputValue] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [inputError, setInputError] = useState(false);
   const [selectError, setSelectError] = useState(false);
+  const {user} =useAuthContext();
+
 
   const navigate = useNavigate();
   const onFrameButtonClick = useCallback(() => {
@@ -45,15 +48,16 @@ const ProjectPopUPp = ({ onClose }) => {
 
     try {
       console.log(projectDetails)
+      console.log(user.token);
       const response = await fetch('/api/projects/', {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${user.token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(projectDetails),
-        
       });
-  
+        
       const responseData = await response.json();
 
       if (response.ok) {
@@ -61,7 +65,7 @@ const ProjectPopUPp = ({ onClose }) => {
         navigate("/CodeEditorAfterLogin", { state: { ProjectId: responseData._id } });
       } else {
         // Handle error if the request fails
-        console.error('Error creating project:', response.statusText);
+        console.error('Error creating project:', response);
         console.error("Error details",responseData)
       }
     } catch (error) {

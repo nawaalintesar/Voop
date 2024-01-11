@@ -22,10 +22,20 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
-  enrolledTutorials: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Tutorial'
-  }],
+  enrolledTutorials: [
+    {
+      tutId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Tutorial'
+        // type: String,
+        // required: false
+      },
+      progLang: {
+        type: String
+      },
+      // Add other fields as needed
+    }
+  ],
   createdProjects: [{
     type: Schema.Types.ObjectId,
     ref: 'Project',
@@ -56,13 +66,12 @@ userSchema.statics.signup = async function (firstName, lastName, email, password
   const exists = await this.findOne({ userEmail: email })
   var user;
 
-  
-  if(password==true){
 
-    if(exists){ user = await this.findOne({ userEmail: email })} //user who already has an account signs up
-    else{
-      console.log("FINALLY U R herE");
-       user = await this.create({ firstName, lastName, userEmail: email, userPassword: null, enrolledTutorials: null, createdProjects: null }) //adds into the db
+  if (password == true) {
+
+    if (exists) { user = await this.findOne({ userEmail: email }) } //user who already has an account signs up
+    else {
+      user = await this.create({ firstName, lastName, userEmail: email, userPassword: null, enrolledTutorials: [], createdProjects: [] }) //adds into the db
 
     }
 
@@ -75,12 +84,12 @@ userSchema.statics.signup = async function (firstName, lastName, email, password
   }
 
   //user signs up through google
- 
+
   else {
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
 
-    user = await this.create({ firstName, lastName, userEmail: email, userPassword: hash, enrolledTutorials: null, createdProjects: null }) //adds into the db
+    user = await this.create({ firstName, lastName, userEmail: email, userPassword: hash, enrolledTutorials: [], createdProjects: [] }) //adds into the db
   }
   return user
 }
@@ -105,5 +114,18 @@ userSchema.statics.login = async function (email, password) {
 
   return user
 }
+
+
+// //get User
+// userSchema.statics.getUser = async function () {
+
+  
+//   const user = await this.findOne({ userEmail: email })
+//   if (!user) {
+//     throw Error('User does not exist! ')
+//   }
+
+//   return user
+// }
 
 module.exports = mongoose.model('User', userSchema)
