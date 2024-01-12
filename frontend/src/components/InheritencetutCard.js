@@ -5,10 +5,13 @@ import styles from "./InheritencetutCard.module.css";
 
 const InheritencetutCard = ({
   tutorial,
+  language,
   inheritencetutCardPosition,
   inheritencetutCardTop,
   inheritencetutCardLeft,
 }) => {
+  console.log("Rendering InheritencetutCard:", tutorial._id, language);
+
   const [isLessonContinuationPopupOpen, setLessonContinuationPopupOpen] =
     useState(false);
   const inheritencetutCardStyle = useMemo(() => {
@@ -38,7 +41,7 @@ const InheritencetutCard = ({
     <>
        <div
         className={styles.inheritencetutcard}
-        onClick={ () => openLessonContinuationPopup(tutorial._id) } 
+        onClick={ () => openLessonContinuationPopup(tutorial._id,language) } 
         style={inheritencetutCardStyle}
       >
         <div className={styles.inheritencetutcardChild} />
@@ -47,7 +50,7 @@ const InheritencetutCard = ({
          {tutorial.tutDescription.split('.')[0]}
         </div>
 
-        <div className={styles.inheritance}>{tutorial.tutName }</div>
+        <div className={styles.inheritance}>{tutorial.tutName  + language}</div>
         <div className={styles.inheritencetutcardInner} />
         <div className={styles.rectangleDiv} />
         <div className={styles.div}>15 %</div>
@@ -59,7 +62,7 @@ const InheritencetutCard = ({
           placement="Centered"
           onOutsideClick={closeLessonContinuationPopup}
         >
-          <LessonContinuation tutorial = {tutorial} tutorialId={tutorial._id} onClose={closeLessonContinuationPopup} />
+          <LessonContinuation tutorial = {tutorial} tutorialId={tutorial._id} language={language} onClose={closeLessonContinuationPopup} />
         </PortalPopup>
       )}
     </>

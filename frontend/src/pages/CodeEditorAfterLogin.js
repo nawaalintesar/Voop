@@ -66,10 +66,12 @@ const CodeEditorBeforeLogin = () => {
   const projectId = state ? state.ProjectId : null;
   const tutorialId = state ? state.tutorialId : null;
   const levelClicked = state ? state.levelClicked : null;
+  const language = state ? state.language : null; 
 
   console.log("Project ID:", projectId);
   console.log("Tutorial ID:", tutorialId);
   console.log("Level Clicked:", levelClicked);
+  console.log("Language Clicked:", language);
 
   useEffect(() => {
     const fetchNew = async () => {
@@ -153,7 +155,7 @@ const CodeEditorBeforeLogin = () => {
 
         <div className={styles.mainWrapper}>
           {project && <OutputContainer key={projectId} project={project} />}
-          {tutorial && <OutputContainer key={tutorialId} tutorial={tutorial} levelClicked={ levelClicked} />}
+          {tutorial && <OutputContainer key={tutorialId} tutorial={tutorial} levelClicked={ levelClicked} language={language} />}
 
         </div>
         <Select

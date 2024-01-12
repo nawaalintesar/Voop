@@ -39,78 +39,6 @@ Step 3: Within the main class we create an object of type vehile, and defining i
 Step 4: Then we create an instance of car, with  brand as honda and wheels as 4. Then we print the attributes of both car and vehicle
 
 ------------------------------
-
-//Level 1- Python
-//Code
-# Define the Vehicle class
-class Vehicle:
-    def __init__(self):
-        self.brand = ""
-
-# Define the Car class, which inherits from Vehicle
-class Car(Vehicle):
-    def __init__(self):
-        super().__init__()
-        self.wheels = 4
-
-# Create an instance of the Vehicle class
-vehicle = Vehicle()
-vehicle.brand = "Toyota"
-
-# Create an instance of the Car class
-car = Car()
-car.brand = "Honda"
-
-# Display information about the Vehicle
-print("Vehicle Brand:", vehicle.brand)
-
-# Display information about the Car
-print("Car Brand:", car.brand)
-print("Number of Wheels:", car.wheels)
-
-
-
-//Steps
-Step 1: Initially we define a base class called Vehice representing a general vehicle.The __init__ method initializes an instance of Vehicle with an attribute brand set to an empty string. This class sets up a basic structure for a vehicle without specifying any specific details. 
-Step 2: Then we define a subclass called Car which inherits from Vehicle class. super().__init__() calls the constructor of the parent class (Vehicle) to initialize the inherited attributes. Adds an attribute wheels specific to cars, setting it to 4. By inheriting from Vehicle, Car inherits the attribute brand and extends its functionality by including the attribute wheels.
-------------------------------
-
-//Level 1- C++
-//Code
-# Define the Vehicle class
-class Vehicle:
-    def __init__(self):
-        self.brand = ""
-
-# Define the Car class, which inherits from Vehicle
-class Car(Vehicle):
-    def __init__(self):
-        super().__init__()
-        self.wheels = 4
-
-# Create an instance of the Vehicle class
-vehicle = Vehicle()
-vehicle.brand = "Toyota"
-
-# Create an instance of the Car class
-car = Car()
-car.brand = "Honda"
-
-# Display information about the Vehicle
-print("Vehicle Brand:", vehicle.brand)
-
-# Display information about the Car
-print("Car Brand:", car.brand)
-print("Number of Wheels:", car.wheels)
-
-
-//Steps
-Step 1: Initially we define a class named Vehicle representing a general vehicle. This is the super class. It has a public attribute brand of type std::string. This class serves as a blueprint for vehicles with a brand attribute.
-Step 2: Then we define a Car class that publicly inherits from the Vehicle class. This makes it a sub class of Vehicle. Class car has an attribute wheel specific to cars, as vehicles could mean any vehicle as a ship. 
-Step 3: The superclass-subclass relationship is also referred to as a parent-child relationship since children inherit characteristics and features from their parents.By inheriting publicly, a Car object inherits the brand attribute from the Vehicle class. Instances of Car contain both the brand attribute inherited from Vehicle and the specific wheels attribute.
-
-------------------------------
-
 //Level 2- Java
 //Code
 // Base class representing a generic shape
@@ -168,101 +96,6 @@ public class Main {
 Step 1: Initially we define a class named Shape representing a general shape. Contains an attribute color to store the color of the shape. Includes a constructor Shape(String color) to initialize the color attribute. Provides a draw() method to display a generic message indicating drawing a shape 
 Step 2: Then we create a Circle class inheriting from Shape. Inherits the color attribute and draw() method from the Shape class. Adds a radius attribute specific to circles.
 Step 3: Within the circle class we have a constructor Circle(String color, double radius) that initializes both color from the parent and radius for the circle. Overrides the draw() method from Shape to provide a specific implementation for drawing a circle, displaying its radius.
-------------------------------
-
-//Level 2- Python
-//Code
-class Shape:
-    def __init__(self, color):
-        self.color = color
-
-    def draw(self):
-        print("Drawing a generic shape")
-
-class Circle(Shape):
-    def __init__(self, color, radius):
-        super().__init__(color)
-        self.radius = radius
-
-    def draw(self):
-        print(f"Drawing a circle with color {self.color} and radius {self.radius}")
-
-# Create an instance of the Shape class
-shape = Shape("Red")
-
-# Create an instance of the Circle class
-circle = Circle("Blue", 5.0)
-
-# Test the draw method of the Shape class (generic shape)
-shape.draw()  # Output: Drawing a generic shape
-
-# Test the draw method of the Circle class (specialized for circles)
-circle.draw()  # Output: Drawing a circle with color Blue and radius 5.0
-
-
-
-//Steps
-Step 1: Initially we define a class named Shape representing a general shape. def __init__(self, color) helps in initializing a color attribute for the shape.
-The class contains a draw() method to display a generic message indicating the drawing of a shape.
-Step 2: Then we have a class circle inheriting from shape. It inherits the color attribute and draw() method from the Shape class. def __init__(self, color, radius) helps in initializing both the color from the parent and a specific radius for the circle. Overrides the draw() method inherited from Shape to provide a specialized implementation for drawing a circle, displaying its radius.
-------------------------------
-
-//Level 2- C++
-//Code
-#include <iostream>
-#include <string>
-
-// Base class representing a generic shape
-class Shape {
-public:
-    std::string color;
-
-    // Constructor to initialize color
-    Shape(std::string color) : color(color) {}
-
-    // Method to draw a generic shape
-    void draw() {
-        std::cout << "Drawing a generic shape" << std::endl;
-    }
-};
-
-// Subclass representing a specific shape - Circle
-class Circle : public Shape {
-public:
-    double radius;
-
-    // Constructor to initialize color and radius
-    Circle(std::string color, double radius) : Shape(color), radius(radius) {}
-
-    // Override the draw method to provide a specialized implementation for circles
-    void draw() override {
-        std::cout << "Drawing a circle with color " << color << " and radius " << radius << std::endl;
-    }
-};
-
-int main() {
-    // Create an instance of the Shape class
-    Shape shape("Red");
-
-    // Create an instance of the Circle class
-    Circle circle("Blue", 5.0);
-
-    // Test the draw method of the Shape class (generic shape)
-    shape.draw();  // Output: Drawing a generic shape
-
-    // Test the draw method of the Circle class (specialized for circles)
-    circle.draw();  // Output: Drawing a circle with color Blue and radius 5.0
-
-    return 0;
-}
-
-
-
-//Steps
-Step 1: Initially we define a class named Shape representing a general shape. It had a protected attribute color of type std::string to store the color of the shape.
-It contains a constructor Shape(const std::string& color) that initializes the color attribute. It also has a virtual method draw() that prints a generic message indicating drawing a shape.
-Step 2: Then we have a class circle inheriting from shape. Inherits the color attribute from Shape. Includes a private attribute radius of type double specific to circles.
-Contains a constructor Circle(const std::string& color, double radius) that initializes both the color from the parent class and the radius for the circle. Overrides the draw() method inherited from Shape to provide a specialized implementation for drawing a circle, displaying its radius. 
 ------------------------------
 
 //Level 3- Java
@@ -461,6 +294,80 @@ It also overrides the toString function to make it different from the standard p
 Step 3: Then we create another class called Employee which extends the class person, so it inherits all its attributes and methods. It overrides the hasAccess() method the output of the hasAccess will be false in the employee class and it also contains a unique displayCredentials which displays employee credentials from an employee.txt file. It also has its own unique implementation of the toString function.
 Step 4: Within the main class we create an instance of manager and employee , we use the displayInformation and we see that the output for both of them are different and we also run the toString function and we see that both the toString will also have different output. 
 ------------------------------
+//Level 1- Python
+//Code
+# Define the Vehicle class
+class Vehicle:
+    def __init__(self):
+        self.brand = ""
+
+# Define the Car class, which inherits from Vehicle
+class Car(Vehicle):
+    def __init__(self):
+        super().__init__()
+        self.wheels = 4
+
+# Create an instance of the Vehicle class
+vehicle = Vehicle()
+vehicle.brand = "Toyota"
+
+# Create an instance of the Car class
+car = Car()
+car.brand = "Honda"
+
+# Display information about the Vehicle
+print("Vehicle Brand:", vehicle.brand)
+
+# Display information about the Car
+print("Car Brand:", car.brand)
+print("Number of Wheels:", car.wheels)
+
+
+
+//Steps
+Step 1: Initially we define a base class called Vehice representing a general vehicle.The __init__ method initializes an instance of Vehicle with an attribute brand set to an empty string. This class sets up a basic structure for a vehicle without specifying any specific details. 
+Step 2: Then we define a subclass called Car which inherits from Vehicle class. super().__init__() calls the constructor of the parent class (Vehicle) to initialize the inherited attributes. Adds an attribute wheels specific to cars, setting it to 4. By inheriting from Vehicle, Car inherits the attribute brand and extends its functionality by including the attribute wheels.
+------------------------------
+
+
+
+//Level 2- Python
+//Code
+class Shape:
+    def __init__(self, color):
+        self.color = color
+
+    def draw(self):
+        print("Drawing a generic shape")
+
+class Circle(Shape):
+    def __init__(self, color, radius):
+        super().__init__(color)
+        self.radius = radius
+
+    def draw(self):
+        print(f"Drawing a circle with color {self.color} and radius {self.radius}")
+
+# Create an instance of the Shape class
+shape = Shape("Red")
+
+# Create an instance of the Circle class
+circle = Circle("Blue", 5.0)
+
+# Test the draw method of the Shape class (generic shape)
+shape.draw()  # Output: Drawing a generic shape
+
+# Test the draw method of the Circle class (specialized for circles)
+circle.draw()  # Output: Drawing a circle with color Blue and radius 5.0
+
+
+
+//Steps
+Step 1: Initially we define a class named Shape representing a general shape. def __init__(self, color) helps in initializing a color attribute for the shape.
+The class contains a draw() method to display a generic message indicating the drawing of a shape.
+Step 2: Then we have a class circle inheriting from shape. It inherits the color attribute and draw() method from the Shape class. def __init__(self, color, radius) helps in initializing both the color from the parent and a specific radius for the circle. Overrides the draw() method inherited from Shape to provide a specialized implementation for drawing a circle, displaying its radius.
+------------------------------
+
 
 //Level 3- Python
 //Code
@@ -556,6 +463,99 @@ Step 1: Initally we create an class called person having attributes like id,name
 Step 2: Both manager and employee class inherit from person class, both the classes recive the attributes and methods of the class person. Both these classes ovverride the hasAccess function , manages have access so their value is true while employees dont so their value is flase.
 It also overrides the toString function to make it different from the standard printing fromat
 Step 3: The main function create instance of manager and employee and prints theor data using the str function.
+------------------------------
+
+//Level 1- C++
+//Code
+# Define the Vehicle class
+class Vehicle:
+    def __init__(self):
+        self.brand = ""
+
+# Define the Car class, which inherits from Vehicle
+class Car(Vehicle):
+    def __init__(self):
+        super().__init__()
+        self.wheels = 4
+
+# Create an instance of the Vehicle class
+vehicle = Vehicle()
+vehicle.brand = "Toyota"
+
+# Create an instance of the Car class
+car = Car()
+car.brand = "Honda"
+
+# Display information about the Vehicle
+print("Vehicle Brand:", vehicle.brand)
+
+# Display information about the Car
+print("Car Brand:", car.brand)
+print("Number of Wheels:", car.wheels)
+
+
+//Steps
+Step 1: Initially we define a class named Vehicle representing a general vehicle. This is the super class. It has a public attribute brand of type std::string. This class serves as a blueprint for vehicles with a brand attribute.
+Step 2: Then we define a Car class that publicly inherits from the Vehicle class. This makes it a sub class of Vehicle. Class car has an attribute wheel specific to cars, as vehicles could mean any vehicle as a ship. 
+Step 3: The superclass-subclass relationship is also referred to as a parent-child relationship since children inherit characteristics and features from their parents.By inheriting publicly, a Car object inherits the brand attribute from the Vehicle class. Instances of Car contain both the brand attribute inherited from Vehicle and the specific wheels attribute.
+
+------------------------------
+//Level 2- C++
+//Code
+#include <iostream>
+#include <string>
+
+// Base class representing a generic shape
+class Shape {
+public:
+    std::string color;
+
+    // Constructor to initialize color
+    Shape(std::string color) : color(color) {}
+
+    // Method to draw a generic shape
+    void draw() {
+        std::cout << "Drawing a generic shape" << std::endl;
+    }
+};
+
+// Subclass representing a specific shape - Circle
+class Circle : public Shape {
+public:
+    double radius;
+
+    // Constructor to initialize color and radius
+    Circle(std::string color, double radius) : Shape(color), radius(radius) {}
+
+    // Override the draw method to provide a specialized implementation for circles
+    void draw() override {
+        std::cout << "Drawing a circle with color " << color << " and radius " << radius << std::endl;
+    }
+};
+
+int main() {
+    // Create an instance of the Shape class
+    Shape shape("Red");
+
+    // Create an instance of the Circle class
+    Circle circle("Blue", 5.0);
+
+    // Test the draw method of the Shape class (generic shape)
+    shape.draw();  // Output: Drawing a generic shape
+
+    // Test the draw method of the Circle class (specialized for circles)
+    circle.draw();  // Output: Drawing a circle with color Blue and radius 5.0
+
+    return 0;
+}
+
+
+
+//Steps
+Step 1: Initially we define a class named Shape representing a general shape. It had a protected attribute color of type std::string to store the color of the shape.
+It contains a constructor Shape(const std::string& color) that initializes the color attribute. It also has a virtual method draw() that prints a generic message indicating drawing a shape.
+Step 2: Then we have a class circle inheriting from shape. Inherits the color attribute from Shape. Includes a private attribute radius of type double specific to circles.
+Contains a constructor Circle(const std::string& color, double radius) that initializes both the color from the parent class and the radius for the circle. Overrides the draw() method inherited from Shape to provide a specialized implementation for drawing a circle, displaying its radius. 
 ------------------------------
 
 

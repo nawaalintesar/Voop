@@ -81,137 +81,7 @@ Step 7: It introduces the ‘model’ field to represent the laptop model, and a
 Step 8: The ‘Main’ class which contains the ‘main’ method creates instances of ‘Phone’ and ‘Laptop’ which uses the ‘instanceof’ operator to check if an object is an instance of a particular class or interface. 
 Step 9: Finally the ‘operate()’ method is called and it prints the string representation for each object if it is an instance of ‘AbstractDevice’. 
 ------------------------------
- 
-//Level 1- Python
-//Code
-from abc import ABC, abstractmethod
-class Device(ABC):
-    def __init__(self, brand):
-        self.brand = brand
- 
-    @abstractmethod
-    def operate(self):
-        pass
- 
-class Phone(Device):
-    def __init__(self, brand, model):
-        super().__init__(brand)
-        self.model = model
- 
-    def operate(self):
-        print(f"{self.brand} {self.model} is making a call")
- 
-class Laptop(Device):
-    def __init__(self, brand, model):
-        super().__init__(brand)
-        self.model = model
- 
-    def operate(self):
-        print(f"{self.brand} {self.model} is running a program")
- 
-# Main program
-phone = Phone("Samsung", "Galaxy S21")
-laptop = Laptop("Dell", "XPS 13")
- 
-# Check types using isinstance
-if isinstance(phone, Phone):
-    phone.operate()
- 
-if isinstance(laptop, Laptop):
-    laptop.operate()
- 
-//Steps
-Step 1: Frome the ‘abc’ module we are importing the ‘ABC’ Abstract Base Class as well as the ‘abstractmethod’. An abstract class named ‘Device is created’ which is inheriting from ‘ABC’. Note: Abstract classes provide a common structure for their sub classes and  cannot be instantiated directly.
-Step 2: For any concrete class that is inheriting from ‘Device’ the ‘operate’ method which is an abstract method is implemented.
-Step 3: A concrete class ‘Phone’ is defined which inherits from the abstract class ‘Device’, Concrete classes are used to provide specific implementations for the abstract methods.
-Step 4: The ‘__in__’ method which is a constructor takes ‘brand’ and ‘model’ as its parameters, the call ‘super().__init__(brand)’ initializes the brand attribute using the constructor of ‘Device’ which is our base class.
-Step 5: The ‘operate’ method is implemented to print a message which will indicate that the phone is making a call.
-Step 6: Similar to the ‘Phone’ class a ‘Laptop’ concrete class is defined which is also inheriting from the ‘Device’ abstract class. The ‘__init__’ method is similar to the one in the ‘Phone’ class, which is used to initialize the brand attribute and also introducing a new attribute which is the ‘model’ attribute which shows the laptop brand.
-Step 7: The ‘operate’ method will print that the laptop is running a program.
-Step 8: In the main part of the program, instances which are basically objects are created for both the ‘Phone’ and ‘Laptop’ classes. The object created for the ‘Phone’ class is a phone with the brand “Samsung” having the model “Galaxy S21” and for the ‘Laptop’ class a Laptop with the brand ‘Dell’ having a model ‘XPS 13’ is created.
-Step 9: The ‘isinstance’ function is used to check whether the instances created are of the respective classes (‘Phone’ and ‘Laptop’), this will help ensure that the instances that we are working are correct. When the instance meets the specific type it calls the ‘operate’ method specific to the type of the instance which prints the message (“phone is making a call” or “laptop Is running a program”) depending on the instance.
-------------------------------
-//Level 1- C++
-//Code
-#include <iostream>
-using namespace std;
- 
-class Device {
-public:
-    virtual void operate() = 0;
-    virtual string toString() = 0;
-};
- 
-class AbstractDevice : public Device {
-public:
-    string brand;
- 
-    AbstractDevice(string brand) : brand(brand) {}
- 
-    virtual void operate() = 0;
- 
-    virtual string toString() {
-        return "Brand: " + brand;
-    }
-};
- 
-class Phone : public AbstractDevice {
-public:
-    string model;
- 
-    Phone(string brand, string model) : AbstractDevice(brand), model(model) {}
- 
-    void operate() override {
-        cout << brand + " " + model + " is making a call" << endl;
-    }
- 
-    string toString() override {
-        return AbstractDevice::toString() + ", Model: " + model;
-    }
-};
- 
-class Laptop : public AbstractDevice {
-public:
-    string model;
- 
-    Laptop(string brand, string model) : AbstractDevice(brand), model(model) {}
- 
-    void operate() override {
-        cout << brand + " " + model + " is running a program" << endl;
-    }
- 
-    string toString() override {
-        return AbstractDevice::toString() + ", Model: " + model;
-    }
-};
- 
-int main() {
-    Phone phone("Samsung", "Galaxy S21");
-    Laptop laptop("Dell", "XPS 13");
- 
-    // Check types using dynamic_cast
-    if (dynamic_cast<AbstractDevice*>(&phone)) {
-        dynamic_cast<AbstractDevice*>(&phone)->operate();
-        cout << dynamic_cast<AbstractDevice*>(&phone)->toString() << endl;
-    }
- 
-    if (dynamic_cast<AbstractDevice*>(&laptop)) {
-        dynamic_cast<AbstractDevice*>(&laptop)->operate();
-        cout << dynamic_cast<AbstractDevice*>(&laptop)->toString() << endl;
-    }
- 
-    return 0;
-}
- 
-//Steps
-Step 1: We define an abstract class ‘Device’ with two pure virtual functions(abstract) ‘operate’ and ‘toString’ ( A virtual function in C++ is a function that is declared in the base class but has no implementation, it has to be implemented by any derived class ). This makes ‘Device’ an abstract class, any class that inherits from ‘Device’ must provide implementations for the functions.
-Step 2: ‘AbstractDevice’ which is an abstract class is created, and it inherits from ‘Device’. It contains a ‘brand’ attribute as well as constructor to initialize it. The class has the function ‘operate’ and it has to be implemented by any concrete subclass. A concrete subclass is a type of class that provides the implementations for all the abstract methods, which are inherited from the abstract base class which makes it an actual class.
-Step 3: The default implementation of the ‘toString’ implementation is defined, which return a string representation of a brand.
-Step 4: Two concrete classes ‘Phone’ and ‘Laptop’ are defined, both inheriting from ‘AbstractDevice’. Each class has its constructor, initializes the brand via the base class constructor. A new attribute ‘model’ is added. The implementations of the pure virtual functions(abstract) functions which are ‘operate’ and ‘toString’ are provided.
-Step 5: In the main program the objects for ‘Phone’ and ‘Laptop’ classes are created.
-Step 6: The ‘dynamic_cast’ operator is used to check if these objects can be cast to a pointer of type ‘AbstractDevice’. If the ‘dynamic_cast’ is successful, the ‘operate’ and ‘toString’ methods are called thus demonstrating polymorphism. 
-------------------------------
-//Level 2- Java
+ //Level 2- Java
 //Code
 import java.util.*;
 
@@ -296,139 +166,6 @@ public class Main {
 
 ------------------------------
 
-
-//Level 2- Python
-//Code
-class Warehouse:
-    def __init__(self):
-        self.products = {}
-
-    def add_product(self, category: str, product: 'Product'):
-        self.products.setdefault(category, []).append(product)
-
-    def get_products_in_category(self, category: str) -> List['Product']:
-        return self.products.get(category, [])
-
-class Product:
-    def __init__(self, name: str, price: float):
-        self.name = name
-        self.price = price
-
-# Testing code for Python
-if __name__ == "__main__":
-    # Create a warehouse
-    warehouse = Warehouse()
-
-    # Add products to different categories
-    laptop = Product("Laptop", 999.99)
-    smartphone = Product("Smartphone", 499.99)
-    tablet = Product("Tablet", 299.99)
-
-    warehouse.add_product("Electronics", laptop)
-    warehouse.add_product("Electronics", smartphone)
-    warehouse.add_product("Electronics", tablet)
-
-    shirt = Product("Shirt", 29.99)
-    jeans = Product("Jeans", 49.99)
-
-    warehouse.add_product("Clothing", shirt)
-    warehouse.add_product("Clothing", jeans)
-
-    # Retrieve and display products in different categories
-    print("Products in Electronics category:")
-    for product in warehouse.get_products_in_category("Electronics"):
-        print(f"Product: {product.name}, Price: ${product.price}")
-
-    print("\nProducts in Clothing category:")
-    for product in warehouse.get_products_in_category("Clothing"):
-        print(f"Product: {product.name}, Price: ${product.price}")
-
-    # Test a non-existing category
-    print("\nProducts in Non-existing category:")
-    for product in warehouse.get_products_in_category("Non-existing"):
-        print(f"Product: {product.name}, Price: ${product.price}")
-
-//Steps
-------------------------------
-
-//Level 2- C++
-//Code
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-
-class Product {
-private:
-    std::string name;
-    double price;
-
-public:
-    Product(const std::string& name, double price) : name(name), price(price) {}
-
-    std::string getName() const {
-        return name;
-    }
-
-    double getPrice() const {
-        return price;
-    }
-};
-
-class Warehouse {
-private:
-    std::unordered_map<std::string, std::vector<Product>> products;
-
-public:
-    void addProduct(const std::string& category, const Product& product) {
-        products[category].push_back(product);
-    }
-
-    std::vector<Product> getProductsInCategory(const std::string& category) const {
-        auto it = products.find(category);
-        return it != products.end() ? it->second : std::vector<Product>();
-    }
-};
-
-int main() {
-    // Create a warehouse
-    Warehouse warehouse;
-
-    // Add products to different categories
-    Product laptop("Laptop", 999.99);
-    Product smartphone("Smartphone", 499.99);
-    Product tablet("Tablet", 299.99);
-
-    warehouse.addProduct("Electronics", laptop);
-    warehouse.addProduct("Electronics", smartphone);
-    warehouse.addProduct("Electronics", tablet);
-
-    Product shirt("Shirt", 29.99);
-    Product jeans("Jeans", 49.99);
-
-    warehouse.addProduct("Clothing", shirt);
-    warehouse.addProduct("Clothing", jeans);
-
-    // Retrieve and display products in different categories
-    std::cout << "Products in Electronics category:" << std::endl;
-    for (const auto& product : warehouse.getProductsInCategory("Electronics")) {
-        std::cout << "Product: " << product.getName() << ", Price: $" << product.getPrice() << std::endl;
-    }
-
-    std::cout << "\nProducts in Clothing category:" << std::endl;
-    for (const auto& product : warehouse.getProductsInCategory("Clothing")) {
-        std::cout << "Product: " << product.getName() << ", Price: $" << product.getPrice() << std::endl;
-    }
-
-    std::cout << "\nProducts in Non-existing category:" << std::endl;
-    for (const auto& product : warehouse.getProductsInCategory("Non-existing")) {
-        std::cout << "Product: " << product.getName() << ", Price: $" << product.getPrice() << std::endl;
-    }
-
-    return 0;
-}
-
-//Steps
-------------------------------
 
 //Level 3- Java
 //Code
@@ -559,6 +296,110 @@ public class Main {
 //Steps
 ------------------------------
 
+//Level 1- Python
+//Code
+from abc import ABC, abstractmethod
+class Device(ABC):
+    def __init__(self, brand):
+        self.brand = brand
+ 
+    @abstractmethod
+    def operate(self):
+        pass
+ 
+class Phone(Device):
+    def __init__(self, brand, model):
+        super().__init__(brand)
+        self.model = model
+ 
+    def operate(self):
+        print(f"{self.brand} {self.model} is making a call")
+ 
+class Laptop(Device):
+    def __init__(self, brand, model):
+        super().__init__(brand)
+        self.model = model
+ 
+    def operate(self):
+        print(f"{self.brand} {self.model} is running a program")
+ 
+# Main program
+phone = Phone("Samsung", "Galaxy S21")
+laptop = Laptop("Dell", "XPS 13")
+ 
+# Check types using isinstance
+if isinstance(phone, Phone):
+    phone.operate()
+ 
+if isinstance(laptop, Laptop):
+    laptop.operate()
+ 
+//Steps
+Step 1: Frome the ‘abc’ module we are importing the ‘ABC’ Abstract Base Class as well as the ‘abstractmethod’. An abstract class named ‘Device is created’ which is inheriting from ‘ABC’. Note: Abstract classes provide a common structure for their sub classes and  cannot be instantiated directly.
+Step 2: For any concrete class that is inheriting from ‘Device’ the ‘operate’ method which is an abstract method is implemented.
+Step 3: A concrete class ‘Phone’ is defined which inherits from the abstract class ‘Device’, Concrete classes are used to provide specific implementations for the abstract methods.
+Step 4: The ‘__in__’ method which is a constructor takes ‘brand’ and ‘model’ as its parameters, the call ‘super().__init__(brand)’ initializes the brand attribute using the constructor of ‘Device’ which is our base class.
+Step 5: The ‘operate’ method is implemented to print a message which will indicate that the phone is making a call.
+Step 6: Similar to the ‘Phone’ class a ‘Laptop’ concrete class is defined which is also inheriting from the ‘Device’ abstract class. The ‘__init__’ method is similar to the one in the ‘Phone’ class, which is used to initialize the brand attribute and also introducing a new attribute which is the ‘model’ attribute which shows the laptop brand.
+Step 7: The ‘operate’ method will print that the laptop is running a program.
+Step 8: In the main part of the program, instances which are basically objects are created for both the ‘Phone’ and ‘Laptop’ classes. The object created for the ‘Phone’ class is a phone with the brand “Samsung” having the model “Galaxy S21” and for the ‘Laptop’ class a Laptop with the brand ‘Dell’ having a model ‘XPS 13’ is created.
+Step 9: The ‘isinstance’ function is used to check whether the instances created are of the respective classes (‘Phone’ and ‘Laptop’), this will help ensure that the instances that we are working are correct. When the instance meets the specific type it calls the ‘operate’ method specific to the type of the instance which prints the message (“phone is making a call” or “laptop Is running a program”) depending on the instance.
+------------------------------
+
+//Level 2- Python
+//Code
+class Warehouse:
+    def __init__(self):
+        self.products = {}
+
+    def add_product(self, category: str, product: 'Product'):
+        self.products.setdefault(category, []).append(product)
+
+    def get_products_in_category(self, category: str) -> List['Product']:
+        return self.products.get(category, [])
+
+class Product:
+    def __init__(self, name: str, price: float):
+        self.name = name
+        self.price = price
+
+# Testing code for Python
+if __name__ == "__main__":
+    # Create a warehouse
+    warehouse = Warehouse()
+
+    # Add products to different categories
+    laptop = Product("Laptop", 999.99)
+    smartphone = Product("Smartphone", 499.99)
+    tablet = Product("Tablet", 299.99)
+
+    warehouse.add_product("Electronics", laptop)
+    warehouse.add_product("Electronics", smartphone)
+    warehouse.add_product("Electronics", tablet)
+
+    shirt = Product("Shirt", 29.99)
+    jeans = Product("Jeans", 49.99)
+
+    warehouse.add_product("Clothing", shirt)
+    warehouse.add_product("Clothing", jeans)
+
+    # Retrieve and display products in different categories
+    print("Products in Electronics category:")
+    for product in warehouse.get_products_in_category("Electronics"):
+        print(f"Product: {product.name}, Price: ${product.price}")
+
+    print("\nProducts in Clothing category:")
+    for product in warehouse.get_products_in_category("Clothing"):
+        print(f"Product: {product.name}, Price: ${product.price}")
+
+    # Test a non-existing category
+    print("\nProducts in Non-existing category:")
+    for product in warehouse.get_products_in_category("Non-existing"):
+        print(f"Product: {product.name}, Price: ${product.price}")
+
+//Steps
+------------------------------
+
 
 //Level 3- Python
 //Code
@@ -631,6 +472,166 @@ for vehicle in vehicles:
         vehicle.display_info()
         vehicle.max_speed()
         vehicle.modify_vehicle("Green", "Mercedes", "Luxury Bus")
+
+//Steps
+------------------------------
+
+//Level 1- C++
+//Code
+#include <iostream>
+using namespace std;
+ 
+class Device {
+public:
+    virtual void operate() = 0;
+    virtual string toString() = 0;
+};
+ 
+class AbstractDevice : public Device {
+public:
+    string brand;
+ 
+    AbstractDevice(string brand) : brand(brand) {}
+ 
+    virtual void operate() = 0;
+ 
+    virtual string toString() {
+        return "Brand: " + brand;
+    }
+};
+ 
+class Phone : public AbstractDevice {
+public:
+    string model;
+ 
+    Phone(string brand, string model) : AbstractDevice(brand), model(model) {}
+ 
+    void operate() override {
+        cout << brand + " " + model + " is making a call" << endl;
+    }
+ 
+    string toString() override {
+        return AbstractDevice::toString() + ", Model: " + model;
+    }
+};
+ 
+class Laptop : public AbstractDevice {
+public:
+    string model;
+ 
+    Laptop(string brand, string model) : AbstractDevice(brand), model(model) {}
+ 
+    void operate() override {
+        cout << brand + " " + model + " is running a program" << endl;
+    }
+ 
+    string toString() override {
+        return AbstractDevice::toString() + ", Model: " + model;
+    }
+};
+ 
+int main() {
+    Phone phone("Samsung", "Galaxy S21");
+    Laptop laptop("Dell", "XPS 13");
+ 
+    // Check types using dynamic_cast
+    if (dynamic_cast<AbstractDevice*>(&phone)) {
+        dynamic_cast<AbstractDevice*>(&phone)->operate();
+        cout << dynamic_cast<AbstractDevice*>(&phone)->toString() << endl;
+    }
+ 
+    if (dynamic_cast<AbstractDevice*>(&laptop)) {
+        dynamic_cast<AbstractDevice*>(&laptop)->operate();
+        cout << dynamic_cast<AbstractDevice*>(&laptop)->toString() << endl;
+    }
+ 
+    return 0;
+}
+ 
+//Steps
+Step 1: We define an abstract class ‘Device’ with two pure virtual functions(abstract) ‘operate’ and ‘toString’ ( A virtual function in C++ is a function that is declared in the base class but has no implementation, it has to be implemented by any derived class ). This makes ‘Device’ an abstract class, any class that inherits from ‘Device’ must provide implementations for the functions.
+Step 2: ‘AbstractDevice’ which is an abstract class is created, and it inherits from ‘Device’. It contains a ‘brand’ attribute as well as constructor to initialize it. The class has the function ‘operate’ and it has to be implemented by any concrete subclass. A concrete subclass is a type of class that provides the implementations for all the abstract methods, which are inherited from the abstract base class which makes it an actual class.
+Step 3: The default implementation of the ‘toString’ implementation is defined, which return a string representation of a brand.
+Step 4: Two concrete classes ‘Phone’ and ‘Laptop’ are defined, both inheriting from ‘AbstractDevice’. Each class has its constructor, initializes the brand via the base class constructor. A new attribute ‘model’ is added. The implementations of the pure virtual functions(abstract) functions which are ‘operate’ and ‘toString’ are provided.
+Step 5: In the main program the objects for ‘Phone’ and ‘Laptop’ classes are created.
+Step 6: The ‘dynamic_cast’ operator is used to check if these objects can be cast to a pointer of type ‘AbstractDevice’. If the ‘dynamic_cast’ is successful, the ‘operate’ and ‘toString’ methods are called thus demonstrating polymorphism. 
+------------------------------
+
+//Level 2- C++
+//Code
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+
+class Product {
+private:
+    std::string name;
+    double price;
+
+public:
+    Product(const std::string& name, double price) : name(name), price(price) {}
+
+    std::string getName() const {
+        return name;
+    }
+
+    double getPrice() const {
+        return price;
+    }
+};
+
+class Warehouse {
+private:
+    std::unordered_map<std::string, std::vector<Product>> products;
+
+public:
+    void addProduct(const std::string& category, const Product& product) {
+        products[category].push_back(product);
+    }
+
+    std::vector<Product> getProductsInCategory(const std::string& category) const {
+        auto it = products.find(category);
+        return it != products.end() ? it->second : std::vector<Product>();
+    }
+};
+
+int main() {
+    // Create a warehouse
+    Warehouse warehouse;
+
+    // Add products to different categories
+    Product laptop("Laptop", 999.99);
+    Product smartphone("Smartphone", 499.99);
+    Product tablet("Tablet", 299.99);
+
+    warehouse.addProduct("Electronics", laptop);
+    warehouse.addProduct("Electronics", smartphone);
+    warehouse.addProduct("Electronics", tablet);
+
+    Product shirt("Shirt", 29.99);
+    Product jeans("Jeans", 49.99);
+
+    warehouse.addProduct("Clothing", shirt);
+    warehouse.addProduct("Clothing", jeans);
+
+    // Retrieve and display products in different categories
+    std::cout << "Products in Electronics category:" << std::endl;
+    for (const auto& product : warehouse.getProductsInCategory("Electronics")) {
+        std::cout << "Product: " << product.getName() << ", Price: $" << product.getPrice() << std::endl;
+    }
+
+    std::cout << "\nProducts in Clothing category:" << std::endl;
+    for (const auto& product : warehouse.getProductsInCategory("Clothing")) {
+        std::cout << "Product: " << product.getName() << ", Price: $" << product.getPrice() << std::endl;
+    }
+
+    std::cout << "\nProducts in Non-existing category:" << std::endl;
+    for (const auto& product : warehouse.getProductsInCategory("Non-existing")) {
+        std::cout << "Product: " << product.getName() << ", Price: $" << product.getPrice() << std::endl;
+    }
+
+    return 0;
+}
 
 //Steps
 ------------------------------

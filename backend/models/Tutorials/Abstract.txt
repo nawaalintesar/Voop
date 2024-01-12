@@ -42,83 +42,6 @@ Step 3: Both class circle and shape are extending(inheriting) from shape , which
 Step 4: So when we create a circle object of class circle and call the draw method it will print drawing a circle because the circle class overrode the draw method in shape class. 
 ------------------------------
 
-//Level 1- Python
-//Code
-from abc import ABC, abstractmethod
-
-class Shape(ABC):
-    @abstractmethod
-    def draw(self):
-        pass
-
-# Example usage
-class Circle(Shape):
-    def draw(self):
-        print("Drawing a circle")
-
-class Square(Shape):
-    def draw(self):
-        print("Drawing a square")
-
-# Creating instances and invoking the draw method
-circle = Circle()
-square = Square()
-
-circle.draw()
-square.draw()
-
-
-
-//Steps
-Step 1: We create an abstract class called Shape. It inherits from the ABC class imported from the abc module in Python.
-Step 2: The @abstractmethod is a decorator in Python used to declare an abstract method. def draw(self) helps in declaring an abstract method named draw.The pass keyword indicates that this abstract method doesn't have an implementation in the Shape class; it's meant to be overridden (implemented) by subclasses.
-Step 3: Both class square and circle are inheriting from class shape , both of these classes will have to provide their own implementation of the draw method in the shape class as it is an abstract method.
-Step 4: So when we create an object of type circle and we call the draw method we will see output of the draw method within the circle class which is drawing a circle
-
-//Level 1- C++
-//Code
-#include <iostream>
-
-class Shape {
-public:
-    virtual void draw() = 0;  // Pure virtual function makes the class abstract
-};
-
-// Example usage
-class Circle : public Shape {
-public:
-    void draw() override {
-        std::cout << "Drawing a circle" << std::endl;
-    }
-};
-
-class Square : public Shape {
-public:
-    void draw() override {
-        std::cout << "Drawing a square" << std::endl;
-    }
-};
-
-int main() {
-    // Creating instances and invoking the draw method
-    Circle circle;
-    Square square;
-
-    circle.draw();
-    square.draw();
-
-    return 0;
-}
-
-
-
-//Steps
-Step 1: We create an abstract class called Shape. 
-Step 2: virtual void draw() = 0; helps in declaring a pure virtual function named draw. A pure virtual function in C++ is a function declared in a base class that has no implementation and must be overridden in derived classes.
-Step 3: The draw function acts as a placeholder method; it must be implemented by any derived class before objects of those classes can be instantiated. Subclasses of Shape need to override the draw function to provide specific drawing behavior for each shape type.
-Step 4: Both class circle and square inherit from class shape. Both these classes implement their own version of the draw method. So when we create an object of the class circle and we call the draw method, we will get the output of drawing by circle.
-------------------------------
-
 //Level 2- Java
 //Code
 interface Drawable {
@@ -159,80 +82,6 @@ Step 3: Then for the class circle we create 2 attributes(color and radius). Then
 Step 4: Class circle then overrides the draw method in drawable class. So when we run the draw method on an object of circle we see the statement from the draw method in the circle class.
 ------------------------------
 
-//Level 2- Python
-//Code
-from abc import ABC, abstractmethod
-
-class Drawable(ABC):
-    @abstractmethod
-    def draw(self):
-        pass
-
-class Circle(Drawable):
-    def __init__(self, color, radius):
-        self.color = color
-        self.radius = radius
-
-    def draw(self):
-        print(f'Drawing Circle with color: {self.color}')
-        # Additional code for drawing a circle...
-
-if __name__ == "__main__":
-    circle = Circle("Red", 5.0)
-
-    # Draw the circle
-    circle.draw()
-
-
-
-//Steps
-Step 1: Initially we define an abstract based class(ABC) called drawable. Which inherits from the abc module in Python, indicating it's an abstract class.
-Step 2: @abstractmethod is used to declare an abstract method.
-Then we declare an abstract method named draw within the Drawable class.
-The pass keyword in the method body signifies that the method doesn’t have an implementation in the Drawable class. So anyclass inheriting from the drawable class would have to provide an implementation for this method.
-Step 3: Then we define a class named Circle that inherits from Drawable. This means Circle is a subclass of Drawable. Class circle has its own constructor with variables colour and radius. Then the class circle provides an implementation of the draw method.
-Step 4: Within the main when we create an object of the circle class and call the method draw , we the output is the same as the print statement within the draw method in classs circle.
-------------------------------
-
-//Level 2- C++
-//Code
-#include <iostream>
-
-class Drawable {
-public:
-    virtual void draw() = 0;
-};
-
-class Circle : public Drawable {
-private:
-    std::string color;
-    double radius;
-
-public:
-    Circle(std::string color, double radius) : color(color), radius(radius) {}
-
-    void draw() override {
-        std::cout << "Drawing Circle with color: " << color << std::endl;
-        // Additional code for drawing a circle...
-    }
-};
-
-int main() {
-    Circle circle("Red", 5.0);
-
-    // Draw the circle
-    circle.draw();
-
-    return 0;
-}
-
-
-
-//Steps
-Step 1: Initially we define a base class called drawable with a pure virtual function draw. This pure virtual function specifies that any derived class must implement its own draw method. 
-Step 2: Then we define a class named Circle that inherits from Drawable.This means that class circle will have to provide their own implementation of the draw method in drawable class. Class circle has its own constructor with variable color and radius. It also has an override to the draw method.
-Step 3: Within the main we create an object of the circle class and call the draw method , we see that the draw method’s output is the print statement within the circle class.
-------------------------------
 
 //Level 3- Java
 //Code
@@ -400,6 +249,74 @@ public class Main {
 and an empty file users.txt
 //Steps
 ------------------------------
+//Level 1- Python
+//Code
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def draw(self):
+        pass
+
+# Example usage
+class Circle(Shape):
+    def draw(self):
+        print("Drawing a circle")
+
+class Square(Shape):
+    def draw(self):
+        print("Drawing a square")
+
+# Creating instances and invoking the draw method
+circle = Circle()
+square = Square()
+
+circle.draw()
+square.draw()
+
+
+
+//Steps
+Step 1: We create an abstract class called Shape. It inherits from the ABC class imported from the abc module in Python.
+Step 2: The @abstractmethod is a decorator in Python used to declare an abstract method. def draw(self) helps in declaring an abstract method named draw.The pass keyword indicates that this abstract method doesn't have an implementation in the Shape class; it's meant to be overridden (implemented) by subclasses.
+Step 3: Both class square and circle are inheriting from class shape , both of these classes will have to provide their own implementation of the draw method in the shape class as it is an abstract method.
+Step 4: So when we create an object of type circle and we call the draw method we will see output of the draw method within the circle class which is drawing a circle
+
+//Level 2- Python
+//Code
+from abc import ABC, abstractmethod
+
+class Drawable(ABC):
+    @abstractmethod
+    def draw(self):
+        pass
+
+class Circle(Drawable):
+    def __init__(self, color, radius):
+        self.color = color
+        self.radius = radius
+
+    def draw(self):
+        print(f'Drawing Circle with color: {self.color}')
+        # Additional code for drawing a circle...
+
+if __name__ == "__main__":
+    circle = Circle("Red", 5.0)
+
+    # Draw the circle
+    circle.draw()
+
+
+
+//Steps
+Step 1: Initially we define an abstract based class(ABC) called drawable. Which inherits from the abc module in Python, indicating it's an abstract class.
+Step 2: @abstractmethod is used to declare an abstract method.
+Then we declare an abstract method named draw within the Drawable class.
+The pass keyword in the method body signifies that the method doesn’t have an implementation in the Drawable class. So anyclass inheriting from the drawable class would have to provide an implementation for this method.
+Step 3: Then we define a class named Circle that inherits from Drawable. This means Circle is a subclass of Drawable. Class circle has its own constructor with variables colour and radius. Then the class circle provides an implementation of the draw method.
+Step 4: Within the main when we create an object of the circle class and call the method draw , we the output is the same as the print statement within the draw method in classs circle.
+------------------------------
+
 
 //Level 3- Python
 //Code
@@ -522,6 +439,89 @@ if __name__ == "__main__":
 ------------------------------
 
 
+//Level 1- C++
+//Code
+#include <iostream>
+
+class Shape {
+public:
+    virtual void draw() = 0;  // Pure virtual function makes the class abstract
+};
+
+// Example usage
+class Circle : public Shape {
+public:
+    void draw() override {
+        std::cout << "Drawing a circle" << std::endl;
+    }
+};
+
+class Square : public Shape {
+public:
+    void draw() override {
+        std::cout << "Drawing a square" << std::endl;
+    }
+};
+
+int main() {
+    // Creating instances and invoking the draw method
+    Circle circle;
+    Square square;
+
+    circle.draw();
+    square.draw();
+
+    return 0;
+}
+
+
+
+//Steps
+Step 1: We create an abstract class called Shape. 
+Step 2: virtual void draw() = 0; helps in declaring a pure virtual function named draw. A pure virtual function in C++ is a function declared in a base class that has no implementation and must be overridden in derived classes.
+Step 3: The draw function acts as a placeholder method; it must be implemented by any derived class before objects of those classes can be instantiated. Subclasses of Shape need to override the draw function to provide specific drawing behavior for each shape type.
+Step 4: Both class circle and square inherit from class shape. Both these classes implement their own version of the draw method. So when we create an object of the class circle and we call the draw method, we will get the output of drawing by circle.
+------------------------------
+
+//Level 2- C++
+//Code
+#include <iostream>
+
+class Drawable {
+public:
+    virtual void draw() = 0;
+};
+
+class Circle : public Drawable {
+private:
+    std::string color;
+    double radius;
+
+public:
+    Circle(std::string color, double radius) : color(color), radius(radius) {}
+
+    void draw() override {
+        std::cout << "Drawing Circle with color: " << color << std::endl;
+        // Additional code for drawing a circle...
+    }
+};
+
+int main() {
+    Circle circle("Red", 5.0);
+
+    // Draw the circle
+    circle.draw();
+
+    return 0;
+}
+
+
+
+//Steps
+Step 1: Initially we define a base class called drawable with a pure virtual function draw. This pure virtual function specifies that any derived class must implement its own draw method. 
+Step 2: Then we define a class named Circle that inherits from Drawable.This means that class circle will have to provide their own implementation of the draw method in drawable class. Class circle has its own constructor with variable color and radius. It also has an override to the draw method.
+Step 3: Within the main we create an object of the circle class and call the draw method , we see that the draw method’s output is the print statement within the circle class.
+------------------------------
 //Level 3- C++
 //Code
 #include <iostream>

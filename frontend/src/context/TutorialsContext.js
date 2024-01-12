@@ -53,7 +53,7 @@ export const useTutorialsContext = () => {
   return useContext(TutorialsContext);
 };
 
-export const enrollTutorialAction = async (dispatch, language, tutorialId, user) => {
+export const enrollTutorialAction = async (dispatch, selectedLanguage, tutorialId, user) => {
   try {
     const userString = localStorage.getItem('user');
 
@@ -65,6 +65,7 @@ export const enrollTutorialAction = async (dispatch, language, tutorialId, user)
     console.log("This is the user", person);
     console.log("This is the userID", userID);
 
+    console.log ("USEr lanuage is ", selectedLanguage )
     console.log("Officially in");
     console.log(tutorialId);
     console.log(user.user.token);
@@ -75,7 +76,7 @@ export const enrollTutorialAction = async (dispatch, language, tutorialId, user)
         'Authorization': `Bearer ${user.user.token}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ userID })
+      body: JSON.stringify({ userID, selectedLanguage })
     });
 
 

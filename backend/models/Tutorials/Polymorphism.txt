@@ -31,58 +31,6 @@ obj.display();
 //Steps
 ------------------------------
 
-//Level 1- Python
-//Code
-class Shape:
-    def display(self):
-        print("A Shape.")
-
-class Triangle(Shape):
-    def display(self):
-        print("I am a triangle.")
-
-obj = Shape()
-obj.display()
-
-obj = Triangle()
-obj.display()
-
-//Steps
-------------------------------
-
-//Level 1- C++
-//Code
-#include <iostream>
-using namespace std;
-
-class Shape {
-public:
-    virtual void display() {
-        cout << "A Shape." << endl;
-    }
-};
-
-class Triangle : public Shape {
-public:
-    void display() override {
-        cout << "I am a triangle." << endl;
-    }
-};
-
-int main() {
-    Shape *obj1 = new Shape();
-    obj1->display();
-
-    Shape *obj2 = new Triangle();
-    obj2->display();
-
-    delete obj1;
-    delete obj2;
-    return 0;
-}
-
-//Steps
-------------------------------
 
 //Level 2- Java
 //Code
@@ -119,86 +67,6 @@ class main{
   
   }  
 }
-//Steps
-------------------------------
-
-//Level 2- Python
-//Code
-class Animal:
-    def eat(self):
-        print("Animals Eat")
-
-class Herbivores(Animal):
-    def eat(self):
-        print("Herbivores Eat Plants")
-
-class Omnivores(Animal):
-    def eat(self):
-        print("Omnivores Eat Plants and meat")
-
-class Carnivores(Animal):
-    def eat(self):
-        print("Carnivores Eat meat")
-
-A = Animal()
-h = Herbivores()
-o = Omnivores()
-c = Carnivores()
-
-A.eat()
-h.eat()
-o.eat()
-c.eat()
-//Steps
-------------------------------
-
-//Level 2- C++
-//Code
-#include <iostream>
-using namespace std;
-
-class Animal {
-public:
-    virtual void eat() {
-        cout << "Animals Eat" << endl;
-    }
-};
-
-class Herbivores : public Animal {
-public:
-    void eat() override {
-        cout << "Herbivores Eat Plants" << endl;
-    }
-};
-
-class Omnivores : public Animal {
-public:
-    void eat() override {
-        cout << "Omnivores Eat Plants and meat" << endl;
-    }
-};
-
-class Carnivores : public Animal {
-public:
-    void eat() override {
-        cout << "Carnivores Eat meat" << endl;
-    }
-};
-
-int main() {
-    Animal A;
-    Herbivores h;
-    Omnivores o;
-    Carnivores c;
-
-    A.eat();
-    h.eat();
-    o.eat();
-    c.eat();
-
-    return 0;
-}
-
 //Steps
 ------------------------------
 
@@ -251,7 +119,54 @@ public class Main {
 
 //Steps
 ------------------------------
+//Level 1- Python
+//Code
+class Shape:
+    def display(self):
+        print("A Shape.")
 
+class Triangle(Shape):
+    def display(self):
+        print("I am a triangle.")
+
+obj = Shape()
+obj.display()
+
+obj = Triangle()
+obj.display()
+
+//Steps
+------------------------------
+
+//Level 2- Python
+//Code
+class Animal:
+    def eat(self):
+        print("Animals Eat")
+
+class Herbivores(Animal):
+    def eat(self):
+        print("Herbivores Eat Plants")
+
+class Omnivores(Animal):
+    def eat(self):
+        print("Omnivores Eat Plants and meat")
+
+class Carnivores(Animal):
+    def eat(self):
+        print("Carnivores Eat meat")
+
+A = Animal()
+h = Herbivores()
+o = Omnivores()
+c = Carnivores()
+
+A.eat()
+h.eat()
+o.eat()
+c.eat()
+//Steps
+------------------------------
 //Level 3- Python
 //Code
 # Logger interface in Python
@@ -287,7 +202,88 @@ if __name__ == "__main__":
 
 //Steps
 ------------------------------
+//Level 1- C++
+//Code
+#include <iostream>
+using namespace std;
 
+class Shape {
+public:
+    virtual void display() {
+        cout << "A Shape." << endl;
+    }
+};
+
+class Triangle : public Shape {
+public:
+    void display() override {
+        cout << "I am a triangle." << endl;
+    }
+};
+
+int main() {
+    Shape *obj1 = new Shape();
+    obj1->display();
+
+    Shape *obj2 = new Triangle();
+    obj2->display();
+
+    delete obj1;
+    delete obj2;
+    return 0;
+}
+
+//Steps
+------------------------------
+//Level 2- C++
+//Code
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void eat() {
+        cout << "Animals Eat" << endl;
+    }
+};
+
+class Herbivores : public Animal {
+public:
+    void eat() override {
+        cout << "Herbivores Eat Plants" << endl;
+    }
+};
+
+class Omnivores : public Animal {
+public:
+    void eat() override {
+        cout << "Omnivores Eat Plants and meat" << endl;
+    }
+};
+
+class Carnivores : public Animal {
+public:
+    void eat() override {
+        cout << "Carnivores Eat meat" << endl;
+    }
+};
+
+int main() {
+    Animal A;
+    Herbivores h;
+    Omnivores o;
+    Carnivores c;
+
+    A.eat();
+    h.eat();
+    o.eat();
+    c.eat();
+
+    return 0;
+}
+
+//Steps
+------------------------------
 
 //Level 3- C++
 //Code

@@ -34,15 +34,10 @@ const EnrollPopUp = ({ onClose, tutorialId }) => {
   const enrolledTutorials = useTutorialsContext();
   const { dispatch } = useContext(TutorialsContext);
  
-  const onEnrollButtonClick = useCallback(async () => {
-    // console.log("Lang is: ", selectedLanguage);
-    // console.log("Tutid is: ", tutorialId);
-
+   const onEnrollButtonClick = useCallback(async () => {
     await enrollTutorialAction(dispatch, selectedLanguage, tutorialId, user);
-    // You can add additional logic or close the popup after enrollment
-    console.log("The user has enrolled in", enrolledTutorials);
     onClose();
-  }, [dispatch, onClose, tutorialId]);
+  }, [dispatch, onClose, tutorialId, selectedLanguage, user]);
 
   return (
     <div className={styles.enrollPopUp}>
@@ -63,8 +58,8 @@ const EnrollPopUp = ({ onClose, tutorialId }) => {
               onLanguageChange(value);
             }}
           >
-            <Select.Option value="Java">Java</Select.Option>
             <Select.Option value="C++">C++</Select.Option>
+            <Select.Option value="Java">Java</Select.Option>
             <Select.Option value="Python">Python</Select.Option>
           </Select>
         </div>

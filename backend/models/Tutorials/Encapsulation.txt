@@ -33,65 +33,7 @@ Step 3: Define how you want to secure your class. Common practice is that the cl
 Step 4: Create a constructor and a displayInfo function to create instances and print out the details of an object created with this template.
 Step 5: In the main, create an instance of a class and use display info to display the encapsulated data instead of calling the private make and model directly.
 ------------------------------
-//Level 1- Python
-//Code
-class Vehicle:
-    def __init__(self, make, model):
-        self.make = make 
-        self.model = model 
 
-    def display_info(self):
-        print(f"Vehicle Make: {self.make}")
-        print(f"Vehicle Model: {self.model}")
-
-# Creating an instance of Vehicle
-my_car = Vehicle("Toyota", "Camry")
-my_car.display_info()
-
-
-
-//Steps
-Step 1: Create a class called car, using the class keyword in python. 
-Step 2: Identify the attributes for the class. We have decided to add 2 attributes to the car class called brand which will store the brand name and year for storing the manufacturing year.
-Step 3: Define how you want to secure your class. Common practice is that the class itself is defined as public or protected to ensure we can create instances of the class in the main class. Similarly the attributes are always defined as private or protected to ensure only the class itself or related classes can read sensitive information about the class. This allows for encapsulation and data hiding.
-Step 4: Create a constructor and a displayInfo function to create instances and print out the details of an object created with this template.
-Step 5 : Create an instance of a class and use display info to display the encapsulated data instead of calling the private make and model directly.
-------------------------------
-//Level 1- C++
-//Code
-#include <iostream>
-
-class Vehicle {
-private:
-    std::string make;
-    std::string model;
-
-public:
-    Vehicle(std::string make, std::string model) : make(make),(model) {}
-
-    void display_info() const {
-        std::cout << "Vehicle Make: " << make << std::endl;
-        std::cout << "Vehicle Model: " << model << std::endl;
-    }
-};
-
-int main() {
-    // Creating an instance of Vehicle
-    Vehicle my_car("Toyota", "Camry");
-    my_car.display_info();
-
-    return 0;
-}
-
-
-
-//Steps
-Step 1: Create a class called car, using the class keyword in python. 
-Step 2: Identify the attributes for the class. We have decided to add 2 attributes to the car class called brand which will store the brand name and year for storing the manufacturing year.
-Step 3: Define how you want to secure your class. Common practice is that the class itself is defined as public or protected to ensure we can create instances of the class in the main class. Similarly the attributes are always defined as private or protected to ensure only the class itself or related classes can read sensitive information about the class. This allows for encapsulation and data hiding.
-Step 4: Create a constructor and a displayInfo function to create instances and print out the details of an object created with this template.
-Step 5 : Create an instance of a class and use display info to display the encapsulated data instead of calling the private make and model directly.
-------------------------------
 
 //Level 2- Java
 //Code
@@ -146,6 +88,73 @@ Step 6: The setters and getters ensure that encapsulated data can still be acces
 Step 7: In the main class create an instance of an account and test out the setters and getters.
 ------------------------------
 
+//Level 3- Java
+//Code
+public class MessageSystem {
+    private String message;
+
+
+    public void sendMessage(String sender, String content) {
+        // Additional logic, validation, or processing can be performed here
+        this.message = sender + ": " + content;
+        System.out.println("Message sent: " + this.message);
+    }
+
+
+    public String receiveMessage() {
+        // Additional logic or processing can be added here
+        return this.message;
+    }
+
+
+    public static void main(String[] args) {
+        MessageSystem messageSystem = new MessageSystem();
+
+
+        // Sending a message
+        messageSystem.sendMessage("Alice", "Hello, Bob!");
+
+
+        // Receiving a message
+        String receivedMessage = messageSystem.receiveMessage();
+        System.out.println("Received Message: " + receivedMessage);
+    }
+}
+
+
+
+//Steps
+Step 1: The MessageSystem class is the blueprint for a message transfer system similar to an inbox. Its attribute is a private String message. 
+Step 2: The functions of the system are to send and receive messages. Since this is a highly sensetive operation it is necessary to encapsulate the message appropriately.
+Step 3: In the main function that is executed publically, a new message system is declared for a client. This message system is intialized with a message to be sent. Note that although this function is not explicitly a setter it does perform a similar function.
+Step 4: The received message is only accessible via the management system's receive message function.It works as a getter. In this example, the message variable is encapsulated within the MessageSystem class. The internal state is accessed and modified only through the sendMessage and receiveMessage methods.
+------------------------------
+
+
+//Level 1- Python
+//Code
+class Vehicle:
+    def __init__(self, make, model):
+        self.make = make 
+        self.model = model 
+
+    def display_info(self):
+        print(f"Vehicle Make: {self.make}")
+        print(f"Vehicle Model: {self.model}")
+
+# Creating an instance of Vehicle
+my_car = Vehicle("Toyota", "Camry")
+my_car.display_info()
+
+
+
+//Steps
+Step 1: Create a class called car, using the class keyword in python. 
+Step 2: Identify the attributes for the class. We have decided to add 2 attributes to the car class called brand which will store the brand name and year for storing the manufacturing year.
+Step 3: Define how you want to secure your class. Common practice is that the class itself is defined as public or protected to ensure we can create instances of the class in the main class. Similarly the attributes are always defined as private or protected to ensure only the class itself or related classes can read sensitive information about the class. This allows for encapsulation and data hiding.
+Step 4: Create a constructor and a displayInfo function to create instances and print out the details of an object created with this template.
+Step 5 : Create an instance of a class and use display info to display the encapsulated data instead of calling the private make and model directly.
+------------------------------
 
 //Level 2- Python
 //Code
@@ -193,6 +202,75 @@ Step 6: The setters and getters ensure that encapsulated data can still be acces
 Step 7: In the main class create an instance of an account and test out the setters and getters.
 ------------------------------
 
+//Level 3- Python
+//Code
+class MessageSystem:
+    def __init__(self):
+        self._message = None
+
+    def send_message(self, sender, content):
+        # Additional logic, validation, or processing can be performed here
+        self._message = f"{sender}: {content}"
+        print(f"Message sent: {self._message}")
+
+    def receive_message(self):
+        # Additional logic or processing can be added here
+        return self._message
+
+if __name__ == "__main__":
+    message_system = MessageSystem()
+
+    # Sending a message
+    message_system.send_message("Alice", "Hello, Bob!")
+
+    # Receiving a message
+    received_message = message_system.receive_message()
+    print(f"Received Message: {received_message}")
+
+
+
+//Steps
+Step 1: The MessageSystem class is the blueprint for a message transfer system similar to an inbox. Its attribute is a private String message. 
+Step 2: The functions of the system are to send and receive messages. Since this is a highly sensetive operation it is necessary to encapsulate the message appropriately.
+Step 3: In the main function that is executed publically, a new message system is declared for a client. This message system is intialized with a message to be sent. Note that although this function is not explicitly a setter it does perform a similar function.
+Step 4: The received message is only accessible via the management system's receive message function. It works as a getter. In this example, the message variable is encapsulated within the MessageSystem class. The internal state is accessed and modified only through the sendMessage and receiveMessage methods.
+------------------------------
+
+//Level 1- C++
+//Code
+#include <iostream>
+
+class Vehicle {
+private:
+    std::string make;
+    std::string model;
+
+public:
+    Vehicle(std::string make, std::string model) : make(make),(model) {}
+
+    void display_info() const {
+        std::cout << "Vehicle Make: " << make << std::endl;
+        std::cout << "Vehicle Model: " << model << std::endl;
+    }
+};
+
+int main() {
+    // Creating an instance of Vehicle
+    Vehicle my_car("Toyota", "Camry");
+    my_car.display_info();
+
+    return 0;
+}
+
+
+
+//Steps
+Step 1: Create a class called car, using the class keyword in python. 
+Step 2: Identify the attributes for the class. We have decided to add 2 attributes to the car class called brand which will store the brand name and year for storing the manufacturing year.
+Step 3: Define how you want to secure your class. Common practice is that the class itself is defined as public or protected to ensure we can create instances of the class in the main class. Similarly the attributes are always defined as private or protected to ensure only the class itself or related classes can read sensitive information about the class. This allows for encapsulation and data hiding.
+Step 4: Create a constructor and a displayInfo function to create instances and print out the details of an object created with this template.
+Step 5 : Create an instance of a class and use display info to display the encapsulated data instead of calling the private make and model directly.
+------------------------------
 //Level 2- C++
 //Code
 #include <iostream>
@@ -249,83 +327,6 @@ Step 5: A 'set' method modifies or updates the value of a private or protected c
 It checks if the new balance value is non-negative. If it is, it updates the balance. If not, it outputs "Invalid balance value" to the console.
 Step 6: The setters and getters ensure that encapsulated data can still be accessed and modified from outside the class if required.
 Step 7: In the main class create an instance of an account and test out the setters and getters.
-------------------------------
-
-//Level 3- Java
-//Code
-public class MessageSystem {
-    private String message;
-
-
-    public void sendMessage(String sender, String content) {
-        // Additional logic, validation, or processing can be performed here
-        this.message = sender + ": " + content;
-        System.out.println("Message sent: " + this.message);
-    }
-
-
-    public String receiveMessage() {
-        // Additional logic or processing can be added here
-        return this.message;
-    }
-
-
-    public static void main(String[] args) {
-        MessageSystem messageSystem = new MessageSystem();
-
-
-        // Sending a message
-        messageSystem.sendMessage("Alice", "Hello, Bob!");
-
-
-        // Receiving a message
-        String receivedMessage = messageSystem.receiveMessage();
-        System.out.println("Received Message: " + receivedMessage);
-    }
-}
-
-
-
-//Steps
-Step 1: The MessageSystem class is the blueprint for a message transfer system similar to an inbox. Its attribute is a private String message. 
-Step 2: The functions of the system are to send and receive messages. Since this is a highly sensetive operation it is necessary to encapsulate the message appropriately.
-Step 3: In the main function that is executed publically, a new message system is declared for a client. This message system is intialized with a message to be sent. Note that although this function is not explicitly a setter it does perform a similar function.
-Step 4: The received message is only accessible via the management system's receive message function.It works as a getter. In this example, the message variable is encapsulated within the MessageSystem class. The internal state is accessed and modified only through the sendMessage and receiveMessage methods.
-------------------------------
-
-
-//Level 3- Python
-//Code
-class MessageSystem:
-    def __init__(self):
-        self._message = None
-
-    def send_message(self, sender, content):
-        # Additional logic, validation, or processing can be performed here
-        self._message = f"{sender}: {content}"
-        print(f"Message sent: {self._message}")
-
-    def receive_message(self):
-        # Additional logic or processing can be added here
-        return self._message
-
-if __name__ == "__main__":
-    message_system = MessageSystem()
-
-    # Sending a message
-    message_system.send_message("Alice", "Hello, Bob!")
-
-    # Receiving a message
-    received_message = message_system.receive_message()
-    print(f"Received Message: {received_message}")
-
-
-
-//Steps
-Step 1: The MessageSystem class is the blueprint for a message transfer system similar to an inbox. Its attribute is a private String message. 
-Step 2: The functions of the system are to send and receive messages. Since this is a highly sensetive operation it is necessary to encapsulate the message appropriately.
-Step 3: In the main function that is executed publically, a new message system is declared for a client. This message system is intialized with a message to be sent. Note that although this function is not explicitly a setter it does perform a similar function.
-Step 4: The received message is only accessible via the management system's receive message function. It works as a getter. In this example, the message variable is encapsulated within the MessageSystem class. The internal state is accessed and modified only through the sendMessage and receiveMessage methods.
 ------------------------------
 
 //Level 3- C++

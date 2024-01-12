@@ -4,13 +4,16 @@ import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/terminal';
 import styles from "./OutputContainer.module.css";
+import { JavaScriptHighlightRules } from 'brace/mode/javascript';
 
-const OutputContainer = ({ project, tutorial, levelClicked}) => {
+const OutputContainer = ({ project, tutorial, levelClicked, language }) => {
   var userCode;
   //   console.log("LEVEL in OP", levelClicked)
   // console.log("tutorial in OP", tutorial._id)
   // console.log("TUTORIAL", tutorial);
   // console.log("projects", project);
+  //console.log(language);
+
   if (project) {
     console.log("Projects", project?.project?.codeStates);
     userCode =
@@ -21,19 +24,35 @@ const OutputContainer = ({ project, tutorial, levelClicked}) => {
   } else if (tutorial) {
     console.log("Tutorial IN OP", tutorial._id);
     const levelClickedNumber = parseInt(levelClicked, 10);
-    // Filter levels based on the clicked level number
+
     const filteredLevels = tutorial.level.filter(level => level.levelNumber === levelClickedNumber);
-    
-    // Take the first level from the filtered array change this to get different languages. rn its hard coded to java always
     const clickedLevel = filteredLevels.length > 0 ? filteredLevels[0] : null;
-    
+
+    let selectedLanguage = "Java"; // Default to Java
+
+    if (levelClickedNumber >= 0 && levelClickedNumber <= 2) {
+      selectedLanguage = "C++";
+    } else if (levelClickedNumber >= 3 && levelClickedNumber <= 5) {
+      selectedLanguage = "Java";
+    } else if (levelClickedNumber >= 6 && levelClickedNumber <= 8) {
+      selectedLanguage = "Python++";
+    }
+
+    // Filter levels based on the clicked level number
+    // const filteredLevels = tutorial.level.filter(level => level.levelNumber === levelClickedNumber);
+    // [0] - [2] - java
+    // [3 - 5] - python
+    //   [6 - 8] - cpp
+    // // Take the first level from the filtered array change this to get different languages. rn its hard coded to java always
+    // const clickedLevel = filteredLevels.length > 0 ? filteredLevels[0] : null;
+
     // If a matching level is found, get and display the code
     userCode = clickedLevel
       ? clickedLevel.code.join('\n')
       : "No user code available";
-    
+
     console.log('User Code (Tutorial):', userCode);
-    
+
   }
 
   return (

@@ -54,58 +54,6 @@ class Main {
 }
 //Steps
 ------------------------------
-
-
-//Level 1- C++
-//Code
-#include <iostream>
-using namespace std;
-
-class Polygon {
-public:
-    virtual void get_area() = 0;
-    virtual void get_sides() {
-        cout << "I can get sides of a polygon." << endl;
-    }
-};
-
-class Rectangle : public Polygon {
-public:
-    void get_area() override {
-        int length = 6;
-        int breadth = 5;
-        int area = length * breadth;
-        cout << "The area of the rectangle is " << area << endl;
-    }
-
-    void get_sides() override {
-        cout << "I have 4 sides." << endl;
-    }
-};
-
-class Square : public Polygon {
-public:
-    void get_area() override {
-        int length = 5;
-        int area = length * length;
-        cout << "The area of the square is " << area << endl;
-    }
-};
-
-int main() {
-    Rectangle r1;
-    r1.get_area();
-    r1.get_sides();
-
-    Square s1;
-    s1.get_area();
-    s1.get_sides();
-
-    return 0;
-}
-//Steps
-	Level 2 functional interface
-------------------------------
 //Level 2- Java
 //Code 
 @FunctionalInterface
@@ -124,42 +72,6 @@ public class Main {
 }
 
 //Steps
-------------------------------
-
-//Level 2- C++
-//Code
-#include <iostream>
-#include <functional>
-
-// Functional interface in C++ using std::function
-class MyFunction {
-public:
-    virtual void performAction(const std::string& message) = 0;
-};
-
-class MyFunctionImplementation : public MyFunction {
-public:
-    // Implementing the abstract method of the functional interface
-    void performAction(const std::string& message) override {
-        std::cout << "Performing action: " << message << std::endl;
-    }
-};
-
-int main() {
-    // Create an instance of the implementation class
-    MyFunctionImplementation myFunctionImplementation;
-
-    // Using std::function to bind the implementation to the functional interface
-    std::function<void(const std::string&)> myFunction = std::bind(&MyFunctionImplementation::performAction, &myFunctionImplementation, std::placeholders::_1);
-
-    // Calling the abstract method of the functional interface
-    myFunction("Hello, Functional Interface!");
-
-    return 0;
-}
-
-//Steps
-
 ------------------------------
 
 //Level 3- Java 
@@ -214,6 +126,94 @@ public class Main {
 
 //Steps
 ------------------------------
+
+//Level 1- C++
+//Code
+#include <iostream>
+using namespace std;
+
+class Polygon {
+public:
+    virtual void get_area() = 0;
+    virtual void get_sides() {
+        cout << "I can get sides of a polygon." << endl;
+    }
+};
+
+class Rectangle : public Polygon {
+public:
+    void get_area() override {
+        int length = 6;
+        int breadth = 5;
+        int area = length * breadth;
+        cout << "The area of the rectangle is " << area << endl;
+    }
+
+    void get_sides() override {
+        cout << "I have 4 sides." << endl;
+    }
+};
+
+class Square : public Polygon {
+public:
+    void get_area() override {
+        int length = 5;
+        int area = length * length;
+        cout << "The area of the square is " << area << endl;
+    }
+};
+
+int main() {
+    Rectangle r1;
+    r1.get_area();
+    r1.get_sides();
+
+    Square s1;
+    s1.get_area();
+    s1.get_sides();
+
+    return 0;
+}
+//Steps
+	Level 2 functional interface
+------------------------------
+
+//Level 2- C++
+//Code
+#include <iostream>
+#include <functional>
+
+// Functional interface in C++ using std::function
+class MyFunction {
+public:
+    virtual void performAction(const std::string& message) = 0;
+};
+
+class MyFunctionImplementation : public MyFunction {
+public:
+    // Implementing the abstract method of the functional interface
+    void performAction(const std::string& message) override {
+        std::cout << "Performing action: " << message << std::endl;
+    }
+};
+
+int main() {
+    // Create an instance of the implementation class
+    MyFunctionImplementation myFunctionImplementation;
+
+    // Using std::function to bind the implementation to the functional interface
+    std::function<void(const std::string&)> myFunction = std::bind(&MyFunctionImplementation::performAction, &myFunctionImplementation, std::placeholders::_1);
+
+    // Calling the abstract method of the functional interface
+    myFunction("Hello, Functional Interface!");
+
+    return 0;
+}
+
+//Steps
+
+------------------------------
+
 
 //Level 3- C++
 //Code

@@ -3,17 +3,18 @@ import styles from "./LessonContinuation.module.css";
 import { useState, useCallback, useEffect, dispatch } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LessonContinuation = ({ tutorial, tutorialId, onClose }) => {
+const LessonContinuation = ({ tutorial, tutorialId, language, onClose }) => {
 
   const navigate = useNavigate();
 
 
   const onFrameButtonClick = useCallback((levelClicked) => {
-    navigate("/CodeEditorAfterLogin", { state: { tutorialId, levelClicked } });
-  }, [navigate, tutorialId]);
+    navigate("/CodeEditorAfterLogin", { state: { tutorialId, levelClicked , language } });
+  }, [navigate, tutorialId,language]);
   
 
   console.log("ID IN POPUP", tutorialId);
+  console.log("LANGUAGE IN POPUP", language);
 
   return (
     <div className={styles.lessonContinuation}>

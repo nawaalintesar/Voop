@@ -12,26 +12,26 @@ const mongoose = require('mongoose')
 // update account information
 // forgot password feature
 const getAccountInfo = async (req, res) => {
-
-
-    const userId = "659fee25c72f7a7e4440929a"
-
-    if (!mongoose.Types.ObjectId.isValid(userId)) {
-      return res.status(400).json({error: 'No aasdf such workout'})
-    }
-  
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(400).json({error: 'No such workout'})
-    }
-  
-    res.status(200).json(user)
+  // const userId =  req.user.id;
+  const userId = req.user.id;
+   if (!mongoose.Types.ObjectId.isValid(userId)) {
+     return res.status(400).json({error: 'No such workout'})
+   }
+ 
+   const user = await User.findById(userId);
+   if (!user) {
+     return res.status(400).json({error: 'No such workout'})
+   }
+ 
+   res.status(200).json(user)
 };
+
 const updateAccountInfo = async (req, res) => {
 
 
-    const userId = "659fee25c72f7a7e4440929a"
-
+    //const userId =  req.user.id;
+    const userId = req.user._id;
+    console.log("ID IS userID", userId);
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({error: 'No aasdf such workout'})
     }

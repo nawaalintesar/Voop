@@ -12,7 +12,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 const UserUpdate = ({ profile }) => {
 
-  const user =useAuthContext();
+  const user = useAuthContext();
   const [
     isProfileUpdateConfirmationLPopupOpen,
     setProfileUpdateConfirmationLPopupOpen,
@@ -49,6 +49,7 @@ const UserUpdate = ({ profile }) => {
       // Add other fields as needed
     };
 
+    console.log("USER IN UPDATE", user.user.token);
     // Dispatch an action to update the context state
     dispatch({ type: 'UPDATE_ACCOUNT_INFO', payload: updatedData });
 
@@ -58,15 +59,15 @@ const UserUpdate = ({ profile }) => {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.user.token}`,
         },
         body: JSON.stringify(updatedData),
-          headers: { 'Authorization': `Bearer ${user.user.token}` 
-        }
+
       });
 
       if (response.ok) {
         // Fetch the updated profile after the update
-        const fetchResponse = await fetch('/api/profile/',{
+        const fetchResponse = await fetch('/api/profile/', {
           headers: { 'Authorization': `Bearer ${user.user.token}` }
         });
         const json = await fetchResponse.json();
@@ -131,7 +132,7 @@ const UserUpdate = ({ profile }) => {
 
         <div className={styles.updateButtonGroup}>
           <div className={styles.button} onClick={handleUpdate}>
-            <div  className={styles.update}  onClick={openProfileUpdateConfirmationLPopup}> <div className={styles.update}>Update</div> </div>
+            <div className={styles.update} onClick={openProfileUpdateConfirmationLPopup}> <div className={styles.update}>Update</div> </div>
           </div>
         </div>
         <div className={styles.deleteAccountGroup}>

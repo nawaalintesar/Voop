@@ -105,7 +105,7 @@ const Profile = () => {
           headers: { 'Authorization': `Bearer ${user.user.token}` }
         });
         const json = await response.json();
-        console.log("USET");
+        console.log("USET",json);
         if (response.ok) {
           dispatch({ type: 'GET_PROFILE', payload: json });
         }
@@ -113,7 +113,8 @@ const Profile = () => {
         console.error("Error fetching profile:", error);
       }
     };
-  
+
+    console.log("USER",users);
     console.log("Checking user.user.userEmail:", user.user.userEmail);
     if (user.user.userEmail && !users) { 
       console.log("HEllo user from inside PROFILE");

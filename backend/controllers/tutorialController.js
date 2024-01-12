@@ -202,9 +202,8 @@ const getTutorial = async (req, res) => {
 const ObjectId = mongoose.Types.ObjectId;
 
 const enrollTutorial = async (req, res) => {
-  // Once authentication part is done, this should be using userId.
- // const userId = "659fee25c72f7a7e4440929a";
- const userID = req.body.userID;
+  const userID = req.body.userID;
+  const selectedLanguage = req.body.selectedLanguage; // Assuming the selected language is in the request body
 
   const tutorialId = req.params.id.toString();
 
@@ -233,17 +232,15 @@ const enrollTutorial = async (req, res) => {
     if (tutorialFound) {
       console.error('Tutorial already enrolled');
       return res.status(400).json({ error: 'Tutorial already enrolled' });
-    }
-    else {
-      // Enroll the user in the tutorial
+    } else {
+      // Enroll the user in the tutorial with the selected language
       const result = await User.updateOne(
-        { _id: new ObjectId(userID) }, // Convert userId to ObjectId
+        { _id: new ObjectId(userID) },
         {
           $addToSet: {
             enrolledTutorials: {
-              tutId: new ObjectId(tutorial._id), // Convert tutorialId to ObjectId
-              progLang: "Java", // Replace with the actual programming language
-              // Add other fields as needed
+              tutId: new ObjectId(tutorial._id),
+              progLang: selectedLanguage,
             },
           },
         }
@@ -260,36 +257,46 @@ const enrollTutorial = async (req, res) => {
 
 
 const getEnrolledTutorials = async (req, res) => {
-  //const userId = req.user._id
-  console.log("Hello i m somewhere inside tutcontroller");
-  const userId = '659fee25c72f7a7e4440929a';
-
-  //const userId = req.params.userId; // Assuming you have the user ID in the request parameters
-
   try {
+    const userId = req.user.id;
+
     // Find the user by ID and populate the enrolledTutorials field
     const user = await User.findById(userId).populate({
-      path: 'enrolledTutorials' // Sort in descending order
+      path: 'enrolledTutorials.tutId',
     });
-    console.log("ET", enrolledTutorials);
-    const enrolledTutorials = user.enrolledTutorials || [];
-    if (enrolledTutorials.length > 0) {
-      // Sort projects by createdAt in descending order (most recent first)
-      enrolledTutorials.sort((a, b) => b.updatedAt - a.updatedAt);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
 
-    // console.log(enrolledTutorials);
-    res.status(200).json({ enrolledTutorials });
+    const enrolledTutorials = user.enrolledTutorials || [];
+
+    // Map the enrolledTutorials array to include only the necessary information
+    const formattedEnrolledTutorials = enrolledTutorials.map((enrolledTutorial) => {
+      return {
+        tutId: enrolledTutorial.tutId,
+        progLang: enrolledTutorial.progLang
+      };
+    });
+
+    if (formattedEnrolledTutorials.length > 0) {
+      // Sort tutorials by updatedAt in descending order (most recent first)
+      formattedEnrolledTutorials.sort((a, b) => b.tutId.updatedAt - a.tutId.updatedAt);
+    }
+
+    res.status(200).json({ enrolledTutorials: formattedEnrolledTutorials });
   } catch (error) {
     console.error('Error fetching enrolled tutorials:', error.message);
     res.status(500).json({ error: error.message });
   }
 };
 
+
+
 const playTutorial = async (req, res) => {
 
-  //once authentication part is done this should be using userId for now im making it static 659fee25c72f7a7e4440929a
-  const userId = '659fee25c72f7a7e4440929a';
+  //once authentication part is done this should be using userId for now im making it static  req.user.id;
+  const userId = req.user.id
   const tutorialId = req.params.id;
   try {
     // get user information

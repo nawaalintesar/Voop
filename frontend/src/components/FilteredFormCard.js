@@ -56,18 +56,32 @@ const FilteredFormCard = () => {
   return (
     <>
       <div className={styles.continuejourneycards}>
-        
-        {enrolledTutorials && enrolledTutorials.slice(0, 4).map((enrolledTutorial, index) => {
-          
-            <InheritencetutCard
-              key={enrolledTutorial._id}
-              tutorial={enrolledTutorial}
-              inheritencetutCardPosition="absolute"
-              inheritencetutCardTop="0px"
-              inheritencetutCardLeft={`${0 + 250 * index}px`}
-              encapsulationTutCardCursor="pointer"
-            />
-        })}
+      {enrolledTutorials &&
+  enrolledTutorials.map((enrolledTutorial, index) => {
+    const uniqueLanguages = new Set();
+    const tutorial = enrolledTutorial.tutId;
+
+    // Check if the tutorial exists and has the progLang property
+    if (tutorial && enrolledTutorial.progLang) {
+      uniqueLanguages.add(enrolledTutorial.progLang);
+      console.log("Rendering FilteredFormCard:", enrolledTutorial.progLang, Array.from(uniqueLanguages));
+    } else {
+      console.log("Rendering FilteredFormCard: No valid tutorial or progLang property");
+    }
+
+    return Array.from(uniqueLanguages).map((language, languageIndex) => (
+      <InheritencetutCard
+        key={`${enrolledTutorial.tutId._id}-${languageIndex}`}
+        tutorial={enrolledTutorial.tutId}
+        language={language}
+        inheritencetutCardPosition="absolute"
+        inheritencetutCardTop="0px"
+        inheritencetutCardLeft={`${10 + 285 * index + 240 * languageIndex}px`}
+        encapsulationTutCardCursor="pointer"
+      />
+    ));
+  })}
+
 
       </div>
       {isLessonContinuationPopupOpen && (
