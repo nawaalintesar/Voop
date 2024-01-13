@@ -49,6 +49,10 @@ useEffect(() => {
     navigate("/signIn");
   }, [navigate]);
 
+  const handleLoginClick = useCallback(() => {
+    navigate("/Signin");
+  }, [navigate]);
+
   const openForgotPassPopPopup = useCallback(() => {
     setForgotPassPopPopupOpen(true);
   }, []);
@@ -93,7 +97,7 @@ useEffect(() => {
         <div className={styles.login1}>
           <b className={styles.logIn}>{`Log in `}</b>
         </div>
-
+        
         <form onSubmit={handleSubmit}>
 
           <TextField
@@ -161,38 +165,21 @@ useEffect(() => {
               {/* <img className={styles.googleIcon} alt="" src="/google@2x.png" /> */}
             </div>
           </a>
-          <div className={styles.loginwithfacebook}>
-            <div className={styles.frame2}>
-              <div className={styles.wrapperRectangle45}>
-                <img
-                  className={styles.wrapperRectangle45Child}
-                  alt=""
-                  src="/rectangle-45@2x.png"
-                />
-              </div>
-              <div className={styles.logInUsing1}>Log in using Facebook</div>
-              <img
-                className={styles.facebookicon}
-                alt=""
-                src="/facebookicon@2x.png"
-              />
-            </div>
-           
-          </div>
+
           <div> <button type="submit" className={styles.button}>Login</button></div>
 
 
           {error && <div className="error">{error}</div>}
 
 
-          
+         
 
           </form>
 
           <div className={styles.joinVoop}>
 
             {`New to Voop? `}
-            <span>Join now</span>
+            <span  className={styles.joinNowtosignup} onClick={handleLoginClick}>Join now</span>
 
           </div>
 

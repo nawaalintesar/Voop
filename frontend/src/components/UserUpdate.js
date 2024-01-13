@@ -127,6 +127,7 @@ const UserUpdate = ({ profile }) => {
             variant="filled"
             type="text"
             onChange={(e) => setUserEmail(e.target.value)}
+            disabled
           />
         </div>
 

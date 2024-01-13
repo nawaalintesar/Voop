@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import styles from "./ProjectFrame.module.css";
 import { useState, useCallback, dispatch, useEffect } from "react";
 
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 // Assuming the path to ProjectFrame.module.js is correct
 // import _default from function Projects({openDeleteProject})
 // Use the imported function in your code
@@ -71,7 +72,7 @@ const closeDeleteProject = useCallback(() => {
     <>
     <div className={styles.projectframe} style={projectFrameStyle} >
       <div onClick={onclick}>
-      <div className={styles.edited5Min}>{edited5MinAgo}</div>
+      <div className={styles.edited5Min}>Updated {formatDistanceToNow(new Date(project.createdAt), {addSuffix: true})}</div>
       <div className={styles.project1}  onClick={onclick}>{project1}</div>
     
       <div className={styles.projectbox} style={projectBoxStyle} onClick={onclick}></div>

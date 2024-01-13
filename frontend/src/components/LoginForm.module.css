@@ -1,18 +1,3 @@
-/* .loginChild {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: var(--br-xl);
-  background: linear-gradient(
-    29.46deg,
-    #462084 41.27%,
-    #2b165a 85.58%,
-    #23144e
-  );
-  width: 465px;
-  height: 608px;
-}
-  */
 .logIn {
   position: absolute;
   height: 68px;
@@ -33,39 +18,6 @@
   overflow: hidden;
   font-size: var(--font-size-11xl);
 }
-
-/* .joinNow {
-  text-decoration: underline;
-}
-.newToVoopContainer1 {
-  width: 100%;
-}
-.newToVoopContainer,
-.newtovoop {
-  position: absolute;
-}
-.newToVoopContainer {
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  top: 0;
-  left: 0; 
-  font-size: var(--font-size-mini);
-  line-height: 6px;
-  font-family: var(--font-poppins);
-  color: var(--color-white);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  width: 173.4px;
-  height: 5.9px;
-}
-.newtovoop {
-  top:auto;
-  left:auto;
-  width: 243px;
-  height: 16px;
-} */
 
 .joinVoop{
   position: absolute;
@@ -228,36 +180,11 @@
 .logInUsing1:hover, .logInUsing1:active{
   color: blue;
 }
-.facebookicon {
-  position: absolute;
-  top: 10px;
-  left: 36px;
-  width: 28px;
-  height: 28px;
-  overflow: hidden;
-  object-fit: cover;
-}
-.frame2,
-.loginwithfacebook {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 357px;
-  height: 48px;
-  overflow: hidden;
-}
-.loginwithfacebook {
-  top: 382px;
-  left: 42px;
-  height: 46px;
-  text-align: center;
-}
+
 .login {
   position: absolute;
   top: 138px;
-  left: 904px;
-  width: 465px;
-  height: 608px;
+  left: 900px;
   text-align: left;
   font-size: var(--font-size-base);
   color: var(--color-white);
@@ -270,12 +197,12 @@
     #23144e
   );
   width: 465px;
-  height: 608px;
+  height: 520px;
 }
 
 .button {
   position: absolute; /* Make the button absolute */
-  top: 490px; /* Adjust top value to position under the Facebook section */
+  top: 390px; /* Adjust top value to position under the Facebook section */
   left: 80px; /* Adjust left value if necessary */
   border-radius: 29.45px;
   background: radial-gradient(50% 50%at 50% 50%, #a27cf3, #683fea);
@@ -290,5 +217,11 @@
   box-sizing: border-box;
   cursor: pointer;
   font-size: var(--font-size-lgi);
+  font-weight: 600;
+}
+
+.joinNowtosignup{
+  color:#f9ae68 ;
+  cursor:pointer;
   font-weight: 600;
 }
