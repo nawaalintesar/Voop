@@ -147,19 +147,40 @@
   color: var(--color-lightsteelblue-200);
   
 }
-.alltutorials {
+/* .alltutorials { */
   /* display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 96px; */
+  /* position: absolute;
+  top: 476px; */
+  /* left: 87px; */
+  /* height: 370px;
+  flex: wrap; */
+/* 
+  display:flex;
+  justify-content: center; */
+  /* flex-wrap: wrap; */
+  /* align-content: space-evenly;
+  max-width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-size: var(--font-size-smi);
+  color: var(--color-darkgray);
+  font-family: var(--font-pt-sans); */
+  /*Max-height and overflow r the css for the scroll bar*/
+  /* max-height: 500px;
+  overflow-y: hidden; */
+  /* @media (max-width: 768px) {
+    flex-direction: column; /* Stack cards vertically on smaller screens */
+    /* align-items: center; Center cards on smaller screens
+  }
+} */ 
+.alltutorials {
   position: absolute;
   top: 476px;
-  /* left: 87px; */
   height: 370px;
-  flex: wrap;
-
-  display:flex;
+  display: flex;
   justify-content: center;
-  /* flex-wrap: wrap; */
   align-content: space-evenly;
   max-width: 100%;
   justify-content: center;
@@ -167,15 +188,24 @@
   font-size: var(--font-size-smi);
   color: var(--color-darkgray);
   font-family: var(--font-pt-sans);
-  /*Max-height and overflow r the css for the scroll bar*/
-  /* max-height: 500px;
-  overflow-y: hidden; */
-  @media (max-width: 768px) {
-    flex-direction: column; /* Stack cards vertically on smaller screens */
-    align-items: center; /* Center cards on smaller screens */
-  }
 }
 
+.alltutorialsrow2 {
+  position: absolute;
+  top: 750px; /* Adjust the top position for the second row */
+  height: 370px;
+  bottom: 50px;
+  display: flex;
+  padding-bottom: 50px;
+  justify-content: center;
+  align-content: space-evenly;
+  max-width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-size: var(--font-size-smi);
+  color: var(--color-darkgray);
+  font-family: var(--font-pt-sans);
+}
 
 /* .alltutorials2 {
   position: absolute;
@@ -200,10 +230,11 @@
   overflow: hidden;
 }
 .items {
+  overflow-y: auto;
   position: absolute;
   top: 76px;
   left: 62px;
-  height: 867px;
+  height: 870px;
   display: flex;
   align-content: stretch;
   max-width: 100%;
@@ -211,7 +242,7 @@
   padding-left: 90px;
 }
 .Tutorials {
-  overflow: hidden;
+  overflow-y: auto;
   position: absolute;
   background: linear-gradient(180.46deg, #251849, #251849 0.01%, #18113b);
   height: 1075px;

@@ -81,7 +81,7 @@ Step 7: It introduces the ‘model’ field to represent the laptop model, and a
 Step 8: The ‘Main’ class which contains the ‘main’ method creates instances of ‘Phone’ and ‘Laptop’ which uses the ‘instanceof’ operator to check if an object is an instance of a particular class or interface. 
 Step 9: Finally the ‘operate()’ method is called and it prints the string representation for each object if it is an instance of ‘AbstractDevice’. 
 ------------------------------
- //Level 2- Java
+//Level 2- Java
 //Code
 import java.util.*;
 

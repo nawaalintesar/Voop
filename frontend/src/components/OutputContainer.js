@@ -22,34 +22,19 @@ const OutputContainer = ({ project, tutorial, levelClicked, language }) => {
 
     // Rest of your code for the project case...
   } else if (tutorial) {
-    console.log("Tutorial IN OP", tutorial._id);
+    console.log("Tutorial IN OP", tutorial);
     const levelClickedNumber = parseInt(levelClicked, 10);
 
-    const filteredLevels = tutorial.level.filter(level => level.levelNumber === levelClickedNumber);
-    const clickedLevel = filteredLevels.length > 0 ? filteredLevels[0] : null;
-
-    let selectedLanguage = "Java"; // Default to Java
-
-    if (levelClickedNumber >= 0 && levelClickedNumber <= 2) {
-      selectedLanguage = "C++";
-    } else if (levelClickedNumber >= 3 && levelClickedNumber <= 5) {
-      selectedLanguage = "Java";
-    } else if (levelClickedNumber >= 6 && levelClickedNumber <= 8) {
-      selectedLanguage = "Python++";
-    }
-
-    // Filter levels based on the clicked level number
-    // const filteredLevels = tutorial.level.filter(level => level.levelNumber === levelClickedNumber);
-    // [0] - [2] - java
-    // [3 - 5] - python
-    //   [6 - 8] - cpp
-    // // Take the first level from the filtered array change this to get different languages. rn its hard coded to java always
-    // const clickedLevel = filteredLevels.length > 0 ? filteredLevels[0] : null;
-
+    // Filter levels based on the selected language
+    const filteredLevels = tutorial.level.filter(level => level.progLang === language);
+    const clickedLevel = filteredLevels[levelClickedNumber - 1];
+    console.log("filtered", filteredLevels)
+    console.log("clicked", clickedLevel)
     // If a matching level is found, get and display the code
     userCode = clickedLevel
       ? clickedLevel.code.join('\n')
       : "No user code available";
+
 
     console.log('User Code (Tutorial):', userCode);
 
@@ -99,8 +84,6 @@ const OutputContainer = ({ project, tutorial, levelClicked, language }) => {
 
       </div>
       <div className={styles.code}>
-
-
         <AceEditor
           padding=""
           right="400px"

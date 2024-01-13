@@ -31,8 +31,8 @@ const CodeEditorPopUp = ({ onClose }) => {
         virtual={false}
         showArrow={false}
       >
-        <Select.Option value="Java">Java</Select.Option>
         <Select.Option value="C++">C++</Select.Option>
+        <Select.Option value="Java">Java</Select.Option>
         <Select.Option value="Python">Python</Select.Option>
       </Select>
       <div className={styles.or}>OR</div>

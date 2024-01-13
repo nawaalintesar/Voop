@@ -4,23 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { TextField, InputAdornment, Icon, IconButton } from "@mui/material";
 import styles from "./SignUpCardForm.module.css";
 import { useSignup } from "../hooks/useSignup"
-
-
-
-
+import { useCallback } from "react";
 const SignUpCardForm = () => {
 
   useEffect(() => {
-  
     /* global google */
     google.accounts.id.initialize({
       client_id:"334238565950-sjl4l8psvm5aed9nvd1ael1guhpfnkjl.apps.googleusercontent.com",
       callback: handleCallbackResponse
-  
     })
   
     google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
+      document.getElementById("Google"),
       {theme: "outline", size: "large", width: "355px"}
     );
   }, []);
@@ -45,12 +40,15 @@ const SignUpCardForm = () => {
 
   }
 
+  const handleLoginClick = useCallback(() => {
+    navigate("/Login");
+  }, [navigate]);
+
   async function handleCallbackResponse(response){
     console.log("Encoded jwt id:"  + response.credential);
     var userObject= jwtDecode(response.credential);
     console.log(userObject);
     if(userObject.email_verified){
-    
       await signup(userObject.given_name, userObject.family_name, userObject.email, true, true);
       navigate("/Dashboard");
     
@@ -68,7 +66,7 @@ const SignUpCardForm = () => {
       <div className={styles.frame}>
         <b className={styles.signUp}>{`Sign up `}</b>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
 
         <TextField
           className={styles.frame2}
@@ -94,7 +92,7 @@ const SignUpCardForm = () => {
 
         />
         <TextField
-          className={styles.frame4}
+          className={styles.email}
           color="secondary"
           name="Email address"
           label=" Email address "
@@ -106,7 +104,7 @@ const SignUpCardForm = () => {
 
         />
         <TextField
-          className={styles.frame6}
+          className={styles.password}
           color="secondary"
           name="Password "
           label="Password "
@@ -130,7 +128,7 @@ const SignUpCardForm = () => {
 
         />
         <TextField
-        className={styles.frame6}
+        className={styles.confirmPassword}
         color="secondary"
         name="confirmPassword "
         label="Confirm Password "
@@ -155,7 +153,12 @@ const SignUpCardForm = () => {
       />
         {error && <div className="error">{error}</div>}
 
-        <div id="signInDiv" ></div>
+        <div id="Google" className={styles.Google}></div>
+
+        <div className={styles.joinVoop}>
+            {`Already have an account? `}
+            <span className={styles.loginLink} onClick={handleLoginClick}>Login now</span>
+          </div>
 
 
         <button type="submit" className={styles.button}>Register</button>

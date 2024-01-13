@@ -106,8 +106,8 @@ const Home = () => {
           <div className={styles.magicofvoopChild} />
           <div className={styles.magicofvoopItem} />
           <div className={styles.magicofvoopInner} />
-          <div className={styles.java}>Java</div>
           <div className={styles.c}>C++</div>
+          <div className={styles.java}>Java</div>
           <div className={styles.python}>Python</div>
         </div>
         <div className={styles.marker} />

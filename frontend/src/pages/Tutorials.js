@@ -91,17 +91,19 @@ const Tutorials = () => {
 
         <b className={styles.allTutorials}>All Tutorials</b>
         <div className={styles.alltutorials}>
-          {tutorials && tutorials.map((tutorial, index) => (
-            <AbstractContainer
-              tutorial={tutorial}
-              conceptDescription={tutorial.tutName}
-              onTutContainerClick={() => onTutContainerClick(tutorial._id)}
-              propLeft={`${index * 250}px`}
-              propLineHeight={`${index * 250}px`}
-            />
-
-          ))}
-          <div >
+          
+        {tutorials &&
+            tutorials.slice(0, 4).map((tutorial, index) => (
+              <AbstractContainer
+                key={index}
+                tutorial={tutorial}
+                conceptDescription={tutorial.tutName}
+                onTutContainerClick={() => onTutContainerClick(tutorial._id)}
+                propLeft={`${index * 250}px`}
+                propLineHeight={`${index * 250}px`}
+              />
+            ))}
+          <div>
             <TextField
               className={styles.searchBar}
               color="secondary"
@@ -113,6 +115,20 @@ const Tutorials = () => {
               type="search"
             />
           </div>
+        </div>
+
+        <div className={styles.alltutorialsrow2}>
+          {tutorials &&
+            tutorials.slice(4, 8).map((tutorial, index) => (
+              <AbstractContainer
+                key={index}
+                tutorial={tutorial}
+                conceptDescription={tutorial.tutName}
+                onTutContainerClick={() => onTutContainerClick(tutorial._id)}
+                propLeft={`${index * 250}px`}
+                propLineHeight={`${index * 250}px`}
+              />
+            ))}
         </div>
 
       </div>
