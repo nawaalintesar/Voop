@@ -69,16 +69,30 @@ const FilteredFormCard = () => {
       console.log("Rendering FilteredFormCard: No valid tutorial or progLang property");
     }
 
+    // Calculate row and column indices
+    const rowIndex = Math.floor(index / 4);
+    const colIndex = index % 4;
+
     return Array.from(uniqueLanguages).map((language, languageIndex) => (
       <InheritencetutCard
         key={`${enrolledTutorial.tutId._id}-${languageIndex}`}
         tutorial={enrolledTutorial.tutId}
         language={language}
         inheritencetutCardPosition="absolute"
-        inheritencetutCardTop="0px"
-        inheritencetutCardLeft={`${10 + 285 * index + 240 * languageIndex}px`}
+        inheritencetutCardTop={`${50 + rowIndex * 300}px`}
+        inheritencetutCardLeft={`${10 + colIndex * 240 + 240 * languageIndex}px`}
         encapsulationTutCardCursor="pointer"
       />
+    // return Array.from(uniqueLanguages).map((language, languageIndex) => (
+    //   <InheritencetutCard
+    //     key={`${enrolledTutorial.tutId._id}-${languageIndex}`}
+    //     tutorial={enrolledTutorial.tutId}
+    //     language={language}
+    //     inheritencetutCardPosition="absolute"
+    //     inheritencetutCardTop="0px"
+    //     inheritencetutCardLeft={`${10 + 285 * index + 240 * languageIndex}px`}
+    //     encapsulationTutCardCursor="pointer"
+    //   />
     ));
   })}
 

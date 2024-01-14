@@ -13,7 +13,8 @@ const DashbordCardJavaRP = ({project, index}) => {
   }, [navigate, project._id]);
   
   return (
-    <div className={styles.javaRecentprojects} style={{ left: `${(index % 3) * 350}px` }}>
+  <div className={styles.javaRecentprojects} style={{ left: `${index === 0 ? 350 : 700 + (index - 1) * 350}px` }}>
+
       <div className={styles.javaRecentprojectsChild} onClick={onFrameButtonClick} />
       <img
         className={styles.javaRecentprojectsItem}

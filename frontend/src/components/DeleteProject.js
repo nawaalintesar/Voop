@@ -1,39 +1,41 @@
 
 import styles from "./DeleteProject.module.css";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useState, useCallback, useEffect, dispatch } from "react";
 import { useNavigate } from "react-router-dom";
-const DeleteProject = ({ projectID, onClose}) => {
+const DeleteProject = ({ projectID, onClose }) => {
+
+  const user = useAuthContext();
   const navigate = useNavigate();
 
   const onExploreButtonContainerClick = useCallback(() => {
     navigate("/Projects");
   }, [navigate]);
 
-  const handleDelete= async () => {
-    
+  const handleDelete = async () => {
+
     try {
       console.log("We deleitng");
-      console.log("ID IS",projectID);
+      console.log("ID IS", projectID);
       const response = await fetch(`/api/projects/${projectID}`, {
         method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${user.user.token}` }
+
       });
-  
+
       const responseData = await response.json();
 
       if (response.ok) {
-        // Redirect to CodeEditorAfterLogin with the new project's ID
         navigate("/Projects");
       } else {
-        // Handle error if the request fails
-        console.error('Error deleting projecMMMMt:', response.statusText);
-        console.error("Error details",responseData)
+        console.error('Error deleting projec:', response.statusText);
+
       }
     } catch (error) {
-      console.error('Error deleingg projectssssssssssssss:', error);
+      console.error('Error deleingg projects:', error);
     }
   };
-  
+
   return (
     <div className={styles.deleteProject}>
       <div className={styles.deleteProjectL}>
@@ -41,7 +43,7 @@ const DeleteProject = ({ projectID, onClose}) => {
           Are you sure you want to Delete project?
         </div>
         <div
-       
+
           className={styles.explorebutton}
           onClick={() => {
             onClose();
