@@ -64,7 +64,7 @@ const GenericTutorial = () => {
       }
     };
     if (user.user.userEmail) {
-      console.log("HEllo user from inside GTT")
+      //console.log("HEllo user from inside GTT")
       console.log(user.user)
       fetchTutorials();
     }
@@ -90,6 +90,7 @@ const GenericTutorial = () => {
             <TutorialForm
               key={tutorial._id}
               tutorial={tutorial}
+              
             />
           )}
 

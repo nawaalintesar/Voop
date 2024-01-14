@@ -3,18 +3,18 @@ import { Select } from "antd";
 import styles from "./EnrollPopUp.module.css";
 
 
-import { useState, useCallback, useContext } from "react";
+import { useState, useCallback, useContext, useEffect } from "react";
 import PortalPopup from "./PortalPopup";
 import ConfirmEnrollment from "./ConfirmEnrollment";
 import { enrollTutorialAction } from '../context/TutorialsContext'
+import { fetchEnrolledTutorials } from "../context/TutorialsContext";
 import { TutorialsContext } from '../context/TutorialsContext';
 import { useTutorialsContext } from '../hooks/useTutorialsContext'
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const EnrollPopUp = ({ onClose, tutorialId }) => {
 
-  var selectedLanguage="";
-  const user=useAuthContext();
+  const [selectedLanguage, setSelectedLanguage] = useState(""); const user = useAuthContext();
   //const [selectedLanguage, setSelectedLanguage] = useState('');
   const [isConfirmEnrollmentPopupOpen, setConfirmEnrollmentPopupOpen] =
     useState(false);
@@ -28,17 +28,104 @@ const EnrollPopUp = ({ onClose, tutorialId }) => {
   }, []);
 
   const onLanguageChange = (value) => {
-    selectedLanguage=value;
+    setSelectedLanguage(value);
   };
 
-  const enrolledTutorials = useTutorialsContext();
-  const { dispatch } = useContext(TutorialsContext);
- 
-   const onEnrollButtonClick = useCallback(async () => {
+
+
+
+  const fetchEnrolledTutorialsPopUp = async (dispatch, user) => {
+    try {
+      // const userString = localStorage.getItem('user');
+
+      // // Parse the user JSON string into a JavaScript object
+      // const person = JSON.parse(userString);
+
+      // // Access the 'userID' attribute from the object
+      // const userID = person.userID;
+      const response = await fetch(`/api/tutorials/enrolled`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${user.user.token}`,
+          'Content-Type': 'application/json'
+        },
+      });
+
+      const json = await response.json();
+      console.log("Json is", json)
+
+      return json;
+
+    } catch (error) {
+      console.error('Error fetching enrolled tutorials:', error);
+
+    }
+  };
+
+  const { dispatch } = useTutorialsContext();
+
+
+  const onEnrollButtonClick = useCallback(async () => {
     await enrollTutorialAction(dispatch, selectedLanguage, tutorialId, user);
     onClose();
+
   }, [dispatch, onClose, tutorialId, selectedLanguage, user]);
 
+  const [languageOptions, setLanguageOptions] = useState(null);
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      const options = await checkforID(user, tutorialId);
+      setLanguageOptions(options);
+    };
+
+    fetchOptions();
+  }, [user, tutorialId]);
+
+  const checkforID = async (user, tutorialId) => {
+    try {
+      const langs = [];
+      const response = await fetchEnrolledTutorialsPopUp(dispatch, user);
+      const options = ["C++", "Java", "Python"];
+
+      console.log("Inside FUNCTION");
+      //console.log(Array.isArray(enrolledTutorials));
+      const enrolledTutorials = response.enrolledTutorials;
+      console.log(Array.isArray(enrolledTutorials));
+
+      for (var tutorial of enrolledTutorials) {
+        if (tutorial.tutId._id === tutorialId) {
+          console.log(tutorial);
+          console.log("Tutorial lang is :", (tutorial.progLang));
+          langs.push(tutorial.progLang);
+        }
+      }
+
+      for (const lang of langs) {
+        if (lang === "C++" || lang === "Java" || lang === "Python") {
+          var index = options.indexOf(lang);
+          if (index !== -1) {
+            options.splice(index, 1);
+          }
+        }
+      }
+
+      if (options.length === 0) {
+        return null // Return null instead of JSX element
+      }
+
+      const selectOptions = options.map((lang) => (
+        <Select.Option key={lang} value={lang}>
+          {lang}
+        </Select.Option>
+      ));
+
+      return selectOptions;
+    } catch (error) {
+      console.error("Error fetching enrolled tutorials:", error);
+      return null; // Return null instead of JSX element
+    }
+  };
   return (
     <div className={styles.enrollPopUp}>
       <div className={styles.frameforforgetpass}>
@@ -46,7 +133,7 @@ const EnrollPopUp = ({ onClose, tutorialId }) => {
           <div id="langChoice" className={styles.chooseYourLanguage}>Choose your language</div>
           <Select
             className={styles.javaParent}
-            placeholder="Choose language"
+            placeholder={languageOptions === null ? "Enrolled in all languages" : "Choose language"}
             style={{ width: "226px" }}
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -54,13 +141,14 @@ const EnrollPopUp = ({ onClose, tutorialId }) => {
             virtual={false}
             showArrow={false}
             onChange={(value) => {
-              console.log('Selected value:', value);
+              console.log("Selected value:", value);
               onLanguageChange(value);
             }}
+            disabled={languageOptions === null} // Disable the Select if languageOptions is null
           >
-            <Select.Option value="C++">C++</Select.Option>
-            <Select.Option value="Java">Java</Select.Option>
-            <Select.Option value="Python">Python</Select.Option>
+            {
+              languageOptions
+            }
           </Select>
         </div>
       </div>

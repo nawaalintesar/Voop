@@ -10,7 +10,7 @@ const InheritencetutCard = ({
   inheritencetutCardTop,
   inheritencetutCardLeft,
 }) => {
-  console.log("Rendering InheritencetutCard:", tutorial._id, language);
+ // console.log("Rendering InheritencetutCard:", tutorial._id, language);
 
   const [isLessonContinuationPopupOpen, setLessonContinuationPopupOpen] =
     useState(false);

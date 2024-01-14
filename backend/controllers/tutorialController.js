@@ -245,7 +245,7 @@ const enrollTutorial = async (req, res) => {
           },
         }
       );
-
+      
       console.log(`Tutorial with ID ${tutorial._id} enrolled successfully for user with ID ${userID}`);
       res.status(200).json({ message: 'Tutorial enrolled successfully' });
     }
@@ -259,7 +259,7 @@ const enrollTutorial = async (req, res) => {
 const getEnrolledTutorials = async (req, res) => {
   try {
     const userId = req.user.id;
-
+    console.log("hi");
     // Find the user by ID and populate the enrolledTutorials field
     const user = await User.findById(userId).populate({
       path: 'enrolledTutorials.tutId',

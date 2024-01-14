@@ -51,9 +51,8 @@ const TutorialExampleLevel3 = ({
   //     navigate("/CodeEditorAfterLogin", { state: { tutorialId } });
   //    }, [navigate, tutorialId]);
 
-  console.log("ID IN tutExample",tutorial._id);
-  console.log("Lesson tut",lessonTitle);
-  console.log("Lesson tut var",levelClicked);
+  // console.log("ID IN tutExample",tutorial._id);
+  
   return (
     <button
       className={styles.property1default}

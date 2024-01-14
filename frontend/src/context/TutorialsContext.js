@@ -62,11 +62,11 @@ export const enrollTutorialAction = async (dispatch, selectedLanguage, tutorialI
 
     // Access the 'userID' attribute from the object
     const userID = person.userID;
-    console.log("This is the user", person);
-    console.log("This is the userID", userID);
+    // console.log("This is the user", person);
+    // console.log("This is the userID", userID);
 
-    console.log ("USEr lanuage is ", selectedLanguage )
-    console.log("Officially in");
+    // console.log ("USEr lanuage is ", selectedLanguage )
+    // console.log("Officially in");
     console.log(tutorialId);
     console.log(user.user.token);
 
@@ -85,7 +85,7 @@ export const enrollTutorialAction = async (dispatch, selectedLanguage, tutorialI
     const json = await response.json();
 
     if (response.ok) {
-      console.log("Cool");
+      // console.log("Cool");
       dispatch({ type: 'ENROLL_TUTORIAL_SUCCESS', payload: json });
     } else {
       dispatch({ type: 'ENROLL_TUTORIAL_FAILURE' });

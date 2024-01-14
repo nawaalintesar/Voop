@@ -45,5 +45,43 @@ const signupUser = async (req, res) => {
 }
 
 
+const getEnrolledTutorials = async (req, res) => {
+  try {
+    const userId = req.user.id;
 
-module.exports = { signupUser, loginUser }
+    // Find the user by ID and populate the enrolledTutorials field
+    const user = await User.findById(userId).populate({
+      path: 'enrolledTutorials.tutId',
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const enrolledTutorials = user.enrolledTutorials || [];
+
+    // Map the enrolledTutorials array to include only the necessary information
+    const formattedEnrolledTutorials = enrolledTutorials.map((enrolledTutorial) => {
+      return {
+        tutId: enrolledTutorial.tutId,
+        progLang: enrolledTutorial.progLang
+      };
+    });
+
+    if (formattedEnrolledTutorials.length > 0) {
+      // Sort tutorials by updatedAt in descending order (most recent first)
+      formattedEnrolledTutorials.sort((a, b) => b.tutId.updatedAt - a.tutId.updatedAt);
+    }
+
+    res.status(200).json({ enrolledTutorials: formattedEnrolledTutorials });
+  } catch (error) {
+    console.error('Error fetching enrolled tutorials:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+
+
+module.exports = { signupUser, loginUser, getEnrolledTutorials }
