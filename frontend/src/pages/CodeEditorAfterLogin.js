@@ -147,18 +147,18 @@ const CodeEditorBeforeLogin = () => {
     <div className={styles.codeEditorBeforeLogin}>
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />
-        <img
+        {/* <img
           className={styles.frameGenericTutorialChild}
           alt=""
           src="/line-7@2x.png"
-        />
+        /> */}
 
         <div className={styles.mainWrapper}>
           {project && <OutputContainer key={projectId} project={project} />}
           {tutorial && <OutputContainer key={tutorialId} tutorial={tutorial} levelClicked={ levelClicked} language={language} />}
 
         </div>
-        <Select
+        {/* <Select
           className={styles.javaParent}
           placeholder="Language"
           size="small"
@@ -172,7 +172,7 @@ const CodeEditorBeforeLogin = () => {
           <Select.Option value="C++">C++</Select.Option>
           <Select.Option value="Java">Java</Select.Option>
           <Select.Option value="Python">Python</Select.Option>
-        </Select>
+        </Select> */}
         <AnimationContainer />
       </div>
       <Footer />

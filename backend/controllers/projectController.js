@@ -121,12 +121,11 @@ const deleteProject = async (req, res) => {
   res.status(200).json("deleted")
 }
 
-// update an existing project
 const updateProject = async (req, res) => {
   const userId =  req.user.id;
   const { id } = req.params;
   const updatedCode = req.body.updatedCode;
-
+  console.log("updatedCode", updatedCode)
   // const updatedCodeString= 
   try {
     // only allow if its in the users created projects
@@ -159,6 +158,7 @@ const updateProject = async (req, res) => {
       console.log("asdfasdfadsfasdfsadfdsa")
       console.log(classes);
       console.log("asd", relationships);
+      console.log("code", updatedCode);
       // generate the animation
       // find and display oop concepts
       // nlpHandler.generateRecommendations() // this is needed to do the next 3

@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 
 body {
   margin: 0;
@@ -14,6 +15,7 @@ body {
   --font-press-start-2p: "Press Start 2P";
   --font-pt-sans: "PT Sans";
   --font-righteous: Righteous;
+  --font-roborto: Roboto;
 
   /* font sizes */
   --font-size-base: 16px;
@@ -38,6 +40,27 @@ body {
   --font-size-3xl: 22px; */
 
   /* Colors */
+
+  --color-white-default: #fff;
+  --color-gray-100: #242136;
+  --color-gray-200: #130c34;
+  --color-gray-300: #090303;
+  --color-gray-400: rgba(0, 0, 0, 0.85);
+  --black-transparent: rgba(0, 0, 0, 0.8);
+  --white-transparent-80: rgba(255, 255, 255, 0.8);
+  --white-transparent-10: rgba(255, 255, 255, 0.1);
+  --color-darkslateblue-100: #3a2973;
+  --color-lightsteelblue: #c4cbda;
+  --color-midnightblue: #140c37;
+  --color-darkorange: #fb9521;
+  --color-indianred: #e05e56;
+  --color-mediumseagreen: #2e9b5a;
+  --color-gainsboro: #e3e3e3;
+  --color-whitesmoke: #ececec;
+  --color-silver: rgba(187, 186, 182, 0.1);
+  --color-mistyrose: #ead2d2;
+  --color-honeydew: #d2ead8;
+  
   --color-gray-100: #2e2b43;
   --color-gray-200: #242136;
   --color-gray-300: #130c34;
@@ -74,7 +97,14 @@ body {
   --gap-5xs: 8px;
   --gap-490xl: 509px;
   --gap-base: 16px;
-
+   --gap-431xl: 450px;
+   --gap-168xl: 187px;
+   --gap-sm: 14px;
+   --gap-6xs: 7px;
+   --gap-5xs-8: 7.8px;
+   --gap-5xs: 8px;
+ 
+   
   /* Paddings */
   --padding-6xs: 7px;
   --padding-smi: 13px;
@@ -92,7 +122,28 @@ body {
   --padding-5xl: 24px;
   --padding-5xs: 8px;
 
+  --padding-3xl: 22px;
+  --padding-lgi: 19px;
+  --padding-lg: 18px;
+  --padding-base: 16px;
+  --padding-5xs: 8px;
+  --padding-xs: 12px;
+  --padding-11xs: 2px;
+  --padding-5xl: 24px;
+
   /* Border radiuses */
+  --br-3xs: 10px;
+  --br-base: 16px;
+  --br-10xl-5: 29.5px;
+  --br-8xs: 5px;
+  --br-xl: 20px;
+  --br-6xs: 7px;
+  --br-smi: 13px;
+  --br-7xs-3: 5.3px;
+  --br-4xs-7: 8.7px;
+  --br-7xs: 6px;
+  --br-8xs-5: 4.5px;
+  
   --br-6xs: 7px;
   --br-smi: 13px;
   --br-xl: 20px;

@@ -53,8 +53,13 @@ function App() {
 
       <Route path="/SignIn" element={<SignIn />} />
       <Route path="/LogIn" element={<LogIn />} />
-      <Route path="/CodeEditorBeforeLogin" element={<CodeEditorBeforeLogin />} />
-
+      <Route path="/CodeEditorBeforeLogin" element={
+        
+          <ProjectsContextProvider>
+            <CodeEditorAfterLogin />
+          </ProjectsContextProvider>
+       
+      } />
       <Route path="/CodeEditorAfterLogin" element={user.user ?
         <TutorialsContextProvider>
           <ProjectsContextProvider>

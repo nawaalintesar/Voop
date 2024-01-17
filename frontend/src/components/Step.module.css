@@ -1,0 +1,78 @@
+.walkthroughStep3 {
+    position: absolute;
+    height: 23.38%;
+    width: 41.83%;
+    top: 0;
+    left: 0.27%;
+    font-weight: 500;
+    display: inline-block;
+  }
+  .vectorIcon,
+  .vectorIcon1 {
+    position: absolute;
+    height: 10.85%;
+    width: 1.4%;
+    top: 82.54%;
+    right: 3.09%;
+    bottom: 6.62%;
+    left: 95.51%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    cursor: pointer;
+  }
+  .vectorIcon1 {
+    right: 0;
+    left: 98.6%;
+  }
+  .div,
+  .suvIsAnother {
+    position: absolute;
+    height: 38.45%;
+    width: 97.89%;
+    top: 26.76%;
+    left: 0;
+    font-size: var(--font-size-4xs);
+    line-height: 168.69%;
+    display: inline-block;
+  }
+  .div {
+    height: 28.45%;
+    width: 4.5%;
+    top: 71.55%;
+    font-size: var(--font-size-3xs);
+  }
+  .content {
+    position: relative;
+    width: 550.6px;
+    height: 71px;
+  }
+  .property1variant3,
+  .step1 {
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .property1variant3 {
+    position: absolute;
+    top: 218px;
+    left: 20px;
+    border-radius: 8.72px;
+    background-color: var(--color-whitesmoke);
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--padding-5xs) var(--padding-xs);
+  }
+  .step1 {
+    border-radius: var(--br-8xs);
+    border: 1px dashed #9747ff;
+    width: 615px;
+    height: 1511px;
+    text-align: left;
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-400);
+    font-family: var(--font-roboto);
+  }
+  

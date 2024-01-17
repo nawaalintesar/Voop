@@ -46,7 +46,7 @@ const nlpHandler = {
                     console.error(`Parsing failed with code ${code}`);
                     console.error(`Error output from Python script:\n${errorOutput}`);
                     reject(new Error(`Parsing failed with code ${code}`));
-                }
+                }   
             });
 
         });

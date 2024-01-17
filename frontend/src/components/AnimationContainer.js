@@ -1,132 +1,119 @@
-import IconfileMd from "./IconfileMd";
-import Property1Variant3 from "./Property1Variant3";
+import { useState, useCallback } from "react";
+import EnrollPopUp from "./EnrollPopUp";
+import PortalPopup from "./PortalPopup";
+import TutorialStep from "./TutorialStep";
 import styles from "./AnimationContainer.module.css";
 
 const AnimationContainer = () => {
+  const [isEnrollPopUp1Open, setEnrollPopUp1Open] = useState(false);
+
+  const onVectorIcon1Click = useCallback(() => {
+    // Please sync "Code Editor- After Log In- Projects 4" to the project
+  }, []);
+
+  const onVectorIcon3Click = useCallback(() => {
+    // Please sync "Code Editor- After Log In- Projects 6" to the project
+  }, []);
+
+  const onFrameContainerClick = useCallback(() => {
+    // Please sync "Code Editor- After Log In- Projects 8" to the project
+  }, []);
+
+  const onExploreButton1Click = useCallback(() => {
+    // Please sync " Log In-F" to the project
+  }, []);
+
+  const openEnrollPopUp1 = useCallback(() => {
+    setEnrollPopUp1Open(true);
+  }, []);
+
+  const closeEnrollPopUp1 = useCallback(() => {
+    setEnrollPopUp1Open(false);
+  }, []);
+
   return (
-    <div className={styles.animation}>
-      <div className={styles.files}>
-        <div className={styles.file}>
-          <IconfileMd
-            imageCode="/vector3@2x.png"
-            dimensionCode="/vector5@2x.png"
-            technologyCode="SG"
-            iconfileMdPosition="relative"
-            iconfileMdWidth="20px"
-            iconfileMdHeight="20px"
-            vectorIconHeight="83.5%"
-            vectorIconWidth="66.5%"
-            vectorIconTop="8.5%"
-            vectorIconRight="17%"
-            vectorIconBottom="8%"
-            vectorIconLeft="16.5%"
-            mDColor="rgba(0, 0, 0, 0.8)"
-            mDTop="49%"
-          />
-          <div className={styles.animation1}>Animation</div>
+    <>
+      <div className={styles.animationmain}>
+        <div className={styles.frame}>
+          <div className={styles.animation}>
+            <TutorialStep
+              oopConceptTitles="Identified OOP Concept- Classes 1/2"
+              conceptTitle="/vector.svg"
+              conceptDescription="/vector.svg"
+              conceptCode="/vector.svg"
+              conceptCodeImageUrls="/vector.svg"
+              carMake="The first class identified is Car. It has an attribute “make” and a function called “displayInfo” "
+              conceptCodeDimensions="1/3"
+              propTop="66px"
+              propLeft="15px"
+              propRight="51.74%"
+              propLeft1="46.86%"
+              propRight1="48.66%"
+              propLeft2="49.95%"
+              onVectorIcon1Click={onVectorIcon1Click}
+              onVectorIcon3Click={onVectorIcon3Click}
+            />
+          </div>
+        </div>
+        <div className={styles.frame1}>
+          <div className={styles.topBarAnimation}>
+            <div className={styles.animation1}>
+              <div className={styles.icon}>
+                <img className={styles.vectorIcon} alt="" />
+                <img className={styles.vectorIcon1} alt="" src="/vector5@2x.png" />
+                <b className={styles.js}>SG</b>
+              </div>
+              <div className={styles.animation2}>Animation</div>
+            </div>
+            <div className={styles.saveButton}>
+              <div
+                className={styles.ellipseParent}
+                onClick={onFrameContainerClick}
+              >
+                <div className={styles.frameChild} />
+                <img className={styles.editPlus} alt="" src="/edit--plus.svg" />
+              </div>
+              <div className={styles.frameParent}>
+                <div className={styles.ellipseWrapper}>
+                  <div className={styles.frameItem} />
+                </div>
+                <img
+                  className={styles.editMinus}
+                  alt=""
+                  src="/edit--minus.svg"
+                />
+              </div>
+              <button
+                className={styles.explorebutton}
+                onClick={onExploreButton1Click}
+              >
+                <div className={styles.undo}>Undo</div>
+                <img
+                  className={styles.undoButtonIcon}
+                  alt=""
+                  src="/undo-button.svg"
+                />
+              </button>
+              <button
+                className={styles.explorebutton1}
+                onClick={openEnrollPopUp1}
+              >
+                <div className={styles.undo}>Save</div>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <div className={styles.icLoop48pxParent}>
-        <img
-          className={styles.icLoop48pxIcon}
-          alt=""
-          src="/ic-loop-48px@2x.png"
-        />
-        <img
-          className={styles.icReplay48pxIcon}
-          alt=""
-          src="/ic-replay-48px@2x.png"
-        />
-        <img
-          className={styles.icInfoOutline48pxIcon}
-          alt=""
-          src="/ic-info-outline-48px@2x.png"
-        />
-        <div className={styles.objectifyParent}>
-          <div className={styles.objectify}>Objectify</div>
-          <div className={styles.groupChild} />
-          <img
-            className={styles.icPlayArrow48pxIcon}
-            alt=""
-            src="/ic-play-arrow-48px@2x.png"
-          />
-        </div>
-      </div>
-      <Property1Variant3
-        showRectangleDiv={false}
-        property1Variant3Width="157px"
-        property1Variant3Position="absolute"
-        property1Variant3Top="158px"
-        property1Variant3Left="234px"
-        rectangleDivHeight="20.62%"
-        rectangleDivBottom="79.38%"
-        rectangleDivBackgroundColor="#ff9aa2"
-        rectangleDivHeight1="16.98%"
-        rectangleDivWidth="91.59%"
-        rectangleDivTop="35.12%"
-        rectangleDivBottom1="47.9%"
-        rectangleDivLeft="3.69%"
-        rectangleDivRight="4.71%"
-        rectangleDivHeight2="16.98%"
-        rectangleDivWidth1="91.59%"
-        rectangleDivTop1="58.77%"
-        rectangleDivBottom2="24.26%"
-        rectangleDivLeft1="3.69%"
-        rectangleDivBackgroundColor1="rgba(236, 235, 235, 0.3)"
-        rectangleDivBorder="3px solid var(--color-plum)"
-        rectangleDivRight1="4.71%"
-      />
-      <Property1Variant3
-        showRectangleDiv
-        property1Variant3Width="158px"
-        property1Variant3Position="absolute"
-        property1Variant3Top="439px"
-        property1Variant3Left="432px"
-        rectangleDivHeight="20.62%"
-        rectangleDivBottom="79.38%"
-        rectangleDivBackgroundColor="#de8ae5"
-        rectangleDivHeight1="16.98%"
-        rectangleDivWidth="91.65%"
-        rectangleDivTop="35.12%"
-        rectangleDivBottom1="47.9%"
-        rectangleDivLeft="3.67%"
-        rectangleDivRight="4.68%"
-        rectangleDivHeight2="16.98%"
-        rectangleDivWidth1="91.65%"
-        rectangleDivTop1="58.77%"
-        rectangleDivBottom2="24.26%"
-        rectangleDivLeft1="3.67%"
-        rectangleDivBackgroundColor1="#ecebeb"
-        rectangleDivBorder="3px solid var(--color-darkorchid)"
-        rectangleDivRight1="4.68%"
-      />
-      <Property1Variant3
-        showRectangleDiv
-        property1Variant3Width="158px"
-        property1Variant3Position="absolute"
-        property1Variant3Top="439px"
-        property1Variant3Left="55px"
-        rectangleDivHeight="20.62%"
-        rectangleDivBottom="79.38%"
-        rectangleDivBackgroundColor="#63ade3"
-        rectangleDivHeight1="16.98%"
-        rectangleDivWidth="91.65%"
-        rectangleDivTop="35.12%"
-        rectangleDivBottom1="47.9%"
-        rectangleDivLeft="3.67%"
-        rectangleDivRight="4.68%"
-        rectangleDivHeight2="16.98%"
-        rectangleDivWidth1="91.65%"
-        rectangleDivTop1="58.77%"
-        rectangleDivBottom2="24.26%"
-        rectangleDivLeft1="3.67%"
-        rectangleDivBackgroundColor1="#ecebeb"
-        rectangleDivBorder="3px solid var(--color-slateblue)"
-        rectangleDivRight1="4.68%"
-      />
-      <img className={styles.animationChild} alt="" src="/vector-20@2x.png" />
-      <img className={styles.animationItem} alt="" src="/vector-21@2x.png" />
-    </div>
+      {isEnrollPopUp1Open && (
+        <PortalPopup
+          overlayColor="rgba(113, 113, 113, 0.3)"
+          placement="Centered"
+          onOutsideClick={closeEnrollPopUp1}
+        >
+          <EnrollPopUp onClose={closeEnrollPopUp1} />
+        </PortalPopup>
+      )}
+    </>
   );
 };
 

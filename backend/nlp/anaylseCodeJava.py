@@ -133,44 +133,6 @@ def parseCode(java_code):
 
     return entity_info_list, relationships
 
-# Example Java code
-java_code = """
-public abstract class Animal {
-    abstract void makeSound();
-}
-
-public interface Jumpable {
-    void jump();
-}
-
-public class Dog extends Animal implements Jumpable {
-
-    private String breed;
-    void makeSound() {
-        System.out.println("Woof! Woof!");
-    }
-
-    public void jump() {
-        System.out.println("Jumping!");
-    }
-}
-
-public class Cat extends Animal {
-
-    private String furColour;
-    void makeSound() {
-        System.out.println("Meow!");
-    }
-}
-
-public class Bird extends Animal {
-    void makeSound(int s) {
-        System.out.println("Chirp!");
-    }
-}"""
-
-
-
 # Read the code from the command line arguments
 if len(sys.argv) != 2:
     print("Usage: python analyseCodePython.py <code>")

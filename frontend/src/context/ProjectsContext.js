@@ -8,22 +8,26 @@ export const projectssReducer = (state, action) => {
         ...state,
         projects: action.payload
       };
-      case 'GET_PROJECT':
-        return {
-          ...state,
-          project: action.payload
-        };
-        case 'DELETE_PROJECT':
-        return {
-          ...state,
-          project: action.payload
-        };
-        case 'CREATE_PROJECT':
-        return {
-          ...state,
-          project: action.payload
-        };
-    // Add other cases as needed
+    case 'GET_PROJECT':
+      return {
+        ...state,
+        project: action.payload
+      };
+    case 'DELETE_PROJECT':
+      return {
+        ...state,
+        project: action.payload
+      };
+    case 'CREATE_PROJECT':
+      return {
+        ...state,
+        project: action.payload
+      };
+    case 'UPDATE_PROJECT':
+      return {
+        ...state,
+        project: { ...state.project, ...action.payload },
+      }
     default:
       return state;
   }
@@ -33,10 +37,13 @@ export const projectssReducer = (state, action) => {
 export const ProjectsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(projectssReducer, {
     projects: null,
-    project:null
+    project: null
   });
+  const updateProject = (updatedCode) => {
+    dispatch({ type: 'UPDATE_PROJECT', payload: updatedCode });
+  };
   return (
-    <ProjectsContext.Provider value={{ ...state, dispatch }}>
+    <ProjectsContext.Provider value={{ ...state, dispatch, updateProject }}>
       {children}
     </ProjectsContext.Provider>
   );

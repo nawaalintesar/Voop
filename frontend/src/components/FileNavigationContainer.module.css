@@ -127,12 +127,13 @@
 .navigation {
   position: absolute;
   top: 0;
-  left: 50px;
+  left: 79px;
   right: 30px;
+
   background: linear-gradient(#160f3a, #160f3a), rgba(51, 51, 51, 0.8);
   backdrop-filter: blur(50px);
-  width: 211px;
-  height: 864px;
+  width: 222px;
+  height: 900px;
   text-align: left;
   font-size: var(--font-size-sm);
   color: var(--white-transparent-80);

@@ -20,7 +20,7 @@ const FileNavigationContainer = () => {
       <div className={styles.navigation}>
         <div className={styles.browser}>
           <div className={styles.project}>
-            <img className={styles.icon} alt="" src="/icon@2x.png" />
+           
             <div className={styles.button} />
             <div className={styles.myoopproject}>MyOOPProject</div>
           </div>
@@ -35,7 +35,7 @@ const FileNavigationContainer = () => {
             <div className={styles.nodeModules}>src</div>
           </div> */}
           <div className={styles.file}>
-            <img className={styles.icon1} alt="" src="/icon5@2x.png" />
+            
             <IconfileMd
               imageCode="/vector@2x.png"
               dimensionCode="/vector1@2x.png"
@@ -55,11 +55,11 @@ const FileNavigationContainer = () => {
             <div className={styles.nodeModules}>Main.js</div>
           </div>
           <div className={styles.folder}>
-            <img className={styles.icon1} alt="" src="/icon6@2x.png" />
+            
             <IconfileMd
               imageCode="/vector@2x.png"
               dimensionCode="/vector1@2x.png"
-              technologyCode="JS"
+              technologyCode="MD"
               iconfileMdPosition="relative"
               iconfileMdWidth="24px"
               iconfileMdHeight="24px"
