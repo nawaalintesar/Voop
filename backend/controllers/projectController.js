@@ -184,10 +184,6 @@ const updateProject = async (req, res) => {
 };
 
 
-async function displayOOPConcepts() {
-  // takes identified OOP Concepts and displays in grammarly popup
-}
-
 const searchCreatedProjects = async (searchTerm) => {
   const userId =  req.user.id;;
   // Trim and convert to lowercase for case-insensitive search

@@ -173,7 +173,9 @@ const CodeEditorBeforeLogin = () => {
           <Select.Option value="Java">Java</Select.Option>
           <Select.Option value="Python">Python</Select.Option>
         </Select> */}
-        <AnimationContainer />
+         {project && <AnimationContainer key={projectId} project={project} />}
+          {tutorial && <AnimationContainer key={tutorialId} tutorial={tutorial} levelClicked={ levelClicked} language={language} />}
+
       </div>
       <Footer />
       <Property1Closed

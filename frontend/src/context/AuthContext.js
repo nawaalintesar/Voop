@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from 'react'
+import { createContext, useReducer, useEffect, useState } from 'react'
 
 export const AuthContext = createContext()
 
@@ -12,26 +12,34 @@ export const authReducer = (state, action) => {
       return state
   }
 }
-
 export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { 
-    user: null
-  })
+  const [state, dispatch] = useReducer(authReducer, { user: null });
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem('user'));
 
     if (user) {
-      dispatch({ type: 'LOGIN', payload: user }) 
+      dispatch({ type: 'LOGIN', payload: user });
+    } else {
+      console.log('No user found in localStorage.');
     }
-  }, [])
-  console.log('AuthContext state:', state)
-  
+
+    // Set loading to false after checking localStorage
+    setLoading(false);
+  }, []);
+
+  console.log('AuthContext state:', state);
+
+  if (loading) {
+    return <div>Loading...</div>; // Render a loading indicator
+  }
+
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
-      { children }
+      {children}
     </AuthContext.Provider>
-  )
+  );
+};
 
-}
 

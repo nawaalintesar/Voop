@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import styles from "./TutorialStep.module.css";
+// ... (your imports and other code)
 
 const TutorialStep = ({
   oopConceptTitles,
@@ -15,10 +16,10 @@ const TutorialStep = ({
   propLeft1,
   propRight1,
   propLeft2,
-  onVectorIcon4Click,
-  onVectorIcon1Click,
-  onVectorIcon22Click,
-  onVectorIcon3Click,
+  onNext,  // Add onNext as a prop
+  onPrev,  // Add onPrev as a prop
+  onNextBig,
+  onPrevBig
 }) => {
   const step1Style = useMemo(() => {
     return {
@@ -49,26 +50,26 @@ const TutorialStep = ({
           className={styles.vectorIcon}
           alt=""
           src={conceptTitle}
-          onClick={onVectorIcon4Click}
+          onClick={onPrev}  // Call onPrev when the icon is clicked
         />
         <img
           className={styles.vectorIcon1}
           alt=""
           src={conceptDescription}
-          onClick={onVectorIcon1Click}
+          onClick={onNext}  // Call onNext when the icon is clicked
         />
         <img
           className={styles.vectorIcon2}
           alt=""
           src={conceptCode}
           style={vectorIconStyle}
-          onClick={onVectorIcon22Click}
+          onClick={onPrevBig}  // Call onPrev when the icon is clicked
         />
         <img
           className={styles.vectorIcon3}
           alt=""
           src={conceptCodeImageUrls}
-          onClick={onVectorIcon3Click}
+          onClick={onNextBig}  // Call onNext when the icon is clicked
           style={vectorIcon1Style}
         />
         <div className={styles.theFirstClass}>{carMake}</div>

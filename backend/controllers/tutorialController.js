@@ -292,7 +292,7 @@ const getEnrolledTutorials = async (req, res) => {
 };
 
 
-
+//not using this function rn
 const playTutorial = async (req, res) => {
 
   //once authentication part is done this should be using userId for now im making it static  req.user.id;
