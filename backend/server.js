@@ -8,6 +8,13 @@ const profileRoutes= require('./routes/profile')
 const userRoutes=require('./routes/user')
 // express app
 const app = express()
+app.use(cors(
+  {
+    origin:[""],
+    methods: ["POST", "GET", "PATCH", "DELETE"],
+    credentials:true
+  }
+))
 
 // middleware
 app.use(express.json())
