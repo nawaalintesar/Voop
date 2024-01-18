@@ -22,7 +22,7 @@ import styles from "./CodeEditorAfterLogin.module.css";
 
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const CodeEditorBeforeLogin = () => {
+const CodeEditorAfterLogin = () => {
   const user = useAuthContext();
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
@@ -191,4 +191,4 @@ const CodeEditorBeforeLogin = () => {
   );
 };
 
-export default CodeEditorBeforeLogin;
+export default CodeEditorAfterLogin;

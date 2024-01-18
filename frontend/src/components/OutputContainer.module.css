@@ -187,3 +187,21 @@
 .main{
   left:90px;
 }
+
+.defaultOutputContainer{
+
+  position: absolute;
+  height: calc(100% - 8px);
+  top: 4px ;
+  bottom: 8px;
+  left: 90px;
+  width: 548px;
+}
+.customOutputContainer{
+  position: absolute;
+  height: calc(100% - 8px);
+  top: 4px ;
+  bottom: 8px;
+  left: 0px;
+  width: 548px;
+}

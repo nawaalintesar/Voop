@@ -10,7 +10,7 @@ import styles from "./OutputContainer.module.css";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useProjectsContext } from "../hooks/useProjectsContext.js";
 
-const OutputContainer = ({ project, tutorial, levelClicked, language }) => {
+const OutputContainer = ({ customOutputContainer ,project, tutorial, levelClicked, language }) => {
   const user = useAuthContext();
   const { dispatch } = useProjectsContext();
   const [userCode, setUserCode] = useState("");
@@ -70,7 +70,7 @@ const OutputContainer = ({ project, tutorial, levelClicked, language }) => {
   };
 
   return (
-    <div className={styles.main}>
+    <div className={`${styles.defaultOutputContainer} ${customOutputContainer}`}>
 
       <div className={styles.topbarFiles}>
         <button className={styles.explorebutton} onClick={handleObjectify}

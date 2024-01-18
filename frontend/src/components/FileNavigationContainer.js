@@ -3,10 +3,10 @@ import CodeEditorPopUp from "./CodeEditorPopUp";
 import PortalPopup from "./PortalPopup";
 import IconfileMd from "./IconfileMd";
 import styles from "./FileNavigationContainer.module.css";
-
-const FileNavigationContainer = () => {
+import PropTypes from "prop-types";
+const FileNavigationContainer = ({ customClassName }) => {
   const [isCodeEditorPopUpOpen, setCodeEditorPopUpOpen] = useState(false);
-
+  console.log("SDTYLE IS:", customClassName)
   const openCodeEditorPopUp = useCallback(() => {
     setCodeEditorPopUpOpen(true);
   }, []);
@@ -15,9 +15,12 @@ const FileNavigationContainer = () => {
     setCodeEditorPopUpOpen(false);
   }, []);
 
+  FileNavigationContainer.propTypes = {
+    customClassName: PropTypes.string,
+  };
   return (
     <>
-      <div className={styles.navigation}>
+      <div className={`${styles.defaultFileNavigation} ${customClassName}`}>
         <div className={styles.browser}>
           <div className={styles.project}>
            
@@ -86,6 +89,7 @@ const FileNavigationContainer = () => {
           onClick={openCodeEditorPopUp}
         />
       </div>
+      
       {isCodeEditorPopUpOpen && (
         <PortalPopup
           overlayColor="rgba(113, 113, 113, 0.3)"
@@ -98,5 +102,8 @@ const FileNavigationContainer = () => {
     </>
   );
 };
+
+
+
 
 export default FileNavigationContainer;

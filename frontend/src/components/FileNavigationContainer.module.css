@@ -129,6 +129,38 @@
   top: 0;
   left: 79px;
   right: 30px;
+  background: linear-gradient(#160f3a, #160f3a), rgba(51, 51, 51, 0.8);
+  backdrop-filter: blur(50px);
+  width: 222px;
+  height: 900px;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--white-transparent-80);
+  font-family: var(--font-poppins);
+}
+/* FileNavigationContainer.module.css */
+
+.defaultFileNavigation {
+  /* default styles */
+  position: absolute;
+  top: 0;
+  left: 79px;
+  right: 30px;
+
+  background: linear-gradient(#160f3a, #160f3a), rgba(51, 51, 51, 0.8);
+  backdrop-filter: blur(50px);
+  width: 222px;
+  height: 900px;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--white-transparent-80);
+  font-family: var(--font-poppins);
+}
+
+.customFileNavigation {
+  /* additional styles for CodeEditorBeforeLogin page */
+  /* customize the positioning or any other styles as needed */
+  
 
   background: linear-gradient(#160f3a, #160f3a), rgba(51, 51, 51, 0.8);
   backdrop-filter: blur(50px);

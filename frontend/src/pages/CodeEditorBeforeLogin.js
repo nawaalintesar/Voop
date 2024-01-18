@@ -30,18 +30,17 @@ const CodeEditorBeforeLogin = () => {
 
   const onFrameButtonClickSignIn = useCallback(() => {
     //code dditor button
-    navigate("/signIn");
+    navigate("/SignIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
   
+  console.log("CODE EDITOR BEFORE LOGIN REAHCED");
   return (
     <div className={styles.codeEditorBeforeLogin}>
       
-
-     
-
       <div className={styles.frameGenericTutorial}>
-        <FileNavigationContainer />
+        <FileNavigationContainer customClassName={styles.customFileNavigation}/>
+
         <img
           className={styles.frameGenericTutorialChild}
           alt=""
@@ -50,24 +49,9 @@ const CodeEditorBeforeLogin = () => {
 
         <div className={styles.mainWrapper}>
 
-          <OutputContainer />
+          <OutputContainer customOutputContainer={styles.customOutputContainer}/>
         </div>
-        <Select
-          className={styles.javaParent}
-          placeholder="Language"
-          size="small"
-          style={{ width: "89px" }}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-          virtual={false}
-          showArrow={false}
-        >
-          <Select.Option value="Java">Java</Select.Option>
-          <Select.Option value="C++">C++</Select.Option>
-          <Select.Option value="Python">Python</Select.Option>
-        </Select>
-        <AnimationContainer />
+        <AnimationContainer AnimationContainer={styles.AnimationContainer}/>
       </div>
       <Property1Default2
         buttonText="codeEditorButtonHeader"

@@ -45,4 +45,28 @@
 /* Add these styles to your existing CSS file */
 
 
+.customFileNavigation {
+  /* Add your custom styles for FileNavigationContainer in CodeEditorBeforeLogin */
+  /* For example, you can set the left property to 0 for positioning it on the left */
+  left: 0;
+  /* Add any other specific styles you need */
+}
 
+.customOutputContainer{
+  position: absolute;
+  height: calc(100% - 8px);
+  top: 0;
+  bottom: 8px;
+  left: 0px;
+  width: 548px;
+}
+
+
+.AnimationContainer{
+  top:-10px;
+  width: 900px;
+  height: 900px;
+  position: relative;
+  left: 750px;
+  
+}

@@ -47,6 +47,10 @@ const Dashboard = () => {
     navigate("/dashboard");
   }, [navigate]);
 
+  const onCodeEditorclick=useCallback(() => {
+    navigate("/CodeEditorAfterLogin");
+  }, [navigate]);
+
   const RecentProjectsContainer = () => {
     const [isProjectPopUPpOpen, setProjectPopUPpOpen] = useState(false);
   }
@@ -136,7 +140,7 @@ const Dashboard = () => {
       </div>
       <Footer />
       <Property1Default
-        onFrameButtonClick={onFrameButtonClick}
+        onFrameButtonClick={onCodeEditorclick}
       />
       <Property1Closed
         onFrameContainerClick={onFrameContainer3Click}
