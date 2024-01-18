@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
-import "antd/dist/antd.min.css";
-import { Select } from "antd";
+
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow';
@@ -52,21 +51,7 @@ const CodeEditorBeforeLogin = () => {
 
           <OutputContainer />
         </div>
-        <Select
-          className={styles.javaParent}
-          placeholder="Language"
-          size="small"
-          style={{ width: "89px" }}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-          virtual={false}
-          showArrow={false}
-        >
-          <Select.Option value="Java">Java</Select.Option>
-          <Select.Option value="C++">C++</Select.Option>
-          <Select.Option value="Python">Python</Select.Option>
-        </Select>
+        
         <AnimationContainer />
       </div>
       <Property1Default2
