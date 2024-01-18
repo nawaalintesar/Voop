@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "antd/dist/antd.min.css";
-import { Select } from "antd";
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/tomorrow';

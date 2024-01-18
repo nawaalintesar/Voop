@@ -1,5 +1,3 @@
-
-import "antd/dist/antd.min.css";
 import { Select } from "antd";
 import styles from "./ProjectPopUPp.module.css";
 import { useState, useCallback, useEffect, dispatch } from "react";
