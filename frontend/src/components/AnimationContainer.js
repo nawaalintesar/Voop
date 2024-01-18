@@ -4,7 +4,7 @@ import styles from "./AnimationContainer.module.css";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useProjectsContext } from "../hooks/useProjectsContext.js";
 
-const AnimationContainer = ({ project, tutorial, levelClicked, language }) => {
+const AnimationContainer = ({AnimationContainer, project, tutorial, levelClicked, language }) => {
   const user = useAuthContext();
   const { dispatch } = useProjectsContext();
   const [userCodeState, setUserCodeState] = useState(null);
@@ -61,7 +61,7 @@ const AnimationContainer = ({ project, tutorial, levelClicked, language }) => {
 
   return (
     <>
-      <div className={styles.animationmain}>
+      <div className={`${styles.defaultAnimationContainer} ${AnimationContainer}`}>
         <div className={styles.frame}>
           <div className={styles.animation}>
             {tutorial && clickedLevel ? (

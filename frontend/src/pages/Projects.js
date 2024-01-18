@@ -55,6 +55,9 @@ const Projects = () => {
     navigate("/CodeEditorAfterLogin", { state: { ProjectId } });
   }, [navigate]);
 
+  const onCodeEditorclick=useCallback(() => {
+    navigate("/CodeEditorAfterLogin");
+  }, [navigate]);
 
   const onFrameContainer3Click = useCallback(() => {
     navigate("/Tutorials");
@@ -208,7 +211,7 @@ const Projects = () => {
 
         <Footer />
         <Property1Default
-          onFrameButtonClick={onFrameButtonClick} />
+          onFrameButtonClick={onCodeEditorclick} />
         <Property1Closed
           onFrameContainerClick={onFrameContainer3Click}
           onFrameIconClick={onFrameIconClick}

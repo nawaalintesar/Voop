@@ -20,7 +20,7 @@ import styles from "./CodeEditorAfterLogin.module.css";
 
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const CodeEditorBeforeLogin = () => {
+const CodeEditorAfterLogin = () => {
   const user = useAuthContext();
   const [isLogOutPopOutLPopupOpen, setLogOutPopOutLPopupOpen] = useState(false);
   const [isLogOutPopOutLPopup1Open, setLogOutPopOutLPopup1Open] =
@@ -145,32 +145,13 @@ const CodeEditorBeforeLogin = () => {
     <div className={styles.codeEditorBeforeLogin}>
       <div className={styles.frameGenericTutorial}>
         <FileNavigationContainer />
-        {/* <img
-          className={styles.frameGenericTutorialChild}
-          alt=""
-          src="/line-7@2x.png"
-        /> */}
 
         <div className={styles.mainWrapper}>
           {project && <OutputContainer key={projectId} project={project} />}
           {tutorial && <OutputContainer key={tutorialId} tutorial={tutorial} levelClicked={ levelClicked} language={language} />}
 
         </div>
-        {/* <Select
-          className={styles.javaParent}
-          placeholder="Language"
-          size="small"
-          style={{ width: "89px" }}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-          virtual={false}
-          showArrow={false}
-        >
-          <Select.Option value="C++">C++</Select.Option>
-          <Select.Option value="Java">Java</Select.Option>
-          <Select.Option value="Python">Python</Select.Option>
-        </Select> */}
+
          {project && <AnimationContainer key={projectId} project={project} />}
           {tutorial && <AnimationContainer key={tutorialId} tutorial={tutorial} levelClicked={ levelClicked} language={language} />}
 
@@ -189,4 +170,4 @@ const CodeEditorBeforeLogin = () => {
   );
 };
 
-export default CodeEditorBeforeLogin;
+export default CodeEditorAfterLogin;

@@ -29,18 +29,17 @@ const CodeEditorBeforeLogin = () => {
 
   const onFrameButtonClickSignIn = useCallback(() => {
     //code dditor button
-    navigate("/signIn");
+    navigate("/SignIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
   
+  console.log("CODE EDITOR BEFORE LOGIN REAHCED");
   return (
     <div className={styles.codeEditorBeforeLogin}>
       
-
-     
-
       <div className={styles.frameGenericTutorial}>
-        <FileNavigationContainer />
+        <FileNavigationContainer customClassName={styles.customFileNavigation}/>
+
         <img
           className={styles.frameGenericTutorialChild}
           alt=""
@@ -49,10 +48,9 @@ const CodeEditorBeforeLogin = () => {
 
         <div className={styles.mainWrapper}>
 
-          <OutputContainer />
+          <OutputContainer customOutputContainer={styles.customOutputContainer}/>
         </div>
-        
-        <AnimationContainer />
+        <AnimationContainer AnimationContainer={styles.AnimationContainer}/>
       </div>
       <Property1Default2
         buttonText="codeEditorButtonHeader"
