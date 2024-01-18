@@ -1,12 +1,9 @@
 import React, { useState, useCallback } from "react";
-import "antd/dist/antd.min.css";
 import { Select } from "antd";
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
-import 'brace/theme/tomorrow';
-
+import 'brace/theme/dracula';
 import { useNavigate } from "react-router-dom";
-// other imports...
 import LogOutPopOutL from "../components/LogOutPopOutL";
 import PortalPopup from "../components/PortalPopup";
 import Footer from "../components/Footer";
@@ -33,8 +30,62 @@ const CodeEditorBeforeLogin = () => {
     navigate("/SignIn");
     // Please sync "Code Editor- after login" to the project
   }, [navigate]);
-  
-  console.log("CODE EDITOR BEFORE LOGIN REAHCED");
+  const project= {
+    "prjName": "JavaAnimalProject",
+    "progLang": "java",
+    "codeStates": [
+      {
+        "codeIndex": 1,
+        "userCode": "public class Animal {\n    private String name;\n    private int age;\n    \n    public Animal(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n    \n    public void makeSound() {\n        System.out.println(\"Animal sound\");\n    }\n}",
+      
+        "classes": [
+          {
+            "isClass": true,
+            "name": "Animal",
+            "attributes": [
+              {
+                "name": "name",
+                "access_modifier": "private"
+              },
+              {
+                "name": "age",
+                "access_modifier": "private"
+              }
+            ],
+            "methods": [
+              {
+                "name": "Animal",
+                "access_modifier": "public",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "String"
+                  },
+                  {
+                    "name": "age",
+                    "type": "int"
+                  }
+                ]
+              },
+              {
+                "name": "makeSound",
+                "access_modifier": "public",
+                "parameters": []
+              }
+            ],
+            "linesOfCode": "13"
+          }
+        ],
+        "relationships": [],
+        "diagramID": null
+      }
+    ],
+    "constraints": [],
+    "codeRecs": []
+  }
+
+  console.log(project);
+  console.log("CODE EDITOR BEFORE LOGIN REAHCED", project?.codeStates[project.codeStates.length - 1]?.userCode);
   return (
     <div className={styles.codeEditorBeforeLogin}>
       
@@ -49,7 +100,7 @@ const CodeEditorBeforeLogin = () => {
 
         <div className={styles.mainWrapper}>
 
-          <OutputContainer customOutputContainer={styles.customOutputContainer}/>
+          <OutputContainer customOutputContainer={styles.customOutputContainer} project={project}/>
         </div>
         <AnimationContainer AnimationContainer={styles.AnimationContainer}/>
       </div>

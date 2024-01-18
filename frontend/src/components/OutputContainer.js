@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 
 import 'brace/mode/java';
 import 'brace/mode/javascript';
-import 'brace/theme/terminal';
+import 'brace/theme/dracula';
 
 import styles from "./OutputContainer.module.css";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -18,8 +18,16 @@ const OutputContainer = ({ customOutputContainer ,project, tutorial, levelClicke
   useEffect(() => {
     console.log('OutputContainer mounted');
     if (project) {
-      console.log("Projects", project?.project?.codeStates);
+      if(user.user=== null){
+        console.log("USER NOT LOGGED IN CODE: ",project);
+        setUserCode(project?.codeStates[project.codeStates.length - 1]?.userCode)
+        console.log("Set user code:",setUserCode)
+      }
+      else{
+        console.log("Projects", project?.project?.codeStates);
       setUserCode(project?.project?.codeStates?.[project.project.codeStates.length - 1]?.userCode[0] || "Start typing here!");
+    }
+      
     } else if (tutorial) {
       const levelClickedNumber = parseInt(levelClicked, 10);
       const filteredLevels = tutorial.level.filter(level => level.progLang === language);
@@ -122,7 +130,7 @@ const OutputContainer = ({ customOutputContainer ,project, tutorial, levelClicke
           height="610px"
           width="548px"
           mode="java"
-          theme="terminal"
+          theme="dracula"
           name="editor"
           fontSize={14}
           editorProps={{ $blockScrolling: true }}
